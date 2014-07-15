@@ -457,13 +457,15 @@ public class DatabaseMeta extends SharedObjectBase implements Cloneable, XMLInte
 
     String mySQL = mySqlPlugin.getIds()[0];
 
-    addExtraOption(mySQL, "defaultFetchSize", "500");
+    addExtraOption(mySQL, "defaultFetchSize", "1000");
     addExtraOption(mySQL, "useCursorFetch", "true");
 
     String infoBright = infoBrightPlugin.getIds()[0];
 
     addExtraOption(infoBright, "characterEncoding", "UTF-8");
-    
+    addExtraOption(infoBright, "defaultFetchSize", "1000");
+    addExtraOption(infoBright, "useCursorFetch", "true");
+   
     // Modern databases support this, try it by default...
     //
     setSupportsBooleanDataType(true);
