@@ -71,7 +71,7 @@ public class Condition implements Cloneable, XMLInterface
 	public static final int OPERATOR_XOR        = 6;
 
 	public static final String[] functions = new String[] { 
-	  "=", "<>", "<", "<=", ">", ">=", "REGEXP", "IS NULL", "IS NOT NULL", "IN LIST", "CONTAINS", "STARTS WITH", "ENDS WITH", "LIKE", "TRUE",  };
+	  "=", "<>", "<", "<=", ">", ">=", "REGEXP", "IS NULL", "IS NOT NULL", "IN LIST", "CONTAINS", "STARTS WITH", "ENDS WITH", "LIKE", "TRUE", "IS EMPTY" , "NOT IS EMPTY"  };
 	
 	public static final int FUNC_EQUAL         = 0;
 	public static final int FUNC_NOT_EQUAL     = 1;
@@ -86,8 +86,11 @@ public class Condition implements Cloneable, XMLInterface
 	public static final int FUNC_CONTAINS      = 10;
 	public static final int FUNC_STARTS_WITH   = 11;
 	public static final int FUNC_ENDS_WITH     = 12;
-  public static final int FUNC_LIKE          = 13;
-  public static final int FUNC_TRUE          = 14;
+    public static final int FUNC_LIKE          = 13;
+    public static final int FUNC_TRUE          = 14;
+    public static final int FUNC_IS_EMPTY      = 15;  // SKOFRA
+	public static final int FUNC_NOT_IS_EMPTY  = 16;  // SKOFRA
+
 
 	//
 	// These parameters allow for:
@@ -526,6 +529,16 @@ public class Condition implements Cloneable, XMLInterface
             retval = false;
           }
           break;
+        // SKOFRA  
+		case FUNC_IS_EMPTY      :          
+            string = fieldMeta.getCompatibleString(field); 
+            retval = Const.isEmpty(string);
+            break;
+        // SKOFRA  
+		case FUNC_NOT_IS_EMPTY      :          
+            string = fieldMeta.getCompatibleString(field); 
+            retval = !Const.isEmpty(string);
+            break;
         case FUNC_LIKE:
           // Converts to a regular expression
           // TODO: optimize the patterns and String replacements
@@ -760,7 +773,7 @@ public class Condition implements Cloneable, XMLInterface
 	       retval += " TRUE";
 	     } else {
   			retval+=left_valuename+" "+getFunctionDesc();
-  			if (function != FUNC_NULL && function != FUNC_NOT_NULL)
+  			if (function != FUNC_NULL && function != FUNC_NOT_NULL && function != FUNC_IS_EMPTY && function != FUNC_NOT_IS_EMPTY)
   			{
   				if ( right_valuename != null )
   				{
