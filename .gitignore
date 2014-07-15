@@ -22,3 +22,5 @@ build-res/module-scripts/
 *.ear
 *.iml
 /*.launch
+/classes/
+/bin/
