@@ -113,6 +113,7 @@ public class Formula extends BaseStep implements StepInterface
 
     private Object[] calcFields(RowMetaInterface rowMeta, Object[] r) throws KettleValueException
     {
+        FormulaMetaFunction currentFormula = null;
         try
         {
         	Object[] outputRowData = RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
@@ -141,6 +142,7 @@ public class Formula extends BaseStep implements StepInterface
             for (int i=0;i<meta.getFormula().length;i++)
             {
                 FormulaMetaFunction fn = meta.getFormula()[i];
+                currentFormula = fn;
                 if (!Const.isEmpty( fn.getFieldName()))
                 {
                     if (data.lValue[i]==null)
@@ -171,8 +173,15 @@ public class Formula extends BaseStep implements StepInterface
                         	}
                         } else if (formulaResult instanceof Number) {
                         	data.returnType[i] = FormulaData.RETURN_TYPE_NUMBER;
-                        	if (fn.getValueType()!=ValueMetaInterface.TYPE_NUMBER) {
-                        		throw new KettleValueException("Please specify a Number type for field ["+fn.getFieldName()+"] as a result of formula ["+fn.getFormula()+"]");
+                        	if (fn.getValueType()==ValueMetaInterface.TYPE_INTEGER) {
+                        		data.returnType[i] = FormulaData.RETURN_TYPE_INTEGER;
+                        	} else if   (fn.getValueType()==ValueMetaInterface.TYPE_BIGNUMBER) {
+                        		data.returnType[i] = FormulaData.RETURN_TYPE_BIGDECIMAL;
+                        	} 
+                         	else {
+	                        	if (fn.getValueType()!=ValueMetaInterface.TYPE_NUMBER) {
+	                        		throw new KettleValueException("Please specify a Number type for field ["+fn.getFieldName()+"] as a result of formula ["+fn.getFormula()+"]");
+	                        	}
                         	}
                         } else if (formulaResult instanceof Integer) {
                         	data.returnType[i] = FormulaData.RETURN_TYPE_INTEGER;
@@ -191,8 +200,15 @@ public class Formula extends BaseStep implements StepInterface
                         	}
                         } else if (formulaResult instanceof BigDecimal) {
                         	data.returnType[i] = FormulaData.RETURN_TYPE_BIGDECIMAL;
-                        	if (fn.getValueType()!=ValueMetaInterface.TYPE_BIGNUMBER) {
-                        		throw new KettleValueException("Please specify a BigNumber type for field ["+fn.getFieldName()+"] as a result of formula ["+fn.getFormula()+"]");
+                        	if (fn.getValueType()==ValueMetaInterface.TYPE_INTEGER) {
+                        		data.returnType[i] = FormulaData.RETURN_TYPE_INTEGER;
+                        	} else if   (fn.getValueType()==ValueMetaInterface.TYPE_NUMBER) {
+                        		data.returnType[i] = FormulaData.RETURN_TYPE_NUMBER;
+                        	} 
+                         	else {
+                            	if (fn.getValueType()!=ValueMetaInterface.TYPE_BIGNUMBER) {
+                            		throw new KettleValueException("Please specify a BigNumber type for field ["+fn.getFieldName()+"] as a result of formula ["+fn.getFormula()+"]");
+                            	}
                         	}
                         } else if (formulaResult instanceof byte[]) {
                         	data.returnType[i] = FormulaData.RETURN_TYPE_BYTE_ARRAY;
@@ -218,8 +234,8 @@ public class Formula extends BaseStep implements StepInterface
                       }
                       break;
                     case FormulaData.RETURN_TYPE_NUMBER  : value = new Double(((Number)formulaResult).doubleValue()); break;
-                    case FormulaData.RETURN_TYPE_INTEGER : value = new Long( ((Integer)formulaResult).intValue() ); break;
-                    case FormulaData.RETURN_TYPE_LONG : value = formulaResult; break;
+                    case FormulaData.RETURN_TYPE_INTEGER : value = new Long( ((Number)formulaResult).intValue() ); break;
+                    case FormulaData.RETURN_TYPE_LONG : value = new Long( ((Number)formulaResult).intValue() ); break;
                     case FormulaData.RETURN_TYPE_DATE : value = formulaResult; break;
                     case FormulaData.RETURN_TYPE_BIGDECIMAL : value = formulaResult; break;
                     case FormulaData.RETURN_TYPE_BYTE_ARRAY : value = formulaResult; break;
@@ -237,11 +253,16 @@ public class Formula extends BaseStep implements StepInterface
                 }
             }
             
+            currentFormula = null;
             return outputRowData;
         }
         catch(Throwable e)
         {
-            throw new KettleValueException(e);
+        	String msg = "Formula Error:";
+        	if (currentFormula!=null) {
+        		msg = currentFormula.getFieldName() + " = " + currentFormula.getFormula();
+        	}
+            throw new KettleValueException(msg, e);
         }
     }
 
