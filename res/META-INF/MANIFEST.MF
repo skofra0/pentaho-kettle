@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Implementation-Title: Data Integrator
+Implementation-Vendor: Pentaho
+Implementation-Vendor-Id: org.pentaho
+Specification-Title: Data Integrator
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.pentaho
+X-Compile-Target-JDK: 1.7
+Implementation-Version: 5.0.7
+Specification-Vendor: Pentaho
+Bundle-Name: Pentaho Data Integrator
+Created-By: Apache ANT
+Bundle-Vendor: The Apache Software Foundation
+Build-Jdk: 1.7.0_45
+Bundle-Version: 5.0.7
+Bnd-LastModified: 1388941277034
+Bundle-ManifestVersion: 2
+Specification-Version: 5.0.7-sigma_100
+
