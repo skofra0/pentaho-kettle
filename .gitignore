@@ -11,8 +11,6 @@ override.properties
 testdata.log
 testdata.properties
 testdata.script
-.classpath
-.project
 projects/
 build-res/dojo-*
 build-res/module-scripts/
