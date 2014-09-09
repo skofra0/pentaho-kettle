@@ -706,7 +706,8 @@ public class SalesforceInputMeta extends BaseStepMeta implements StepMetaInterfa
 		specifyQuery=false;
 		query="";
 		targeturl=SalesforceConnectionUtils.TARGET_DEFAULT_URL ;
-		password = "";
+		password = "${CRM_PASSWORD}";
+		username = "${CRM_USER}";
 		module = "Account";
 		condition = "";
 		includeTargetURL  = false;
@@ -730,7 +731,7 @@ public class SalesforceInputMeta extends BaseStepMeta implements StepMetaInterfa
 		}
 
 		rowLimit="0";
-		timeout= "60000";
+		timeout= SalesforceConnectionUtils.DEFAULT_TIMEOUT;
 	}
 	
 	public void getFields(RowMetaInterface r, String name, RowMetaInterface info[], StepMeta nextStep, VariableSpace space, Repository repository, IMetaStore metaStore) throws KettleStepException

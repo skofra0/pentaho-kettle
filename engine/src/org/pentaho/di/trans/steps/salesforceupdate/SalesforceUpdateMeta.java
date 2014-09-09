@@ -377,7 +377,8 @@ public class SalesforceUpdateMeta extends BaseStepMeta implements StepMetaInterf
 	public void setDefault()
 	{
 		targeturl=SalesforceConnectionUtils.TARGET_DEFAULT_URL ;
-		password = "";
+		password = "${CRM_PASSWORD}";
+		username = "${CRM_USER}";
 		module = "Account";
 		batchSize="10";
 		
@@ -392,7 +393,7 @@ public class SalesforceUpdateMeta extends BaseStepMeta implements StepMetaInterf
 		}
 		useCompression=false;
 		rollbackAllChangesOnError=false;
-		timeout= "60000";
+		timeout= SalesforceConnectionUtils.DEFAULT_TIMEOUT;
 	}
 	
 	/* This function adds meta data to the rows being pushed out */

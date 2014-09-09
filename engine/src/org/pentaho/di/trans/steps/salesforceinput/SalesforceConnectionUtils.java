@@ -31,11 +31,11 @@ public class SalesforceConnectionUtils {
 	
 	private static Class<?> PKG = SalesforceInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 	
-	public static final String LIB_VERION="21.0";
+	public static final String LIB_VERION="24.0";
 	
-	public static final String TARGET_DEFAULT_URL= "https://www.salesforce.com/services/Soap/u/21.0";
+	public static final String TARGET_DEFAULT_URL= "https://www.salesforce.com/services/Soap/u/24.0";
 	
-	public static final String DEFAULT_TIMEOUT = "60000";
+	public static final String DEFAULT_TIMEOUT = "120000";
 	
 	/**
 	 * The records filter description

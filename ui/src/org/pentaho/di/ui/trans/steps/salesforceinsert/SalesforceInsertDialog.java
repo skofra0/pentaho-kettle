@@ -691,7 +691,7 @@ public class SalesforceInsertDialog extends BaseStepDialog implements StepDialog
       if ( r != null ) {
         TableItemInsertListener listener = new TableItemInsertListener() {
           public boolean tableItemInserted( TableItem tableItem, ValueMetaInterface v ) {
-            tableItem.setText( 3, "Y" );
+            tableItem.setText( 3, "N" );
             return true;
           }
         };
