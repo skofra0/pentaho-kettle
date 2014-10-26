@@ -238,7 +238,8 @@ public class OracleDatabaseMeta extends BaseDatabaseMeta implements DatabaseInte
 	@Override
   public boolean useSchemaNameForTableList()
 	{
-		return true;
+		//return true;
+		return false;
 	}
 
 	/**

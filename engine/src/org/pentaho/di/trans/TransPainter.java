@@ -922,7 +922,7 @@ public class TransPainter extends BasePainter
                 }
                 else
                 {
-                	col = EColor.BLACK;
+                	col = EColor.DARKGRAY; // EColor.BLACK;
                 }
             }
             else

@@ -94,7 +94,6 @@ public class OracleRDBDatabaseMeta extends BaseDatabaseMeta implements DatabaseI
 		{
             return "jdbc:rdbThin://"+hostname+":"+port+"/"+databaseName;
 		}
-
 	}
     
     /**

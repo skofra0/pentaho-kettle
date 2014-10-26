@@ -184,6 +184,6 @@
 	<classpathentry kind="lib" path="lib/xmlParserAPIs-2.6.2.jar"/>
 	<classpathentry kind="lib" path="lib/xom-1.1.jar"/>
 	<classpathentry kind="lib" path="dist/libswt/win64/swt.jar"/>
-	<classpathentry kind="lib" path="lib/responsive-lib-addons.jar"/>
+	<classpathentry kind="lib" path="lib/deem-lib-addons.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

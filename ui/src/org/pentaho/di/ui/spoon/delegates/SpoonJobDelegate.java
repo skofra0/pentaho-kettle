@@ -629,6 +629,7 @@ public class SpoonJobDelegate extends SpoonDelegate
 						if (repdir != null)
 						{
 							transMeta.setRepositoryDirectory(repdir);
+							transMeta.setName(transname);
 						} else
 						{
 							transMeta.setFilename(Const.createFilename(directory, transname, "."+Const.STRING_TRANS_DEFAULT_EXT)); 
