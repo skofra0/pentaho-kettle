@@ -103,7 +103,7 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
 
   List<UIRepositoryObject> repositoryItems;
 
-  private MainController mainController;
+  protected MainController mainController;
 
   protected XulMessageBox messageBox;
 
@@ -319,7 +319,11 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
         } else if ( ( mainController != null && mainController.getCallback() != null )
             && ( o instanceof UIRepositoryContent ) ) {
 
-          mainController.getCallback().open( (UIRepositoryContent) o, null );
+          try {
+            mainController.getCallback().open( (UIRepositoryContent) o, null );
+          } catch ( Exception e ) {
+            mainController.handleLostRepository( e );
+          }
           // TODO: fire request to close dialog
 
         }
@@ -337,10 +341,12 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
       }
       selectedItemsBinding.fireSourceChanged();
     } catch ( Throwable th ) {
-      messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-      messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-      messageBox.setMessage( BaseMessages.getString( PKG, th.getLocalizedMessage() ) );
-      messageBox.open();
+      if ( mainController == null || !mainController.handleLostRepository( th ) ) {
+        messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+        messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+        messageBox.setMessage( BaseMessages.getString( PKG, th.getLocalizedMessage() ) );
+        messageBox.open();
+      }
     }
   }
 
@@ -357,10 +363,12 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
           try {
             onAccept.call();
           } catch ( Exception e ) {
-            messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-            messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-            messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
-            messageBox.open();
+            if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+              messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+              messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+              messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
+              messageBox.open();
+            }
           }
         }
       }
@@ -440,6 +448,34 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
         if ( selectedFolder == null ) {
           selectedFolder = repositoryDirectory;
         }
+        //Do an explicit check here to see if the folder already exists in the ui
+        //This is to prevent a double message being sent in case the folder does
+        //not exist in the ui but does exist in the repo (PDI-5202)
+        boolean folderExistsInUI = selectedFolder.contains( newName );
+        if ( folderExistsInUI ) {
+          throw new Exception(
+            BaseMessages.getString(
+              PKG,
+              "BrowserController.DirAlreadyExistsInUI",
+              newName
+            )
+          );
+        }
+        //PDI-5202
+        String newNameInRepo = selectedFolder.checkDirNameExistsInRepo( newName );
+        if ( newNameInRepo != null ) {
+          messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Warning" ) );
+          messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+          messageBox.setMessage(
+            BaseMessages.getString(
+              PKG,
+              "BrowserController.DirAlreadyExistsInRepository",
+              newNameInRepo
+            )
+          );
+          messageBox.open();
+          newName = newNameInRepo;
+        }
         UIRepositoryDirectory newDir = selectedFolder.createFolder( newName );
         dirMap.put( newDir.getObjectId(), newDir );
 
@@ -451,10 +487,12 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
       }
       newName = null;
     } catch ( Exception e ) {
-      messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-      messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-      messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
-      messageBox.open();
+      if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+        messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+        messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+        messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
+        messageBox.open();
+      }
     }
   }
 
@@ -497,10 +535,12 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
               try {
                 deleteFolder( repoDir );
               } catch ( Exception e ) {
-                messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-                messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-                messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
-                messageBox.open();
+                if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+                  messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+                  messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+                  messageBox.setMessage( BaseMessages.getString( PKG, e.getLocalizedMessage() ) );
+                  messageBox.open();
+                }
               }
             }
           }
@@ -537,10 +577,12 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
       directoryBinding.fireSourceChanged();
       selectedItemsBinding.fireSourceChanged();
     } catch ( Throwable th ) {
-      messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-      messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-      messageBox.setMessage( BaseMessages.getString( PKG, th.getLocalizedMessage() ) );
-      messageBox.open();
+      if ( mainController == null || !mainController.handleLostRepository( th ) ) {
+        messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+        messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+        messageBox.setMessage( BaseMessages.getString( PKG, th.getLocalizedMessage() ) );
+        messageBox.open();
+      }
     }
   }
 
@@ -552,8 +594,9 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
           try {
             object.setName( value );
           } catch ( Exception e ) {
-            // convert to runtime exception so it bubbles up through the UI
-            throw new RuntimeException( e );
+            if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+              throw new RuntimeException( e );
+            }
           }
         }
       }
@@ -664,12 +707,15 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
         }
       }
     } catch ( Exception e ) {
-      result = false;
-      event.setAccepted( false );
-      messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
-      messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
-      messageBox.setMessage( BaseMessages.getString( PKG, "BrowseController.UnableToMove", e.getLocalizedMessage() ) );
-      messageBox.open();
+      if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+        result = false;
+        event.setAccepted( false );
+        messageBox.setTitle( BaseMessages.getString( PKG, "Dialog.Error" ) );
+        messageBox.setAcceptLabel( BaseMessages.getString( PKG, "Dialog.Ok" ) );
+        messageBox.setMessage(
+            BaseMessages.getString( PKG, "BrowseController.UnableToMove", e.getLocalizedMessage() ) );
+        messageBox.open();
+      }
     }
 
     event.setAccepted( result );
@@ -680,6 +726,17 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
     for ( UIRepositoryObject o : objects ) {
       o.move( targetDirectory );
     }
+  }
+
+  private void messageBox( String message ) {
+    messageBox( "Dialog.Error", "Dialog.Ok", message );
+  }
+
+  private void messageBox( String title, String acceptLabel, String message ) {
+    messageBox.setTitle( BaseMessages.getString( PKG, title ) );
+    messageBox.setAcceptLabel( BaseMessages.getString( PKG, acceptLabel ) );
+    messageBox.setMessage( message );
+    messageBox.open();
   }
 
   public void onDoubleClick( Object[] selectedItems ) {
@@ -781,7 +838,9 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
 
       }
     } catch ( KettleException e ) {
-      throw new RuntimeException( e );
+      if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+        throw new RuntimeException( e );
+      }
     }
     fireFoldersAndItemsChange( previousVal, previousRepoObjects );
   }
@@ -793,7 +852,9 @@ public class BrowseController extends AbstractXulEventHandler implements IUISupp
         repoObjects = repositoryDirectories.get( 0 ).getRepositoryObjects();
       } catch ( KettleException e ) {
         // convert to runtime exception so it bubbles up through the UI
-        throw new RuntimeException( e );
+        if ( mainController == null || !mainController.handleLostRepository( e ) ) {
+          throw new RuntimeException( e );
+        }
       }
     }
     return repoObjects;

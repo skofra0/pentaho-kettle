@@ -200,16 +200,47 @@ public class UIRepositoryDirectory extends UIRepositoryObject {
   }
 
   public void delete() throws Exception {
-    rep.deleteRepositoryDirectory( getDirectory() );
     uiParent.getChildren().remove( this );
     if ( uiParent.getRepositoryObjects().contains( this ) ) {
       uiParent.getRepositoryObjects().remove( this );
     }
+    if ( uiParent.checkDirNameExistsInRepo( getName() ) != null ) {
+      rep.deleteRepositoryDirectory( getDirectory() );
+    }
     uiParent.refresh();
   }
 
+  /**
+   * Check if a subdirectory already exists in the repository.
+   * This is to help fix PDI-5202
+   * Since the ui directories are case insensitive, we look for a repo directory with the same name ignoring case.
+   * If we find an existing directory, we return the name so we can use that to get hold of the directory
+   * as it is known in the repository.
+   * If we don't find such a directory, we return null
+   * @param name - the name of a subdirectory
+   * @return null if the subdirectory does not exist, or the name of the subdirectory as it is known inside the repo.
+   * @throws KettleException
+   */
+  public String checkDirNameExistsInRepo( String name ) throws KettleException {
+    String[] dirNames = rep.getDirectoryNames( getObjectId() );
+    for ( String dirName : dirNames ) {
+      if ( dirName.equalsIgnoreCase( name ) ) {
+        return dirName;
+      }
+    }
+    return null;
+  }
+
   public UIRepositoryDirectory createFolder( String name ) throws Exception {
-    RepositoryDirectoryInterface dir = getRepository().createRepositoryDirectory( getDirectory(), name );
+    RepositoryDirectoryInterface thisDir = getDirectory();
+    RepositoryDirectoryInterface dir;
+    //PDI-5202: the directory might exist already. If so, don't create a new one.
+    String dirName = checkDirNameExistsInRepo( name );
+    if ( dirName == null ) {
+      dir = rep.createRepositoryDirectory( thisDir, name );
+    } else {
+      dir = rep.findDirectory( thisDir.getPath() + "/" + dirName );
+    }
     UIRepositoryDirectory newDir = null;
     try {
       newDir = UIObjectRegistry.getInstance().constructUIRepositoryDirectory( dir, this, rep );
@@ -219,6 +250,8 @@ public class UIRepositoryDirectory extends UIRepositoryObject {
     UIRepositoryDirectories directories = getChildren();
     if ( !contains( directories, newDir ) ) {
       directories.add( newDir );
+    } else {
+      throw new KettleException( "Unable to create folder with the same name [" + name + "]" );
     }
     kidElementCache = null; // rebuild the element cache for correct positioning.
     return newDir;
@@ -269,8 +302,8 @@ public class UIRepositoryDirectory extends UIRepositoryObject {
 
   /**
    * Synchronize this folder with the back-end
-   *
-   *
+   * 
+   * 
    */
   public void refresh() {
     try {
@@ -337,11 +370,29 @@ public class UIRepositoryDirectory extends UIRepositoryObject {
     return getChildren().iterator();
   }
 
+  public boolean contains( String dirName ) {
+    UIRepositoryDirectories directories = getChildren();
+    UIRepositoryObject dir;
+    for ( int i = 0; i < directories.size(); i++ ) {
+      dir = directories.get( i );
+      if ( !( dir instanceof UIRepositoryDirectory ) ) {
+        continue;
+      } else if ( dir.getName() == null && dirName == null ) {
+        return true;
+      } else if ( dir.getName().equalsIgnoreCase( dirName ) ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private boolean contains( UIRepositoryDirectories directories, UIRepositoryDirectory searchDir ) {
     for ( int i = 0; i < directories.size(); i++ ) {
       UIRepositoryObject dir = directories.get( i );
       if ( dir instanceof UIRepositoryDirectory ) {
-        return dir.getName() != null && dir.getName().equals( searchDir.getName() );
+        if ( dir.getName() != null && dir.getName().equals( searchDir.getName() ) ) {
+          return true;
+        }
       }
     }
     return false;

@@ -23,6 +23,7 @@
 package org.pentaho.di.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,11 +40,14 @@ import org.pentaho.di.core.ObjectLocationSpecificationMethod;
 import org.pentaho.di.core.Props;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleMissingPluginsException;
+import org.pentaho.di.core.exception.KettleXMLException;
 import org.pentaho.di.core.gui.HasOverwritePrompter;
 import org.pentaho.di.core.gui.OverwritePrompter;
 import org.pentaho.di.core.gui.SpoonFactory;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.imp.ImportRules;
@@ -62,13 +66,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXParseException;
 
+import javax.xml.parsers.DocumentBuilder;
+
 public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   public static final String IMPORT_ASK_ABOUT_REPLACE_DB = "IMPORT_ASK_ABOUT_REPLACE_DB";
   public static final String IMPORT_ASK_ABOUT_REPLACE_SS = "IMPORT_ASK_ABOUT_REPLACE_SS";
   public static final String IMPORT_ASK_ABOUT_REPLACE_CS = "IMPORT_ASK_ABOUT_REPLACE_CS";
   public static final String IMPORT_ASK_ABOUT_REPLACE_PS = "IMPORT_ASK_ABOUT_REPLACE_PS";
 
-  private static Class<?> PKG = RepositoryImporter.class;
+  private static final Class<?> PKG = RepositoryImporter.class;
 
   private Repository rep;
   private LogChannelInterface log;
@@ -81,6 +87,8 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   private boolean askOverwrite = true;
 
   private String versionComment;
+
+  private boolean needToCheckPathForVariables;
 
   private boolean continueOnError;
 
@@ -104,7 +112,7 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   }
 
   public RepositoryImporter( Repository repository, LogChannelInterface log ) {
-    this( repository, new ImportRules(), new ArrayList<String>(), log );
+    this( repository, new ImportRules(), Collections.<String>emptyList(), log );
   }
 
   public RepositoryImporter( Repository repository, ImportRules importRules, List<String> limitDirs ) {
@@ -146,6 +154,10 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
     this.overwrite = overwrite;
     this.continueOnError = continueOnError;
     this.versionComment = versionComment;
+
+    String importPathCompatibility =
+        System.getProperty( Const.KETTLE_COMPATIBILITY_IMPORT_PATH_ADDITION_ON_VARIABLES, "N" );
+    this.needToCheckPathForVariables = "N".equalsIgnoreCase( importPathCompatibility );
 
     boolean askReplace = Props.getInstance().askAboutReplacingDatabaseConnections();
 
@@ -222,8 +234,7 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
                 .getName() ) );
           }
           rep.save( transMeta, "import object reference specification", null );
-        }
-        if ( ro.getObjectType() == RepositoryObjectType.JOB ) {
+        } else if ( ro.getObjectType() == RepositoryObjectType.JOB ) {
           JobMeta jobMeta = rep.loadJob( ro.getObjectId(), null );
           try {
             jobMeta.lookupRepositoryReferences( rep );
@@ -261,13 +272,16 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
       validateImportedElement( importRules, databaseMeta );
       sharedObjects.storeObject( databaseMeta );
     }
-    List<SlaveServer> slaveServers = new ArrayList<SlaveServer>();
-    for ( ObjectId id : rep.getSlaveIDs( false ) ) {
+
+    ObjectId[] slaveIDs = rep.getSlaveIDs( false );
+    List<SlaveServer> slaveServers = new ArrayList<SlaveServer>( slaveIDs.length );
+    for ( ObjectId id : slaveIDs ) {
       SlaveServer slaveServer = rep.loadSlaveServer( id, null );
       validateImportedElement( importRules, slaveServer );
       sharedObjects.storeObject( slaveServer );
       slaveServers.add( slaveServer );
     }
+
     for ( ObjectId id : rep.getClusterIDs( false ) ) {
       ClusterSchema clusterSchema = rep.loadClusterSchema( id, slaveServers, null );
       validateImportedElement( importRules, clusterSchema );
@@ -283,7 +297,7 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   /**
    * Validates the repository element that is about to get imported against the list of import rules.
    * 
-   * @param the
+   * @param importRules
    *          import rules to validate against.
    * @param subject
    * @throws KettleException
@@ -292,8 +306,8 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
     List<ImportValidationFeedback> feedback = importRules.verifyRules( subject );
     List<ImportValidationFeedback> errors = ImportValidationFeedback.getErrors( feedback );
     if ( !errors.isEmpty() ) {
-      StringBuffer message =
-          new StringBuffer( BaseMessages.getString( PKG, "RepositoryImporter.ValidationFailed.Message", subject
+      StringBuilder message =
+          new StringBuilder( BaseMessages.getString( PKG, "RepositoryImporter.ValidationFailed.Message", subject
               .toString() ) );
       message.append( Const.CR );
       for ( ImportValidationFeedback error : errors ) {
@@ -538,9 +552,8 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
         imported.setObjectId( partitionSchema.getObjectId() );
         if ( equals( partitionSchema, imported )
             || !getPromptResult( BaseMessages.getString( PKG,
-                "RepositoryImporter.Dialog.PartitionSchemaExistsOverWrite.Message", imported.getName() ),
-                BaseMessages.getString( PKG,
-                    "RepositoryImporter.Dialog.ConnectionExistsOverWrite.DontShowAnyMoreMessage" ),
+                "RepositoryImporter.Dialog.PartitionSchemaExistsOverWrite.Message", imported.getName() ), BaseMessages
+                .getString( PKG, "RepositoryImporter.Dialog.ConnectionExistsOverWrite.DontShowAnyMoreMessage" ),
                 IMPORT_ASK_ABOUT_REPLACE_PS ) ) {
           imported.replaceMeta( partitionSchema );
           // We didn't actually change anything
@@ -565,16 +578,8 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
             mappingMeta.setDirectoryPath( transDirOverride );
             continue;
           }
-          String newPath = baseDirectory.getPath();
-          String extraPath = mappingMeta.getDirectoryPath();
-          if ( newPath.endsWith( "/" ) && extraPath.startsWith( "/" ) ) {
-            newPath = newPath.substring( 0, newPath.length() - 1 );
-          } else if ( !newPath.endsWith( "/" ) && !extraPath.startsWith( "/" ) ) {
-            newPath += "/";
-          } else if ( extraPath.equals( "/" ) ) {
-            extraPath = "";
-          }
-          mappingMeta.setDirectoryPath( newPath + extraPath );
+          String mappingMetaPath = resolvePath( baseDirectory.getPath(), mappingMeta.getDirectoryPath() );
+          mappingMeta.setDirectoryPath( mappingMetaPath );
         }
       }
     }
@@ -589,16 +594,8 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
             entry.setDirectory( transDirOverride );
             continue;
           }
-          String newPath = baseDirectory.getPath();
-          String extraPath = Const.NVL( entry.getDirectory(), "/" );
-          if ( newPath.endsWith( "/" ) && extraPath.startsWith( "/" ) ) {
-            newPath = newPath.substring( 0, newPath.length() - 1 );
-          } else if ( !newPath.endsWith( "/" ) && !extraPath.startsWith( "/" ) ) {
-            newPath += "/";
-          } else if ( extraPath.equals( "/" ) ) {
-            extraPath = "";
-          }
-          entry.setDirectory( newPath + extraPath );
+          String entryPath = resolvePath( baseDirectory.getPath(), entry.getDirectory() );
+          entry.setDirectory( entryPath );
         }
       }
       if ( copy.isJob() ) {
@@ -608,19 +605,39 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
             entry.setDirectory( jobDirOverride );
             continue;
           }
-          String newPath = baseDirectory.getPath();
-          String extraPath = Const.NVL( entry.getDirectory(), "/" );
-          if ( newPath.endsWith( "/" ) && extraPath.startsWith( "/" ) ) {
-            newPath = newPath.substring( 0, newPath.length() - 1 );
-          } else if ( !newPath.endsWith( "/" ) && !extraPath.startsWith( "/" ) ) {
-            newPath += "/";
-          } else if ( extraPath.equals( "/" ) ) {
-            extraPath = "";
-          }
-          entry.setDirectory( newPath + extraPath );
+          String entryPath = resolvePath( baseDirectory.getPath(), entry.getDirectory() );
+          entry.setDirectory( entryPath );
         }
       }
     }
+  }
+
+  private String resolvePath( String rootPath, String entryPath ) {
+    String extraPath = Const.NVL( entryPath, "/" );
+    if ( needToCheckPathForVariables() ) {
+      if ( containsVariables( entryPath ) ) {
+        return extraPath;
+      }
+    }
+    String newPath = Const.NVL( rootPath, "/" );
+    if ( newPath.endsWith( "/" ) && extraPath.startsWith( "/" ) ) {
+      newPath = newPath.substring( 0, newPath.length() - 1 );
+    } else if ( !newPath.endsWith( "/" ) && !extraPath.startsWith( "/" ) ) {
+      newPath += "/";
+    } else if ( extraPath.equals( "/" ) ) {
+      extraPath = "";
+    }
+    return newPath + extraPath;
+  }
+
+  private static boolean containsVariables( String entryPath ) {
+    List<String> variablesList = new ArrayList<String>();
+    StringUtil.getUsedVariables( entryPath, variablesList, true );
+    return !variablesList.isEmpty();
+  }
+
+  boolean needToCheckPathForVariables() {
+    return needToCheckPathForVariables;
   }
 
   protected void saveTransMeta( TransMeta transMeta ) throws KettleException {
@@ -640,14 +657,14 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
     //
     // Load transformation from XML into a directory, possibly created!
     //
-    TransMeta transMeta = new TransMeta( transnode, null ); // ignore shared objects
+    TransMeta transMeta = createTransMetaForNode( transnode ); // ignore shared objects
     feedback.setLabel( BaseMessages.getString( PKG, "RepositoryImporter.ImportTrans.Label", Integer
         .toString( transformationNumber ), transMeta.getName() ) );
 
     validateImportedElement( importRules, transMeta );
 
     // What's the directory path?
-    String directoryPath = XMLHandler.getTagValue( transnode, "info", "directory" );
+    String directoryPath = Const.NVL( XMLHandler.getTagValue( transnode, "info", "directory" ), Const.FILE_SEPARATOR );
     if ( transDirOverride != null ) {
       directoryPath = transDirOverride;
     }
@@ -721,6 +738,10 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
     return true;
   }
 
+  TransMeta createTransMetaForNode( Node transnode ) throws KettleMissingPluginsException, KettleXMLException {
+    return new TransMeta( transnode, null );
+  }
+
   protected void saveJobMeta( JobMeta jobMeta ) throws KettleException {
     // Keep info on who & when this transformation was created...
     if ( jobMeta.getCreatedUser() == null || jobMeta.getCreatedUser().equals( "-" ) ) {
@@ -738,7 +759,7 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   protected boolean importJob( Node jobnode, RepositoryImportFeedbackInterface feedback ) throws KettleException {
     // Load the job from the XML node.
     //
-    JobMeta jobMeta = new JobMeta( jobnode, null, false, SpoonFactory.getInstance() );
+    JobMeta jobMeta = createJobMetaForNode( jobnode );
     feedback.setLabel( BaseMessages.getString( PKG, "RepositoryImporter.ImportJob.Label",
         Integer.toString( jobNumber ), jobMeta.getName() ) );
     validateImportedElement( importRules, jobMeta );
@@ -809,11 +830,23 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   }
 
   private int transformationNumber = 1;
+  private DocumentBuilder documentBuilder;
+
+  JobMeta createJobMetaForNode( Node jobnode ) throws KettleXMLException {
+    return new JobMeta( jobnode, null, false, SpoonFactory.getInstance() );
+  }
+
+  private DocumentBuilder getOrCreateDb() throws KettleXMLException {
+    if ( documentBuilder == null ) {
+      documentBuilder = XMLHandler.createDocumentBuilder( false, true );
+    }
+    return documentBuilder;
+  }
 
   @Override
   public boolean transformationElementRead( String xml, RepositoryImportFeedbackInterface feedback ) {
     try {
-      Document doc = XMLHandler.loadXMLString( xml );
+      Document doc = XMLHandler.loadXMLString( getOrCreateDb(), xml );
       Node transformationNode = XMLHandler.getSubNode( doc, RepositoryExportSaxParser.STRING_TRANSFORMATION );
       if ( !importTransformation( transformationNode, feedback ) ) {
         return false;
@@ -842,7 +875,7 @@ public class RepositoryImporter implements IRepositoryImporter, CanLimitDirs {
   @Override
   public boolean jobElementRead( String xml, RepositoryImportFeedbackInterface feedback ) {
     try {
-      Document doc = XMLHandler.loadXMLString( xml );
+      Document doc = XMLHandler.loadXMLString( getOrCreateDb(), xml );
       Node jobNode = XMLHandler.getSubNode( doc, RepositoryExportSaxParser.STRING_JOB );
       if ( !importJob( jobNode, feedback ) ) {
         return false;
