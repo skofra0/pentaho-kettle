@@ -80,7 +80,7 @@
 	</target>
 
 	<target name="compile">
-		<javac destdir="${classes}" debug="yes" source="5" target="5" fork="true">
+		<javac destdir="${classes}" debug="yes" source="6" target="6" fork="true">
 			<src path="${src}" />
 			<src path="${test}" />
 			<classpath refid="kettle_classpath" />
