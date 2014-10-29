@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: Data Integrator
-Implementation-Vendor: Pentaho
-Implementation-Vendor-Id: org.pentaho
+Implementation-Vendor: Deem
+Implementation-Vendor-Id: no.deem
 Specification-Title: Data Integrator
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-SymbolicName: org.pentaho
@@ -15,5 +15,5 @@ Build-Jdk: 1.7.0_45
 Bundle-Version: 5.0.7
 Bnd-LastModified: 1388941277034
 Bundle-ManifestVersion: 2
-Specification-Version: 5.0.7-sigma_100
+Specification-Version: 5.0.7-sigma_102
 
