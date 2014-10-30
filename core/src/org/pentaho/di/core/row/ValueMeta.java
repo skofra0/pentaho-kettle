@@ -48,7 +48,8 @@ public class ValueMeta extends ValueMetaBase implements ValueMetaInterface {
   public static final String XML_DATA_TAG = "value-data";
 
   public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
-    .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+//    .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+    .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) );  // SKOFRA
 
   /**
    * The trim type codes
