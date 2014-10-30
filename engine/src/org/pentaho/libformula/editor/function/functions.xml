@@ -986,6 +986,50 @@ Note: The multi-argument form is different from an "exclusive disjunction" opera
 	   	<example>  <expression>XOR(TRUE())</expression>     <result>True</result>    <level>1</level>   <comment>One parameter okay - simply returns it</comment>     </example>
 	</examples>
   </function>
+  
+  <!-- SKOFRA -->
+   
+  <function>
+  	<category>%Category.DateTime</category>
+  	<name>YESTERDAY</name>
+  	<description>Return the serial number of the current date and time.</description>
+    <syntax>YESTERDAY()</syntax>
+  	<returns>DateTime</returns>
+  	<constraints>None</constraints>
+  	<semantics></semantics>
+	<examples>
+	   	<example><expression>YESTERDAY()>DATE(2006;1;3)</expression> <result>True</result> <level>1</level> <comment>NOW constantly changes, but we know it's beyond this date.</comment></example>
+	</examples>
+  </function>
+
+  <function>
+  	<category>%Category.DateTime</category>
+  	<name>DATEYMD8</name>
+  	<description>Construct date from number YYYYMMDD.</description>
+    <syntax>DATEYMD8( Integer Year )</syntax>
+  	<returns>Date</returns>
+  	<constraints>Must have 1 parameter.</constraints>
+  	<semantics>This computes the date's serial number given Date as int. </semantics>
+	<examples>
+	   	<example><expression>DATEYMD8(20030229)</expression> <result>Date</result> <level>1</level> <comment></comment></example>
+	</examples>
+  </function>
+  
+  <function>
+  	<category>%Category.DateTime</category>
+  	<name>YMD8</name>
+  	<description>Return a number YYYYMMDD from a Date.</description>
+    <syntax>YMD8( Date date )</syntax>
+  	<returns>Date</returns>
+  	<constraints>Must have 1 parameter.</constraints>
+  	<semantics>This computes the date as int. </semantics>
+	<examples>
+	   	<example><expression>YMD8(NOW())</expression> <result>Integer on YYYYMMDD format</result> <level>1</level> <comment></comment></example>
+	</examples>
+  </function>
+
+  <!-- SKOFRA -->
+  
 
 </libformula-functions>
 

@@ -393,6 +393,8 @@ public class SalesforceUpsertMeta extends BaseStepMeta implements StepMetaInterf
   public void setDefault() {
     targeturl = SalesforceConnectionUtils.TARGET_DEFAULT_URL;
     password = "";
+	password = "${CRM_PASSWORD}";  // SKOFRA artf49128 : Salesforce - default values
+	username = "${CRM_USER}";      // SKOFRA artf49128 : Salesforce - default values
     module = "Account";
     UpsertField = "Id";
     batchSize = "10";
