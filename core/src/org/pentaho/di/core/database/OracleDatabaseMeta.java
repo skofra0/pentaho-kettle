@@ -229,8 +229,9 @@ public class OracleDatabaseMeta extends BaseDatabaseMeta implements DatabaseInte
    */
   @Override
   public boolean useSchemaNameForTableList() {
-    return true;
-  }
+		// return true;  // SKOFRA
+		return false; // SKOFRA
+ }
 
   /**
    * @return true if the database supports synonyms
