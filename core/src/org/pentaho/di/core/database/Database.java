@@ -1712,7 +1712,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       // to get the length of a String field. So, on MySQL, we ingore the length
       // of Strings in result rows.
       //
-      rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), lazyConversion );
+     // rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), lazyConversion ); // SKOFRA
+      rowMeta = getRowInfo(res.getMetaData(), false, lazyConversion); // SKOFRA
     } catch ( SQLException ex ) {
       throw new KettleDatabaseException( "An error occurred executing SQL: " + Const.CR + sql, ex );
     } catch ( Exception e ) {
@@ -1770,7 +1771,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       // of Strings in result rows.
       //
       log.snap( Metrics.METRIC_DATABASE_GET_ROW_META_START, databaseMeta.getName() );
-      rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), false );
+     // rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), false ); // SKOFRA
+      rowMeta = getRowInfo( res.getMetaData(), false, false ); // SKOFRA
       log.snap( Metrics.METRIC_DATABASE_GET_ROW_META_STOP, databaseMeta.getName() );
     } catch ( SQLException ex ) {
       throw new KettleDatabaseException( "ERROR executing query", ex );
@@ -2268,7 +2270,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     // Extract the name from the result set meta data...
     //
     String name;
-    if ( databaseMeta.isMySQLVariant() && getDatabaseMetaData().getDriverMajorVersion() > 3 ) {
+    if ( databaseMeta.isMySQLVariant() && getDatabaseMetaData().getDriverMajorVersion() > 3 ) { // SKOFRA - Set version number in Maria DB = 4 (simulate new JDBC driver)
       name = new String( rm.getColumnLabel( i ) );
     } else {
       name = new String( rm.getColumnName( i ) );

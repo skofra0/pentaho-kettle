@@ -90,7 +90,8 @@ public class ValueMetaBase implements ValueMetaInterface {
   public static final String XML_DATA_TAG = "value-data";
 
   public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
-    .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+	// .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) ); // SKOFRA
+       .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) ); // SKOFRA
 
   protected String name;
   protected int length;
@@ -4404,9 +4405,14 @@ public class ValueMetaBase implements ValueMetaInterface {
 
       int type = rm.getColumnType( index );
       boolean signed = rm.isSigned( index );
+      // SKOFRA - set correct field size
+      int dbDisplaySize = rm.getColumnDisplaySize(index);
+      
       switch ( type ) {
         case java.sql.Types.CHAR:
         case java.sql.Types.VARCHAR:
+        case java.sql.Types.NVARCHAR:   // SKOFRA
+        case java.sql.Types.NCHAR:      // SKOFRA
         case java.sql.Types.LONGVARCHAR: // Character Large Object
           valtype = ValueMetaInterface.TYPE_STRING;
           if ( !ignoreLength ) {
@@ -4427,10 +4433,12 @@ public class ValueMetaBase implements ValueMetaInterface {
             valtype = ValueMetaInterface.TYPE_INTEGER;
             precision = 0; // Max 9.223.372.036.854.775.807
             length = 15;
+            length = dbDisplaySize; // SKOFRA
           } else {
             valtype = ValueMetaInterface.TYPE_BIGNUMBER;
             precision = 0; // Max 18.446.744.073.709.551.615
             length = 16;
+            length = dbDisplaySize; // SKOFRA
           }
           break;
 
@@ -4438,6 +4446,7 @@ public class ValueMetaBase implements ValueMetaInterface {
           valtype = ValueMetaInterface.TYPE_INTEGER;
           precision = 0; // Max 2.147.483.647
           length = 9;
+          length = dbDisplaySize; // SKOFRA
           break;
 
         case java.sql.Types.SMALLINT:
