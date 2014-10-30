@@ -111,10 +111,6 @@
 	<classpathentry kind="lib" path="lib/jsp-api-2.0.jar"/>
 	<classpathentry kind="lib" path="lib/jug-lgpl-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/jxl-2.6.12.jar"/>
-	<classpathentry kind="lib" path="lib/kettle-core-5.1.0.0-751.jar"/>
-	<classpathentry kind="lib" path="lib/kettle-dbdialog-5.1.0.0-751.jar"/>
-	<classpathentry kind="lib" path="lib/kettle-engine-5.1.0.0-751.jar"/>
-	<classpathentry kind="lib" path="lib/kettle-ui-swt-5.1.0.0-751.jar"/>
 	<classpathentry kind="lib" path="lib/ldapjdk-20000524.jar"/>
 	<classpathentry kind="lib" path="lib/libbase-5.1.0.0-751.jar"/>
 	<classpathentry kind="lib" path="lib/libdocbundle-5.1.0.0-751.jar"/>
@@ -167,7 +163,6 @@
 	<classpathentry kind="lib" path="lib/spring-2.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/stax-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/swt-linux-x86_64-4.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/swt-win32-x86_64-4.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/syslog4j-0.9.34.jar"/>
 	<classpathentry kind="lib" path="lib/trilead-ssh2-build213.jar"/>

@@ -113,6 +113,7 @@ public class Formula extends BaseStep implements StepInterface {
   }
 
   private Object[] calcFields( RowMetaInterface rowMeta, Object[] r ) throws KettleValueException {
+    FormulaMetaFunction currentFormula = null;  // SKOFRA artf48472 : Formula - Integer/BigDecimal Type support
     try {
       Object[] outputRowData = RowDataUtil.createResizedCopy( r, data.outputRowMeta.size() );
       int tempIndex = rowMeta.size();
@@ -139,6 +140,7 @@ public class Formula extends BaseStep implements StepInterface {
 
       for ( int i = 0; i < meta.getFormula().length; i++ ) {
         FormulaMetaFunction fn = meta.getFormula()[i];
+        currentFormula = fn;
         if ( !Const.isEmpty( fn.getFieldName() ) ) {
           if ( data.formulas[i] == null ) {
             data.formulas[i] = data.createFormula( meta.getFormula()[i].getFormula() );
@@ -196,9 +198,14 @@ public class Formula extends BaseStep implements StepInterface {
         }
       }
 
-      return outputRowData;
+     currentFormula = null;
+     return outputRowData;
     } catch ( Throwable e ) {
-      throw new KettleValueException( e );
+    	String msg = "Formula Error:";
+    	if (currentFormula!=null) {
+    		msg = currentFormula.getFieldName() + " = " + currentFormula.getFormula();
+    	}
+      throw new KettleValueException(msg, e );
     }
   }
 
