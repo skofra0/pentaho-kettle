@@ -179,7 +179,7 @@ public class Const {
    */
   @Deprecated
   //public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System.getProperty( "user.home" ) ); //SKOFRA
-  public static final String USER_HOME_DIRECTORY = NVL( NVL( System.getProperty( "DI_HOME" ), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) );  //SKOFRA
+  public static final String USER_HOME_DIRECTORY = NVL( NVL(getDIHomeDirectory(), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) );  //SKOFRA
   /**
    * Path to the simple-jndi directory
    */
@@ -1663,7 +1663,7 @@ public class Const {
    * @return The path to the users home directory, or the System property {@code KETTLE_HOME} if set.
    */
   public static final String getUserHomeDirectory() {
-    return NVL( System.getProperty( "KETTLE_HOME" ), System.getProperty( "user.home" ) );
+    return NVL( NVL( getDIHomeDirectory(), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) );
   }
 
   /**
@@ -1672,8 +1672,7 @@ public class Const {
    * @return The Kettle directory.
    */
   public static final String getKettleDirectory() {
-    //return getUserHomeDirectory() + FILE_SEPARATOR + BasePropertyHandler.getProperty( "userBaseDir", ".kettle" );  //SKOFRA
-    return NVL( NVL( System.getProperty( "DI_HOME" ), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) ); //SKOFRA
+    return getUserHomeDirectory() + FILE_SEPARATOR + BasePropertyHandler.getProperty( "userBaseDir", ".kettle" );
   }
 
   /**
