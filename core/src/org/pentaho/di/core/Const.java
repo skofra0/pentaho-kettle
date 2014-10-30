@@ -178,9 +178,8 @@ public class Const {
    * @deprecated Use {@link Const#getUserHomeDirectory()} instead.
    */
   @Deprecated
-  public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System
-    .getProperty( "user.home" ) );
-
+  //public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System.getProperty( "user.home" ) ); //SKOFRA
+  public static final String USER_HOME_DIRECTORY = NVL( NVL( System.getProperty( "DI_HOME" ), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) );  //SKOFRA
   /**
    * Path to the simple-jndi directory
    */
@@ -1673,7 +1672,8 @@ public class Const {
    * @return The Kettle directory.
    */
   public static final String getKettleDirectory() {
-    return getUserHomeDirectory() + FILE_SEPARATOR + BasePropertyHandler.getProperty( "userBaseDir", ".kettle" );
+    //return getUserHomeDirectory() + FILE_SEPARATOR + BasePropertyHandler.getProperty( "userBaseDir", ".kettle" );  //SKOFRA
+    return NVL( NVL( System.getProperty( "DI_HOME" ), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) ); //SKOFRA
   }
 
   /**
