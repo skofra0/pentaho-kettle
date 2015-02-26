@@ -93,7 +93,8 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
     if ( getAccessType() == DatabaseMeta.TYPE_ACCESS_ODBC ) {
       return "sun.jdbc.odbc.JdbcOdbcDriver";
     } else {
-      return "org.gjt.mm.mysql.Driver";
+      //return "org.gjt.mm.mysql.Driver"; // SKOFRA
+  	  return "org.mariadb.jdbc.Driver";   // SKOFRA
     }
   }
 

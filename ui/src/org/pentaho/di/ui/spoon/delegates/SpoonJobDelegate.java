@@ -535,6 +535,7 @@ public class SpoonJobDelegate extends SpoonDelegate {
     jobMeta.setDatabases( databases );
     jobMeta.setFilename( null );
     jobMeta.setName( jobname );
+    jobMeta.setDescription( jobname );
 
     if ( spoon.getRepository() != null ) {
       jobMeta.setRepositoryDirectory( repdir );
@@ -583,6 +584,7 @@ public class SpoonJobDelegate extends SpoonDelegate {
             TransMeta transMeta = new TransMeta();
             if ( repdir != null ) {
               transMeta.setRepositoryDirectory( repdir );
+              transMeta.setName(transname);
             } else {
               transMeta.setFilename( Const.createFilename( directory, transname, "."
                 + Const.STRING_TRANS_DEFAULT_EXT ) );

@@ -371,7 +371,7 @@ public class RipDatabaseWizardPage2 extends WizardPage {
 
     Database sourceDb = new Database( RipDatabaseWizard.loggingObject, page1.getSourceDatabase() );
     try {
-//      sourceDb.connect();  // SKOFRA
+        sourceDb.connect();  // SKOFRA
 		boolean includeSchema = false;
 		if (sourceDb.getDatabaseMeta().getDatabaseInterface() instanceof OracleDatabaseMeta) {
 			includeSchema = true;
