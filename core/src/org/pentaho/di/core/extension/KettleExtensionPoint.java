@@ -28,7 +28,7 @@ public enum KettleExtensionPoint {
   //
     TransformationPrepareExecution( "TransformationPrepareExecution", "A transformation begins to prepare execution" ),
     TransformationStartThreads( "TransformationStartThreads", "A transformation begins to start" ),
-    TransformationStarted( "TransformationStart", "A transformation has started" ),
+    TransformationStart( "TransformationStart", "A transformation has started" ),
     TransformationFinish( "TransformationFinish", "A transformation finishes" ),
     TransformationMetaLoaded( "TransformationMetaLoaded", "Transformation metadata was loaded" ),
     TransPainterArrow( "TransPainterArrow", "Draw additional information on top of a transformation hop (arrow)" ),
@@ -74,7 +74,13 @@ public enum KettleExtensionPoint {
     StepFinished( "StepFinished", "After a step has finished" ),
 
     CarteStartup( "CarteStartup", "Right after the Carte webserver has started and is fully functional" ),
-    CarteShutdown( "CarteShutdown", "Right before the Carte webserver will shut down" );
+    CarteShutdown( "CarteShutdown", "Right before the Carte webserver will shut down" ),
+
+    SpoonViewTreeExtension ( "SpoonViewTreeExtension" , "View tree spoon extension" ),
+
+    SpoonPopupMenuExtension ( "SpoonPopupMenuExtension" , "Pop up menu extension for the view tree" ),
+
+    SpoonTreeDelegateExtension ( "SpoonTreeDelegateExtension" , "During the SpoonTreeDelegate execution" );
 
   public String id;
 

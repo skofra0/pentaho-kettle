@@ -35,6 +35,7 @@ import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.TimedRow;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.row.RowDataUtil;
@@ -65,18 +66,16 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
   private DatabaseLookupData data;
 
   public DatabaseLookup( StepMeta stepMeta, StepDataInterface stepDataInterface, int copyNr, TransMeta transMeta,
-    Trans trans ) {
+                         Trans trans ) {
     super( stepMeta, stepDataInterface, copyNr, transMeta, trans );
   }
 
   /**
    * Performs the lookup based on the meta-data and the input row.
    *
-   * @param row
-   *          The row to use as lookup data and the row to add the returned lookup fields to
+   * @param row The row to use as lookup data and the row to add the returned lookup fields to
    * @return the resulting row after the lookup values where added
-   * @throws KettleException
-   *           In case something goes wrong.
+   * @throws KettleException In case something goes wrong.
    */
   private synchronized Object[] lookupValues( RowMetaInterface inputRowMeta, Object[] row ) throws KettleException {
     Object[] outputRow = RowDataUtil.resizeArray( row, data.outputRowMeta.size() );
@@ -92,7 +91,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
         // Try to convert type if needed
         if ( input.getType() != value.getType()
-            || ValueMetaInterface.STORAGE_TYPE_BINARY_STRING == input.getStorageType() ) {
+          || ValueMetaInterface.STORAGE_TYPE_BINARY_STRING == input.getStorageType() ) {
           lookupRow[lookupIndex] = value.convertData( input, lookupRow[lookupIndex] );
           value.setStorageType( ValueMetaInterface.STORAGE_TYPE_NORMAL );
         }
@@ -105,7 +104,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
         // Try to convert type if needed
         if ( input.getType() != value.getType()
-            || ValueMetaInterface.STORAGE_TYPE_BINARY_STRING == input.getStorageType() ) {
+          || ValueMetaInterface.STORAGE_TYPE_BINARY_STRING == input.getStorageType() ) {
           lookupRow[lookupIndex] = value.convertData( input, lookupRow[lookupIndex] );
           value.setStorageType( ValueMetaInterface.STORAGE_TYPE_NORMAL );
         }
@@ -129,9 +128,9 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
     if ( add == null ) {
       if ( !( meta.isCached() && meta.isLoadingAllDataInCache() ) || data.hasDBCondition ) { // do not go to the
-                                                                                             // database when all rows
-                                                                                             // are in (exception LIKE
-                                                                                             // operator)
+        // database when all rows
+        // are in (exception LIKE
+        // operator)
         if ( log.isRowLevel() ) {
           logRowlevel( BaseMessages.getString( PKG, "DatabaseLookup.Log.AddedValuesToLookupRow1" )
             + meta.getStreamKeyField1().length
@@ -171,7 +170,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     } else {
       if ( log.isRowLevel() ) {
         logRowlevel( BaseMessages.getString( PKG, "DatabaseLookup.Log.FoundResultsAfterLookup" )
-            + Arrays.toString( add ) );
+          + Arrays.toString( add ) );
       }
 
       // Only verify the data types if the data comes from the DB, NOT when we have a cache hit
@@ -329,7 +328,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
               default:
                 match = false;
                 data.hasDBCondition = true; // avoid looping in here the next time, also safety when a new condition
-                                            // will be introduced
+                // will be introduced
                 break;
 
             }
@@ -534,6 +533,9 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
   private void loadAllTableDataIntoTheCache() throws KettleException {
     DatabaseMeta dbMeta = meta.getDatabaseMeta();
 
+    Database db = getDatabase( dbMeta );
+    connectDatabase( db );
+
     try {
       // We only want to get the used table fields...
       //
@@ -553,10 +555,10 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
       }
       // The schema/table
       //
-      sql +=
-        " FROM "
-          + dbMeta.getQuotedSchemaTableCombination(
-            environmentSubstitute( meta.getSchemaName() ), environmentSubstitute( meta.getTablename() ) );
+      sql += " FROM "
+        + dbMeta.getQuotedSchemaTableCombination(
+          environmentSubstitute( meta.getSchemaName() ),
+          environmentSubstitute( meta.getTablename() ) );
 
       // order by?
       if ( meta.getOrderByClause() != null && meta.getOrderByClause().length() != 0 ) {
@@ -565,9 +567,9 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
       // Now that we have the SQL constructed, let's store the rows...
       //
-      List<Object[]> rows = data.db.getRows( sql, 0 );
+      List<Object[]> rows = db.getRows( sql, 0 );
       if ( rows != null && rows.size() > 0 ) {
-        RowMetaInterface returnRowMeta = data.db.getReturnRowMeta();
+        RowMetaInterface returnRowMeta = db.getReturnRowMeta();
         // Copy the data into 2 parts: key and value...
         //
         for ( Object[] row : rows ) {
@@ -592,10 +594,16 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
       }
     } catch ( Exception e ) {
       throw new KettleException( e );
+    } finally {
+      if ( db != null ) {
+        db.disconnect();
+      }
     }
   }
 
-  /** Stop the running query */
+  /**
+   * Stop the running query
+   */
   public void stopRunning( StepMetaInterface smi, StepDataInterface sdi ) throws KettleException {
     meta = (DatabaseLookupMeta) smi;
     data = (DatabaseLookupData) sdi;
@@ -618,21 +626,8 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
         return false;
       }
       data.db = getDatabase( meta.getDatabaseMeta() );
-      data.db.shareVariablesWith( this );
       try {
-        if ( getTransMeta().isUsingUniqueConnections() ) {
-          synchronized ( getTrans() ) {
-            data.db.connect( getTrans().getTransactionId(), getPartitionID() );
-          }
-        } else {
-          data.db.connect( getPartitionID() );
-        }
-
-        data.db.setCommit( 100 ); // we never get a commit, but it just turns off auto-commit.
-
-        if ( log.isDetailed() ) {
-          logDetailed( BaseMessages.getString( PKG, "DatabaseLookup.Log.ConnectedToDatabase" ) );
-        }
+        connectDatabase( data.db );
 
         // See if all the lookup conditions are "equal"
         // This might speed up things in the case when we load all data in the cache
@@ -678,7 +673,30 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     super.dispose( smi, sdi );
   }
 
+  /*
+   * this method is required in order to 
+   * provide ability for unit tests to
+   * mock the main database instance for the step
+   * (@see org.pentaho.di.trans.steps.databaselookup.PDI5436Test)
+   */
   Database getDatabase( DatabaseMeta meta ) {
     return new Database( this, meta );
+  }
+
+  private void connectDatabase( Database database ) throws KettleDatabaseException {
+    database.shareVariablesWith( this );
+    if ( getTransMeta().isUsingUniqueConnections() ) {
+      synchronized ( getTrans() ) {
+        database.connect( getTrans().getTransactionId(), getPartitionID() );
+      }
+    } else {
+      database.connect( getPartitionID() );
+    }
+
+    database.setCommit( 100 ); // we never get a commit, but it just turns off auto-commit.
+
+    if ( log.isDetailed() ) {
+      logDetailed( BaseMessages.getString( PKG, "DatabaseLookup.Log.ConnectedToDatabase" ) );
+    }
   }
 }

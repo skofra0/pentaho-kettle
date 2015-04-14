@@ -22,19 +22,20 @@
 
 package org.pentaho.di.ui.spoon;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.antlr.misc.OrderedHashSet;
+import org.apache.commons.io.IOUtils;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.i18n.LanguageChoice;
@@ -66,8 +67,7 @@ public class SpoonPerspectiveManager {
 
   private final Map<SpoonPerspective, PerspectiveInitializer> initializerMap;
 
-  @SuppressWarnings( "rawtypes" )
-  private final OrderedHashSet orderedPerspectives;
+  private final LinkedHashSet<SpoonPerspective> orderedPerspectives;
 
   private XulDeck deck;
 
@@ -131,7 +131,7 @@ public class SpoonPerspectiveManager {
   private SpoonPerspectiveManager() {
     perspectives = new LinkedHashMap<Class<? extends SpoonPerspective>, SpoonPerspective>();
     initializerMap = new HashMap<SpoonPerspective, PerspectiveInitializer>();
-    orderedPerspectives = new OrderedHashSet();
+    orderedPerspectives = new LinkedHashSet<SpoonPerspective>();
   }
 
   /**
@@ -185,7 +185,7 @@ public class SpoonPerspectiveManager {
    */
   @SuppressWarnings( "unchecked" )
   public List<SpoonPerspective> getPerspectives() {
-    return Collections.unmodifiableList( orderedPerspectives.elements() );
+    return Collections.unmodifiableList( new ArrayList<SpoonPerspective>( orderedPerspectives ) );
   }
 
   private void unloadPerspective( SpoonPerspective per ) {
@@ -338,7 +338,6 @@ public class SpoonPerspectiveManager {
         continue;
       }
       String name = per.getDisplayName( LanguageChoice.getInstance().getDefaultLocale() );
-      InputStream in = per.getPerspectiveIcon();
 
       SwtToolbarbutton btn = null;
       try {
@@ -352,15 +351,26 @@ public class SpoonPerspectiveManager {
       btn.setOnclick( "spoon.loadPerspective(" + y + ")" );
       btn.setId( "perspective-btn-" + per.getId() );
       mainToolbar.addChild( btn );
-      if ( in != null ) {
-        btn.setImageFromStream( in );
-        try {
-          in.close();
-        } catch ( IOException e1 ) {
-          // Ignore errors
+
+      boolean iconSet = false;
+      if ( AbstractSpoonPerspective.class.isAssignableFrom( per.getClass() ) ) {
+        Image ic = ( (AbstractSpoonPerspective) per ).getIcon();
+        if ( ic != null ) {
+          btn.setImage( ic );
+          iconSet = true;
         }
       }
-
+      if ( !iconSet ) {
+        InputStream in = per.getPerspectiveIcon();
+        if ( in != null ) {
+          try {
+            btn.setImageFromStream( in );
+          } finally {
+            IOUtils.closeQuietly( in );
+          }
+        }        
+      }
+      
       XulVbox box = deck.createVBoxCard();
       box.setId( "perspective-" + per.getId() );
       box.setFlex( 1 );

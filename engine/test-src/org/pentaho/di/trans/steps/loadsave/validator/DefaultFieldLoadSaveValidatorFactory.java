@@ -1,9 +1,32 @@
+/*! ******************************************************************************
+ *
+ * Pentaho Data Integration
+ *
+ * Copyright (C) 2002-2015 by Pentaho : http://www.pentaho.com
+ *
+ *******************************************************************************
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ ******************************************************************************/
+
 package org.pentaho.di.trans.steps.loadsave.validator;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.pentaho.di.trans.steps.loadsave.getter.Getter;
@@ -20,6 +43,7 @@ public class DefaultFieldLoadSaveValidatorFactory implements FieldLoadSaveValida
     this.typeMap.put( boolean.class.getCanonicalName(), new BooleanLoadSaveValidator() );
     this.typeMap.put( Boolean.class.getCanonicalName(), new BooleanLoadSaveValidator() );
     this.typeMap.put( int.class.getCanonicalName(), new IntLoadSaveValidator() );
+    this.typeMap.put( long.class.getCanonicalName(), new LongLoadSaveValidator() );
     registerValidator( getName( List.class, String.class ), new ListLoadSaveValidator<String>(
       new StringLoadSaveValidator() ) {
     } );
@@ -29,6 +53,8 @@ public class DefaultFieldLoadSaveValidatorFactory implements FieldLoadSaveValida
         new BooleanLoadSaveValidator() ) );
     registerValidator( Boolean[].class.getCanonicalName(), new ArrayLoadSaveValidator<Boolean>(
         new BooleanLoadSaveValidator() ) );
+
+    registerValidator( Locale.class.getCanonicalName(), new LocaleLoadSaveValidator() );
   }
 
   public void registerValidator( String typeString, FieldLoadSaveValidator<?> validator ) {

@@ -48,7 +48,7 @@ import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
 /**
- * This class describes the fact that a single JobEntry can be used multiple times in the same Job. Therefor it contains
+ * This class describes the fact that a single JobEntry can be used multiple times in the same Job. Therefore it contains
  * a link to a JobEntry, a position, a number, etc.
  *
  * @author Matt
@@ -139,7 +139,7 @@ public class JobEntryCopy implements Cloneable, XMLInterface, GUIPositionInterfa
         // System.out.println("New JobEntryInterface built of type:
         // "+entry.getTypeDesc());
         entry.setPluginId( jobPlugin.getIds()[0] );
-
+        entry.setMetaStore( metaStore ); // inject metastore
         entry.loadXML( entrynode, databases, slaveServers, rep, metaStore );
         compatibleLoadXml( entrynode, databases, slaveServers, rep );
 
