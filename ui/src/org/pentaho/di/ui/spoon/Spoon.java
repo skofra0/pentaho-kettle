@@ -1890,7 +1890,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     view.setControl( new Composite( tabFolder, SWT.NONE ) );
     view.setText( STRING_SPOON_MAIN_TREE );
     view.setImage( GUIResource.getInstance().getImageExploreSolutionSmall() );
-    
+
     design = new CTabItem( tabFolder, SWT.NONE );
     design.setText( STRING_SPOON_CORE_OBJECTS_TREE );
     design.setControl( new Composite( tabFolder, SWT.NONE ) );
@@ -1910,7 +1910,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     if ( Const.isLinux() ) {
       fdsLabel.top = new FormAttachment( sep3, 10 );
     } else {
-      fdsLabel.top = new FormAttachment( sep3, 8 );      
+      fdsLabel.top = new FormAttachment( sep3, 8 );
     }
     selectionLabel.setLayoutData( fdsLabel );
 
@@ -1938,13 +1938,13 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
         | SWT.BORDER | SWT.LEFT | SWT.SEARCH | SWT.ICON_SEARCH | SWT.ICON_CANCEL );
     selectionFilter.setToolTipText( BaseMessages.getString( PKG, "Spoon.SelectionFilter.Tooltip" ) );
     FormData fdSelectionFilter = new FormData();
+    int offset = -( GUIResource.getInstance().getImageExpandAll().getBounds().height + 5 );
     if ( Const.isLinux() ) {
-      fdSelectionFilter.top =
-        new FormAttachment( treeTb, -( GUIResource.getInstance().getImageExpandAll().getBounds().height + 12 ) );
-    } else {
-      fdSelectionFilter.top =
-        new FormAttachment( treeTb, -( GUIResource.getInstance().getImageExpandAll().getBounds().height + 5 ) );
+      if ( !Const.isKDE() ) {
+        offset = -( GUIResource.getInstance().getImageExpandAll().getBounds().height + 12 );
+      }
     }
+    fdSelectionFilter.top = new FormAttachment( treeTb, offset );
     fdSelectionFilter.right = new FormAttachment( 95, -55 );
     fdSelectionFilter.left = new FormAttachment( selectionLabel, 10 );
     selectionFilter.setLayoutData( fdSelectionFilter );
@@ -5846,7 +5846,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     }
     return saved;
   }
-  
+
   // Put here to support testing, but you cannot instance Spoon from a
   // JUnit test case without a bunch of work. I abandoned the attempt to
   // create a Spoon test case to test this. mb
@@ -5949,7 +5949,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     }
     messageBuilder.append( outputStringDate );
     return messageBuilder;
-  }  
+  }
 
   public void helpAbout() {
     MessageBox mb = new MessageBox( shell, SWT.OK | SWT.ICON_INFORMATION | SWT.CENTER | SWT.SHEET );
@@ -6343,7 +6343,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
         continue;
       }
 
-      Image icon = hopMeta.isEnabled() ? guiResource.getImageHop() : guiResource.getImageDisabledHop();
+      Image icon = hopMeta.isEnabled() ? guiResource.getImageHopTree() : guiResource.getImageDisabledHopTree();
       createTreeItem( tiHopTitle, hopMeta.toString(), icon );
     }
   }
@@ -7048,7 +7048,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
   public JobGraph getActiveJobGraph() {
     if ( delegates != null && delegates.tabs != null && tabfolder != null ) {
       TabMapEntry mapEntry = delegates.tabs.getTab( tabfolder.getSelected() );
-      if ( mapEntry.getObject() instanceof JobGraph ) {
+      if ( mapEntry != null && mapEntry.getObject() instanceof JobGraph ) {
         return (JobGraph) mapEntry.getObject();
       }
     }
@@ -8304,6 +8304,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
       }
     }
 
+    transMeta.setChanged();
     refreshTree();
     refreshGraph();
   }

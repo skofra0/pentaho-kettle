@@ -20,20 +20,30 @@
  *
  ******************************************************************************/
 
-package org.pentaho.di.ui.spoon;
+package org.pentaho.di.ui.core.widget;
 
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.pentaho.di.ui.core.FormDataBuilder;
+import org.pentaho.di.ui.core.WidgetUtils;
 
-public abstract class AbstractSpoonPerspective implements SpoonPerspective {
+public class InputButton extends Composite {
+  private Button button;
 
-  /**
-   * Perspectives will be represented in spoon by an icon on the main toolbar. This method returns the Image for
-   * that icon.
-   *
-   * @return image Image
-   */
-  public Image getIcon() {
-    return null;
+  public InputButton( Composite composite, int width ) {
+    super( composite, SWT.NONE );
+    WidgetUtils.setFormLayout( this, 0 );
+
+    button = new Button( this, SWT.PUSH );
+    button.setLayoutData( new FormDataBuilder().right().bottom().width( width ).result() );   
   }
-  
+
+  public void setText( String text ) {
+    button.setText( text );
+  }
+
+  public Button getButton() {
+    return button;
+  }
 }

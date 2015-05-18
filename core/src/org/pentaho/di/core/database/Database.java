@@ -66,6 +66,7 @@ import org.pentaho.di.core.Result;
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.database.map.DatabaseConnectionMap;
 import org.pentaho.di.core.database.util.DatabaseLogExceptionFactory;
+import org.pentaho.di.core.database.util.DatabaseUtil;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleDatabaseBatchException;
 import org.pentaho.di.core.exception.KettleDatabaseException;
@@ -396,13 +397,19 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         } catch ( Exception e ) {
           throw new KettleDatabaseException( "Error occurred while trying to connect to the database", e );
         }
+      } else if ( databaseMeta.getAccessType() == DatabaseMeta.TYPE_ACCESS_JNDI ) {
+        final String jndiName = environmentSubstitute( databaseMeta.getDatabaseName() );
+        connectUsingJNDIDataSource( jndiName );
       } else {
+        // TODO connectUsingNamedDataSource can be called here but the current implementation of
+        // org.pentaho.platform.plugin.action.kettle.PlatformKettleDataSourceProvider can cause collision of name and
+        // JNDI name. See also [PDI-13633], [SP-1776].
         connectUsingClass( databaseMeta.getDriverClass(), partitionId );
         if ( log.isDetailed() ) {
           log.logDetailed( "Connected to database." );
         }
       }
-      // See if we need to execute extra SQL statemtent...
+      // See if we need to execute extra SQL statement...
       String sql = environmentSubstitute( databaseMeta.getConnectSQL() );
 
       // only execute if the SQL is not empty, null and is not just a bunch of
@@ -425,7 +432,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
    * @param dataSourceName
    * @throws KettleDatabaseException
    */
-  private void initWithNamedDataSource( String dataSourceName ) throws KettleDatabaseException {
+  private void connectUsingNamedDataSource( String dataSourceName ) throws KettleDatabaseException {
     connection = null;
     DataSource dataSource =
       DataSourceProviderFactory.getDataSourceProviderInterface().getNamedDataSource( dataSourceName );
@@ -433,14 +440,40 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       try {
         connection = dataSource.getConnection();
       } catch ( SQLException e ) {
-        throw new KettleDatabaseException( "Invalid JNDI connection " + dataSourceName + " : " + e.getMessage() );
+        throw new KettleDatabaseException( "Invalid named connection " + dataSourceName + " : " + e.getMessage() );
       }
       if ( connection == null ) {
-        throw new KettleDatabaseException( "Invalid JNDI connection " + dataSourceName );
+        throw new KettleDatabaseException( "Invalid named connection " + dataSourceName );
       }
     } else {
-      throw new KettleDatabaseException( "Invalid JNDI connection " + dataSourceName );
+      throw new KettleDatabaseException( "Invalid named connection " + dataSourceName );
     }
+  }
+
+  /**
+   * Initialize by getting the connection from a javax.sql.DataSource.
+   * 
+   * This method now _does_not_use the DataSourceProviderFactory to get the provider of DataSource objects.
+   * 
+   * @param jndiName
+   * @throws KettleDatabaseException
+   */
+  private void connectUsingJNDIDataSource( String jndiName ) throws KettleDatabaseException {
+    Connection connection = null;
+    DataSource dataSource = ( new DatabaseUtil() ).getNamedDataSource( jndiName );
+    if ( dataSource != null ) {
+      try {
+        connection = dataSource.getConnection();
+      } catch ( SQLException e ) {
+        throw new KettleDatabaseException( "Invalid JNDI connection " + jndiName + " : " + e.getMessage() );
+      }
+      if ( connection == null ) {
+        throw new KettleDatabaseException( "Invalid JNDI connection " + jndiName );
+      }
+    } else {
+      throw new KettleDatabaseException( "Invalid JNDI connection " + jndiName );
+    }
+    this.connection = connection;
   }
 
   /**
@@ -450,12 +483,6 @@ public class Database implements VariableSpace, LoggingObjectInterface {
    * @return true if the connect was successful, false if something went wrong.
    */
   private void connectUsingClass( String classname, String partitionId ) throws KettleDatabaseException {
-    // first see if this is a JNDI connection
-    if ( databaseMeta.getAccessType() == DatabaseMeta.TYPE_ACCESS_JNDI ) {
-      initWithNamedDataSource( environmentSubstitute( databaseMeta.getDatabaseName() ) );
-      return;
-    }
-
     // Install and load the jdbc Driver
     PluginInterface plugin =
       PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, databaseMeta.getDatabaseInterface() );
@@ -486,10 +513,10 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       }
     } catch ( NoClassDefFoundError e ) {
       throw new KettleDatabaseException( BaseMessages.getString( PKG,
-        "Database.Exception.UnableToFindClassMissingDriver", databaseMeta.getDriverClass(), plugin.getName() ), e );
+          "Database.Exception.UnableToFindClassMissingDriver", classname, plugin.getName() ), e );
     } catch ( ClassNotFoundException e ) {
       throw new KettleDatabaseException( BaseMessages.getString( PKG,
-        "Database.Exception.UnableToFindClassMissingDriver", databaseMeta.getDriverClass(), plugin.getName() ), e );
+          "Database.Exception.UnableToFindClassMissingDriver", classname, plugin.getName() ), e );
     } catch ( Exception e ) {
       throw new KettleDatabaseException( "Exception while loading class", e );
     }
@@ -889,8 +916,12 @@ public class Database implements VariableSpace, LoggingObjectInterface {
    * @throws KettleDatabaseException
    */
   public PreparedStatement prepareSQL( String sql, boolean returnKeys ) throws KettleDatabaseException {
+    DatabaseInterface databaseInterface = databaseMeta.getDatabaseInterface();
+    boolean supportsAutoGeneratedKeys = !( databaseInterface instanceof DatabaseInterfaceExtended )
+        || ( (DatabaseInterfaceExtended) databaseInterface ).supportsAutoGeneratedKeys();
+
     try {
-      if ( returnKeys && databaseMeta.supportsAutoGeneratedKeys() ) {
+      if ( returnKeys && supportsAutoGeneratedKeys ) {
         return connection.prepareStatement( databaseMeta.stripCR( sql ), Statement.RETURN_GENERATED_KEYS );
       } else {
         return connection.prepareStatement( databaseMeta.stripCR( sql ) );
@@ -1168,11 +1199,11 @@ public class Database implements VariableSpace, LoggingObjectInterface {
   public boolean insertRow( PreparedStatement ps, boolean batch ) throws KettleDatabaseException {
     return insertRow( ps, batch, true );
   }
-  
+
   public boolean getUseBatchInsert( boolean batch ) throws KettleDatabaseException {
     try {
-      return batch && getDatabaseMetaData().supportsBatchUpdates() &&
-          databaseMeta.supportsBatchUpdates() && Const.isEmpty( connectionGroup );
+      return batch && getDatabaseMetaData().supportsBatchUpdates() && databaseMeta.supportsBatchUpdates()
+          && Const.isEmpty( connectionGroup );
     } catch ( SQLException e ) {
       throw createKettleDatabaseBatchException( "Error determining whether to use batch", e );
     }
@@ -2006,7 +2037,12 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         // AS400
         //
         if ( databaseMeta.supportsSequenceNoMaxValueOption() && max_value.trim().equals( "-1" ) ) {
-          cr_seq += databaseMeta.getSequenceNoMaxValueOption() + Const.CR;
+          DatabaseInterface databaseInterface = databaseMeta.getDatabaseInterface();
+          if ( databaseInterface instanceof DatabaseInterfaceExtended ) {
+            cr_seq += ( (DatabaseInterfaceExtended) databaseInterface ).getSequenceNoMaxValueOption() + Const.CR;
+          } else {
+            cr_seq += "NOMAXVALUE" + Const.CR;
+          }
         } else {
           // set the max value
           cr_seq += "MAXVALUE " + max_value + Const.CR;
@@ -2141,7 +2177,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         ResultSet r = ps.executeQuery();
         ResultSetMetaData metadata = ps.getMetaData();
         // If the PreparedStatement can't get us the metadata, try using the ResultSet's metadata
-        if( metadata == null ) {
+        if ( metadata == null ) {
           metadata = r.getMetaData();
         }
         fields = getRowInfo( metadata, false, false );
@@ -2759,12 +2795,17 @@ public class Database implements VariableSpace, LoggingObjectInterface {
    * @param use_autoinc true if we need to use auto-increment fields for a primary key
    * @param pk          the name of the primary/technical key field
    * @param semicolon   append semicolon to the statement
-   * @param pkc         primary key composite ( name of the key fields)
    * @return the SQL needed to create the specified table and fields.
    */
   public String getCreateTableStatement( String tableName, RowMetaInterface fields, String tk,
                                          boolean use_autoinc, String pk, boolean semicolon ) {
-    StringBuilder retval = new StringBuilder( "CREATE TABLE " );
+    StringBuilder retval = new StringBuilder();
+    DatabaseInterface databaseInterface = databaseMeta.getDatabaseInterface();
+    if ( databaseInterface instanceof DatabaseInterfaceExtended ) {
+      retval.append( ( (DatabaseInterfaceExtended) databaseInterface ).getCreateTableStatement() );
+    } else {
+      retval.append( "CREATE TABLE " );
+    }
 
     retval.append( tableName + Const.CR );
     retval.append( "(" ).append( Const.CR );
