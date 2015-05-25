@@ -21,8 +21,8 @@
 # 8. java folder two levels up
 # 9. environment variable JAVA_HOME - path to Java home
 # 10. environment variable JRE_HOME - path to Java home
-
-
+#
+#
 # 
 # If a suitable Java is found at one of these locations, then 
 # _PENTAHO_JAVA_HOME is set to that location and _PENTAHO_JAVA is set to the 
@@ -34,7 +34,7 @@
 # If set, this value is used in the construction of _PENTAHO_JAVA. If not 
 # set, then the value java is used. 
 # -----------------------------------------------------------------------------
-
+#
 setPentahoEnv() {
   DIR_REL=`dirname $0`
   cd $DIR_REL
