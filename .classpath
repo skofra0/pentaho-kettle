@@ -50,7 +50,6 @@
 	<classpathentry kind="lib" path="lib/commons-validator-1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-vfs-20100924-pentaho.jar"/>
 	<classpathentry kind="lib" path="lib/core-3.4.2.v_883_R34x.jar"/>
-	<classpathentry kind="lib" path="lib/deem-lib-formula-addons-0.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/drools-api-5.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/drools-compiler-5.0.1.jar"/>
@@ -164,7 +163,6 @@
 	<classpathentry kind="lib" path="lib/spring-2.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/stax-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/swt-win32-x86_64-4.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/syslog4j-0.9.34.jar"/>
 	<classpathentry kind="lib" path="lib/trilead-ssh2-build213.jar"/>
 	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
@@ -175,10 +173,22 @@
 	<classpathentry kind="lib" path="lib/xercesImpl-2.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/xml-apis-ext-1.3.04.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.5.0.jar"/>
-	<classpathentry kind="lib" path="libswt/win64/swt.jar"/>
 	<classpathentry kind="lib" path="test/libext/jetty-servlet-tester-6.1.21.jar"/>
 	<classpathentry kind="lib" path="test/libext/junit-4.7.jar"/>
 	<classpathentry kind="lib" path="test/libext/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="test/libext/nekohtml-1.9.7.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/json-smart-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsonrpc2-base-1.36.jar"/>
+	<classpathentry kind="lib" path="lib/jsonrpc2-client-1.15.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.swt.cocoa.macosx.x86_64-4.4.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="lib/deem-pdi-lib-formula-addons-0.0.9-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/deem-pdi-mariadb-jdbc-client-0.0.9-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-client-0.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-client-deem-0.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-common-0.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/jcabi-log-0.14.jar"/>
+	<classpathentry kind="lib" path="lib/jcabi-manifests-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
