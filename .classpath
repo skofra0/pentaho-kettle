@@ -183,12 +183,12 @@
 	<classpathentry kind="lib" path="lib/jsonrpc2-client-1.15.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.swt.cocoa.macosx.x86_64-4.4.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.12.jar"/>
-	<classpathentry kind="lib" path="lib/deem-pdi-lib-formula-addons-0.0.9-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/deem-pdi-mariadb-jdbc-client-0.0.9-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/cloud-api-client-0.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cloud-api-client-deem-0.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/cloud-api-common-0.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jcabi-log-0.14.jar"/>
 	<classpathentry kind="lib" path="lib/jcabi-manifests-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-client-0.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-client-deem-0.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/cloud-api-common-0.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/deem-pdi-lib-formula-addons-5.1.0.10.jar"/>
+	<classpathentry kind="lib" path="lib/deem-pdi-mariadb-jdbc-client-5.1.0.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

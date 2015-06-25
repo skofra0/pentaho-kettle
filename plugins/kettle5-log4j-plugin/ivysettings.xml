@@ -6,7 +6,7 @@
     override="false" />
     
   <!-- Repository for Pentaho-hosted artifacts -->  
-  <property name="pentaho.resolve.repo" value="http://deem.no:8081/nexus/content/groups/public/" override="false" />
+  <property name="pentaho.resolve.repo" value="http://nexus.deem.no/nexus/content/groups/public/" override="false" />
   <!-- Repository for External-hosted artifacts (Optional. Defaults to Pentaho-hosted.) -->
   <property name="public.resolve.repo" value="${pentaho.resolve.repo}" override="false" />
 

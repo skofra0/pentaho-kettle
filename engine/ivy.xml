@@ -112,7 +112,7 @@
 	<!-- Deem -->
     <dependency org="net.sf.jt400"         			   name="jt400"                      rev="8.3"       transitive="false"/>  
     <dependency org="net.sourceforge.jtds"             name="jtds"                       rev="1.3.1"     transitive="false"/>
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"    rev="0.0.9-SNAPSHOT"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"    rev="5.1.0.10"  transitive="true"/>
    
     <!-- OLAP4J is bringing in an older version of beanutils-core than is needed -->
     <dependency org="commons-beanutils"   name="commons-beanutils-core" rev="1.8.0"         transitive="false"/>
