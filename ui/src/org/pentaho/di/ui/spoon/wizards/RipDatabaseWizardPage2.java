@@ -51,6 +51,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.OracleDatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.ui.core.PropsUI;
 import org.pentaho.di.ui.core.dialog.ErrorDialog;
@@ -371,7 +372,12 @@ public class RipDatabaseWizardPage2 extends WizardPage {
     Database sourceDb = new Database( RipDatabaseWizard.loggingObject, page1.getSourceDatabase() );
     try {
       sourceDb.connect();
-      input = sourceDb.getTablenames( false ); // Don't include the schema since it can cause invalid syntax
+		boolean includeSchema = false;  // SKOFRA
+		if (sourceDb.getDatabaseMeta().getDatabaseInterface() instanceof OracleDatabaseMeta) { // SKOFRA
+			includeSchema = true; // SKOFRA
+		}
+      input = sourceDb.getTablenames( includeSchema );// SKOFRA
+      // input = sourceDb.getTablenames( false ); // Don't include the schema since it can cause invalid syntax
     } catch ( KettleDatabaseException dbe ) {
       new ErrorDialog( shell, "Error getting tables", "Error obtaining table list from database!", dbe );
       input = null;

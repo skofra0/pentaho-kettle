@@ -670,6 +670,8 @@ public class SalesforceInputMeta extends BaseStepMeta implements StepMetaInterfa
     query = "";
     targeturl = SalesforceConnectionUtils.TARGET_DEFAULT_URL;
     password = "";
+	password = "${CRM_PASSWORD}";  // SKOFRA artf49128 : Salesforce - default values
+	username = "${CRM_USER}";      // SKOFRA artf49128 : Salesforce - default values
     module = "Account";
     condition = "";
     includeTargetURL = false;
@@ -693,6 +695,7 @@ public class SalesforceInputMeta extends BaseStepMeta implements StepMetaInterfa
 
     rowLimit = "0";
     timeout = "60000";
+    timeout = "120000"; // SKOFRA
   }
 
   public void getFields( RowMetaInterface r, String name, RowMetaInterface[] info, StepMeta nextStep,
