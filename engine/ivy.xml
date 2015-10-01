@@ -65,11 +65,11 @@
     <dependency org="ldapjdk"                          name="ldapjdk"              rev="20000524"        transitive="false"/>
     <dependency org="monetdb"                          name="monetdb-jdbc"         rev="2.8"             transitive="false"/>
     <dependency org="org.odftoolkit"                   name="odfdom-java"          rev="0.8.6"           transitive="false"/>
-    <dependency org="org.apache.poi"                   name="poi"                  rev="3.9"             transitive="false"/>
-    <dependency org="org.apache.poi"                   name="poi-ooxml"            rev="3.9"             transitive="false"/>
-    <dependency org="org.apache.poi"                   name="poi-ooxml-schemas"    rev="3.9"             transitive="false"/>
+    <dependency org="org.apache.poi"                   name="poi"                  rev="3.12"            transitive="false"/>
+    <dependency org="org.apache.poi"                   name="poi-ooxml"            rev="3.12"            transitive="false"/>
+    <dependency org="org.apache.poi"                   name="poi-ooxml-schemas"    rev="3.12"            transitive="false"/>
     <dependency org="org.apache.xmlbeans"              name="xmlbeans"             rev="2.5.0"           transitive="false"/>
-    <dependency org="org.postgresql"                   name="postgresql"           rev="9.3-1102-jdbc4"   transitive="false"/>
+    <dependency org="org.postgresql"                   name="postgresql"           rev="9.3-1102-jdbc4"  transitive="false"/>
     <dependency org="rome"                             name="rome"                 rev="1.0"             transitive="false"/>
     <dependency org="org.eobjects.sassyreader"         name="SassyReader"          rev="0.5"             transitive="false"/>
     <dependency org="net.sf.saxon"                     name="saxon"                rev="9.1.0.8"         transitive="false"/>
@@ -108,7 +108,7 @@
 	<!-- Deem -->
     <dependency org="net.sf.jt400"         			   name="jt400"                      rev="8.5"       transitive="false"/>  
     <dependency org="net.sourceforge.jtds"             name="jtds"                       rev="1.3.1"     transitive="false"/>
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="5.4.0.12"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="5.4.0.13"  transitive="true"/>
 
     
     <!-- OLAP4J is bringing in an older version of beanutils-core than is needed -->
