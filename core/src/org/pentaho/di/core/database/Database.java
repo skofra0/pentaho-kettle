@@ -1707,8 +1707,9 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         log.snap( Metrics.METRIC_DATABASE_CREATE_SQL_STOP, databaseMeta.getName() );
         if ( canWeSetFetchSize( sel_stmt ) ) {
           int fs = Const.FETCH_SIZE <= sel_stmt.getMaxRows() ? sel_stmt.getMaxRows() : Const.FETCH_SIZE;
-          if ( databaseMeta.getDatabaseInterface() instanceof MySQLDatabaseMeta
-            && databaseMeta.isStreamingResults() ) {
+          // if ( databaseMeta.getDatabaseInterface() instanceof MySQLDatabaseMeta //SKOFRA
+          if ( databaseMeta.isMySQLVariant() // SKOFRA
+           && databaseMeta.isStreamingResults() ) {
             sel_stmt.setFetchSize( Integer.MIN_VALUE );
           } else {
             sel_stmt.setFetchSize( fs );
