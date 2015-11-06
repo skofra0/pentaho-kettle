@@ -689,13 +689,13 @@ public class Database implements VariableSpace, LoggingObjectInterface {
    * @throws KettleDatabaseException
    */
   public void cancelQuery() throws KettleDatabaseException {
-    // Canceling statements only if we're not streaming results on MySQL with
-    // the v3 driver
-    //
-    if ( databaseMeta.isMySQLVariant()
-      && databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) {
-      return;
-    }
+      // Canceling statements only if we're not streaming results on MySQL with
+      // the v3 driver
+      //
+      if ( databaseMeta.isMySQLVariant()
+        && databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) {
+        return;
+      }
 
     cancelStatement( pstmt );
     cancelStatement( sel_stmt );
@@ -1805,7 +1805,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
   }
 
   void setMysqlFetchSize( PreparedStatement ps, int fs, int getMaxRows ) throws SQLException, KettleDatabaseException {
-    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) {
+    // if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) { // SKOFRA
+    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() < 5 ) {     // SKOFRA
       ps.setFetchSize( Integer.MIN_VALUE );
     } else if ( fs <= getMaxRows ) {
       // PDI-11373 do not set fetch size more than max rows can returns
