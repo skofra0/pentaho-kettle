@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.SQLStatement;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseInterfaceExtended;
@@ -1737,6 +1738,22 @@ public class DimensionLookup extends BaseStep implements StepInterface {
         }
         data.db.setCommit( meta.getCommitSize() );
 
+        // SKOFRA artf48614 : Auto create tables when running job
+        String schemaTable = data.db.getDatabaseMeta().getQuotedSchemaTableCombination(meta.getSchemaName(), meta.getTableName());
+        String autoCreateTables = getVariable("BI_AUTO_CREATE_TABLES", "NO");
+        if (meta.isUpdate() && autoCreateTables.startsWith("Y") && !data.db.checkTableExists(environmentSubstitute(schemaTable))) {
+            RowMetaInterface prev = getTransMeta().getPrevStepFields(getStepMeta().getName());
+            
+            SQLStatement sql =  meta.getSQLStatements(getTransMeta(), getStepMeta() , prev, repository, metaStore); 
+            if (!sql.hasError()) {
+                if (sql.hasSQL()) {
+                    data.db.execStatements(sql.getSQL());
+                }
+            }
+        }
+        // SKOFRA artf48614 : Auto create tables when running job
+        
+        
         return true;
       } catch ( KettleException ke ) {
         logError( BaseMessages.getString( PKG, "DimensionLookup.Log.ErrorOccurredInProcessing" ) + ke.getMessage() );
