@@ -504,8 +504,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       build
 
       Runs a typical build process to create the project locally
+ 
+   <target name="build" depends="clean-all,resolve,dist-source,dist,jacoco"/>
+ 
       ====================================================================-->
-  <target name="build" depends="clean-all,resolve,dist-source,dist,jacoco"/>
+  <target name="build" depends="clean-all,resolve,dist-source,dist"/>
 
 
   <!--=======================================================================
