@@ -24,9 +24,10 @@
     <dependency org="${ivy.artifact.group}" name="kettle-ui-swt"        rev="${project.revision}" changing="true" force="true">
       <exclude name="swt-linux-x86_64"/>
     </dependency>
-    
-    <dependency org="pentaho" name="pdi-osgi-bridge-core" rev="${dependency.pdi-osgi-bridge.revision}" changing="true" />
 
+<!-- SKOFRA      
+    <dependency org="pentaho" name="pdi-osgi-bridge-core" rev="${dependency.pdi-osgi-bridge.revision}" changing="true" />
+-->
     <!-- Data Service JDBC Driver -->
     <dependency org="pentaho" name="pdi-dataservice-driver-bundle" rev="${project.revision}" changing="true" conf="dataservice-jdbc->default" transitive="false">
       <artifact name="pdi-dataservice-driver-bundle" type="zip"/>
@@ -36,6 +37,7 @@
     <dependency org="${ivy.artifact.group}" name="kettle-version-checker" rev="${project.revision}" changing="true" conf="plugins->default">
       <artifact name="kettle-version-checker" type="zip"/>
     </dependency>
+<!-- SKOFRA      
     <dependency org="${ivy.artifact.group}" name="kettle-dummy-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
       <artifact name="kettle-dummy-plugin" type="zip"/>
     </dependency>
@@ -63,12 +65,14 @@
     <dependency org="${ivy.artifact.group}" name="kettle5-log4j-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="kettle5-log4j-plugin" type="zip"/>
     </dependency>
+-->
     <dependency org="${ivy.artifact.group}" name="pdi-google-analytics-plugin-ce" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="pdi-google-analytics-plugin-ce" type="zip"/>
     </dependency>
     <dependency org="${ivy.artifact.group}" name="pdi-salesforce-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="pdi-salesforce-plugin" type="zip"/>
     </dependency>
+<!-- SKOFRA      
     <dependency org="${ivy.artifact.group}" name="ms-access-bulk-loader-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="ms-access-bulk-loader-plugin" type="zip"/>
     </dependency>
@@ -81,6 +85,7 @@
     <dependency org="${ivy.artifact.group}" name="elasticsearch-bulk-insert-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="elasticsearch-bulk-insert-plugin" type="zip"/>
     </dependency>
+-->
     <dependency org="${ivy.artifact.group}" name="kettle-xml-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="kettle-xml-plugin" type="zip"/>
     </dependency>
@@ -93,6 +98,8 @@
     
     <!-- Pentaho dependencies (non-Kettle), launcher, shim, etc. -->
     <dependency org="pentaho"               name="pentaho-application-launcher"  rev="${dependency.launcher.revision}" conf="launcher->default"/>
+
+ <!-- SKOFRA    
     <dependency org="pentaho"               name="pentaho-hadoop-hive-jdbc-shim" rev="${dependency.pentaho-hadoop-hive-jdbc-shim.revision}"/>
     <dependency org="pentaho" name="pentaho-big-data-plugin" rev="${dependency.pentaho-big-data-plugin.revision}" changing="true" transitive="false" conf="plugins->default">
       <artifact name="pentaho-big-data-plugin" type="zip"/>
@@ -115,7 +122,7 @@
     <dependency org="pentaho-kettle" name="pdi-pur-plugin" rev="${dependency.pdi-pur-plugin.revision}" changing="true" transitive="false" conf="plugins->default">
       <artifact name="pdi-pur-plugin" type="zip"/>
     </dependency>
-
+--> 
 
     <dependency org="pentaho" name="pentaho-platform-extensions"  rev="${dependency.pentaho-platform.revision}" transitive="false"/>
     <dependency org="org.slf4j" name="slf4j-api" rev="1.7.5"/>
@@ -124,9 +131,10 @@
     <dependency org="org.springframework" name="spring-beans"   rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework" name="spring-context" rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework.security" name="spring-security-core" rev="${dependency.spring.security.revision}" />
+<!-- SKOFRA  
     <dependency org="org.glassfish.metro" name="webservices-api" rev="2.1" transitive="false"/>
     <dependency org="org.glassfish.metro" name="webservices-rt" rev="2.1" transitive="false"/>
-
+-->
     <!-- pentaho-metaverse -->
     <dependency org="pentaho" name="pentaho-metaverse-api" rev="${project.revision}" changing="true" transitive="false"/>
     <dependency org="pentaho" name="pentaho-platform-api"  rev="${dependency.pentaho-platform.revision}" transitive="false"/>
@@ -166,23 +174,28 @@
     <dependency org="org.apache.karaf.jaas" name="org.apache.karaf.jaas.boot" rev="2.4.2"  transitive="false"/>
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="4.2.1"  transitive="false"/>
 
+		<!-- Deem -->
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.22"  transitive="true"/>
 	
     <!-- Third-party JDBC dependencies -->
+ <!--  
     <dependency org="org.apache.derby"     name="derby"                 rev="10.2.1.6"      transitive="false"/>
     <dependency org="org.apache.derby"     name="derbyclient"           rev="10.2.1.6"      transitive="false"/>
-    <dependency org="com.h2database"       name="h2"                    rev="1.2.131"       transitive="false"/>
     <dependency org="org.hsqldb"           name="hsqldb"                rev="2.3.2"         transitive="false"/>
     <dependency org="infobright"           name="infobright-core"       rev="3.4"           transitive="false"/>
     <dependency org="org.firebirdsql.jdbc" name="jaybird"               rev="2.1.6"         transitive="false"/>
-    <dependency org="net.sf.jt400"         name="jt400"                 rev="6.1"           transitive="false"/>  
-    <dependency org="jtds"                 name="jtds"                  rev="1.2.5"         transitive="false"/>
     <dependency org="luciddb"              name="LucidDbClient-minimal" rev="0.9.4"         transitive="false"/>
     <dependency org="monetdb"              name="monetdb-jdbc"          rev="2.1"           transitive="false"/>
     <dependency org="org.postgresql"       name="postgresql"            rev="9.3-1102-jdbc4" transitive="false"/>
     <dependency org="com.sap"              name="sapdbc"                rev="7.4.4"         transitive="false"/>
     <dependency org="org.xerial"           name="sqlite-jdbc"           rev="3.7.2"         transitive="false"/>
     <dependency org="jaxen"                name="jaxen"                 rev="1.1.1"         transitive="false"/>
+-->
+    <dependency org="com.h2database"       name="h2"                    rev="1.2.131"       transitive="false"/>
     <dependency org="javax.servlet"        name="javax.servlet-api"    rev="3.0.1"           transitive="false"/>
+
+    <dependency org="net.sf.jt400"         name="jt400"                 rev="8.5"           transitive="false"/>  
+    <dependency org="net.sourceforge.jtds" name="jtds"                  rev="1.3.1"         transitive="false"/>
     <!-- Other third-party dependencies -->
     <dependency org="asm"                  name="asm"                   rev="3.2"           transitive="false"/>
     <dependency org="net.sf.saxon"         name="saxon-dom"             rev="9.1.0.8"       transitive="false"/>

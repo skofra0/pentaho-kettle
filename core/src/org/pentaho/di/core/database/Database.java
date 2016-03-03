@@ -1689,7 +1689,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         log.snap( Metrics.METRIC_DATABASE_CREATE_SQL_STOP, databaseMeta.getName() );
         if ( canWeSetFetchSize( sel_stmt ) ) {
           int fs = Const.FETCH_SIZE <= sel_stmt.getMaxRows() ? sel_stmt.getMaxRows() : Const.FETCH_SIZE;
-          if ( databaseMeta.getDatabaseInterface() instanceof MySQLDatabaseMeta
+          // if ( databaseMeta.getDatabaseInterface() instanceof MySQLDatabaseMeta
+             if ( databaseMeta.isMySQLVariant() // SKOFRA
             && databaseMeta.isStreamingResults() ) {
             sel_stmt.setFetchSize( Integer.MIN_VALUE );
           } else {
@@ -1770,7 +1771,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       // of Strings in result rows.
       //
       log.snap( Metrics.METRIC_DATABASE_GET_ROW_META_START, databaseMeta.getName() );
-      rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), false );
+      // rowMeta = getRowInfo( res.getMetaData(), databaseMeta.isMySQLVariant(), false ); // SKOFRA SIG-91 - Database - Metadata Improvement
+      rowMeta = getRowInfo( res.getMetaData(), false, false ); // SKOFRA 
       log.snap( Metrics.METRIC_DATABASE_GET_ROW_META_STOP, databaseMeta.getName() );
     } catch ( SQLException ex ) {
       throw new KettleDatabaseException( "ERROR executing query", ex );
@@ -1784,7 +1786,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
   }
 
   void setMysqlFetchSize( PreparedStatement ps, int fs, int getMaxRows ) throws SQLException, KettleDatabaseException {
-    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) {
+	    // if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) { // SKOFRA
+	    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() < 5 ) {     // SKOFRA
       ps.setFetchSize( Integer.MIN_VALUE );
     } else if ( fs <= getMaxRows ) {
       // PDI-11373 do not set fetch size more than max rows can returns
@@ -2247,7 +2250,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     // Extract the name from the result set meta data...
     //
     String name;
-    if ( databaseMeta.isMySQLVariant() && getDatabaseMetaData().getDriverMajorVersion() > 3 ) {
+    if ( databaseMeta.isMySQLVariant() && getDatabaseMetaData().getDriverName().startsWith("MariaDB") ) { // SKOFRA - Set version number in Maria DB = 4 (simulate new JDBC driver)
       name = new String( rm.getColumnLabel( i ) );
     } else {
       name = new String( rm.getColumnName( i ) );

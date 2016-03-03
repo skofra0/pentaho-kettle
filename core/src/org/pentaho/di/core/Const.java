@@ -184,8 +184,8 @@ public class Const {
    * @deprecated Use {@link Const#getUserHomeDirectory()} instead.
    */
   @Deprecated
-  public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System
-    .getProperty( "user.home" ) );
+  // public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System.getProperty( "user.home" ) );
+  public static final String USER_HOME_DIRECTORY = NVL( NVL(getDIHomeDirectory(), System.getProperty( "KETTLE_HOME" )), System.getProperty( "user.home" ) );  //SKOFRA
 
   /**
    * Path to the simple-jndi directory

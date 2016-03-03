@@ -520,17 +520,21 @@ public class DatabaseMeta extends SharedObjectBase implements Cloneable, XMLInte
    */
   public void addOptions() {
     PluginInterface mySqlPlugin = PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, "MYSQL" );
-    PluginInterface infoBrightPlugin =
-      PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, new InfobrightDatabaseMeta() );
+    PluginInterface infoBrightPlugin = PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, new InfobrightDatabaseMeta() );
+    PluginInterface as400Plugin = PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, new AS400DatabaseMeta() );
 
     String mySQL = mySqlPlugin.getIds()[0];
 
-    addExtraOption( mySQL, "defaultFetchSize", "500" );
+    addExtraOption( mySQL, "defaultFetchSize", "1000" ); // SKOFRA
     addExtraOption( mySQL, "useCursorFetch", "true" );
 
     String infoBright = infoBrightPlugin.getIds()[0];
-
     addExtraOption( infoBright, "characterEncoding", "UTF-8" );
+    addExtraOption( infoBright, "defaultFetchSize", "1000" );  // SKOFRA
+    addExtraOption( infoBright, "useCursorFetch", "true" );
+
+    String as400 = as400Plugin.getIds()[0];
+    addExtraOption( as400, "access", "read only" );  // SKOFRA
 
     // Modern databases support this, try it by default...
     //
