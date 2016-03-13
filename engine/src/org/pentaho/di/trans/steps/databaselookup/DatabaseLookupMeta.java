@@ -111,6 +111,9 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
   /** order by clause... */
   private String orderByClause;
 
+  /** where clause... */
+  private String whereClause;          
+
   /** Cache values we look up --> faster */
   private boolean cached;
 
@@ -207,6 +210,23 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
    */
   public void setOrderByClause( String orderByClause ) {
     this.orderByClause = orderByClause;
+  }
+
+  /**
+   * @return Returns the whereClause.
+   */
+  public String getWhereClause()
+  {
+      return whereClause;
+  }
+  
+
+   /**
+   * @param whereClause The whereClause to set.
+   */
+  public void setWhereClause(String whereClause)
+  {
+      this.whereClause = whereClause;
   }
 
   /**
@@ -439,6 +459,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
       orderByClause = XMLHandler.getTagValue( lookup, "orderby" ); // Optional, can by null
       failingOnMultipleResults = "Y".equalsIgnoreCase( XMLHandler.getTagValue( lookup, "fail_on_multiple" ) );
       eatingRowOnLookupFailure = "Y".equalsIgnoreCase( XMLHandler.getTagValue( lookup, "eat_row_on_failure" ) );
+      whereClause = XMLHandler.getTagValue(lookup, "where"); // SKOFRA
     } catch ( Exception e ) {
       throw new KettleXMLException( BaseMessages.getString(
         PKG, "DatabaseLookupMeta.ERROR0001.UnableToLoadStepFromXML" ), e );
@@ -477,6 +498,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
     orderByClause = "";
     failingOnMultipleResults = false;
     eatingRowOnLookupFailure = false;
+    whereClause = ""; //SKOFRA
   }
 
   public void getFields( RowMetaInterface row, String name, RowMetaInterface[] info, StepMeta nextStep,
@@ -521,6 +543,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
     retval.append( "      " ).append( XMLHandler.addTagValue( "orderby", orderByClause ) );
     retval.append( "      " ).append( XMLHandler.addTagValue( "fail_on_multiple", failingOnMultipleResults ) );
     retval.append( "      " ).append( XMLHandler.addTagValue( "eat_row_on_failure", eatingRowOnLookupFailure ) );
+    retval.append( "      " ).append(XMLHandler.addTagValue("where", whereClause)); //SKOFRA
 
     for ( int i = 0; i < streamKeyField1.length; i++ ) {
       retval.append( "      <key>" ).append( Const.CR );
@@ -558,6 +581,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
       orderByClause = rep.getStepAttributeString( id_step, "lookup_orderby" );
       failingOnMultipleResults = rep.getStepAttributeBoolean( id_step, "fail_on_multiple" );
       eatingRowOnLookupFailure = rep.getStepAttributeBoolean( id_step, "eat_row_on_failure" );
+      whereClause            =      rep.getStepAttributeString (id_step, "lookup_where");  //SKOFRA
 
       int nrkeys = rep.countNrStepAttributes( id_step, "lookup_key_field" );
       int nrvalues = rep.countNrStepAttributes( id_step, "return_value_name" );
@@ -595,6 +619,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
       rep.saveStepAttribute( id_transformation, id_step, "lookup_orderby", orderByClause );
       rep.saveStepAttribute( id_transformation, id_step, "fail_on_multiple", failingOnMultipleResults );
       rep.saveStepAttribute( id_transformation, id_step, "eat_row_on_failure", eatingRowOnLookupFailure );
+      rep.saveStepAttribute(id_transformation, id_step, "lookup_where",     whereClause); //SKOFRA
 
       for ( int i = 0; i < streamKeyField1.length; i++ ) {
         rep.saveStepAttribute( id_transformation, id_step, i, "lookup_key_name", streamKeyField1[i] );
@@ -817,7 +842,9 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
       DatabaseImpact ii =
           new DatabaseImpact(
           DatabaseImpact.TYPE_IMPACT_READ, transMeta.getName(), stepinfo.getName(),
-          databaseMeta.getDatabaseName(), tablename, returnValueField[i], "", "", "",
+          databaseMeta.getDatabaseName(), tablename, returnValueField[i]
+                  , /*"" SKOFRA*/ returnValueField[i], /*"" SKOFRA */tablename
+                  , "",
           BaseMessages.getString( PKG, "DatabaseLookupMeta.Impact.ReturnValue" ) );
       impact.add( ii );
     }

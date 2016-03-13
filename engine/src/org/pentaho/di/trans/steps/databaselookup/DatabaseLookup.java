@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.annotations.VisibleForTesting;
+
+import org.apache.commons.lang3.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
@@ -123,7 +125,8 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     }
 
     if ( add == null ) {
-      if ( !( meta.isCached() && meta.isLoadingAllDataInCache() ) || data.hasDBCondition ) { // do not go to the
+      // SKOFRA  
+      if ( !( meta.isCached() && meta.isLoadingAllDataInCache() && StringUtils.isEmpty(meta.getWhereClause()) ) || data.hasDBCondition ) { // do not go to the
         // database when all rows
         // are in (exception LIKE
         // operator)
@@ -203,7 +206,8 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     // Store in cache if we need to!
     // If we already loaded all data into the cache, storing more makes no sense.
     //
-    if ( meta.isCached() && cache_now && !meta.isLoadingAllDataInCache() && data.allEquals ) {
+ // if ( meta.isCached() && cache_now && !meta.isLoadingAllDataInCache() && data.allEquals ) {  // SKOFRA
+    if (meta.isCached() && cache_now && !(meta.isLoadingAllDataInCache() && StringUtils.isEmpty(meta.getWhereClause())) && data.allEquals) { // SKOFRA
       data.cache.storeRowInCache( meta, data.lookupMeta, lookupRow, add );
     }
 
@@ -459,10 +463,20 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
           environmentSubstitute( meta.getSchemaName() ),
           environmentSubstitute( meta.getTablename() ) );
 
+
+      // where? //SKOFRA
+      if (StringUtils.isNotEmpty(meta.getWhereClause()))
+      {
+          sql += " WHERE "+environmentSubstitute(meta.getWhereClause());
+      }
+
       // order by?
       if ( meta.getOrderByClause() != null && meta.getOrderByClause().length() != 0 ) {
         sql += " ORDER BY " + meta.getOrderByClause();
       }
+
+      // SKOFRA
+      if (log.isDetailed()) logDetailed(sql);
 
       // Now that we have the SQL constructed, let's store the rows...
       //

@@ -39,7 +39,8 @@ import org.pentaho.di.core.xml.XMLHandler;
  * @since 2006-aug-12
  */
 public class BuildVersion {
-  public static final String REFERENCE_FILE = "/kettle-steps.xml";
+  //public static final String REFERENCE_FILE = "/kettle-steps.xml"; SKOFRA
+  public static final String REFERENCE_FILE = "/DeemPdi.class";
 
   public static final String JAR_BUILD_DATE_FORMAT = "yyyy-MM-dd HH.mm.ss";
 
