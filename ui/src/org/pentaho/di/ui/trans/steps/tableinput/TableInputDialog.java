@@ -24,6 +24,7 @@ package org.pentaho.di.ui.trans.steps.tableinput;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.FocusAdapter;
@@ -564,10 +565,75 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
           case SWT.CANCEL:
             break;
           case SWT.NO:
-            wSQL.setText( sql );
-            break;
+              // SKOFRA - START SQL WITH RTRIM AND FIELD RENAME
+              
+              Database db = new Database(loggingObject, inf);
+              db.shareVariablesWith(transMeta);
+              try
+              {
+                  db.connect();
+                  RowMetaInterface fields = db.getQueryFields(sql, false);
+                  if (fields!=null)
+                  {
+                      int maxFieldLength = 0;
+                      for (int i=0;i<fields.size();i++)
+                      {
+                          ValueMetaInterface field=fields.getValueMeta(i);
+                          int curLength = (std.getTableName()+  inf.quoteField(field.getName())).length() + 13; 
+                          if (curLength > maxFieldLength) {
+                              maxFieldLength = curLength;
+                          }
+                      }
+                      
+                      String tableName = std.getTableName();
+                      if (std.getTableName().length()>6) {
+                          tableName = "T1";
+                      }
+                      
+                      sql = "SELECT"+Const.CR; //$NON-NLS-1$
+                      for (int i=0;i<fields.size();i++)
+                      {
+                          ValueMetaInterface field=fields.getValueMeta(i);
+                          String line ;
+                          if (i==0) line="     "; else line="-- , ";
+                          if (field.isString()) {
+                              line +=  "RTRIM(" + tableName+ "." + inf.quoteField(field.getName()) + ")"; 
+                          } else {
+                              line += "      " + tableName+ "."  + inf.quoteField(field.getName()) ;
+                          }
+                          
+                          sql+= StringUtils.rightPad( line , maxFieldLength);
+                          sql+=" AS \"" + convertNameToJavaName(field.getName()) + "\""+Const.CR;
+                          
+                      }
+                      sql+="FROM "+inf.getQuotedSchemaTableCombination(std.getSchemaName(), std.getTableName()) + "  AS "+ tableName  +Const.CR; //$NON-NLS-1$
+                      wSQL.setText(sql);
+                  }
+                  else
+                  {
+                      MessageBox mb = new MessageBox(shell, SWT.OK | SWT.ICON_ERROR );
+                      mb.setMessage(BaseMessages.getString(PKG,"TableInputDialog.ERROR_CouldNotRetrieveFields")+Const.CR+BaseMessages.getString(PKG,"TableInputDialog.PerhapsNoPermissions")); //$NON-NLS-1$ //$NON-NLS-2$
+                      mb.setText(BaseMessages.getString(PKG,"TableInputDialog.DialogCaptionError2")); //$NON-NLS-1$
+                      mb.open();
+                  }
+              }
+              catch(KettleException e)
+              {
+                  MessageBox mb = new MessageBox(shell, SWT.OK | SWT.ICON_ERROR );
+                  mb.setText(BaseMessages.getString(PKG,"TableInputDialog.DialogCaptionError3")); //$NON-NLS-1$
+                  mb.setMessage(BaseMessages.getString(PKG,"TableInputDialog.AnErrorOccurred")+Const.CR+e.getMessage()); //$NON-NLS-1$
+                  mb.open(); 
+              }
+              finally
+              {
+                  db.disconnect();
+              }
+              break;
+              // SKOFRA END 
+              // wSQL.setText( sql );
+              // break;
           case SWT.YES:
-            Database db = new Database( loggingObject, inf );
+            db = new Database( loggingObject, inf );
             db.shareVariablesWith( transMeta );
             try {
               db.connect();
@@ -618,6 +684,24 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
 
   }
 
+  // SKOFRA
+  private String convertNameToJavaName( final String description) {
+
+      String temp = "";
+      if (description != null) {
+          temp = description.toLowerCase();
+      }
+      temp = temp.replaceAll("\\W", "_");
+      temp = temp.replaceAll("__", "_");
+      temp = temp.replaceAll("__", "_");
+      if (temp.endsWith("_")) {
+          temp = temp.substring(0, temp.length() - 1);
+      }
+
+      return temp;
+  }
+
+  
   private void setFlags() {
     if ( !Const.isEmpty( wDatefrom.getText() ) ) {
       // The foreach check box...
