@@ -110,6 +110,7 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
   private Text wOrderBy;
   private FormData fdlOrderBy, fdOrderBy;
 
+  // SKOFRA
   private Label        wlWhereClause;
   private Text         wWhereClause;
   private FormData     fdlWhereClause, fdWhereClause;
