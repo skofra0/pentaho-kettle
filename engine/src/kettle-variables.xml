@@ -426,5 +426,25 @@
     <default-value>true</default-value>
   </kettle-variable>
 
+  <kettle-variable>
+    <description></description>
+    <variable>DEEM_INFOBRIGHT_STRING_DBLOOKUP_LIMIT</variable>
+    <default-value>100</default-value>
+  </kettle-variable>
+
+  <kettle-variable>
+    <description></description>
+    <variable>DEEM_INFOBRIGHT_MAX_DECIMAL_LENGTH</variable>
+    <default-value>18</default-value>
+  </kettle-variable>
+
+
+  <kettle-variable>
+    <description></description>
+    <variable>DEEM_INFOBRIGHT_MAX_DECIMAL_PRECISION</variable>
+    <default-value>6</default-value>
+  </kettle-variable>
+
+
 </kettle-variables>
 

@@ -67,7 +67,10 @@ import org.pentaho.di.ui.trans.step.BaseStepDialog;
  *
  */
 public class KettlePropertiesFileDialog extends Dialog {
-  private static Class<?> PKG = KettlePropertiesFileDialog.class; // for i18n purposes, needed by Translator2!!
+    
+  public static final boolean okToSave = false; // SKOFRA
+
+private static Class<?> PKG = KettlePropertiesFileDialog.class; // for i18n purposes, needed by Translator2!!
 
   private Label wlFields;
   private TableView wFields;
@@ -158,7 +161,8 @@ public class KettlePropertiesFileDialog extends Dialog {
     wFields.setLayoutData( fdFields );
 
     wOK = new Button( shell, SWT.PUSH );
-    wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) );
+    wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) ); 
+    wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) + " - disabled (use editor)" ); //SKOFRA
 
     wCancel = new Button( shell, SWT.PUSH );
     wCancel.setText( BaseMessages.getString( PKG, "System.Button.Cancel" ) );
@@ -290,6 +294,10 @@ public class KettlePropertiesFileDialog extends Dialog {
 
     // Save the properties file...
     //
+    
+    //SKOFRA
+    if (okToSave) {
+    
     FileOutputStream out = null;
     try {
       out = new FileOutputStream( getKettlePropertiesFilename() );
@@ -307,7 +315,7 @@ public class KettlePropertiesFileDialog extends Dialog {
           getKettlePropertiesFilename() ), e );
       }
     }
-
+    }
     dispose();
   }
 }
