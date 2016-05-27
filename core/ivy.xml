@@ -68,6 +68,7 @@
 
     <dependency org="org.springframework" name="spring-test"         rev="${dependency.spring.framework.revision}"      transitive="true" conf="test->default"/>
     <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="true" conf="test->default"/>
+    <dependency org="com.google.guava"                 name="guava"                rev="17.0"            transitive="false"/>
     
 
   </dependencies>

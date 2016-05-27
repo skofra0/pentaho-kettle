@@ -175,7 +175,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="4.2.1"  transitive="false"/>
 
 		<!-- Deem -->
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.29"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.30"  transitive="true"/>
 	
     <!-- Third-party JDBC dependencies -->
  <!--  

@@ -2250,7 +2250,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     // Extract the name from the result set meta data...
     //
     String name;
-    if ( databaseMeta.isMySQLVariant() && getDatabaseMetaData().getDriverName().startsWith("MariaDB") ) { // SKOFRA - Set version number in Maria DB = 4 (simulate new JDBC driver)
+    if ( databaseMeta.isMySQLVariant() && (getDatabaseMetaData().getDriverName().startsWith("MariaDB") || getDatabaseMetaData().getDriverMajorVersion()>3) ) {
       name = new String( rm.getColumnLabel( i ) );
     } else {
       name = new String( rm.getColumnName( i ) );

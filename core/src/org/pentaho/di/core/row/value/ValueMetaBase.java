@@ -4422,7 +4422,7 @@ public class ValueMetaBase implements ValueMetaInterface {
           precision = rm.getScale( index );
           
           // SKOFRA START
-          if (length > 3 && type == Types.DECIMAL && databaseMeta.getDatabaseInterface().isMySQLVariant() 
+          if (length > 2 && type == Types.DECIMAL && databaseMeta.getDatabaseInterface().isMySQLVariant() 
             //   && databaseMeta.getDriverClass().equalsIgnoreCase(MySQLDatabaseMeta.DRIVER_CLASS_MARIADB)
                   ) {
               length = length -2;

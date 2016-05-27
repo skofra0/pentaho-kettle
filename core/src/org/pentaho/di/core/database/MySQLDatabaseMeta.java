@@ -38,11 +38,7 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
     public static String DRIVER_CLASS_MYSQL = "org.gjt.mm.mysql.Driver";
     
     private static String driverClass = "";
-    
-    
-    
-    
-
+ 
     @Override
     public int[] getAccessTypeList() {
         return new int[] {DatabaseMeta.TYPE_ACCESS_NATIVE, DatabaseMeta.TYPE_ACCESS_ODBC, DatabaseMeta.TYPE_ACCESS_JNDI};
@@ -97,7 +93,7 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
         }
         return super.getNotFoundTK(use_autoinc);
     }
-
+    
     @Override
     public String getDriverClass() {
         if (getAccessType() == DatabaseMeta.TYPE_ACCESS_ODBC) {
