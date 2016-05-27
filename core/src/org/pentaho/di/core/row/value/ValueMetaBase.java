@@ -4420,6 +4420,15 @@ public class ValueMetaBase implements ValueMetaInterface {
           valtype = ValueMetaInterface.TYPE_NUMBER;
           length = rm.getPrecision( index );
           precision = rm.getScale( index );
+          
+          // SKOFRA START
+          if (length > 3 && type == Types.DECIMAL && databaseMeta.getDatabaseInterface().isMySQLVariant() 
+            //   && databaseMeta.getDriverClass().equalsIgnoreCase(MySQLDatabaseMeta.DRIVER_CLASS_MARIADB)
+                  ) {
+              length = length -2;
+          }
+          // SKOFRA END
+          
           if ( length >= 126 ) {
             length = -1;
           }
