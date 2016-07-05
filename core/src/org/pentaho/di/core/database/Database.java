@@ -2250,7 +2250,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     // Extract the name from the result set meta data...
     //
     String name;
-    if ( databaseMeta.isMySQLVariant() && (getDatabaseMetaData().getDriverName().startsWith("MariaDB") || getDatabaseMetaData().getDriverMajorVersion()>3) ) {
+    // if ( databaseMeta.isMySQLVariant() && (getDatabaseMetaData().getDriverName().startsWith("MariaDB") || getDatabaseMetaData().getDriverMajorVersion()>3) ) {
+    if ( databaseMeta.isMySQLVariant()  ) {
       name = new String( rm.getColumnLabel( i ) );
     } else {
       name = new String( rm.getColumnName( i ) );
