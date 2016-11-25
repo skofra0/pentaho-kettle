@@ -47,6 +47,7 @@ import org.apache.commons.vfs2.provider.local.LocalFile;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.fileinput.CharsetToolkit;
+import org.pentaho.di.core.row.value.ValueMetaBase;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLCheck;
@@ -84,6 +85,8 @@ public class ValueDataUtil {
    */
   private static final String SYS_PROPERTY_ROUND_2_MODE_BACKWARD_COMPATIBILITY_VALUE = "ROUND_HALF_EVEN";
   private static final int ROUND_2_MODE_BACKWARD_COMPATIBILITY_VALUE = BigDecimal.ROUND_HALF_EVEN;
+
+  public static final boolean KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION = ValueMetaBase.convertStringToBoolean(Const.NVL(System.getProperty(Const.KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION, "N"), "N")); // SKOFRA
 
   /**
    * Rounding mode of the ROUND function with 2 arguments (value, precision).
@@ -1868,8 +1871,12 @@ public class ValueDataUtil {
       case ( ValueMetaInterface.TYPE_STRING ) : {
         return "";
       }
-      default : {
-        throw new KettleValueException( "get zero function undefined for data type: " + type.getType() );
+      default: {
+          if (KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION) {
+              throw new KettleValueException("get zero function undefined for data type: " + type.getType());
+          } else {
+              return null;
+          }
       }
     }
   }

@@ -997,6 +997,7 @@ public class Const {
   // Null values tweaks
   public static final String KETTLE_AGGREGATION_MIN_NULL_IS_VALUED = "KETTLE_AGGREGATION_MIN_NULL_IS_VALUED";
   public static final String KETTLE_AGGREGATION_ALL_NULLS_ARE_ZERO = "KETTLE_AGGREGATION_ALL_NULLS_ARE_ZERO";
+  public static final String KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION = "KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION"; // SKOFRA
 
   /**
    * The name of the variable containing an alternative default timestamp format

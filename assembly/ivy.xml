@@ -202,11 +202,12 @@
     <dependency org="net.sf.jasperreports"         		name="jasperreports"            rev="6.3.0" 	transitive="false"/>  
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                      rev="4.3.1"     transitive="false"/>
     <dependency org="commons-digester" 					name="commons-digester" 		rev="1.8"  		transitive="false" />
-    
+    <dependency org="org.ow2.asm"                  		name="asm"                   rev="5.0.3"           transitive="false"/>
+    <dependency org="org.codehaus.groovy"               name="groovy-all"      rev="2.1.8"  transitive="false"/>
     
     
     <!-- Other third-party dependencies -->
-    <dependency org="asm"                  name="asm"                   rev="3.2"           transitive="false"/>
+   <!-- <dependency org="asm"                  name="asm"                   rev="3.2"           transitive="false"/>  -->
     <dependency org="net.sf.saxon"         name="saxon-dom"             rev="9.1.0.8"       transitive="false"/>
     <dependency org="com.tinkerpop.blueprints" name="blueprints-core"   rev="2.6.0"         transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
