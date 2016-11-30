@@ -156,6 +156,10 @@ public class KettleDatabaseRepositoryTransDelegate extends KettleDatabaseReposit
         monitor.subTask( BaseMessages.getString( PKG, "TransMeta.Monitor.LockingRepository" ) );
       }
 
+      
+      List<DatabaseMeta> dbs =  transMeta.getDatabases();
+      
+      
       repository.insertLogEntry( "save transformation '" + transMeta.getName() + "'" );
 
       // Clear attribute id cache

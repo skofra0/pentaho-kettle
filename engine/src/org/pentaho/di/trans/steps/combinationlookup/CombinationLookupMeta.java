@@ -528,7 +528,7 @@ public class CombinationLookupMeta extends BaseStepMeta implements StepMetaInter
     try {
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );
       rep.saveStepAttribute( id_transformation, id_step, "table", tablename );
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId(  databaseMeta) );
       rep.saveStepAttribute( id_transformation, id_step, "commit", commitSize );
       rep.saveStepAttribute( id_transformation, id_step, "cache_size", cacheSize );
       rep.saveStepAttribute( id_transformation, id_step, "replace", replaceFields );

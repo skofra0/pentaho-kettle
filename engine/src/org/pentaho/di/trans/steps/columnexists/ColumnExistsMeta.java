@@ -256,7 +256,7 @@ public class ColumnExistsMeta extends BaseStepMeta implements StepMetaInterface 
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", database );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId( database) );
       rep.saveStepAttribute( id_transformation, id_step, "tablename", tablename );
       rep.saveStepAttribute( id_transformation, id_step, "schemaname", schemaname );
       rep.saveStepAttribute( id_transformation, id_step, "istablenameInfield", istablenameInfield );

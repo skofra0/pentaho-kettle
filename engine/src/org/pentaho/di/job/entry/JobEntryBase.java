@@ -59,6 +59,7 @@ import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.ObjectRevision;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.resource.ResourceDefinition;
@@ -1443,4 +1444,6 @@ public class JobEntryBase implements Cloneable, VariableSpace, CheckResultSource
   public Map<String, Object> getExtensionDataMap() {
     return extensionDataMap;
   }
+  
+
 }

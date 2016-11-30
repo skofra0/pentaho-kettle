@@ -241,7 +241,7 @@ public class SapInputMeta extends BaseStepMeta implements StepMetaInterface {
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId(databaseMeta) );
       if ( function != null && !Const.isEmpty( function.getName() ) ) {
         rep.saveStepAttribute( id_transformation, id_step, "function_name", function.getName() );
         rep.saveStepAttribute( id_transformation, id_step, "function_description", function.getDescription() );

@@ -438,7 +438,7 @@ public class MonetDBBulkLoaderMeta extends BaseStepMeta implements StepMetaInjec
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId(databaseMeta) );
       // General Settings Tab
       rep.saveStepAttribute( id_transformation, id_step, "db_connection_name", dbConnectionName );
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );

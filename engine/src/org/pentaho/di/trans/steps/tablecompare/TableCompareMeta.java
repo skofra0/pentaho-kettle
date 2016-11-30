@@ -521,7 +521,7 @@ public class TableCompareMeta extends BaseStepMeta implements StepMetaInterface 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
       rep.saveDatabaseMetaStepAttribute(
-        id_transformation, id_step, "reference_connection_id", referenceConnection );
+        id_transformation, id_step, "reference_connection_id", fixDatabaseMetaMissingId(referenceConnection) );
       rep.saveStepAttribute( id_transformation, id_step, "reference_schema_field", referenceSchemaField );
       rep.saveStepAttribute( id_transformation, id_step, "reference_table_field", referenceTableField );
 

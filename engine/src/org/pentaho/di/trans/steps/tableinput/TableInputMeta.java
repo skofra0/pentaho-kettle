@@ -305,7 +305,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId( databaseMeta ) );
       rep.saveStepAttribute( id_transformation, id_step, "sql", sql );
       rep.saveStepAttribute( id_transformation, id_step, "limit", rowLimit );
       StreamInterface infoStream = getStepIOMeta().getInfoStreams().get( 0 );
@@ -323,7 +323,8 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     }
   }
 
-  public void check( List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta,
+
+public void check( List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta,
     RowMetaInterface prev, String[] input, String[] output, RowMetaInterface info, VariableSpace space,
     Repository repository, IMetaStore metaStore ) {
     CheckResult cr;

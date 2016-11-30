@@ -359,7 +359,7 @@ public class DBProcMeta extends BaseStepMeta implements StepMetaInterface {
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", database );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId(database) );
       rep.saveStepAttribute( id_transformation, id_step, "procedure", procedure );
 
       for ( int i = 0; i < argument.length; i++ ) {

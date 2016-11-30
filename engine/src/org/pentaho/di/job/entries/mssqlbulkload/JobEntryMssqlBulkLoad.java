@@ -53,9 +53,10 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
-import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.job.entry.validator.ValidatorContext;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.resource.ResourceEntry;
 import org.pentaho.di.resource.ResourceEntry.ResourceType;
@@ -69,7 +70,7 @@ import org.w3c.dom.Node;
  * @author Samatar Hassan
  * @since Jan-2007
  */
-public class JobEntryMssqlBulkLoad extends JobEntryBase implements Cloneable, JobEntryInterface {
+public class JobEntryMssqlBulkLoad extends JobEntryBase implements Cloneable, JobEntryInterfaceWithDatabase {
   private static Class<?> PKG = JobEntryMssqlBulkLoad.class; // for i18n purposes, needed by Translator2!!
 
   private String schemaname;
@@ -264,6 +265,12 @@ public class JobEntryMssqlBulkLoad extends JobEntryBase implements Cloneable, Jo
         "Unable to load job entry of type 'MSsql bulk load' from the repository for id_jobentry=" + id_jobentry,
         dbe );
     }
+  }
+
+  @Override
+  public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
+      RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connection, databases);
+      saveRep(rep, metaStore, id_job);
   }
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_job ) throws KettleException {
