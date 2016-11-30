@@ -56,6 +56,7 @@ import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.GreenplumDatabaseMeta;
+import org.pentaho.di.core.database.MSSQLServerDatabaseMeta;
 import org.pentaho.di.core.database.MySQLDatabaseMeta;
 import org.pentaho.di.core.database.NetezzaDatabaseMeta;
 import org.pentaho.di.core.database.OracleDatabaseMeta;
@@ -4437,7 +4438,22 @@ public class ValueMetaBase implements ValueMetaInterface {
           }
 
           if ( type == java.sql.Types.DOUBLE || type == java.sql.Types.FLOAT || type == java.sql.Types.REAL ) {
-            if ( precision == 0 ) {
+
+              // SKOFRA SQL-SERVER
+              if (databaseMeta.getDatabaseInterface() instanceof MSSQLServerDatabaseMeta) {
+                  if (length == 0) {
+                      length = 18;
+                  }
+                  if (precision == 0) {
+                      precision = 4;
+                      if (length>=15) {
+                          precision = 6;
+                      }
+                  }
+              }
+              // SKOFRA END
+              
+           if ( precision == 0 ) {
               precision = -1; // precision is obviously incorrect if the type if
               // Double/Float/Real
             }
