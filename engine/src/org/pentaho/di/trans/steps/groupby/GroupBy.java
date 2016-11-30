@@ -479,6 +479,12 @@ public class GroupBy extends BaseStep implements StepInterface {
               value = value == null ? new Long( 0 ) : value;
               data.agg[ i ] = (Long) value + 1;
             }
+          // SKOFRA COUNT DISTINCT SHOULD NOT RETURN null
+          } else {
+              if (value == null) {
+                  data.agg[ i ] =  new Long( 0 );
+              }
+          // SKOFRAR END    
           }
           break;
         case GroupByMeta.TYPE_GROUP_COUNT_ALL:
