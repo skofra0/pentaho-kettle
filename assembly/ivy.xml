@@ -158,7 +158,7 @@
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-legacy-functions" rev="${dependency.pentaho-reporting.revision}" transitive="true" changing="true"/>
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-wizard-core"  rev="${dependency.pentaho-reporting.revision}" changing="true" transitive="true"/>
     
-    <!--  OSS Licenses file -->
+    <!--  OSS Licenses file  ${dependency.oss-licenses.revision} or 6.0.0.0-245 --> 
     <dependency org="pentaho" name="oss-licenses" rev="${dependency.oss-licenses.revision}" conf="oss-licenses->default">
       <artifact name="oss-licenses" type="zip" />
     </dependency>
@@ -175,7 +175,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="4.2.1"  transitive="false"/>
 
 		<!-- Deem -->
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.35"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.37"  transitive="true"/>
 	
     <!-- Third-party JDBC dependencies -->
  <!--  

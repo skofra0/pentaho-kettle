@@ -42,7 +42,9 @@ import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
 import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.resource.ResourceEntry;
 import org.pentaho.di.resource.ResourceEntry.ResourceType;
@@ -58,7 +60,7 @@ import org.w3c.dom.Node;
  *
  */
 
-public class JobEntryCheckDbConnections extends JobEntryBase implements Cloneable, JobEntryInterface {
+public class JobEntryCheckDbConnections extends JobEntryBase implements Cloneable, JobEntryInterfaceWithDatabase {
   private static Class<?> PKG = JobEntryCheckDbConnections.class; // for i18n purposes, needed by Translator2!!
 
   public DatabaseMeta[] connections;
@@ -215,6 +217,17 @@ public class JobEntryCheckDbConnections extends JobEntryBase implements Cloneabl
         PKG, "JobEntryCheckDbConnections.ERROR_0002_Cannot_Load_Job_From_Repository", "" + id_jobentry, dbe
           .getMessage() ) );
     }
+  }
+
+  // SKOFRA
+  @Override
+  public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
+      if ( connections != null ) {
+          for ( int i = 0; i < connections.length; i++ ) {
+              RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connections[i], databases);
+          }
+        }
+      saveRep(rep, metaStore, id_job);
   }
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_job ) throws KettleException {
