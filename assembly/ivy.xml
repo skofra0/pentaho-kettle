@@ -69,10 +69,10 @@
     <dependency org="${ivy.artifact.group}" name="pdi-google-analytics-plugin-ce" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="pdi-google-analytics-plugin-ce" type="zip"/>
     </dependency>
+<!-- SKOFRA      
     <dependency org="${ivy.artifact.group}" name="pdi-salesforce-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="pdi-salesforce-plugin" type="zip"/>
     </dependency>
-<!-- SKOFRA      
     <dependency org="${ivy.artifact.group}" name="ms-access-bulk-loader-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="ms-access-bulk-loader-plugin" type="zip"/>
     </dependency>
@@ -175,7 +175,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="4.2.1"  transitive="false"/>
 
 		<!-- Deem -->
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.37"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.39"  transitive="true"/>
 	
     <!-- Third-party JDBC dependencies -->
  <!--  
