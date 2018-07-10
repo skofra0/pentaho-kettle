@@ -64,7 +64,7 @@
 
     <dependency org="xml-apis" name="xml-apis-ext" rev="${dependency.xml-apis-ext.revision}" transitive="false"/>
 
-    <dependency org="org.apache.karaf" name="org.apache.karaf.main" rev="3.0.3" transitive="false"/>
+    <dependency org="org.apache.karaf" name="org.apache.karaf.main" rev="4.1.5" transitive="false"/>
 
     <dependency org="org.springframework" name="spring-test"         rev="${dependency.spring.framework.revision}"      transitive="true" conf="test->default"/>
     <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="true" conf="test->default"/>

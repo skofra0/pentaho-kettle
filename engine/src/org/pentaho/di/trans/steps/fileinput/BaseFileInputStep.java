@@ -261,16 +261,16 @@ public abstract class BaseFileInputStep<M extends BaseFileInputStepMeta, D exten
    * TODO: should we set charset for error files from content meta ? What about case for automatic charset ?
    */
   private void initErrorHandling() {
-    List<FileErrorHandler> dataErrorLineHandlers = new ArrayList<FileErrorHandler>( 2 );
+    List<FileErrorHandler> dataErrorLineHandlers = new ArrayList<>( 2 );
+ //   if ( StringUtils.isNotEmpty(meta.errorHandling.lineNumberFilesDestinationDirectory )) {
     if ( meta.errorHandling.lineNumberFilesDestinationDirectory != null ) {
       dataErrorLineHandlers.add( new FileErrorHandlerContentLineNumber( getTrans().getCurrentDate(),
           environmentSubstitute( meta.errorHandling.lineNumberFilesDestinationDirectory ),
-          meta.errorHandling.lineNumberFilesExtension, meta.getEncoding(), this ) );
+          meta.errorHandling.lineNumberFilesExtension, StringUtils.defaultIfBlank( meta.getEncoding(), "UTF-8"), this ) );
     }
     if ( meta.errorHandling.errorFilesDestinationDirectory != null ) {
       dataErrorLineHandlers.add( new FileErrorHandlerMissingFiles( getTrans().getCurrentDate(), environmentSubstitute(
-          meta.errorHandling.errorFilesDestinationDirectory ), meta.errorHandling.errorFilesExtension, meta
-              .getEncoding(), this ) );
+          meta.errorHandling.errorFilesDestinationDirectory ), meta.errorHandling.errorFilesExtension, StringUtils.defaultIfBlank( meta.getEncoding(), "UTF-8"), this ) );
     }
     data.dataErrorLineHandler = new CompositeFileErrorHandler( dataErrorLineHandlers );
   }
