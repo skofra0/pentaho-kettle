@@ -106,13 +106,13 @@
 	<!-- Deem -->
     <dependency org="net.sf.jt400"         			   name="jt400"                      rev="8.5"       transitive="false"/>  
     <dependency org="net.sourceforge.jtds"             name="jtds"                       rev="1.3.1"     transitive="false"/>
-    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.52"  transitive="true"/>
+    <dependency org="no.deem.pdi"                      name="deem-pdi-plugins-libs"      rev="6.1.0.55"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="37.0.3" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="37.0.3" transitive="false"/>
 
 
 	<!-- Deem JasperReport-->
-    <dependency org="net.sf.jasperreports"         		name="jasperreports"             rev="6.5.1"       transitive="false"/>  
+    <dependency org="net.sf.jasperreports"         		name="jasperreports"             rev="6.6.0"       transitive="false"/>  
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                       rev="4.6.1"     transitive="false"/>
     <dependency org="commons-digester" 					name="commons-digester" 	 	 rev="2.1"  		transitive="false" />
 
