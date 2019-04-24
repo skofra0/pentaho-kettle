@@ -238,7 +238,7 @@ public class StaxPoiSheetTest {
         }
       }
     } );
-    when( styles.getNumberFormatAt( any( Integer.class ) ) ).then( new Answer<String>() {
+    when( styles.getNumberFormatAt( any( Short.class ) ) ).then( new Answer<String>() {
       public String answer( InvocationOnMock invocation ) throws Throwable {
         return numFmts.get( (Integer) invocation.getArguments()[0] );
       }

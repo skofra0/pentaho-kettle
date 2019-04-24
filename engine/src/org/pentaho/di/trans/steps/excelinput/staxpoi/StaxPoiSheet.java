@@ -278,7 +278,7 @@ public class StaxPoiSheet implements KSheet {
       CTXf cellXf = styles.getCellXfAt( styleIdx );
       if ( cellXf != null ) {
         // need id for builtin types, format if custom
-        int formatId = (int) cellXf.getNumFmtId();
+        short formatId = (short) cellXf.getNumFmtId();
         String format = styles.getNumberFormatAt( formatId );
         return DateUtil.isADateFormat( formatId, format );
       }
