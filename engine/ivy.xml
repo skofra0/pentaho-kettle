@@ -116,7 +116,13 @@
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                       rev="4.6.1"     transitive="false"/>
     <dependency org="commons-digester" 					name="commons-digester" 	 	 rev="2.1"  		transitive="false" />
 
-	
+<!-- Java 11 j2ee 
+    <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  
+    <dependency org="javax.xml.bind"         name="jaxb-api"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="javax.xml.ws"           name="jaxws-api"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="com.sun.xml.bind"       name="jaxb-core"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="com.sun.xml.bind"       name="jaxb-impl"   rev="2.3.0"  transitive="false"/>  
+-->	
     <!-- OLAP4J is bringing in an older version of beanutils-core than is needed -->
     <dependency org="commons-beanutils"   name="commons-beanutils-core" rev="1.8.0"         transitive="false"/>
     

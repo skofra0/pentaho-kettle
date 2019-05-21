@@ -178,7 +178,14 @@
     <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.57"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="37.0.3" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="37.0.3" transitive="false"/>
-	
+
+<!-- Java 11 j2ee 
+    <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  
+    <dependency org="javax.xml.bind"         name="jaxb-api"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="javax.xml.ws"           name="jaxws-api"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="com.sun.xml.bind"       name="jaxb-core"   rev="2.3.0"  transitive="false"/>  
+    <dependency org="com.sun.xml.bind"       name="jaxb-impl"   rev="2.3.0"  transitive="false"/>  
+-->	
     <!-- Third-party JDBC dependencies -->
  <!--  
     <dependency org="org.apache.derby"     name="derby"                 rev="10.2.1.6"      transitive="false"/>

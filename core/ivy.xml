@@ -70,6 +70,9 @@
     <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="true" conf="test->default"/>
     <dependency org="com.google.guava"                 name="guava"                rev="17.0"            transitive="false"/>
     
+	<!-- Java 11 j2ee -->
+    <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  
+    <dependency org="javax.xml.bind"         name="jaxb-api"   rev="2.3.0"  transitive="false"/>  
 
   </dependencies>
 </ivy-module>

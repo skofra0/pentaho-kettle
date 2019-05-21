@@ -58,7 +58,7 @@ public class ReplaceStringTest {
     when( stepMockHelper.logChannelInterfaceFactory.create( any(), any( LoggingObjectInterface.class ) ) ).thenReturn(
         stepMockHelper.logChannelInterface );
     verify( stepMockHelper.logChannelInterface, never() ).logError( anyString() );
-    verify( stepMockHelper.logChannelInterface, never() ).logError( anyString(), anyObject() );
+    verify( stepMockHelper.logChannelInterface, never() ).logError( anyString(), (Object) anyObject() );
     verify( stepMockHelper.logChannelInterface, never() ).logError( anyString(), (Throwable) anyObject() );
     when( stepMockHelper.trans.isRunning() ).thenReturn( true );
   }
