@@ -28,7 +28,6 @@ package org.pentaho.di.core.jdbc;
  * Data Service client code is now available in the pdi-dataservice-plugin project
  *
  */
-@Deprecated
 public class FoundClause {
   private final String clause;
   private final String rest;

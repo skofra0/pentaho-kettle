@@ -32,7 +32,6 @@ import org.pentaho.di.core.Const;
  * Data Service client code is now available in the pdi-dataservice-plugin project
  *
  */
-@Deprecated
 public class FieldVariableMapping {
 
   public enum MappingType {
