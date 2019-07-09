@@ -183,9 +183,8 @@ public interface StepMetaInterface {
    *          the space The variable space to use to replace variables
    * @throws KettleStepException
    *           the kettle step exception
-   * @deprecated in favor of the getFields method with repository and metastore arguments
+   * deprecated in favor of the getFields method with repository and metastore arguments
    */
-  @Deprecated
   public void getFields( RowMetaInterface inputRowMeta, String name, RowMetaInterface[] info, StepMeta nextStep,
     VariableSpace space ) throws KettleStepException;
 
