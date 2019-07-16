@@ -24,7 +24,8 @@ package org.pentaho.di.core.svg;
 
 import java.io.InputStream;
 
-import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory; // v7
+//import org.apache.batik.anim.dom.SAXSVGDocumentFactory; // v9
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
 
@@ -39,7 +40,7 @@ public class SvgSupport {
 
   private static final String PARSER = XMLResourceDescriptor.getXMLParserClassName();
 
-  private static final ThreadLocal<SAXSVGDocumentFactory> SVG_FACTORY_THREAD_LOCAL = new ThreadLocal<SAXSVGDocumentFactory>();
+  private static final ThreadLocal<SAXSVGDocumentFactory> SVG_FACTORY_THREAD_LOCAL = new ThreadLocal<>();
 
   private static SAXSVGDocumentFactory createFactory() {
     return new SAXSVGDocumentFactory( PARSER );

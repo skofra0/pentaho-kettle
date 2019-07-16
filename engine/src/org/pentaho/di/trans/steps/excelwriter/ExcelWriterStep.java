@@ -32,6 +32,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -269,7 +270,7 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
         Sheet sheet = data.wb.getSheetAt( sheetNum );
         for ( Row r : sheet ) {
           for ( Cell c : r ) {
-            if ( c.getCellType() == Cell.CELL_TYPE_FORMULA ) {
+            if ( c.getCellTypeEnum() ==  CellType.FORMULA) {
               evaluator.evaluateFormulaCell( c );
             }
           }
