@@ -6,6 +6,6 @@
   </publications>  
   
   <dependencies defaultconf="default->default">
-    <dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
+    <dependency org="xerces" name="xercesImpl" rev="2.12.0"/>
   </dependencies>
 </ivy-module>

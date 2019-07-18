@@ -21,7 +21,7 @@
 	
     <!-- Common (Unit, Integration) test dependencies -->
     <dependency org="${ivy.artifact.group}"    name="kettle-engine-test"   rev="${project.revision}" changing="true" transitive="false" conf="test->default"/>
-    <dependency org="junit"                    name="junit"                rev="4.7"    transitive="false" conf="test->default"/>
+    <dependency org="junit"                    name="junit"                rev="4.11"    transitive="false" conf="test->default"/>
     <dependency org="org.mockito"              name="mockito-all"          rev="1.9.5"  transitive="false" conf="test->default"/>
     <dependency org="org.eclipse.jetty"        name="test-jetty-servlet" rev="8.1.15.v20140411" transitive="false" conf="test->default"/>
     <dependency org="net.sourceforge.nekohtml" name="nekohtml"             rev="1.9.7"  transitive="false" conf="test->default"/>

@@ -24,8 +24,8 @@ package org.pentaho.di.core.svg;
 
 import java.io.InputStream;
 
-import org.apache.batik.dom.svg.SAXSVGDocumentFactory; // v7
-//import org.apache.batik.anim.dom.SAXSVGDocumentFactory; // v9
+//import org.apache.batik.dom.svg.SAXSVGDocumentFactory; // v7
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory; // v9
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
 

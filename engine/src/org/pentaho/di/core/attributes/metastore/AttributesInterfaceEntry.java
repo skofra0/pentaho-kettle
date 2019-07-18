@@ -22,9 +22,9 @@
 
 package org.pentaho.di.core.attributes.metastore;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.io.IOException;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author nhudak

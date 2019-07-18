@@ -125,8 +125,8 @@
 --> 
 
     <dependency org="pentaho" name="pentaho-platform-extensions"  rev="${dependency.pentaho-platform.revision}" transitive="false"/>
-    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.5"/>
-    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.5"/>
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.25"/>
+    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.25"/>
     <dependency org="org.springframework" name="spring-aop"     rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework" name="spring-beans"   rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework" name="spring-context" rev="${dependency.spring.framework.revision}" />
@@ -199,6 +199,8 @@
     <dependency org="com.sap"              name="sapdbc"                rev="7.4.4"         transitive="false"/>
     <dependency org="org.xerial"           name="sqlite-jdbc"           rev="3.7.2"         transitive="false"/>
     <dependency org="jaxen"                name="jaxen"                 rev="1.1.1"         transitive="false"/>
+
+    <dependency org="com.tinkerpop.blueprints" name="blueprints-core"   rev="2.6.0"         transitive="false"/>
 -->
     <dependency org="com.h2database"       name="h2"                    rev="1.2.131"       transitive="false"/>
     <dependency org="javax.servlet"        name="javax.servlet-api"    rev="3.0.1"           transitive="false"/>
@@ -218,18 +220,18 @@
     <!-- Other third-party dependencies -->
    <!-- <dependency org="asm"                  name="asm"                   rev="3.2"           transitive="false"/>  -->
     <dependency org="net.sf.saxon"         name="saxon-dom"             rev="9.1.0.8"       transitive="false"/>
-    <dependency org="com.tinkerpop.blueprints" name="blueprints-core"   rev="2.6.0"         transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
     <dependency org="net.sf.flexjson"      name="flexjson"              rev="2.1"           transitive="false"/>
-    <dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.3.3"     transitive="false"/>
-    <dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.3.3"        transitive="false"/>
-    <dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.3.3"            transitive="false"/>
+    <dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.8"     transitive="false"/>
+    <dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.8"        transitive="false"/>
+    <dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.8"            transitive="false"/>
     <!-- To support Enunciate Annotations in Resource classes -->
     <dependency org="org.codehaus.enunciate" name="enunciate-jersey-rt" rev="1.27"          transitive="false" />
     <dependency org="org.codehaus.enunciate" name="enunciate-core-annotations" rev="1.27"   transitive="false" />
 
-    <dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.9.3" transitive="false"/>
-    <dependency org="com.sun.jersey.contribs" name="jersey-multipart" rev="1.16" transitive="false"/>
+ <!--   <dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.9.13" transitive="false"/> -->
+    <dependency org="com.fasterxml.jackson.module" name="jackson-module-jaxb-annotations" rev="2.9.8"     transitive="false"/>
+    <dependency org="com.sun.jersey.contribs" name="jersey-multipart" rev="1.19.1" transitive="false"/>
 
     <exclude org="javax.servlet"   module="servlet-api"/>
   </dependencies>

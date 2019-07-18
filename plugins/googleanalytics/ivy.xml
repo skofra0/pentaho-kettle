@@ -40,11 +40,11 @@ explicitly covering such access.
 
   <dependencies defaultconf="dev->default">
 
-    <dependency org="com.google.apis" name="google-api-services-analytics" rev="v3-rev116-1.20.0" transitive="false" conf="default->default"/>
-    <dependency org="com.google.api-client" name="google-api-client" rev="1.20.0" transitive="false" conf="default->default"/>
-    <dependency org="com.google.oauth-client" name="google-oauth-client" rev="1.20.0" transitive="false" conf="default->default"/>
-    <dependency org="com.google.http-client" name="google-http-client-jackson2" rev="1.20.0" transitive="true" conf="default->default"/>
-    <dependency org="com.google.http-client" name="google-http-client" rev="1.20.0" transitive="false" conf="default->default"/>
+    <dependency org="com.google.apis" name="google-api-services-analytics" rev="v3-rev161-1.25.0" transitive="false" conf="default->default"/>
+    <dependency org="com.google.api-client" name="google-api-client" rev="1.25.0" transitive="false" conf="default->default"/>
+    <dependency org="com.google.oauth-client" name="google-oauth-client" rev="1.25.0" transitive="false" conf="default->default"/>
+    <dependency org="com.google.http-client" name="google-http-client-jackson2" rev="1.25.0" transitive="true" conf="default->default"/>
+    <dependency org="com.google.http-client" name="google-http-client" rev="1.25.0" transitive="false" conf="default->default"/>
 
     <dependency org="pentaho-kettle" name="kettle-engine" rev="${dependency.kettle.revision}" transitive="true" changing="true"/>
     <dependency org="pentaho-kettle" name="kettle-core" rev="${dependency.kettle.revision}" transitive="true" changing="true"/>

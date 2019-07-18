@@ -21,12 +21,12 @@
     <dependency org="pentaho-kettle" name="kettle-core" rev="${dependency.kettle.revision}" changing="true"/>
     <dependency org="pentaho-kettle" name="kettle-engine" rev="${dependency.kettle.revision}" changing="true"/>
     <dependency org="pentaho-kettle" name="kettle-ui-swt" rev="${dependency.kettle.revision}" changing="true"/>  
-    <dependency org="org.apache.commons" name="commons-vfs2" rev="2.1-20150824" transitive="false"/>
+    <dependency org="org.apache.commons" name="commons-vfs2" rev="2.2" transitive="false"/>
     <dependency org="pentaho" name="pentaho-xul-core" rev="${dependency.kettle.revision}" changing="true"/>
     <dependency org="pentaho" name="pentaho-xul-swt" rev="${dependency.kettle.revision}" changing="true"/>
     <dependency org="pentaho" name="pentaho-metadata" rev="${dependency.pentaho-metadata.revision}" changing="true"/>
     
-    <dependency org="junit" name="junit" rev="4.7" conf="test->default"/>
+    <dependency org="junit" name="junit" rev="4.11" conf="test->default"/>
             
 	<dependency org="org.mockito"         name="mockito-all"         rev="1.9.5"            transitive="false" conf="test->default"/>
   </dependencies>
