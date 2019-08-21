@@ -1,24 +1,3 @@
-/*! ******************************************************************************
- *
- * Pentaho Data Integration
- *
- * Copyright (C) 2002-2013 by Pentaho : http://www.pentaho.com
- *
- *******************************************************************************
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- ******************************************************************************/
 
 package org.pentaho.di.ui.trans.steps.stagingupsert;
 
@@ -28,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -128,7 +108,8 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
 
     private boolean getpreviousFields = false;
 
-
+    protected Button  wGetDefaultKeys;
+    private FormData fdGetDefaultKeys;
     /**
      * List of ColumnInfo that should have the field names of the selected database table
      */
@@ -340,6 +321,21 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
         fdKey.bottom = new FormAttachment(wlKey, 190);
         wKey.setLayoutData(fdKey);
 
+        wGetDefaultKeys = new Button(shell, SWT.PUSH);
+        wGetDefaultKeys.setText("Get default");
+        wGetDefaultKeys.setLayoutData(fdGet);
+        fdGetDefaultKeys = new FormData();
+        fdGetDefaultKeys.top = new FormAttachment(wGet, margin);
+        fdGetDefaultKeys.right = new FormAttachment(100, 0);
+        wGetDefaultKeys.setLayoutData(fdGetDefaultKeys);
+
+        wGetDefaultKeys.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event arg0) {
+                getDefaultKeys();
+            }
+        });
+        
+        
         // THE BUTTONS
         wOK = new Button(shell, SWT.PUSH);
         wOK.setText(BaseMessages.getString(PKG, "System.Button.OK"));
@@ -877,6 +873,26 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
                     public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
                         tableItem.setText(2, "=");
                         return true;
+                    }
+                };
+                BaseStepDialog.getFieldsFromPrevious(r, wKey, 1, new int[] {1, 3}, new int[] {}, -1, -1, listener);
+            }
+        } catch (KettleException ke) {
+            new ErrorDialog(shell, BaseMessages.getString(PKG, "StagingUpsertDialog.FailedToGetFields.DialogTitle"), BaseMessages.getString(PKG, "StagingUpsertDialog.FailedToGetFields.DialogMessage"), ke);
+        }
+    }
+
+    private void getDefaultKeys() {
+        try {
+            RowMetaInterface r = transMeta.getPrevStepFields(stepname);
+            if (r != null) {
+                TableItemInsertListener listener = new TableItemInsertListener() {
+                    public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
+                        tableItem.setText(2, "=");
+                        if (StringUtils.isNotEmpty(v.getComments()) && v.getComments().endsWith("(x)")) {
+                            return true;
+                        }
+                        return false;
                     }
                 };
                 BaseStepDialog.getFieldsFromPrevious(r, wKey, 1, new int[] {1, 3}, new int[] {}, -1, -1, listener);

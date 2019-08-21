@@ -60,7 +60,7 @@
     <dependency org="org.glassfish.metro" name="webservices-api" rev="2.1" transitive="false"/>
     <dependency org="org.glassfish.metro" name="webservices-rt" rev="2.1" transitive="false" />
 
-    <dependency org="javax.servlet"           name="servlet-api"          rev="2.5"  transitive="false" conf="compile->default"/>
+    <dependency org="javax.servlet"           name="servlet-api"          rev="3.0.1"  transitive="false" conf="compile->default"/>
 
     <!--  test dependencies -->
     <dependency org="org.springframework.security" name="spring-security-core" rev="2.0.5.RELEASE"
