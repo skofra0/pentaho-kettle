@@ -20,6 +20,7 @@ package org.pentaho.di.trans.steps.stagingupsert;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -300,10 +301,10 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
             String con = XMLHandler.getTagValue(stepnode, "connection");
             databaseMeta = DatabaseMeta.findDatabase(databases, con);
             csize = XMLHandler.getTagValue(stepnode, "commit");
+            versionField = XMLHandler.getTagValue(stepnode, "version_field");
             commitSize = (csize != null) ? csize : "0";
             schemaName = XMLHandler.getTagValue(stepnode, "lookup", "schema");
             tableName = XMLHandler.getTagValue(stepnode, "lookup", "table");
-            versionField = XMLHandler.getTagValue(stepnode, "version_field");
 
             Node lookup = XMLHandler.getSubNode(stepnode, "lookup");
             nrkeys = XMLHandler.countNodes(lookup, "key");
@@ -381,10 +382,10 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
 
         retval.append("    ").append(XMLHandler.addTagValue("connection", databaseMeta == null ? "" : databaseMeta.getName()));
         retval.append("    ").append(XMLHandler.addTagValue("commit", commitSize));
+        retval.append("    ").append(XMLHandler.addTagValue("version_field", versionField));
         retval.append("    <lookup>").append(Const.CR);
         retval.append("      ").append(XMLHandler.addTagValue("schema", schemaName));
         retval.append("      ").append(XMLHandler.addTagValue("table", tableName));
-        retval.append( "          " ).append( XMLHandler.addTagValue( "version", versionField ) );
 
         for (int i = 0; i < keyStream.length; i++) {
             retval.append("      <key>").append(Const.CR);
@@ -426,7 +427,7 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
             }
             schemaName = rep.getStepAttributeString(id_step, "schema");
             tableName = rep.getStepAttributeString(id_step, "table");
-            versionField = rep.getStepAttributeString( id_step, "version_field" );
+            versionField = rep.getStepAttributeString(id_step, "version_field");
 
             int nrkeys = rep.countNrStepAttributes(id_step, "key_field");
             int nrvalues = rep.countNrStepAttributes(id_step, "value_name");
@@ -456,7 +457,7 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
             rep.saveStepAttribute(id_transformation, id_step, "commit", commitSize);
             rep.saveStepAttribute(id_transformation, id_step, "schema", schemaName);
             rep.saveStepAttribute(id_transformation, id_step, "table", tableName);
-            rep.saveStepAttribute(id_transformation, id_step, "version_field", versionField );
+            rep.saveStepAttribute(id_transformation, id_step, "version_field", versionField);
 
             for (int i = 0; i < keyStream.length; i++) {
                 rep.saveStepAttribute(id_transformation, id_step, i, "key_name", keyStream[i]);
@@ -749,14 +750,14 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
      * @return Returns the versionField.
      */
     public String getVersionField() {
-        return versionField;
+        return StringUtils.trimToEmpty(versionField);
     }
 
     /**
      * @param versionField The versionField to set.
      */
     public void setVersionField(String versionField) {
-        this.versionField = versionField;
+        this.versionField = StringUtils.trimToEmpty(versionField);
     }
 
     public RowMetaInterface getRequiredFields(VariableSpace space) throws KettleException {
