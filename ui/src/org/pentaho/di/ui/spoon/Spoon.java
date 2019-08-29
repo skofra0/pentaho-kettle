@@ -787,11 +787,11 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     loadSettings();
 
     transExecutionConfiguration = new TransExecutionConfiguration();
-    transExecutionConfiguration.setGatheringMetrics( true );
+    transExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
     transPreviewExecutionConfiguration = new TransExecutionConfiguration();
-    transPreviewExecutionConfiguration.setGatheringMetrics( true );
+    transPreviewExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
     transDebugExecutionConfiguration = new TransExecutionConfiguration();
-    transDebugExecutionConfiguration.setGatheringMetrics( true );
+    transDebugExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
 
     jobExecutionConfiguration = new JobExecutionConfiguration();
 
