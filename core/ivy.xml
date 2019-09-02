@@ -19,7 +19,7 @@
     
     <!--  Third-party (external) dependencies -->
     <dependency org="commons-beanutils"   name="commons-beanutils"   rev="1.9.3"            transitive="false"/>
-    <dependency org="commons-codec"       name="commons-codec"       rev="1.12"              transitive="false"/>
+    <dependency org="commons-codec"       name="commons-codec"       rev="1.13"              transitive="false"/>
     <dependency org="commons-collections" name="commons-collections" rev="3.2.2"            transitive="false"/>
     <dependency org="commons-logging"     name="commons-logging"     rev="1.2"            transitive="false"/>
     <dependency org="commons-lang"        name="commons-lang"        rev="2.6"              transitive="false"/>
