@@ -40,7 +40,7 @@ import org.pentaho.di.core.xml.XMLHandler;
  */
 public class BuildVersion {
   //public static final String REFERENCE_FILE = "/kettle-steps.xml"; SKOFRA
-  public static final String REFERENCE_FILE = "/no/deem/kettle/Version.class";
+  public static final String REFERENCE_FILE = "/plugin/deem/common/ZTools.class";
 
   public static final String JAR_BUILD_DATE_FORMAT = "yyyy-MM-dd HH.mm.ss";
 
@@ -87,10 +87,10 @@ public class BuildVersion {
   }
 
   private void loadBuildInfoFromEnvironmentVariables() throws Exception {
-    version = environmentVariableGetter.getEnvVarible( "KETTLE_BUILD_VERSION" );
-    revision = environmentVariableGetter.getEnvVarible( "KETTLE_BUILD_REVISION" );
-    buildDate = environmentVariableGetter.getEnvVarible( "KETTLE_BUILD_DATE" );
-    buildUser = environmentVariableGetter.getEnvVarible( "KETTLE_BUILD_USER" );
+    version = environmentVariableGetter.getEnvVarible( KETTLE_BUILD_VERSION );
+    revision = environmentVariableGetter.getEnvVarible( KETTLE_BUILD_REVISION );
+    buildDate = environmentVariableGetter.getEnvVarible( KETTLE_BUILD_DATE );
+    buildUser = environmentVariableGetter.getEnvVarible( KETTLE_BUILD_USER );
     if ( version == null ) {
       throw new Exception( "Error : Version can't be null in environment variables" );
     }

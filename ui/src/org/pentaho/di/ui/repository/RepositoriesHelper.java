@@ -204,8 +204,7 @@ public class RepositoriesHelper {
     }
   }
 
-  protected RepositoryDialogInterface getRepositoryDialog( PluginInterface plugin, RepositoryMeta repositoryMeta,
-    RepositoriesMeta input2, Shell shell ) throws Exception {
+  protected RepositoryDialogInterface getRepositoryDialog( PluginInterface plugin, RepositoryMeta repositoryMeta, RepositoriesMeta input2, Shell shell ) throws Exception {
     String className = repositoryMeta.getDialogClassName();
     Class<? extends RepositoryDialogInterface> dialogClass =
       PluginRegistry.getInstance().getClass( plugin, className );

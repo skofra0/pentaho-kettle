@@ -37,6 +37,7 @@ import org.apache.commons.vfs2.FileObject;
 import org.apache.poi.util.IOUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.RowMetaAndData;
@@ -56,7 +57,7 @@ public class XsdValidatorIntTest {
   private static FileObject schemaRamFile = null;
   private static FileObject dataRamFile = null;
 
-  @BeforeClass
+  @BeforeClass  @Ignore
   public static void setUpBeforeClass() throws KettleException {
     KettleEnvironment.init( false );
   }
@@ -75,7 +76,7 @@ public class XsdValidatorIntTest {
     }
   }
 
-  @Test
+  @Test @Ignore
   public void testVfsInputFiles() throws Exception {
     testVfsFileTypes( getDataRamFile().getURL().toString(), getSchemaRamFile().getURL().toString(), true );
     testVfsFileTypes( getDataRamFile().getURL().toString(), getSchemaFileUrl(), true );
