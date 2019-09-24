@@ -116,7 +116,7 @@ public class TableInputMetaInjection implements StepMetaInjectionInterface {
           meta.setVariableReplacementActive( "Y".equalsIgnoreCase( lookValue ) );
           break;
         case EXECUTE_FOR_EACH_ROW:
-          meta.setExecuteEachInputRow( "Y".equalsIgnoreCase( lookValue ) );
+          meta.setExecuteEachInputRowAsPreparedStatment( "Y".equalsIgnoreCase( lookValue ) );
           break;
         case LIMIT:
           meta.setRowLimit( lookValue );
@@ -133,7 +133,7 @@ public class TableInputMetaInjection implements StepMetaInjectionInterface {
     list.add( StepInjectionUtil.getEntry( Entry.SQL, meta.getSQL() ) );
     list.add( StepInjectionUtil.getEntry( Entry.LAZY_CONVERSION, meta.isLazyConversionActive() ) );
     list.add( StepInjectionUtil.getEntry( Entry.REPLACE_VARIABLES, meta.isVariableReplacementActive() ) );
-    list.add( StepInjectionUtil.getEntry( Entry.EXECUTE_FOR_EACH_ROW, meta.isExecuteEachInputRow() ) );
+    list.add( StepInjectionUtil.getEntry( Entry.EXECUTE_FOR_EACH_ROW, meta.isExecuteEachInputRowAsPreparedStatment() ) );
     list.add( StepInjectionUtil.getEntry( Entry.LIMIT, meta.getRowLimit() ) );
 
     return list;
