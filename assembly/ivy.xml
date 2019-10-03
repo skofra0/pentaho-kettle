@@ -175,7 +175,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.75"  transitive="true"/>
+    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.76"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="37.0.3" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="37.0.3" transitive="false"/>
 
@@ -218,7 +218,7 @@
     
     
     <!-- Other third-party dependencies -->
-    <dependency org="org.ow2.asm"           name="asm"                   rev="7.1"          transitive="false"/>  
+    <dependency org="org.ow2.asm"           name="asm"                   rev="7.2"          transitive="false"/>  
     <dependency org="net.sf.saxon"          name="saxon-dom"             rev="9.1.0.8"      transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
     <dependency org="net.sf.flexjson"       name="flexjson"              rev="2.1"          transitive="false"/>

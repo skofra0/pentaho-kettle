@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableItem;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.i18n.BaseMessages;
@@ -72,9 +73,9 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
 
     private ColumnInfo[] colinf;
 
-    public TableInputVariableDialog(Shell parent, Object in, TransMeta transMeta, String sname) {
+    public TableInputVariableDialog(Shell parent, TableInputMeta in, TransMeta transMeta, String sname) {
         super(parent, (BaseStepMeta) in, transMeta, sname);
-        input = (TableInputMeta) in;
+        input = in;
         inputFields = new HashMap<>();
     }
 
@@ -108,7 +109,7 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
         props.setLook(wlFields);
         fdlFields = new FormData();
         fdlFields.left = new FormAttachment(0, 0);
-        fdlFields.top = new  FormAttachment(0, margin);
+        fdlFields.top = new FormAttachment(0, margin);
         wlFields.setLayoutData(fdlFields);
 
         final int FieldsRows = input.getFieldName().length;
@@ -136,7 +137,7 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
                 StepMeta stepMeta = transMeta.findStep(stepname);
                 if (stepMeta != null) {
                     try {
-                        RowMetaInterface row = transMeta.getPrevStepFields(stepMeta);
+                        RowMetaInterface row = getPreviousFields(stepMeta);
 
                         // Remember these fields...
                         for (int i = 0; i < row.size(); i++) {
@@ -148,6 +149,7 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
                     }
                 }
             }
+
         };
         new Thread(runnable).start();
 
@@ -214,13 +216,13 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
     protected void setComboBoxes() {
         // Something was changed in the row.
         //
-        final Map<String, Integer> fields = new HashMap<String, Integer>();
+        final Map<String, Integer> fields = new HashMap<>();
 
         // Add the currentMeta fields...
         fields.putAll(inputFields);
 
         Set<String> keySet = fields.keySet();
-        List<String> entries = new ArrayList<String>(keySet);
+        List<String> entries = new ArrayList<>(keySet);
 
         String[] fieldNames = entries.toArray(new String[entries.size()]);
 
@@ -277,18 +279,31 @@ public class TableInputVariableDialog extends BaseStepDialog implements StepDial
 
     private void get() {
         try {
-            RowMetaInterface r = transMeta.getPrevStepFields(stepname);
-            if (r != null && !r.isEmpty()) {
-                BaseStepDialog.getFieldsFromPrevious(r, wFields, 1, new int[] {1}, new int[] {}, -1, -1, new TableItemInsertListener() {
-                    public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
-                        tableItem.setText(2, v.getName().toUpperCase());
-                        tableItem.setText(3, SetVariableMeta.getVariableTypeDescription(SetVariableMeta.VARIABLE_TYPE_ROOT_JOB));
-                        return true;
-                    }
-                });
+            StepMeta stepMeta = transMeta.findStep(stepname);
+            if (stepMeta != null) {
+                RowMetaInterface r = getPreviousFields(stepMeta);
+                if (r != null && !r.isEmpty()) {
+                    BaseStepDialog.getFieldsFromPrevious(r, wFields, 1, new int[] {1}, new int[] {}, -1, -1, new TableItemInsertListener() {
+                        public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
+                            tableItem.setText(2, v.getName().toUpperCase());
+                            tableItem.setText(3, "");
+                            return true;
+                        }
+                    });
+                }
             }
         } catch (KettleException ke) {
             new ErrorDialog(shell, BaseMessages.getString(PKG, "SetVariableDialog.FailedToGetFields.DialogTitle"), BaseMessages.getString(PKG, "Set.FailedToGetFields.DialogMessage"), ke);
         }
     }
+
+    public RowMetaInterface getPreviousFields(StepMeta stepMeta) throws KettleStepException {
+        RowMetaInterface row = transMeta.getPrevStepFields(stepMeta);
+        if (row == null || row.isEmpty()) {
+            StepMeta[] infoStep = transMeta.getInfoStep(stepMeta);
+            row = transMeta.getStepFields(infoStep);
+        }
+        return row;
+    }
+
 }

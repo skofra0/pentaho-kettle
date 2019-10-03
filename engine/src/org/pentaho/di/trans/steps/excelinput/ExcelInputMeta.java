@@ -820,7 +820,7 @@ public class ExcelInputMeta extends BaseStepMeta implements StepMetaInterface {
     lineNumberFilesDestinationDirectory = null;
     lineNumberFilesExtension = "line";
 
-    spreadSheetType = SpreadSheetType.JXL; // default.
+    spreadSheetType = SpreadSheetType.POI; // SKOFRA
   }
 
   public void getFields( RowMetaInterface row, String name, RowMetaInterface[] info, StepMeta nextStep,
