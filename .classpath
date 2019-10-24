@@ -8,7 +8,7 @@
 	<classpathentry kind="lib" path="lib/accessors-smart-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/antlr-complete-3.5.2.jar"/>
 	<classpathentry kind="lib" path="lib/ascsapjco3wrp-20100529.jar"/>
-	<classpathentry kind="lib" path="lib/asm-7.1.jar"/>
+	<classpathentry kind="lib" path="lib/asm-7.2.jar"/>
 	<classpathentry kind="lib" path="lib/bcmail-jdk14-138.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk14-138.jar"/>
 	<classpathentry kind="lib" path="lib/bsf-2.4.0.jar"/>
@@ -218,10 +218,10 @@
 	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.77-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.77-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.77-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.30-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.30-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.30-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.30-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.32-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.32-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.32-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.32-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>

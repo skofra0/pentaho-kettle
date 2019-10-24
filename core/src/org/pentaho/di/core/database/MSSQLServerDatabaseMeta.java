@@ -214,8 +214,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
   }
 
   @Override
-  public String getFieldDefinition( ValueMetaInterface v, String tk, String pk, boolean use_autoinc,
-    boolean add_fieldname, boolean add_cr ) {
+  public String getFieldDefinition( ValueMetaInterface v, String tk, String pk, boolean use_autoinc, boolean add_fieldname, boolean add_cr ) {
     String retval = "";
 
     String fieldname = v.getName();
@@ -275,9 +274,9 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
         if ( length < getMaxVARCHARLength() ) {
           // Maybe use some default DB String length in case length<=0
           if ( length > 0 ) {
-            retval += "VARCHAR(" + length + ")";
+            retval += "NVARCHAR(" + length + ")"; // SKOFRA
           } else {
-            retval += "VARCHAR(100)";
+            retval += "NVARCHAR(100)"; // SKOFRA
           }
         } else {
           retval += "TEXT"; // Up to 2bilion characters.

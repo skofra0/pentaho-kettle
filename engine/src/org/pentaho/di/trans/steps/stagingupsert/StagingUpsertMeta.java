@@ -1,20 +1,3 @@
-/*
- * ! ******************************************************************************
- *
- * Pentaho Data Integration
- *
- * Copyright (C) 2002-2013 by Pentaho : http://www.pentaho.com
- *
- *******************************************************************************
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
- *
- ******************************************************************************/
-
 package org.pentaho.di.trans.steps.stagingupsert;
 
 import java.util.Arrays;
@@ -55,13 +38,10 @@ import org.w3c.dom.Node;
 public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface, ProvidesModelerMeta {
     private static Class<?> PKG = StagingUpsertMeta.class; // for i18n purposes, needed by Translator2!!
 
-    /** what's the lookup schema? */
     private String schemaName;
 
-    /** what's the lookup table? */
     private String tableName;
 
-    /** database connection */
     private DatabaseMeta databaseMeta;
 
     /** which field in input stream to compare with? */
@@ -85,23 +65,12 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
     /** boolean indicating if field needs to be updated */
     private Boolean[] update;
 
-    /** Commit size for inserts/updates */
     private String commitSize;
 
-    /** The name of the version field */
     private String versionField;
 
     public StagingUpsertMeta() {
         super(); // allocate BaseStepMeta
-    }
-
-    /**
-     * @return Returns the commitSize.
-     * @deprecated use public String getCommitSizeVar() instead
-     */
-    @Deprecated
-    public int getCommitSize() {
-        return Integer.parseInt(commitSize);
     }
 
     /**
@@ -119,15 +88,6 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
         // this happens when the step is created via API and no setDefaults was called
         commitSize = (commitSize == null) ? "0" : commitSize;
         return Integer.parseInt(vs.environmentSubstitute(commitSize));
-    }
-
-    /**
-     * @param commitSize The commitSize to set.
-     * @deprecated use public void setCommitSize( String commitSize ) instead
-     */
-    @Deprecated
-    public void setCommitSize(int commitSize) {
-        this.commitSize = Integer.toString(commitSize);
     }
 
     /**
@@ -296,7 +256,8 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
     private void readData(Node stepnode, List<? extends SharedObjectInterface> databases) throws KettleXMLException {
         try {
             String csize;
-            int nrkeys, nrvalues;
+            int nrkeys;
+            int nrvalues;
 
             String con = XMLHandler.getTagValue(stepnode, "connection");
             databaseMeta = DatabaseMeta.findDatabase(databases, con);
@@ -685,7 +646,7 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
                         // Key lookup dimensions...
                         if (idx_fields != null && idx_fields.length > 0 && !db.checkIndexExists(schemaName, tableName, idx_fields)) {
                             String indexname = "idx_" + tableName + "_lookup";
-                            cr_index = db.getCreateIndexStatement(schemaTable, indexname, idx_fields, false, false, false, true);
+                            cr_index = db.getCreateIndexStatement(schemaTable, indexname, idx_fields, false, true, false, true);
                         }
 
                         String sql = cr_table + cr_index;

@@ -1017,8 +1017,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     setValues( row.getRowMeta(), row.getData(), ps );
   }
 
-  public void setValues( RowMetaInterface rowMeta, Object[] data, PreparedStatement ps )
-    throws KettleDatabaseException {
+  public void setValues( RowMetaInterface rowMeta, Object[] data, PreparedStatement ps ) throws KettleDatabaseException {
     // now set the values in the row!
     for ( int i = 0; i < rowMeta.size(); i++ ) {
       ValueMetaInterface v = rowMeta.getValueMeta( i );

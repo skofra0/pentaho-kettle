@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -6,17 +7,11 @@
  *
  *******************************************************************************
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  *
  ******************************************************************************/
 
@@ -30,37 +25,32 @@ import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
 
 /**
- * Stores data for the Insert/Update step.
+ * Stores data for the StagingUpsert step.
  *
- * @author Matt
- * @since 24-jan-2005
  */
 public class StagingUpsertData extends BaseStepData implements StepDataInterface {
-  public Database db;
+    public Database db;
 
-  public int[] keynrs; // nr of keylookup -value in row...
-  public int[] keynrs2; // nr of keylookup2-value in row...
-  public int[] valuenrs; // Stream valuename nrs to prevent searches.
-  public int versionFieldNumber = -1;
+    int[] keynrs; // nr of keylookup -value in row...
+    int[] keynrs2; // nr of keylookup2-value in row...
+    int[] valuenrs; // Stream valuename nrs to prevent searches.
+    int versionFieldNumber = -1;
 
-  public RowMetaInterface outputRowMeta;
+    RowMetaInterface outputRowMeta;
 
-  public String schemaTable;
+    String schemaTable;
 
-  public PreparedStatement prepStatementLookup;
-  public PreparedStatement prepStatementUpdate;
+    PreparedStatement prepStatementLookup;
+    PreparedStatement prepStatementUpdate;
 
-  public RowMetaInterface updateParameterRowMeta;
-  public RowMetaInterface lookupParameterRowMeta;
-  public RowMetaInterface lookupReturnRowMeta;
-  public RowMetaInterface insertRowMeta;
+    RowMetaInterface updateParameterRowMeta;
+    RowMetaInterface lookupParameterRowMeta;
+    RowMetaInterface lookupReturnRowMeta;
+    RowMetaInterface insertRowMeta;
 
-  /**
-   * Default constructor.
-   */
-  public StagingUpsertData() {
-    super();
+    public StagingUpsertData() {
+        super();
 
-    db = null;
-  }
+        db = null;
+    }
 }
