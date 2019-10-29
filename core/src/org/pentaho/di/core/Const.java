@@ -2465,19 +2465,16 @@ public class Const {
    *          The string to check
    * @return true if the string supplied is empty
    */
-  public static boolean isEmpty( String string ) {
+  public static boolean isEmpty( CharSequence string ) { // SKOFRA
     return string == null || string.length() == 0;
   }
 
-  /**
-   * Check if the stringBuffer supplied is empty. A StringBuffer is empty when it is null or when the length is 0
-   *
-   * @param string
-   *          The stringBuffer to check
-   * @return true if the stringBuffer supplied is empty
-   */
-  public static boolean isEmpty( StringBuffer string ) {
-    return string == null || string.length() == 0;
+  public static boolean isNotEmpty(final CharSequence cs) { // SKOFRA
+      return cs != null && cs.length() > 0;
+  }
+
+  public static String toStringNullToEmpty(final Object obj) { // SKOFRA
+      return (obj == null) ? "" : String.valueOf(obj);
   }
 
   /**
