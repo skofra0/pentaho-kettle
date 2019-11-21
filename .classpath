@@ -108,7 +108,7 @@
 	<classpathentry kind="lib" path="lib/libswing-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/libxml-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/mail-1.4.7.jar"/>
-	<classpathentry kind="lib" path="lib/mariadb-java-client-1.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/mariadb-java-client-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/metastore-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/mstor-0.9.13.jar"/>
 	<classpathentry kind="lib" path="lib/mvxapi-9.0.4.1.jar"/>
@@ -200,8 +200,8 @@
 	<classpathentry kind="lib" path="lib/servlet-api-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="lib/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="dist/lib/slf4j-api-1.7.28.jar"/>
-	<classpathentry kind="lib" path="dist/lib/slf4j-log4j12-1.7.28.jar"/>
+	<classpathentry kind="lib" path="dist/lib/slf4j-api-1.7.29.jar"/>
+	<classpathentry kind="lib" path="dist/lib/slf4j-log4j12-1.7.29.jar"/>
 	<classpathentry kind="lib" path="dist/lib/spring-aop-3.2.14.RELEASE.jar"/>
 	<classpathentry kind="lib" path="dist/lib/spring-beans-3.2.14.RELEASE.jar"/>
 	<classpathentry kind="lib" path="dist/lib/spring-context-3.2.14.RELEASE.jar"/>
@@ -215,13 +215,13 @@
 	<classpathentry kind="lib" path="lib/jasperreports-6.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-fonts-6.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho-capability-manager-6.1.0.0-188.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.78-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.78-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.78-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.33-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.33-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.33-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.33-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.79-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.79-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fskorgen/git/deem_pdi/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.79-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.35-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.35-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.35-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.35-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>

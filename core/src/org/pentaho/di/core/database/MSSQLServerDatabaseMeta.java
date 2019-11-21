@@ -234,7 +234,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
         if ( supportsBooleanDataType() ) {
           retval += "BIT";
         } else {
-          retval += "CHAR(1)";
+          retval += "NCHAR(1)";
         }
         break;
       case ValueMetaInterface.TYPE_NUMBER:
@@ -279,7 +279,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
             retval += "NVARCHAR(100)"; // SKOFRA
           }
         } else {
-          retval += "TEXT"; // Up to 2bilion characters.
+          retval += "VARCHAR(MAX)"; // Up to 2bilion characters.
         }
         break;
       default:
@@ -529,7 +529,13 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
 
   @Override
   public int getMaxVARCHARLength() {
-    return 8000;
+    // return 8000;
+    return 4000; // SKOFRA
+  }
+
+  @Override
+  public boolean supportsRepository() { // SKOFRA
+      return true;
   }
 
 }

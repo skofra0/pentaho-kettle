@@ -54,6 +54,7 @@ import org.apache.commons.vfs2.FileSelectInfo;
 import org.apache.commons.vfs2.FileSelector;
 import org.apache.commons.vfs2.FileType;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.vfs.KettleVFS;
@@ -90,7 +91,6 @@ public class Mail extends BaseStep implements StepInterface {
 
         Object[] r = getRow(); // get row, set busy!
         if (r == null) { // no more input to be expected...
-
             setOutputDone();
             return false;
         }
@@ -701,11 +701,12 @@ public class Mail extends BaseStep implements StepInterface {
         Transport transport = null;
         try {
             transport = session.getTransport(data.protocol);
+            String authPass = getPassword(data.authenticationPassword); // SKOFRA
             if (data.usingAuthentication) {
                 if (data.port != -1) {
-                    transport.connect(Const.NVL(data.server, ""), data.port, Const.NVL(data.authenticationUser, ""), Const.NVL(data.authenticationPassword, ""));
+                    transport.connect(Const.NVL(data.server, ""), data.port, Const.NVL(data.authenticationUser, ""), authPass);
                 } else {
-                    transport.connect(Const.NVL(data.server, ""), Const.NVL(data.authenticationUser, ""), Const.NVL(data.authenticationPassword, ""));
+                    transport.connect(Const.NVL(data.server, ""), Const.NVL(data.authenticationUser, ""), authPass);
                 }
             } else {
                 transport.connect();
@@ -717,6 +718,10 @@ public class Mail extends BaseStep implements StepInterface {
             }
         }
 
+    }
+
+    public String getPassword(String authPassword) {
+        return Encr.decryptPasswordOptionallyEncrypted(environmentSubstitute(Const.NVL(authPassword, "")));
     }
 
     private void setAttachedFilesList(Object[] r, LogChannelInterface log) throws Exception {

@@ -2466,6 +2466,14 @@ public class Const {
    * @return true if the string supplied is empty
    */
   public static boolean isEmpty( CharSequence string ) { // SKOFRA
+      return string == null || string.length() == 0;
+  }
+
+  public static boolean isEmpty(final String string) { // SKOFRA (PLUGINS problem)
+     return string == null || string.length() == 0;
+  }
+
+  public static boolean isEmpty(final StringBuffer string) { // SKOFRA (PLUGINS problem)
     return string == null || string.length() == 0;
   }
 
