@@ -279,7 +279,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
             retval += "NVARCHAR(100)"; // SKOFRA
           }
         } else {
-          retval += "VARCHAR(MAX)"; // Up to 2bilion characters.
+          retval += "NVARCHAR(MAX)"; // Up to 2bilion characters.
         }
         break;
       default:
