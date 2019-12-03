@@ -565,8 +565,8 @@ public class CsvInput extends BaseStep implements StepInterface {
               outputRowData[ outputIndex++ ] = null;
 
               if ( conversionExceptions == null ) {
-                conversionExceptions = new ArrayList<Exception>();
-                exceptionFields = new ArrayList<ValueMetaInterface>();
+                conversionExceptions = new ArrayList<>();
+                exceptionFields = new ArrayList<>();
               }
 
               conversionExceptions.add( e );

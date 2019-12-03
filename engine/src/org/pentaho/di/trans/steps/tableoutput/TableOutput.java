@@ -547,7 +547,6 @@ public class TableOutput extends BaseStep implements StepInterface {
               String autoCreateTables = getVariable("BI_AUTO_CREATE_TABLES", "NO");
               if (!data.db.checkTableExists(environmentSubstitute(schemaTable)) && autoCreateTables.startsWith("Y")) {
                   RowMetaInterface prev = getTransMeta().getPrevStepFields(getStepMeta().getName());
-                  
                   SQLStatement sql =  meta.getSQLStatements(getTransMeta(), getStepMeta() , prev, repository, metaStore); 
                   if (!sql.hasError()) {
                       if (sql.hasSQL()) {
@@ -556,8 +555,7 @@ public class TableOutput extends BaseStep implements StepInterface {
                   }
               }
               // SKOFRA artf48614 : Auto create tables when running job
-            data.db.truncateTable( environmentSubstitute( meta.getSchemaName() ), environmentSubstitute( meta
-              .getTableName() ) );
+            data.db.truncateTable( environmentSubstitute( meta.getSchemaName() ), environmentSubstitute( meta.getTableName() ) );
           }
         }
 
