@@ -125,8 +125,8 @@
 --> 
 
     <dependency org="pentaho" name="pentaho-platform-extensions"  rev="${dependency.pentaho-platform.revision}" transitive="false"/>
-    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.29"/>
-    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29"/>
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30"/>
+    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30"/>
     <dependency org="org.springframework" name="spring-aop"     rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework" name="spring-beans"   rev="${dependency.spring.framework.revision}" />
     <dependency org="org.springframework" name="spring-context" rev="${dependency.spring.framework.revision}" />
@@ -175,9 +175,9 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.78"  transitive="true"/>
-    <dependency org="com.force.api"   name="force-wsc" rev="37.0.3" transitive="false"/>
-    <dependency org="com.force.api"   name="force-partner-api" rev="37.0.3" transitive="false"/>
+    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.80"  transitive="true"/>
+    <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
+    <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
 
 <!-- Java 11 j2ee 
     <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  
@@ -214,11 +214,11 @@
     <dependency org="net.sf.jasperreports"         		name="jasperreports-fonts"      rev="6.9.0" 	transitive="false"/>  
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                      rev="4.6.1"     transitive="false"/>
     <dependency org="commons-digester" 					name="commons-digester" 		rev="2.1"  		transitive="false" />
-    <dependency org="org.codehaus.groovy"               name="groovy-all"               rev="2.4.5"     transitive="false"/>
+    <dependency org="org.codehaus.groovy"               name="groovy-all"               rev="2.4.17"    transitive="false"/>
     
     
     <!-- Other third-party dependencies -->
-    <dependency org="org.ow2.asm"           name="asm"                   rev="7.2"          transitive="false"/>  
+    <dependency org="org.ow2.asm"           name="asm"                   rev="7.3.1"          transitive="false"/>  
     <dependency org="net.sf.saxon"          name="saxon-dom"             rev="9.1.0.8"      transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
     <dependency org="net.sf.flexjson"       name="flexjson"              rev="2.1"          transitive="false"/>

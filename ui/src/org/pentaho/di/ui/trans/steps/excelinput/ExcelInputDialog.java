@@ -1886,9 +1886,9 @@ public class ExcelInputDialog extends BaseStepDialog implements StepDialogInterf
     FileInputList fileList = info.getFileList( transMeta );
     for ( FileObject fileObject : fileList.getFiles() ) {
       try {
-        KWorkbook workbook =
-          WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getFilename( fileObject ), info
-            .getEncoding() );
+        // SKOFRA [MRA10-218] ExcelIput - problem with UNC path
+        // KWorkbook workbook = WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getFilename( fileObject ), info.getEncoding() )
+        KWorkbook workbook =  WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getInputStream(fileObject ), info.getEncoding() );
 
         int nrSheets = workbook.getNumberOfSheets();
         for ( int j = 0; j < nrSheets; j++ ) {
@@ -1948,9 +1948,8 @@ public class ExcelInputDialog extends BaseStepDialog implements StepDialogInterf
     FileInputList fileList = info.getFileList( transMeta );
     for ( FileObject file : fileList.getFiles() ) {
       try {
-        KWorkbook workbook =
-          WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getFilename( file ), info
-            .getEncoding() );
+        // KWorkbook workbook = WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getFilename( file ), info.getEncoding() );
+        KWorkbook workbook = WorkbookFactory.getWorkbook( info.getSpreadSheetType(), KettleVFS.getInputStream( file ), info.getEncoding() );
 
         int nrSheets = workbook.getNumberOfSheets();
         for ( int j = 0; j < nrSheets; j++ ) {

@@ -54,8 +54,8 @@
     <dependency org="commons-logging" name="commons-logging" rev="1.2" transitive="false" />
     <dependency org="commons-io" name="commons-io" rev="2.2" conf="default->default;test->default" />
 
-    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.29" />
-    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29" />
+  <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30" />  -->
+   <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30" />  -->
 
     <dependency org="org.glassfish.metro" name="webservices-api" rev="2.1" transitive="false"/>
     <dependency org="org.glassfish.metro" name="webservices-rt" rev="2.1" transitive="false" />
@@ -63,10 +63,8 @@
     <dependency org="javax.servlet"           name="servlet-api"          rev="3.0.1"  transitive="false" conf="compile->default"/>
 
     <!--  test dependencies -->
-    <dependency org="org.springframework.security" name="spring-security-core" rev="2.0.5.RELEASE"
-      transitive="false" />
     <dependency org="junit" name="junit" rev="4.11" conf="test->default" />
-    <dependency org="commons-codec" name="commons-codec" rev="1.13" conf="test->default" />
+    <dependency org="commons-codec" name="commons-codec" rev="1.14" conf="test->default" />
     <dependency org="commons-logging" name="commons-logging" rev="1.2" conf="test->default" />
     <dependency org="commons-digester" name="commons-digester" rev="2.1" conf="test->default" />
     <dependency org="commons-lang" name="commons-lang" rev="2.6" conf="test->default" />
@@ -87,8 +85,7 @@
       <!--transitive dependency that is not needed and not fetchable by Ivy--> 
       <exclude org="org.apache.jackrabbit" name="jackrabbit-jcr-rmi" />
     </dependency>
-    <dependency org="org.springframework.security" name="spring-security-core" rev="${dependency.spring.security.revision}"
-      transitive="false" />
+    <dependency org="org.springframework.security" name="spring-security-core" rev="${dependency.spring.security.revision}" transitive="false" />
       
     <dependency org="org.json" name="json" rev="${dependency.json.revision}" transitive="false" changing="true"/>
 
@@ -101,7 +98,7 @@
     <dependency org="org.apache.jackrabbit" name="jackrabbit-data" rev="2.10.0" transitive="false" conf="test->default">
         <artifact name="jackrabbit-data" type="jar"/>
     </dependency>
-    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29" conf="test->default" />
+ <!--    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29" conf="test->default" />  -->
     <dependency org="javassist" name="javassist" rev="3.12.1.GA" conf="test->default" transitive="false" />
     <dependency org="org.scannotation" name="scannotation" rev="1.0.2" conf="test->default" transitive="false"/>
     <dependency org="javax.jcr" name="jcr" rev="2.0" conf="test->default"/>
