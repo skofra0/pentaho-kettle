@@ -250,10 +250,10 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
         recalculateAllWorkbookFormulas();
       }
 
-      BufferedOutputStreamWithCloseDetection out =
-          new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) );
+      BufferedOutputStreamWithCloseDetection out = new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) );
       data.wb.write( out );
       out.close();
+      data.wb.close();
     } catch ( IOException e ) {
       throw new KettleException( e );
     }
@@ -725,11 +725,11 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
           // handle fresh file case, just create a fresh workbook
 
           Workbook wb = meta.getExtension().equalsIgnoreCase( "xlsx" ) ? new XSSFWorkbook() : new HSSFWorkbook();
-          BufferedOutputStreamWithCloseDetection out =
-              new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) );
+          BufferedOutputStreamWithCloseDetection out = new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) );
           wb.createSheet( data.realSheetname );
           wb.write( out );
           out.close();
+          wb.close();
         }
 
         appendingToSheet = false;
