@@ -25,6 +25,7 @@ package org.pentaho.di.trans.steps.excelwriter;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.commons.vfs2.FileObject;
 import org.apache.poi.common.usermodel.HyperlinkType;
@@ -47,6 +48,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -224,40 +226,43 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
 
   }
 
+  // SKOFRA COPY FROM 9.0
   private void closeOutputFile() throws KettleException {
-    try {
+      try ( BufferedOutputStreamWithCloseDetection out =  new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) ) ) {
 
-      // may have to write a footer here
-      if ( meta.isFooterEnabled() ) {
-        writeHeader();
-      }
+          // may have to write a footer here
+        if ( meta.isFooterEnabled() ) {
+          writeHeader();
+        }
+        // handle auto size for columns
+        if ( meta.isAutoSizeColums() ) {
 
-      // handle auto size for columns
-      if ( meta.isAutoSizeColums() ) {
-
-        if ( meta.getOutputFields() == null || meta.getOutputFields().length == 0 ) {
-          for ( int i = 0; i < data.inputRowMeta.size(); i++ ) {
-            data.sheet.autoSizeColumn( i + data.startingCol );
+          // track all columns for autosizing if using streaming worksheet
+          if (  data.sheet instanceof SXSSFSheet ) {
+            ( (SXSSFSheet) data.sheet ).trackAllColumnsForAutoSizing();
           }
-        } else {
-          for ( int i = 0; i < meta.getOutputFields().length; i++ ) {
-            data.sheet.autoSizeColumn( i + data.startingCol );
+
+          if ( meta.getOutputFields() == null || meta.getOutputFields().length == 0 ) {
+            for ( int i = 0; i < data.inputRowMeta.size(); i++ ) {
+              data.sheet.autoSizeColumn( i + data.startingCol );
+            }
+          } else {
+            for ( int i = 0; i < meta.getOutputFields().length; i++ ) {
+              data.sheet.autoSizeColumn( i + data.startingCol );
+            }
           }
         }
-      }
-      // force recalculation of formulas if requested
-      if ( meta.isForceFormulaRecalculation() ) {
-        recalculateAllWorkbookFormulas();
-      }
+        // force recalculation of formulas if requested
+        if ( meta.isForceFormulaRecalculation() ) {
+          recalculateAllWorkbookFormulas();
+        }
 
-      BufferedOutputStreamWithCloseDetection out = new BufferedOutputStreamWithCloseDetection( KettleVFS.getOutputStream( data.file, false ) );
-      data.wb.write( out );
-      out.close();
-      data.wb.close();
-    } catch ( IOException e ) {
-      throw new KettleException( e );
+        data.wb.write( out );
+        data.wb.close();
+      } catch ( IOException e ) {
+        throw new KettleException( e );
+      }
     }
-  }
 
   // recalculates all formula fields for the entire workbook
   // package-local visibility for testing purposes
@@ -738,7 +743,11 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
 
       // file is guaranteed to be in place now
       if ( meta.getExtension().equalsIgnoreCase( "xlsx" ) ) {
-        XSSFWorkbook xssfWorkbook = new XSSFWorkbook( KettleVFS.getInputStream( data.file ) );
+        // SKOFRA START (CLose input, problem with file looking)  
+        InputStream is = KettleVFS.getInputStream(data.file);
+        XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
+        is.close();
+        // SKOFRA END
         if ( meta.isStreamingData() ) {
           data.wb = new SXSSFWorkbook( xssfWorkbook, 100 );
         } else {
