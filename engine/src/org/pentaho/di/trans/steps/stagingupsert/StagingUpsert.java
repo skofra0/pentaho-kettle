@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
@@ -416,7 +416,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             
             sql += " ) ) ";
         }
-        if (StringUtils.isNoneBlank(meta.getVersionField())) {
+        if (!StringUtils.isBlank(meta.getVersionField())) {
             sql += " AND " + meta.getVersionField()+ " < ?";
             ValueMetaInterface metaVersion = rowMeta.searchValueMeta(meta.getUpdateStream()[data.versionFieldNumber]).clone();
             data.updateParameterRowMeta.addValueMeta(metaVersion);

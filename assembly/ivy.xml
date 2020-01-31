@@ -141,6 +141,9 @@
     <dependency org="pentaho" name="pentaho-platform-core"  rev="${dependency.pentaho-platform.revision}" transitive="false"/>
 
     <!--  Pentaho reporting dependencies -->
+    
+    <!--  Remove reporting-engine SKOFRA
+    
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-classic-extensions" rev="${dependency.pentaho-reporting.revision}" changing="true">
       <exclude name="pentaho-reporting-engine-classic-core-test"/>
     </dependency>
@@ -157,7 +160,9 @@
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-legacy-charts" rev="${dependency.pentaho-reporting.revision}" transitive="true" changing="true"/>
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-legacy-functions" rev="${dependency.pentaho-reporting.revision}" transitive="true" changing="true"/>
     <dependency org="${dependency.reporting-engine.group}" name="pentaho-reporting-engine-wizard-core"  rev="${dependency.pentaho-reporting.revision}" changing="true" transitive="true"/>
-    
+    -->    
+    <dependency org="pentaho-library"                      name="libformula"                            rev="${dependency.pentaho-reporting.revision}" changing="true" transitive="true"/>
+
     <!--  OSS Licenses file  ${dependency.oss-licenses.revision} or 6.0.0.0-245 --> 
     <dependency org="pentaho" name="oss-licenses" rev="${dependency.oss-licenses.revision}" conf="oss-licenses->default">
       <artifact name="oss-licenses" type="zip" />
@@ -175,7 +180,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.82"  transitive="true"/>
+    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.86"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
 

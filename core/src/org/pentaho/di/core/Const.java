@@ -1,5 +1,6 @@
 // CHECKSTYLE:FileLength:OFF
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -11,7 +12,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -192,8 +193,7 @@ public class Const {
      * Path to the simple-jndi directory
      */
 
-    public static String JNDI_DIRECTORY = NVL( System.getProperty( "KETTLE_JNDI_ROOT" ), System
-            .getProperty( "org.osjava.sj.root" ) );
+    public static String JNDI_DIRECTORY = NVL(System.getProperty("KETTLE_JNDI_ROOT"), System.getProperty("org.osjava.sj.root"));
 
     /*
      * The images directory
@@ -205,9 +205,7 @@ public class Const {
     /**
      * the default comma separated list of base plugin folders.
      */
-    public static final String DEFAULT_PLUGIN_BASE_FOLDERS = "plugins,"
-            + ( Const.isEmpty( getDIHomeDirectory() ) ? "" : getDIHomeDirectory() + FILE_SEPARATOR + "plugins," )
-            + getKettleDirectory() + FILE_SEPARATOR + "plugins";
+    public static final String DEFAULT_PLUGIN_BASE_FOLDERS = "plugins," + (Const.isEmpty(getDIHomeDirectory()) ? "" : getDIHomeDirectory() + FILE_SEPARATOR + "plugins,") + getKettleDirectory() + FILE_SEPARATOR + "plugins";
 
     /**
      * Default minimum date range...
@@ -283,26 +281,22 @@ public class Const {
     /**
      * The default decimal separator . or ,
      */
-    public static final char DEFAULT_DECIMAL_SEPARATOR = ( new DecimalFormatSymbols( DEFAULT_LOCALE ) )
-            .getDecimalSeparator();
+    public static final char DEFAULT_DECIMAL_SEPARATOR = (new DecimalFormatSymbols(DEFAULT_LOCALE)).getDecimalSeparator();
 
-          /**
-           * The default grouping separator , or .
-           */
-          public static final char DEFAULT_GROUPING_SEPARATOR = ( new DecimalFormatSymbols( DEFAULT_LOCALE ) )
-            .getGroupingSeparator();
+    /**
+     * The default grouping separator , or .
+     */
+    public static final char DEFAULT_GROUPING_SEPARATOR = (new DecimalFormatSymbols(DEFAULT_LOCALE)).getGroupingSeparator();
 
-          /**
-           * The default currency symbol
-           */
-          public static final String DEFAULT_CURRENCY_SYMBOL = ( new DecimalFormatSymbols( DEFAULT_LOCALE ) )
-            .getCurrencySymbol();
+    /**
+     * The default currency symbol
+     */
+    public static final String DEFAULT_CURRENCY_SYMBOL = (new DecimalFormatSymbols(DEFAULT_LOCALE)).getCurrencySymbol();
 
-          /**
-           * The default number format
-           */
-          public static final String DEFAULT_NUMBER_FORMAT = ( (DecimalFormat) ( NumberFormat.getInstance() ) )
-            .toPattern();
+    /**
+     * The default number format
+     */
+    public static final String DEFAULT_NUMBER_FORMAT = ((DecimalFormat) (NumberFormat.getInstance())).toPattern();
 
     /**
      * Default string representing Null String values (empty)
@@ -2955,6 +2949,8 @@ public class Const {
         String diHomeDir = getDeemDesignerHomeFolder(kettleHomeDir);
 
         out.append(CR);
+        out.append("KETTLE_SYSTEM_HOSTNAME=" + Const.getHostnameReal() + CR);
+        out.append(CR);
         out.append("BI_ENCLOSURE=^" + CR);
         out.append("BI_SEPARATOR=|" + CR);
         out.append("BI_SQL_NO_LOCK=" + CR);
@@ -2986,7 +2982,6 @@ public class Const {
         return diHomeDir;
     }
 
-
     /**
      * Mask XML content. i.e. protect with CDATA;
      *
@@ -3004,9 +2999,9 @@ public class Const {
      * Get the number of occurrences of searchFor in string.
      *
      * @param string
-     *          String to be searched
+     *        String to be searched
      * @param searchFor
-     *          to be counted string
+     *        to be counted string
      * @return number of occurrences
      */
     public static int getOcuranceString(String string, String searchFor) {
@@ -3026,7 +3021,7 @@ public class Const {
      * Mask XML content. i.e. replace characters with &values;
      *
      * @param content
-     *          content
+     *        content
      * @return masked content
      */
     public static String escapeXml(String content) {
