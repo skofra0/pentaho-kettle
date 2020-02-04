@@ -25,7 +25,7 @@ package org.pentaho.di.trans.steps.textfileinput;
 import org.apache.commons.vfs2.FileObject;
 
 /**
- * @deprecated replaced by implementation in the ...steps.fileinput.text package
+ * deprecated replaced by implementation in the ...steps.fileinput.text package
  */
 public class TextFileLine {
   String line;

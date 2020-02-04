@@ -52,7 +52,7 @@
 
     <!-- misc third-party -->
     <dependency org="commons-logging" name="commons-logging" rev="1.2" transitive="false" />
-    <dependency org="commons-io" name="commons-io" rev="2.2" conf="default->default;test->default" />
+    <dependency org="commons-io" name="commons-io" rev="2.6" conf="default->default;test->default" />
 
   <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30" />  -->
    <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30" />  -->
@@ -99,7 +99,7 @@
         <artifact name="jackrabbit-data" type="jar"/>
     </dependency>
  <!--    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29" conf="test->default" />  -->
-    <dependency org="javassist" name="javassist" rev="3.12.1.GA" conf="test->default" transitive="false" />
+    <dependency org="org.javassist" name="javassist" rev="3.26.0-GA" conf="test->default" transitive="false" />
     <dependency org="org.scannotation" name="scannotation" rev="1.0.2" conf="test->default" transitive="false"/>
     <dependency org="javax.jcr" name="jcr" rev="2.0" conf="test->default"/>
     <dependency org="org.owasp.esapi" name="esapi" rev="2.0.1" transitive="false" conf="test->default"/>
