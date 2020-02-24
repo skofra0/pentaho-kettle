@@ -5106,16 +5106,14 @@ public class TransMeta extends AbstractMeta
     if ( searchSteps ) {
       // Loop over all steps in the transformation and see what the used vars are...
       for ( int i = 0; i < nrSteps(); i++ ) {
-        StepMeta stepMeta = getStep( i );
-        stringList.add( new StringSearchResult( stepMeta.getName(), stepMeta, this,
-            BaseMessages.getString( PKG, "TransMeta.SearchMetadata.StepName" ) ) );
-        if ( stepMeta.getDescription() != null ) {
-          stringList.add( new StringSearchResult( stepMeta.getDescription(), stepMeta, this,
-              BaseMessages.getString( PKG, "TransMeta.SearchMetadata.StepDescription" ) ) );
-        }
-        StepMetaInterface metaInterface = stepMeta.getStepMetaInterface();
-        StringSearcher.findMetaData( metaInterface, 1, stringList, stepMeta, this );
-      }
+                StepMeta stepMeta = getStep(i);
+                stringList.add(new StringSearchResult(stepMeta.getName(), stepMeta, this, BaseMessages.getString(PKG, "TransMeta.SearchMetadata.StepName")));
+                if (stepMeta.getDescription() != null) {
+                    stringList.add(new StringSearchResult(stepMeta.getDescription(), stepMeta, this, BaseMessages.getString(PKG, "TransMeta.SearchMetadata.StepDescription")));
+                }
+                StepMetaInterface metaInterface = stepMeta.getStepMetaInterface();
+                StringSearcher.findMetaData(metaInterface, 1, stringList, stepMeta, this);
+            }
     }
 
     // Loop over all steps in the transformation and see what the used vars are...
