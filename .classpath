@@ -62,7 +62,7 @@
 	<classpathentry kind="lib" path="lib/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/json-smart-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jsonpath-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jsonrpc2-base-1.38.jar"/>
+	<classpathentry kind="lib" path="lib/jsonrpc2-base-1.38.1.jar"/>
 	<classpathentry kind="lib" path="lib/jsonrpc2-client-1.16.4.jar"/>
 	<classpathentry kind="lib" path="lib/jt400-jdk8-10.2.jar"/>
 	<classpathentry kind="lib" path="lib/jtds-1.3.1.jar"/>
@@ -89,7 +89,7 @@
 	<classpathentry kind="lib" path="lib/pentaho-vfs-browser-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho-xul-core-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho-xul-swt-6.1.0.0-188.jar"/>
-	<classpathentry kind="lib" path="lib/postgresql-9.3-1102-jdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-42.2.5.jar"/>
 	<classpathentry kind="lib" path="lib/remote-api-client-4.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/remote-api-common-4.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/rome-1.0.jar"/>
