@@ -161,14 +161,14 @@
 	<classpathentry kind="lib" path="lib/jasperreports-6.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-fonts-6.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho-capability-manager-6.1.0.0-188.jar"/>
-	<classpathentry kind="lib" path="/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.90-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.90-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.90-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-core/target/deem-core-5.1.42-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.42-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.42-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.42-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.42-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.91-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.91-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.91-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-core/target/deem-core-5.1.43-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.43-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.43-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.43-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.43-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/pentaho-metaverse-api-6.1.0.0-188.jar"/>
