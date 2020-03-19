@@ -697,7 +697,6 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
     }
 
     private void getInfo(StagingUpsertMeta inf) {
-        // Table ktable = wKey.table;
         int nrkeys = wKey.nrNonEmpty();
         int nrfields = wReturn.nrNonEmpty();
 
@@ -717,8 +716,6 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
             inf.getKeyStream()[i] = item.getText(3);
             inf.getKeyStream2()[i] = item.getText(4);
         }
-
-        // Table ftable = wReturn.table;
 
         if (log.isDebug()) {
             logDebug(BaseMessages.getString(PKG, "StagingUpsertDialog.Log.FoundFields", nrfields + ""));
