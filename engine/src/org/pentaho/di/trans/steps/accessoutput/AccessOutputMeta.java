@@ -286,12 +286,16 @@ public class AccessOutputMeta extends BaseStepMeta implements StepMetaInterface 
       switch ( type ) {
         case java.sql.Types.CHAR:
         case java.sql.Types.VARCHAR:
-        case java.sql.Types.LONGVARCHAR: // Character Large Object
+        case java.sql.Types.LONGVARCHAR:  // Character Large Object
+        case java.sql.Types.NCHAR:        // SKOFRA
+        case java.sql.Types.NVARCHAR:     // SKOFRA
+        case java.sql.Types.LONGNVARCHAR: // SKOFRA
           valtype = ValueMetaInterface.TYPE_STRING;
           length = column.getLength();
           break;
 
         case java.sql.Types.CLOB:
+        case java.sql.Types.NCLOB:  // SKOFRA
           valtype = ValueMetaInterface.TYPE_STRING;
           length = DatabaseMeta.CLOB_LENGTH;
           break;
@@ -353,7 +357,9 @@ public class AccessOutputMeta extends BaseStepMeta implements StepMetaInterface 
 
         case java.sql.Types.DATE:
         case java.sql.Types.TIME:
+        case java.sql.Types.TIME_WITH_TIMEZONE:
         case java.sql.Types.TIMESTAMP:
+        case java.sql.Types.TIMESTAMP_WITH_TIMEZONE:
           valtype = ValueMetaInterface.TYPE_DATE;
           break;
 

@@ -459,4 +459,11 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
     public boolean supportsRepository() {
         return true;
     }
+    
+    // SKOFRA (Problem with newer MariaDB jdbc drivers)
+    @Override
+    public boolean supportsTimeStampToDateConversion() {
+        return false;
+    }
+
 }

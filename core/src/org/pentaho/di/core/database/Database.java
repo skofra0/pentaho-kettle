@@ -3050,6 +3050,10 @@ public class Database implements VariableSpace, LoggingObjectInterface {
         switch( sqltype ) {
           case java.sql.Types.CHAR:
           case java.sql.Types.VARCHAR:
+          case java.sql.Types.NVARCHAR:      // SKOFRA
+          case java.sql.Types.NCHAR:         // SKOFRA
+          case java.sql.Types.LONGVARCHAR:   // SKOFRA
+          case java.sql.Types.LONGNVARCHAR:  // SKOFRA
             val = new ValueMetaString( name );
             break;
           case java.sql.Types.BIGINT:
@@ -3067,7 +3071,9 @@ public class Database implements VariableSpace, LoggingObjectInterface {
             break;
           case java.sql.Types.DATE:
           case java.sql.Types.TIME:
+          case java.sql.Types.TIME_WITH_TIMEZONE:       // SKOFRA
           case java.sql.Types.TIMESTAMP:
+          case java.sql.Types.TIMESTAMP_WITH_TIMEZONE:  // SKOFRA
             val = new ValueMetaDate( name );
             break;
           case java.sql.Types.BOOLEAN:

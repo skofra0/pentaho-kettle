@@ -4362,9 +4362,10 @@ public class ValueMetaBase implements ValueMetaInterface {
       switch ( type ) {
         case java.sql.Types.CHAR:
         case java.sql.Types.VARCHAR:
-        case java.sql.Types.NCHAR:      // SKOFRA
-        case java.sql.Types.NVARCHAR:
-        case java.sql.Types.LONGVARCHAR: // Character Large Object
+        case java.sql.Types.NCHAR:        // SKOFRA
+        case java.sql.Types.NVARCHAR:     // SKOFRA
+        case java.sql.Types.LONGNVARCHAR: // SKOFRA
+        case java.sql.Types.LONGVARCHAR:  // Character Large Object
           valtype = ValueMetaInterface.TYPE_STRING;
           if ( !ignoreLength ) {
             length = rm.getColumnDisplaySize( index );
@@ -4521,6 +4522,7 @@ public class ValueMetaBase implements ValueMetaInterface {
           break;
 
         case java.sql.Types.TIMESTAMP:
+        case java.sql.Types.TIMESTAMP_WITH_TIMEZONE:
           if ( databaseMeta.supportsTimestampDataType() ) {
             valtype = ValueMetaInterface.TYPE_TIMESTAMP;
             length = rm.getScale( index );
@@ -4532,6 +4534,7 @@ public class ValueMetaBase implements ValueMetaInterface {
             precision = 1;
           }
         case java.sql.Types.TIME:
+        case java.sql.Types.TIME_WITH_TIMEZONE:
           valtype = ValueMetaInterface.TYPE_DATE;
           //
           if ( databaseMeta.getDatabaseInterface() instanceof MySQLDatabaseMeta ) {
