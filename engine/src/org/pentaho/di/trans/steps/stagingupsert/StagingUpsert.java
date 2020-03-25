@@ -130,12 +130,8 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                     updateRow[j + i] = lookupRow[i];
                 }
 
-                int versionFields = 0;
-                if (StringUtils.isNotBlank(meta.getVersionField())) {
-                    versionFields = 1;
-                }
-                if (versionFields>0) {
-                    updateRow[updateRow.length-1] =  row[data.versionFieldNumber];
+                if (StringUtils.isNotBlank(meta.getVersionField()) && data.versionFieldNumber>=0) {
+                    updateRow[updateRow.length-1] = row[data.versionFieldNumber];
                 }
 
                 if (log.isRowLevel()) {
@@ -220,6 +216,9 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             
             if (StringUtils.isNotBlank(meta.getVersionField()))  {
                 data.versionFieldNumber =  getInputRowMeta().indexOfValue(meta.getVersionField());
+                if ( data.versionFieldNumber<0) {
+                    logError("VariatonNumber field not found as input: " + meta.getVersionField());
+                }
             }
             
             for (int i = 0; i < meta.getUpdateLookup().length; i++) {
@@ -416,7 +415,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             
             sql += " ) ) ";
         }
-        if (!StringUtils.isBlank(meta.getVersionField())) {
+        if (!StringUtils.isBlank(meta.getVersionField()) && data.versionFieldNumber>=0) {
             sql += " AND " + meta.getVersionField()+ " < ?";
             ValueMetaInterface metaVersion = rowMeta.searchValueMeta(meta.getUpdateStream()[data.versionFieldNumber]).clone();
             data.updateParameterRowMeta.addValueMeta(metaVersion);

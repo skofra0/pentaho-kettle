@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.9.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/commons-math-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-math-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-net-1.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-pool-1.5.7.jar"/>
 	<classpathentry kind="lib" path="lib/commons-validator-1.3.1.jar"/>
@@ -38,8 +38,8 @@
 	<classpathentry kind="lib" path="lib/guava-17.0.jar" sourcepath="C:/Users/fskorgen/.m2/repository/com/google/guava/guava/17.0/guava-17.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/ini4j-0.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jackcess-1.2.6.jar"/>
-	<classpathentry kind="lib" path="lib/janino-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-compiler-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/janino-3.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-compiler-3.1.2.jar"/>
 	<classpathentry kind="lib" path="lib/javadbf-20081125.jar"/>
 	<classpathentry kind="lib" path="lib/javassist-3.26.0-GA.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
@@ -79,7 +79,7 @@
 	<classpathentry kind="lib" path="lib/mariadb-java-client-2.5.4.jar"/>
 	<classpathentry kind="lib" path="lib/metastore-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="lib/mstor-0.9.13.jar"/>
-	<classpathentry kind="lib" path="lib/mvxapi-9.0.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/mvxapi-9.0.4.2.201902010948.jar"/>
 	<classpathentry kind="lib" path="lib/nekohtml-1.9.15.jar"/>
 	<classpathentry kind="lib" path="lib/odfdom-java-0.8.6.jar"/>
 	<classpathentry kind="lib" path="lib/ognl-2.6.9.jar"/>
@@ -110,9 +110,9 @@
 	<classpathentry kind="lib" path="dist/libswt/win64/swt.jar"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.5.12.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.4.13.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-annotations-2.10.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-core-2.10.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-databind-2.10.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.10.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.10.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.10.3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.14.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-compress-1.20.jar"/>
@@ -141,7 +141,7 @@
 	<classpathentry kind="lib" path="lib/poi-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/poi-ooxml-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-4.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/velocity-engine-core-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/velocity-engine-core-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/xmlgraphics-commons-2.3.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
@@ -164,11 +164,11 @@
 	<classpathentry kind="lib" path="/deem-pdi-plugins-libs/target/deem-pdi-plugins-libs-6.1.0.92-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="/deem-pdi-plugins/target/deem-pdi-plugins-6.1.0.92-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="/deem-pdi-plugins-salesforce/target/deem-pdi-plugins-salesforce-6.1.0.92-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-core/target/deem-core-5.1.44-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.44-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.44-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.44-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.44-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-core/target/deem-core-5.1.45-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-client-jsonrpc2/target/deem-cloudapi-client-jsonrpc2-5.1.45-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-common/target/deem-cloudapi-common-5.1.45-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-ionapi/target/deem-cloudapi-ionapi-5.1.45-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/deem-cloudapi-mvxapi-m3-client/target/deem-cloudapi-mvxapi-m3-client-5.1.45-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/pentaho-metaverse-api-6.1.0.0-188.jar"/>
