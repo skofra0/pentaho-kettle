@@ -180,7 +180,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.91"  transitive="true"/>
+    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.92"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
 
@@ -225,7 +225,7 @@
     <dependency org="net.sf.barcode4j"                  name="barcode4j"                rev="2.0"       transitive="true"/>
     
     <!-- Other third-party dependencies -->
-    <dependency org="org.ow2.asm"           name="asm"                   rev="7.3.1"          transitive="false"/>  
+    <dependency org="org.ow2.asm"           name="asm"                   rev="-"          transitive="false"/>  
     <dependency org="net.sf.saxon"          name="saxon-dom"             rev="9.1.0.8"      transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
     <dependency org="net.sf.flexjson"       name="flexjson"              rev="2.1"          transitive="false"/>
