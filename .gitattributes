@@ -1,3 +1,32 @@
 # Auto detect text files and perform LF normalization
-# * text=auto
+* text=auto
 
+# Handle line endings automatically for files detected as text
+
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+*.css           text
+*.java          text
+*.js            text
+*.json          text
+*.properties    text
+*.sh            text eol=lf
+*.txt           text
+*.xml           text
+*.scss    		text
+*.bat			text eol=crlf
+*.cmd			text eol=crlf
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.class         binary
+*.dll           binary
+*.gif           binary
+*.ico           binary
+*.jar           binary
+*.jpg           binary
+*.jpeg          binary
+*.png           binary
+*.war           binary
