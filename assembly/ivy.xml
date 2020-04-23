@@ -180,7 +180,7 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.92"  transitive="true"/>
+    <dependency org="no.deem.pdi"     name="deem-pdi-plugins-libs"      rev="6.1.0.94"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
 
