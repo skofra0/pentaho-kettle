@@ -40,7 +40,6 @@ import org.w3c.dom.Node;
  * Data Service client code is now available in the pdi-dataservice-plugin project
  *
  */
-@Deprecated
 public class TransDataService implements XMLInterface {
 
   public static final String XML_TAG_VARIABLE_MAPS = "variable-maps";

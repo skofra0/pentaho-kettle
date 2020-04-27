@@ -149,6 +149,8 @@
 -->	
     <!-- OLAP4J is bringing in an older version of beanutils-core than is needed -->
     <!-- <dependency org="commons-beanutils"   name="commons-beanutils-core" rev="1.8.0"         transitive="false"/> -->
+
+    <dependency org="com.jayway.jsonpath" name="json-path" rev="2.1.0" transitive="false"/>
     
     <!--  for testing -->
     <dependency org="com.h2database"      name="h2"            rev="1.2.131" conf="test->default" transitive="false"/>
