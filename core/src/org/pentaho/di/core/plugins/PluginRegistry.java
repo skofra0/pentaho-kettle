@@ -66,23 +66,22 @@ public class PluginRegistry {
 
   private static final PluginRegistry pluginRegistry = new PluginRegistry();
 
-  private static final List<PluginTypeInterface> pluginTypes = new ArrayList<PluginTypeInterface>();
-  private static final List<PluginRegistryExtension> extensions = new ArrayList<PluginRegistryExtension>();
+  private static final List<PluginTypeInterface> pluginTypes = new ArrayList<>();
+  private static final List<PluginRegistryExtension> extensions = new ArrayList<>();
   public static final LogChannelInterface log = new LogChannel( "PluginRegistry", true );
 
   private final Map<Class<? extends PluginTypeInterface>, List<PluginInterface>> pluginMap;
 
-  private final Map<String, URLClassLoader> folderBasedClassLoaderMap = new HashMap<String, URLClassLoader>();
+  private final Map<String, URLClassLoader> folderBasedClassLoaderMap = new HashMap<>();
 
   private final Map<Class<? extends PluginTypeInterface>, Map<PluginInterface, URLClassLoader>> classLoaderMap;
 
   private final Map<String, URLClassLoader> classLoaderGroupsMap;
 
   private final Map<Class<? extends PluginTypeInterface>, List<String>> categoryMap;
-  private final Map<PluginInterface, String[]> parentClassloaderPatternMap = new HashMap<PluginInterface, String[]>();
+  private final Map<PluginInterface, String[]> parentClassloaderPatternMap = new HashMap<>();
 
-  private final Map<Class<? extends PluginTypeInterface>, List<PluginTypeListener>> listeners =
-    new HashMap<Class<? extends PluginTypeInterface>, List<PluginTypeListener>>();
+  private final Map<Class<? extends PluginTypeInterface>, List<PluginTypeListener>> listeners = new HashMap<>();
 
   private final ReentrantReadWriteLock lock;
 
@@ -90,10 +89,10 @@ public class PluginRegistry {
    * Initialize the registry, keep private to keep this a singleton
    */
   private PluginRegistry() {
-    pluginMap = new HashMap<Class<? extends PluginTypeInterface>, List<PluginInterface>>();
-    classLoaderMap = new HashMap<Class<? extends PluginTypeInterface>, Map<PluginInterface, URLClassLoader>>();
-    categoryMap = new HashMap<Class<? extends PluginTypeInterface>, List<String>>();
-    classLoaderGroupsMap = new HashMap<String, URLClassLoader>();
+    pluginMap = new HashMap<>();
+    classLoaderMap = new HashMap<>();
+    categoryMap = new HashMap<>();
+    classLoaderGroupsMap = new HashMap<>();
     lock = new ReentrantReadWriteLock();
   }
 
@@ -140,7 +139,7 @@ public class PluginRegistry {
       classLoaderGroupsMap.remove( plugin.getClassLoaderGroup() );
     }
 
-      List<PluginTypeListener> listeners = (List<PluginTypeListener>) this.listeners.get( pluginType );
+      List<PluginTypeListener> listeners = this.listeners.get( pluginType );
     if ( listeners != null ) {
       for ( PluginTypeListener listener : listeners ) {
         listener.pluginRemoved( plugin );

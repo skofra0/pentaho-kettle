@@ -9316,4 +9316,11 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     authProviderDialog.show();
   }
 
+  public String getUsername() {
+      if ( rep == null || rep.getUserInfo() == null ) {
+        return "";
+      }
+      return rep.getUserInfo().getLogin();
+    }
+
 }

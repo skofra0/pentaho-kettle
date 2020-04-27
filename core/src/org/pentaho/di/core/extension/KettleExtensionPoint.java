@@ -103,6 +103,9 @@ public enum KettleExtensionPoint {
     SpoonPopupMenuExtension ( "SpoonPopupMenuExtension" , "Pop up menu extension for the view tree" ),
     SpoonTreeDelegateExtension ( "SpoonTreeDelegateExtension" , "During the SpoonTreeDelegate execution" ),
 
+    // SKOFRA
+    SpoonOpenSaveNew( "SpoonOpenSaveNew", "Open the new file browser" ),
+
     AfterDeleteRepositoryObject( "AfterDeleteRepositoryObject",
       "After an object has been deleted from the repository" );
 
