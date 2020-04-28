@@ -6,17 +6,17 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>shapefilereader</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>kettle-shapefilereader-plugin-core</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>jar</packaging>
 
   <name>PDI Shape File Reader Plugin Core</name>
 
   <properties>
-    <junit.version>4.4</junit.version>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencies>
@@ -42,7 +42,7 @@
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
+      <artifactId>powermock-api-mockito2</artifactId>
     </dependency>
     <dependency>
       <groupId>org.eclipse</groupId>

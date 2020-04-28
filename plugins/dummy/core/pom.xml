@@ -6,11 +6,11 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>dummy</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>kettle-dummy-plugin-core</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>jar</packaging>
 
   <name>PDI Dummy Plugin Core</name>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>${junit.version}</version>
     </dependency>
   </dependencies>
 </project>

@@ -7,11 +7,11 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>get-previous-row-field</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>get-previous-row-field-core</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>jar</packaging>
 
   <name>PDI Get Previous Row Field Plugin Core</name>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>${junit.version}</version>
     </dependency>
   </dependencies>
 </project>

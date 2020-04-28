@@ -6,11 +6,11 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>pdi-plugins</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>file-open-save-new</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>pom</packaging>
 
   <name>PDI File Open and Save New Plugin</name>
@@ -22,7 +22,7 @@
   </modules>
 
   <properties>
-    <pdi.version>9.0.0.3-542</pdi.version>
+    <pdi.version>${project.version}</pdi.version>
     <version.for.license>${project.version}</version.for.license>
     <js.project.list>requirejs,requirejs-text,angular,require-css,angular-i18n</js.project.list>
     <angular.version>1.5.8</angular.version>
@@ -71,7 +71,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-platform-extensions</artifactId>
-        <version>${project.version}</version>
+        <version>${platform.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -83,7 +83,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-i18n-bundle</artifactId>
-        <version>${project.version}</version>
+        <version>${platform.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -95,7 +95,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-i18n-webservice-bundle</artifactId>
-        <version>${project.version}</version>
+        <version>${platform.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>

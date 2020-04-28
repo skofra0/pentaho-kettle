@@ -7,7 +7,7 @@
   <parent>
     <artifactId>log4j</artifactId>
     <groupId>org.pentaho.di.plugins</groupId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>kettle-log4j-core</artifactId>
@@ -18,10 +18,10 @@
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyy/MM/dd hh\:mm</maven.build.timestamp.format>
 
-    <pdi.version>9.0.0.3-542</pdi.version>
+    <pdi.version>${project.version}</pdi.version>
     <log4j.version>1.2.14</log4j.version>
-    <junit.version>4.11</junit.version>
-    <mockito.version>1.9.5</mockito.version>
+    <junit.version>4.12</junit.version>
+    <mockito.version>2.28.2</mockito.version>
   </properties>
 
   <build>
@@ -64,7 +64,7 @@
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
       <version>${mockito.version}</version>
       <scope>test</scope>
       <exclusions>

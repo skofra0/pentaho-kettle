@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -10,7 +11,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,6 +26,7 @@ package org.pentaho.di.www;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.owasp.encoder.Encode;
 import org.pentaho.di.core.gui.Point;
 import org.pentaho.di.core.logging.KettleLogStore;
@@ -45,76 +47,76 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith( PowerMockRunner.class )
+@RunWith(PowerMockRunner.class)
 public class SniffStepServletTest {
-  private TransformationMap mockTransformationMap;
+    private TransformationMap mockTransformationMap;
 
-  private SniffStepServlet sniffStepServlet;
+    private SniffStepServlet sniffStepServlet;
 
-  @Before
-  public void setup() {
-    mockTransformationMap = mock( TransformationMap.class );
-    sniffStepServlet = new SniffStepServlet( mockTransformationMap );
-  }
+    @Before
+    public void setup() {
+        mockTransformationMap = mock(TransformationMap.class);
+        sniffStepServlet = new SniffStepServlet(mockTransformationMap);
+    }
 
-  @Test
-  @PrepareForTest( { Encode.class } )
-  public void testSniffStepServletEscapesHtmlWhenTransNotFound() throws ServletException, IOException {
-    HttpServletRequest mockHttpServletRequest = mock( HttpServletRequest.class );
-    HttpServletResponse mockHttpServletResponse = mock( HttpServletResponse.class );
+    @Test
+    @PrepareForTest({Encode.class})
+    public void testSniffStepServletEscapesHtmlWhenTransNotFound() throws ServletException, IOException {
+        HttpServletRequest mockHttpServletRequest = mock(HttpServletRequest.class);
+        HttpServletResponse mockHttpServletResponse = mock(HttpServletResponse.class);
 
-    StringWriter out = new StringWriter();
-    PrintWriter printWriter = new PrintWriter( out );
+        StringWriter out = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(out);
 
-    PowerMockito.spy( Encode.class );
-    when( mockHttpServletRequest.getContextPath() ).thenReturn( SniffStepServlet.CONTEXT_PATH );
-    when( mockHttpServletRequest.getParameter( anyString() ) ).thenReturn( ServletTestUtils.BAD_STRING_TO_TEST );
-    when( mockHttpServletResponse.getWriter() ).thenReturn( printWriter );
+        PowerMockito.spy(Encode.class);
+        when(mockHttpServletRequest.getContextPath()).thenReturn(SniffStepServlet.CONTEXT_PATH);
+        when(mockHttpServletRequest.getParameter(anyString())).thenReturn(ServletTestUtils.BAD_STRING_TO_TEST);
+        when(mockHttpServletResponse.getWriter()).thenReturn(printWriter);
 
-    sniffStepServlet.doGet( mockHttpServletRequest, mockHttpServletResponse );
-    assertFalse( ServletTestUtils.hasBadText( ServletTestUtils.getInsideOfTag( "H1", out.toString() ) ) );
+        sniffStepServlet.doGet(mockHttpServletRequest, mockHttpServletResponse);
+        assertFalse(ServletTestUtils.hasBadText(ServletTestUtils.getInsideOfTag("H1", out.toString())));
 
-    PowerMockito.verifyStatic( atLeastOnce() );
-    Encode.forHtml( anyString() );
-  }
+        PowerMockito.verifyStatic(Encode.class, atLeastOnce());
+        Encode.forHtml(anyString());
+    }
 
-  @Test
-  @PrepareForTest( { Encode.class } )
-  public void testSniffStepServletEscapesHtmlWhenTransFound() throws ServletException, IOException {
-    KettleLogStore.init();
-    HttpServletRequest mockHttpServletRequest = mock( HttpServletRequest.class );
-    HttpServletResponse mockHttpServletResponse = mock( HttpServletResponse.class );
-    Trans mockTrans = mock( Trans.class );
-    TransMeta mockTransMeta = mock( TransMeta.class );
-    StepInterface mockStepInterface = mock( StepInterface.class );
-    List<StepInterface> stepInterfaces = new ArrayList<StepInterface>();
-    stepInterfaces.add( mockStepInterface );
-    LogChannelInterface mockChannelInterface = mock( LogChannelInterface.class );
-    StringWriter out = new StringWriter();
-    PrintWriter printWriter = new PrintWriter( out );
+    @Test
+    @PrepareForTest({Encode.class})
+    public void testSniffStepServletEscapesHtmlWhenTransFound() throws ServletException, IOException {
+        KettleLogStore.init();
+        HttpServletRequest mockHttpServletRequest = mock(HttpServletRequest.class);
+        HttpServletResponse mockHttpServletResponse = mock(HttpServletResponse.class);
+        Trans mockTrans = mock(Trans.class);
+        TransMeta mockTransMeta = mock(TransMeta.class);
+        StepInterface mockStepInterface = mock(StepInterface.class);
+        List<StepInterface> stepInterfaces = new ArrayList<StepInterface>();
+        stepInterfaces.add(mockStepInterface);
+        LogChannelInterface mockChannelInterface = mock(LogChannelInterface.class);
+        StringWriter out = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(out);
 
-    PowerMockito.spy( Encode.class );
-    when( mockHttpServletRequest.getContextPath() ).thenReturn( SniffStepServlet.CONTEXT_PATH );
-    when( mockHttpServletRequest.getParameter( anyString() ) ).thenReturn( ServletTestUtils.BAD_STRING_TO_TEST );
-    when( mockHttpServletResponse.getWriter() ).thenReturn( printWriter );
-    when( mockTransformationMap.getTransformation( any( CarteObjectEntry.class ) ) ).thenReturn( mockTrans );
-    when( mockTrans.getLogChannel() ).thenReturn( mockChannelInterface );
-    when( mockTrans.getLogChannelId() ).thenReturn( "test" );
-    when( mockTrans.getTransMeta() ).thenReturn( mockTransMeta );
-    when( mockTransMeta.getMaximum() ).thenReturn( new Point( 10, 10 ) );
-    when( mockTrans.findBaseSteps( ServletTestUtils.BAD_STRING_TO_TEST ) ).thenReturn( stepInterfaces );
+        PowerMockito.spy(Encode.class);
+        when(mockHttpServletRequest.getContextPath()).thenReturn(SniffStepServlet.CONTEXT_PATH);
+        when(mockHttpServletRequest.getParameter(anyString())).thenReturn(ServletTestUtils.BAD_STRING_TO_TEST);
+        when(mockHttpServletResponse.getWriter()).thenReturn(printWriter);
+        when(mockTransformationMap.getTransformation(any(CarteObjectEntry.class))).thenReturn(mockTrans);
+        when(mockTrans.getLogChannel()).thenReturn(mockChannelInterface);
+        when(mockTrans.getLogChannelId()).thenReturn("test");
+        when(mockTrans.getTransMeta()).thenReturn(mockTransMeta);
+        when(mockTransMeta.getMaximum()).thenReturn(new Point(10, 10));
+        when(mockTrans.findBaseSteps(ServletTestUtils.BAD_STRING_TO_TEST)).thenReturn(stepInterfaces);
 
-    sniffStepServlet.doGet( mockHttpServletRequest, mockHttpServletResponse );
-    assertFalse( ServletTestUtils.hasBadText( ServletTestUtils.getInsideOfTag( "H1", out.toString() ) ) );
+        sniffStepServlet.doGet(mockHttpServletRequest, mockHttpServletResponse);
+        assertFalse(ServletTestUtils.hasBadText(ServletTestUtils.getInsideOfTag("H1", out.toString())));
 
-    PowerMockito.verifyStatic( atLeastOnce() );
-    Encode.forHtml( anyString() );
-  }
+        PowerMockito.verifyStatic(Encode.class, atLeastOnce());
+        Encode.forHtml(anyString());
+    }
 }

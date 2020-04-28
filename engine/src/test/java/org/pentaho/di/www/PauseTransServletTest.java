@@ -42,7 +42,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
@@ -79,7 +79,7 @@ public class PauseTransServletTest {
     pauseTransServlet.doGet( mockHttpServletRequest, mockHttpServletResponse );
     assertFalse( ServletTestUtils.hasBadText( ServletTestUtils.getInsideOfTag( "H1", out.toString() ) ) );
 
-    PowerMockito.verifyStatic( atLeastOnce() );
+    PowerMockito.verifyStatic(Encode.class, atLeastOnce() );
     Encode.forHtml( anyString() );
   }
 
@@ -107,7 +107,7 @@ public class PauseTransServletTest {
     pauseTransServlet.doGet( mockHttpServletRequest, mockHttpServletResponse );
     assertFalse( ServletTestUtils.hasBadText( ServletTestUtils.getInsideOfTag( "H1", out.toString() ) ) );
 
-    PowerMockito.verifyStatic( atLeastOnce() );
+    PowerMockito.verifyStatic(Encode.class, atLeastOnce() );
     Encode.forHtml( anyString() );
   }
 }

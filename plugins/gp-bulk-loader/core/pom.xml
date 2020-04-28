@@ -6,17 +6,17 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>gp-bulk-loader</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>gp-bulk-loader-core</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
 
   <name>PDI GP Bulk Loader Plugin Core</name>
 
   <properties>
     <dependency.javax.servlet-api.version>3.0.1</dependency.javax.servlet-api.version>
-    <pdi.version>9.0.0.3-542</pdi.version>
+    <pdi.version>${project.version}</pdi.version>
     <build.revision>${project.version}</build.revision>
     <timestamp>${maven.build.timestamp}</timestamp>
     <build.description>${project.description}</build.description>
@@ -56,7 +56,7 @@
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
       <version>1.9.5</version>
     </dependency>
     <dependency>

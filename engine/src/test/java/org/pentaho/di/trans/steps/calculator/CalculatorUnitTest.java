@@ -25,7 +25,7 @@ package org.pentaho.di.trans.steps.calculator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static org.mockito.Matchers.anyString;
@@ -125,7 +125,7 @@ public class CalculatorUnitTest {
     boolean processed = calculator.processRow( meta, new CalculatorData() );
     verify( calculator, times( 1 ) ).logError( argThat( new ArgumentMatcher<String>() {
       @Override
-      public boolean matches( Object o ) {
+      public boolean matches( String o ) {
         return ((String) o ).contains( BaseMessages.getString( PKG, "Calculator.Log.NoFile" ) );
       }
     } ) );

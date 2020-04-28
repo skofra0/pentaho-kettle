@@ -7,11 +7,11 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>pdi-plugins</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <artifactId>palo</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>pom</packaging>
 
   <name>PDI Palo Plugin</name>
@@ -40,7 +40,7 @@
     <jface.version>3.3.0-I20070606-0010</jface.version>
     <junit.version>4.7</junit.version>
     <ascsapjco3wrp.version>20100529</ascsapjco3wrp.version>
-    <pdi.version>9.0.0.3-542</pdi.version>
+    <pdi.version>${project.version}</pdi.version>
   </properties>
 
   <dependencyManagement>
@@ -66,7 +66,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>metastore</artifactId>
-        <version>${pdi.version}</version>
+        <version>${pentaho-metastore.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -105,7 +105,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-palo-core</artifactId>
-        <version>${pdi.version}</version>
+        <version>${platform.version}</version>
       </dependency>
       <!-- test dependencies -->
       <dependency>

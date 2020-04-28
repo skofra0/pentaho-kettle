@@ -6,14 +6,14 @@
   <groupId>pentaho-kettle</groupId>
   <artifactId>kettle-ui-swt</artifactId>
   <packaging>jar</packaging>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
 
   <name>PDI User Interface</name>
 
   <parent>
     <groupId>org.pentaho.di</groupId>
     <artifactId>pdi</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <properties>
@@ -22,7 +22,6 @@
 
     <!-- Pentaho dependencies -->
     <pentaho-vfs-browser.version>9.0.0.3-542</pentaho-vfs-browser.version>
-    <pentaho-capability-manager.version>${project.version}</pentaho-capability-manager.version>
 
     <!-- Third-party dependencies -->
     <common.version>3.3.0-v20070426</common.version>
@@ -156,7 +155,7 @@
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -166,7 +165,7 @@
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
+      <artifactId>powermock-api-mockito2</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

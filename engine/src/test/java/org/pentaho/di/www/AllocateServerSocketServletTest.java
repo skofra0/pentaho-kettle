@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
@@ -90,7 +90,7 @@ public class AllocateServerSocketServletTest {
         .getInsideOfTag( "BODY", response ).replaceAll( "<p>", "" ).replaceAll( "<br>", "" ).replaceAll(
           "<H1>.+</H1>", "" ).replaceAll( "--> port", "" );
     assertFalse( ServletTestUtils.hasBadText( dynamicBody ) );
-    PowerMockito.verifyStatic( atLeastOnce() );
+    PowerMockito.verifyStatic( Encode.class, atLeastOnce() );
     Encode.forHtml( anyString() );
   }
 }

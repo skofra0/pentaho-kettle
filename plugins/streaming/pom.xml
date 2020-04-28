@@ -4,19 +4,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>pentaho-streaming</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>pdi-plugins</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <name>Pentaho Streaming Plugins</name>
 
   <properties>
-    <pdi.version>9.0.0.3-542</pdi.version>
+    <pdi.version>${project.version}</pdi.version>
     <guava.version>19.0</guava.version>
     <pentaho-metaverse.version>9.0.0.3-542</pentaho-metaverse.version>
   </properties>

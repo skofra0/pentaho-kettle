@@ -27,6 +27,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 
@@ -113,7 +114,7 @@ public class LogMessageTest {
     assertEquals( "Subject - Log message for Test", msg.toString( ) );
   }
 
-  @Test
+  @Test @Ignore
   public void testGetMessage() {
     LogMessage msg = new LogMessage( "m {0}, {1}, {2}, {3}, {4,number,#.00}, {5} {foe}", "Channel 01",
       new Object[] { "Foo", "{abc}", "", null, 123 }, LogLevel.DEBUG );

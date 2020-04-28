@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.engine.api.remote.StopMessage;
 import org.pentaho.di.repository.IRepositoryService;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.ui.repository.pur.repositoryexplorer.model.UIEEDatabaseConnection;
@@ -39,7 +40,7 @@ import org.pentaho.di.ui.spoon.SpoonLifecycleListener.SpoonLifeCycleEvent;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doCallRealMethod;
@@ -119,16 +120,18 @@ public class EESpoonPluginTest {
   }
 
   private Class<? extends IRepositoryService> anyClass() {
-    return argThat( new EESpoonPluginTest.AnyClassMatcher() );
+    return argThat( matchesAnyClass() );
   }
 
-  private class AnyClassMatcher extends ArgumentMatcher<Class<? extends IRepositoryService>> {
-
-    @Override
-    public boolean matches( final Object arg ) {
-      return true;
-    }
+  private ArgumentMatcher<Class<? extends IRepositoryService>> matchesAnyClass() {
+      return new ArgumentMatcher<Class<? extends IRepositoryService>>() {
+          @Override
+          public boolean matches(Class<? extends IRepositoryService> o) {
+              return true;
+          }
+      };
   }
-
+  
+  
 }
 

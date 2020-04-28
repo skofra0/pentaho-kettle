@@ -12,6 +12,6 @@
     <parent>
         <groupId>org.pentaho.di</groupId>
         <artifactId>pdi-core</artifactId>
-        <version>9.0.0.3-542</version>
+        <version>9.0.3-001</version>
     </parent>
 </project>

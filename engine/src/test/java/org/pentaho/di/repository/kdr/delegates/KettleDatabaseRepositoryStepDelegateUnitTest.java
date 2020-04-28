@@ -22,23 +22,22 @@
 
 package org.pentaho.di.repository.kdr.delegates;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Map;
+
 import org.junit.Test;
+import org.mockito.ArgumentMatcher;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
-
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  */
@@ -57,14 +56,13 @@ public class KettleDatabaseRepositoryStepDelegateUnitTest {
     delegate.getStepTypeIDs( values, amount );
 
     verify( rep.connectionDelegate )
-      .getIDsWithValues( anyString(), anyString(), anyString(), argThat( new BaseMatcher<String[]>() {
+      .getIDsWithValues( anyString(), anyString(), anyString(), argThat( new ArgumentMatcher<String[]>() {
 
-        @Override public boolean matches( Object item ) {
+        @Override public boolean matches( String[] item ) {
           return ( ( (String[]) item ).length == amount ) && ( ( (String[]) item )[ 0 ].equals( values[ 0 ] ) );
         }
 
-        @Override public void describeTo( Description description ) {
-        }
+      
       } ) );
   }
 

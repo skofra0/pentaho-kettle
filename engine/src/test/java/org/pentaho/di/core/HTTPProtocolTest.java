@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -10,7 +11,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +39,7 @@ import org.hamcrest.Matcher;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatcher;
 import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
@@ -51,58 +52,56 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.argThat;
 
 public class HTTPProtocolTest {
 
-  public static final String HELLO_WORLD = "Hello world!";
-  @ClassRule
-  public static WireMockClassRule wireMockRule = new WireMockClassRule( 55555 );
+    public static final String HELLO_WORLD = "Hello world!";
+    @ClassRule
+    public static WireMockClassRule wireMockRule = new WireMockClassRule(55555);
 
-  @Rule
-  public WireMockClassRule instanceRule = wireMockRule;
+    @Rule
+    public WireMockClassRule instanceRule = wireMockRule;
 
-  @Test
-  public void getsAResponse() throws IOException, AuthenticationException {
-    stubFor( get( urlEqualTo( "/some/thing" ) )
-      .willReturn( aResponse()
-        .withHeader( "Content-Type", "text/plain" )
-        .withBody( HELLO_WORLD ) ) );
-    HTTPProtocol httpProtocol = new HTTPProtocol();
-    assertEquals( HELLO_WORLD, httpProtocol.get( "http://localhost:55555/some/thing", "", "" ) );
-  }
+    @Test
+    public void getsAResponse() throws IOException, AuthenticationException {
+        stubFor(get(urlEqualTo("/some/thing")).willReturn(aResponse().withHeader("Content-Type", "text/plain").withBody(HELLO_WORLD)));
+        HTTPProtocol httpProtocol = new HTTPProtocol();
+        assertEquals(HELLO_WORLD, httpProtocol.get("http://localhost:55555/some/thing", "", ""));
+    }
 
-  @Test
-  public void httpClientGetsClosed() throws IOException, AuthenticationException {
-    CloseableHttpClient httpClient = Mockito.mock( CloseableHttpClient.class );
-    CloseableHttpResponse response = Mockito.mock( CloseableHttpResponse.class );
-    HTTPProtocol httpProtocol = new HTTPProtocol() {
-      @Override CloseableHttpClient openHttpClient( String username, String password ) {
-        return httpClient;
-      }
-    };
-    String urlAsString = "http://url/path";
-    when( httpClient.execute( Matchers.argThat( matchesGet() ) ) ).thenReturn( response );
-    StatusLine statusLine = new BasicStatusLine( new ProtocolVersion( "http", 2, 0 ), HttpStatus.SC_OK, "blah" );
-    BasicHttpEntity entity = new BasicHttpEntity();
-    String content = "plenty of mocks for this test";
-    entity.setContent( new ByteArrayInputStream( content.getBytes() ) );
-    when( response.getEntity() ).thenReturn( entity );
-    when( response.getStatusLine() ).thenReturn( statusLine );
-    assertEquals( content, httpProtocol.get( urlAsString, "", "" ) );
-    verify( httpClient ).close();
-  }
+    @Test
+    public void httpClientGetsClosed() throws IOException, AuthenticationException {
+        CloseableHttpClient httpClient = Mockito.mock(CloseableHttpClient.class);
+        CloseableHttpResponse response = Mockito.mock(CloseableHttpResponse.class);
+        HTTPProtocol httpProtocol = new HTTPProtocol() {
+            @Override
+            CloseableHttpClient openHttpClient(String username, String password) {
+                return httpClient;
+            }
+        };
+        String urlAsString = "http://url/path";
+        when(httpClient.execute(argThat(matchesGet()))).thenReturn(response);
+        StatusLine statusLine = new BasicStatusLine(new ProtocolVersion("http", 2, 0), HttpStatus.SC_OK, "blah");
+        BasicHttpEntity entity = new BasicHttpEntity();
+        String content = "plenty of mocks for this test";
+        entity.setContent(new ByteArrayInputStream(content.getBytes()));
+        when(response.getEntity()).thenReturn(entity);
+        when(response.getStatusLine()).thenReturn(statusLine);
+        assertEquals(content, httpProtocol.get(urlAsString, "", ""));
+        verify(httpClient).close();
+    }
 
-  private Matcher<HttpUriRequest> matchesGet() {
-    return new BaseMatcher<HttpUriRequest>() {
-      @Override public void describeTo( Description description ) {
-        description.appendText( "matching HttpGet" );
-      }
+    private ArgumentMatcher<HttpUriRequest> matchesGet() {
+        return new ArgumentMatcher<HttpUriRequest>() {
 
-      @Override public boolean matches( Object o ) {
-        HttpGet httpGet = (HttpGet) o;
-        return httpGet.getURI().toString().equals( "http://url/path" );
-      }
-    };
-  }
+            @Override
+            public boolean matches(HttpUriRequest o) {
+                HttpGet httpGet = (HttpGet) o;
+                return httpGet.getURI().toString().equals("http://url/path");
+            }
+
+        };
+    }
 
 }

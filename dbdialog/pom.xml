@@ -5,7 +5,7 @@
 
   <groupId>pentaho-kettle</groupId>
   <artifactId>kettle-dbdialog</artifactId>
-  <version>9.0.0.3-542</version>
+  <version>9.0.3-001</version>
   <packaging>jar</packaging>
 
   <name>PDI DB Dialog</name>
@@ -13,11 +13,11 @@
   <parent>
     <groupId>org.pentaho.di</groupId>
     <artifactId>pdi</artifactId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <properties>
-    <powermock.version>1.6.3</powermock.version>
+    <powermock.version>2.0.7</powermock.version>
   </properties>
 
   <dependencies>
@@ -56,7 +56,7 @@
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
+      <artifactId>powermock-api-mockito2</artifactId>
       <version>${powermock.version}</version>
       <scope>test</scope>
     </dependency>
@@ -75,7 +75,7 @@
 
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
     </dependency>
   </dependencies>
 </project>

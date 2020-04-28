@@ -7,7 +7,7 @@
     <parent>
         <artifactId>pentaho-googledrive-vfs</artifactId>
         <groupId>org.pentaho.di.plugins</groupId>
-        <version>9.0.0.3-542</version>
+        <version>9.0.3-001</version>
     </parent>
 
     <artifactId>pentaho-googledrive-vfs-core</artifactId>
@@ -18,9 +18,9 @@
         <project.http.version>1.22.0</project.http.version>
         <project.oauth.version>1.22.0</project.oauth.version>
         <!--project.build.sourceEncoding>UTF-8</project.build.sourceEncoding-->
-        <project.junit.version>4.4</project.junit.version>
-        <project.mockito.version>1.8.4</project.mockito.version>
-        <pdi.version>9.0.0.3-542</pdi.version>
+        <project.junit.version>4.11</project.junit.version>
+        <mockito.version>2.28.2</mockito.version>
+        <pdi.version>${project.version}</pdi.version>
     </properties>
 
     <build>
@@ -64,12 +64,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${project.junit.version}</version>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${project.mockito.version}</version>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
         </dependency>
         <dependency>
             <groupId>pentaho-kettle</groupId>

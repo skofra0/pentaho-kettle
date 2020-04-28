@@ -22,36 +22,36 @@
 
 package org.pentaho.di.trans.steps.rest;
 
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.client.apache4.ApacheHttpClient4;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.util.Assert;
-import org.pentaho.di.trans.Trans;
-import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.StepDataInterface;
-import org.pentaho.di.trans.step.StepMeta;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import javax.ws.rs.core.MultivaluedMap;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
+
+import javax.ws.rs.core.MultivaluedMap;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.step.StepDataInterface;
+import org.pentaho.di.trans.step.StepMeta;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
+
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.client.apache4.ApacheHttpClient4;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 @RunWith( PowerMockRunner.class )
 @PrepareForTest( ApacheHttpClient4.class )
@@ -112,8 +112,8 @@ public class RestTest {
     doCallRealMethod().when( rest ).callRest( any() );
     doCallRealMethod().when( rest ).searchForHeaders( any() );
 
-    setInternalState( rest, "meta", meta );
-    setInternalState( rest, "data", data );
+    Whitebox.setInternalState( rest, "meta", meta );
+    Whitebox.setInternalState( rest, "data", data );
 
     Object[] output = rest.callRest( new Object[] { 0 } );
 

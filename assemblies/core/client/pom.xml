@@ -12,11 +12,11 @@
     <parent>
         <groupId>org.pentaho.di</groupId>
         <artifactId>pdi-core</artifactId>
-        <version>9.0.0.3-542</version>
+        <version>9.0.3-001</version>
     </parent>
 
     <properties>
-        <pdi-dataservice-driver-bundle.version>${project.version}</pdi-dataservice-driver-bundle.version>
+        <pdi-dataservice-driver-bundle.version>9.0.0.3-542</pdi-dataservice-driver-bundle.version>
         <ael.version>9.0.0.3-542</ael.version>
 
         <pentaho-karaf.version>9.0.0.3-542</pentaho-karaf.version>

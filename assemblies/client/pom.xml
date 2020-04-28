@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>pdi-ce</artifactId>
+  <artifactId>pdi-deem</artifactId>
   <packaging>pom</packaging>
 
   <name>PDI Client Community Edition</name>
@@ -11,11 +11,11 @@
   <parent>
     <artifactId>pdi-assemblies</artifactId>
     <groupId>org.pentaho.di</groupId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <properties>
-    <pdi-dataservice-driver-bundle.version>${project.version}</pdi-dataservice-driver-bundle.version>
+    <pdi-dataservice-driver-bundle.version>9.0.0.3-542</pdi-dataservice-driver-bundle.version>
     <ael.version>9.0.0.3-542</ael.version>
 
     <pentaho-karaf.version>9.0.0.3-542</pentaho-karaf.version>

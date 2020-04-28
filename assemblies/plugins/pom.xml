@@ -11,7 +11,7 @@
   <parent>
     <artifactId>pdi-assemblies</artifactId>
     <groupId>org.pentaho.di</groupId>
-    <version>9.0.0.3-542</version>
+    <version>9.0.3-001</version>
   </parent>
 
   <properties>
@@ -37,10 +37,10 @@
     <pdi-sap-plugin.version>9.0.0.3-542</pdi-sap-plugin.version>
     <big-data-plugin.version>9.0.0.3-542</big-data-plugin.version>
     <pentaho-cassandra-plugin.version>9.0.0.3-542</pentaho-cassandra-plugin.version>
-    <pdi-teradata-tpt-plugin-package.version>${project.version}</pdi-teradata-tpt-plugin-package.version>
+    <pdi-teradata-tpt-plugin-package.version>9.0.0.3-542</pdi-teradata-tpt-plugin-package.version>
     <pdi-platform-utils-plugin.version>9.0.0.3-542</pdi-platform-utils-plugin.version>
     <vertica-bulkloader-plugin.version>9.0.0.3-542</vertica-bulkloader-plugin.version>
-    <pdi-pur-plugin.version>9.0.0.3-542</pdi-pur-plugin.version>
+    <pdi-pur-plugin.version>${project.version}</pdi-pur-plugin.version>
   </properties>
 
   <dependencies>
