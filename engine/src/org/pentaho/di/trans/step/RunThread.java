@@ -71,6 +71,7 @@ public class RunThread implements Runnable {
           // Handle this different with as less overhead as possible to get an error message in the log.
           // Otherwise it crashes likely with another OOME in Me$$ages.getString() and does not log
           // nor call the setErrors() and stopAll() below.
+          System.out.println("OutOfMemoryError\n"); //SKOFRA
           log.logError( "UnexpectedError: ", t );
         } else {
           t.printStackTrace();

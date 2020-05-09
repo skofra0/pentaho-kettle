@@ -238,7 +238,7 @@ public abstract class BasePluginType implements PluginTypeInterface {
 
   protected List<JarFileAnnotationPlugin> findAnnotatedClassFiles( String annotationClassName ) {
     JarFileCache jarFileCache = JarFileCache.getInstance();
-    List<JarFileAnnotationPlugin> classFiles = new ArrayList<JarFileAnnotationPlugin>();
+    List<JarFileAnnotationPlugin> classFiles = new ArrayList<>();
 
     // We want to scan the plugins folder for plugin.xml files...
     //
@@ -359,7 +359,7 @@ public abstract class BasePluginType implements PluginTypeInterface {
       Node libsnode = XMLHandler.getSubNode( pluginNode, "libraries" );
       int nrlibs = XMLHandler.countNodes( libsnode, "library" );
 
-      List<String> jarFiles = new ArrayList<String>();
+      List<String> jarFiles = new ArrayList<>();
       if ( path != null ) {
         for ( int j = 0; j < nrlibs; j++ ) {
           Node libnode = XMLHandler.getSubNodeByNr( libsnode, "library", j );
@@ -386,7 +386,7 @@ public abstract class BasePluginType implements PluginTypeInterface {
         errorHelpFileFull = ( path == null ) ? errorHelpfile : path + Const.FILE_SEPARATOR + errorHelpfile;
       }
 
-      Map<Class<?>, String> classMap = new HashMap<Class<?>, String>();
+      Map<Class<?>, String> classMap = new HashMap<>();
 
       PluginMainClassType mainClassTypesAnnotation = pluginType.getAnnotation( PluginMainClassType.class );
       classMap.put( mainClassTypesAnnotation.value(), classname );
@@ -563,7 +563,7 @@ public abstract class BasePluginType implements PluginTypeInterface {
         if ( clazz == null ) {
           throw new KettlePluginException( "Unable to load class: " + jarFilePlugin.getClassName() );
         }
-        List<String> libraries = new ArrayList<String>();
+        List<String> libraries = new ArrayList<>();
         java.lang.annotation.Annotation annotation = null;
         try {
           annotation = clazz.getAnnotation( pluginType );

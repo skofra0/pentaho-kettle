@@ -109,7 +109,4 @@ public interface ExecutionConfiguration extends Cloneable {
 
   public void setSafeModeEnabled( boolean usingSafeMode );
 
-  String getRunConfiguration();
-
-  void setRunConfiguration( String runConfiguration );
 }
