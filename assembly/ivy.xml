@@ -89,9 +89,6 @@
     <dependency org="${ivy.artifact.group}" name="kettle-xml-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
         <artifact name="kettle-xml-plugin" type="zip"/>
     </dependency>
-    <dependency org="${ivy.artifact.group}" name="kettle-json-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
-        <artifact name="kettle-json-plugin" type="zip"/>
-    </dependency>
     <dependency org="pentaho" name="pentaho-karaf-assembly" rev="${project.revision}" changing="true" conf="pentaho-system->default" m:classifier="client">
       <artifact name="pentaho-karaf-assembly" type="zip" m:classifier="client"/>
     </dependency>
@@ -100,6 +97,10 @@
     <dependency org="pentaho"               name="pentaho-application-launcher"  rev="${dependency.launcher.revision}" conf="launcher->default"/>
 
  <!-- SKOFRA    
+ 
+    <dependency org="${ivy.artifact.group}" name="kettle-json-plugin" rev="${project.revision}" changing="true" conf="plugins->default">
+        <artifact name="kettle-json-plugin" type="zip"/>
+    </dependency>
     <dependency org="pentaho"               name="pentaho-hadoop-hive-jdbc-shim" rev="${dependency.pentaho-hadoop-hive-jdbc-shim.revision}"/>
     <dependency org="pentaho" name="pentaho-big-data-plugin" rev="${dependency.pentaho-big-data-plugin.revision}" changing="true" transitive="false" conf="plugins->default">
       <artifact name="pentaho-big-data-plugin" type="zip"/>

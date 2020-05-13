@@ -29,20 +29,20 @@ import plugin.deem.swt.fileopensave.api.providers.exception.InvalidFileProviderE
 
 public class ProviderService {
 
-  private final List<FileProvider> fileProviders;
+  private final List<FileProvider<?>> fileProviders;
 
-  public ProviderService( List<FileProvider> fileProviders ) {
+  public ProviderService( List<FileProvider<?>> fileProviders ) {
     this.fileProviders = fileProviders;
   }
 
-  public FileProvider get( String provider ) throws InvalidFileProviderException {
+  public FileProvider<?> get( String provider ) throws InvalidFileProviderException {
     return fileProviders.stream().filter( fileProvider1 ->
       fileProvider1.getType().equalsIgnoreCase( provider ) && fileProvider1.isAvailable() )
       .findFirst()
       .orElseThrow( InvalidFileProviderException::new );
   }
 
-  public List<FileProvider> get() {
+  public List<FileProvider<?>> get() {
     return fileProviders;
   }
 

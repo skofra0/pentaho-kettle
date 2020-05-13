@@ -32,6 +32,9 @@ import org.pentaho.di.core.extension.ExtensionPointInterface;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.ui.core.FileDialogOperation;
 import org.pentaho.di.ui.spoon.Spoon;
+
+import no.deem.core.utils.Lists;
+
 import org.pentaho.di.core.util.Utils;
 
 import plugin.deem.swt.fileopensave.api.providers.FileProvider;
@@ -50,7 +53,7 @@ public class FileOpenSaveExtensionPoint implements ExtensionPointInterface {
     private ProviderService providerService;
 
     public FileOpenSaveExtensionPoint() {
-        this.providerService = null;
+        this.providerService = new ProviderService(Lists.of(new LocalFileProvider()));
     }
 
     public FileOpenSaveExtensionPoint(ProviderService providerService) {
