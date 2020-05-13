@@ -1,5 +1,6 @@
 <extension-points>
-  
-  <!-- There is nothing by defaults.  OEM vendors might add default extension-point entries below though -->
-  
+	<extension-point id="FileOpenSaveNewExtensionPoint">
+		<description>SpoonOpenSaveNew</description>
+		<classname>plugin.deem.swt.fileopensave.extension.FileOpenSaveExtensionPoint</classname>
+	</extension-point>
 </extension-points>

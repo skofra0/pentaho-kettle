@@ -7,7 +7,7 @@
 	<parent>
 		<artifactId>pentaho-repository-vfs</artifactId>
 		<groupId>org.pentaho.di.plugins</groupId>
-		<version>9.0.0.3-542</version>
+		<version>9.0.3-001</version>
 	</parent>
 
 	<artifactId>pentaho-repository-vfs-core</artifactId>
@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>pentaho</groupId>
 			<artifactId>pentaho-platform-repository</artifactId>
-			<version>${pdi.version}</version>
+			<version>${platform.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

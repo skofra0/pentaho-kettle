@@ -56,6 +56,7 @@
         <module>aggregate-rows</module>
         <module>google-analytics</module>
         <module>pentaho-googledrive-vfs</module>
+        <module>pentaho-repository-vfs</module>
         <module>dummy</module>
         <module>json</module>
         <module>s3csvinput</module>
