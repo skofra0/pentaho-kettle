@@ -22,10 +22,13 @@
 
 package org.pentaho.di.trans.steps.salesforceinput;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-import mondrian.util.Base64;
+// import mondrian.util.Base64; // SKOFRA
+import java.util.Base64;
+import java.nio.charset.StandardCharsets;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.util.Utils;
@@ -276,7 +279,10 @@ public class SalesforceInput extends SalesforceStep {
     } else {
       // binary type of salesforce requires specific conversion
       if ( value != null ) {
-        outputRowData[ i ] = Base64.decode( value );
+        // outputRowData[ i ] = Base64.decode( value ); // SKOFRA
+        outputRowData[ i ] = Base64.getEncoder().encode( value.getBytes(StandardCharsets.UTF_8) );
+
+        
       } else {
         outputRowData[ i ] = null;
       }

@@ -32,13 +32,13 @@
     <derbyclient.version>10.2.1.6</derbyclient.version>
     <hsqldb.version>2.3.2</hsqldb.version>
     <jaybird.version>2.1.6</jaybird.version>
-    <jt400.version>6.1</jt400.version>
+    <jt400.version>10.2</jt400.version>
     <LucidDbClient-minimal.version>0.9.4</LucidDbClient-minimal.version>
     <sapdbc.version>7.4.4</sapdbc.version>
     <sqlite-jdbc.version>3.27.2.1</sqlite-jdbc.version>
     <webservices-api.version>2.3.1</webservices-api.version>
     <webservices-rt.version>2.3.1</webservices-rt.version>
-    <asm.version>3.2</asm.version>
+    <asm.version>7.3.1</asm.version>
     <blueprints-core.version>2.6.0</blueprints-core.version>
     <commons-configuration.version>1.9</commons-configuration.version>
     <flexjson.version>2.1</flexjson.version>
@@ -158,11 +158,11 @@
       <artifactId>json</artifactId>
       <version>${pentaho-json.version}</version>
     </dependency>
-    <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>pdi-osgi-bridge-core</artifactId>
-      <version>${pdi-osgi-bridge.version}</version>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>pentaho</groupId> -->
+<!--       <artifactId>pdi-osgi-bridge-core</artifactId> -->
+<!--       <version>${pdi-osgi-bridge.version}</version> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-database-model</artifactId>
@@ -240,100 +240,101 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.pentaho</groupId>
-      <artifactId>pentaho-hadoop-shims-common-mapreduce</artifactId>
-      <version>${pentaho-hadoop-shims.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho</groupId> -->
+<!--       <artifactId>pentaho-hadoop-shims-common-mapreduce</artifactId> -->
+<!--       <version>${pentaho-hadoop-shims.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
 
     <!--  Pentaho reporting dependencies -->
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-drill-down</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-kettle</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-mondrian</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-olap4j</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-pmd</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-reportdesigner-parser</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-sampledata</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-scripting</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-toc</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>classic-extensions-xpath</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>legacy-charts</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>legacy-functions</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.reporting.engine</groupId>
-      <artifactId>wizard-core</artifactId>
-      <version>${pentaho-reporting.version}</version>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-drill-down</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-kettle</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-mondrian</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-olap4j</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-pmd</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-reportdesigner-parser</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-sampledata</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-scripting</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-toc</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>classic-extensions-xpath</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>legacy-charts</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>legacy-functions</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.reporting.engine</groupId> -->
+<!--       <artifactId>wizard-core</artifactId> -->
+<!--       <version>${pentaho-reporting.version}</version> -->
+<!--     </dependency> -->
 
     <!-- OSGi Dependencies -->
     <!-- Because of: -->
     <!-- pentaho-platform-core (PentahoSystem) and pdi-osgi-bridge-core (KarafLifecycleListener and OSGIPluginRegistryExtension) -->
+ 
     <dependency>
        <groupId>org.osgi</groupId>
        <artifactId>org.osgi.core</artifactId>
        <scope>compile</scope>
     </dependency>
 
-    <!-- Karaf Dependencies -->
+    <!-- Karaf Dependencies 
     <dependency>
       <groupId>org.apache.karaf</groupId>
       <artifactId>org.apache.karaf.main</artifactId>
@@ -384,6 +385,7 @@
         </exclusion>
       </exclusions>
     </dependency>
+    -->
 
     <!-- Third-party JDBC dependencies -->
     <dependency>
@@ -394,53 +396,53 @@
       <groupId>jaxen</groupId>
       <artifactId>jaxen</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>${derby.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derbyclient</artifactId>
-      <version>${derbyclient.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <version>${hsqldb.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.firebirdsql.jdbc</groupId>
-      <artifactId>jaybird</artifactId>
-      <version>${jaybird.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.apache.derby</groupId> -->
+<!--       <artifactId>derby</artifactId> -->
+<!--       <version>${derby.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.derby</groupId> -->
+<!--       <artifactId>derbyclient</artifactId> -->
+<!--       <version>${derbyclient.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.hsqldb</groupId> -->
+<!--       <artifactId>hsqldb</artifactId> -->
+<!--       <version>${hsqldb.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.firebirdsql.jdbc</groupId> -->
+<!--       <artifactId>jaybird</artifactId> -->
+<!--       <version>${jaybird.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>net.sf.jt400</groupId>
-      <artifactId>jt400</artifactId>
+      <artifactId>jt400-jdk8</artifactId>
       <version>${jt400.version}</version>
       <exclusions>
         <exclusion>
@@ -449,49 +451,49 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>luciddb</groupId>
-      <artifactId>LucidDbClient-minimal</artifactId>
-      <version>${LucidDbClient-minimal.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.sap</groupId>
-      <artifactId>sapdbc</artifactId>
-      <version>${sapdbc.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.xerial</groupId>
-      <artifactId>sqlite-jdbc</artifactId>
-      <version>${sqlite-jdbc.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>luciddb</groupId> -->
+<!--       <artifactId>LucidDbClient-minimal</artifactId> -->
+<!--       <version>${LucidDbClient-minimal.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>com.sap</groupId> -->
+<!--       <artifactId>sapdbc</artifactId> -->
+<!--       <version>${sapdbc.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.xerial</groupId> -->
+<!--       <artifactId>sqlite-jdbc</artifactId> -->
+<!--       <version>${sqlite-jdbc.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>${javax.servlet-api.version}</version>
     </dependency>
-    <dependency>
-      <groupId>net.snowflake</groupId>
-      <artifactId>snowflake-jdbc</artifactId>
-      <version>${snowflake-jdbc.version}</version>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>net.snowflake</groupId> -->
+<!--       <artifactId>snowflake-jdbc</artifactId> -->
+<!--       <version>${snowflake-jdbc.version}</version> -->
+<!--     </dependency> -->
 
     <!-- Spring -->
     <dependency>
@@ -564,19 +566,19 @@
         </exclusion>
       </exclusions>
     </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.glassfish.metro</groupId> -->
+<!--       <artifactId>webservices-rt</artifactId> -->
+<!--       <version>${webservices-rt.version}</version> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
     <dependency>
-      <groupId>org.glassfish.metro</groupId>
-      <artifactId>webservices-rt</artifactId>
-      <version>${webservices-rt.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>asm</groupId>
+	  <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
       <version>${asm.version}</version>
       <exclusions>

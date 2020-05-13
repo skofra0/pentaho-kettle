@@ -64,9 +64,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyMapOf;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -137,8 +137,7 @@ public class SlaveServerTest {
     HttpGet httpGetMock = mock( HttpGet.class );
     URI uriMock = new URI( "fake" );
     doReturn( uriMock ).when( httpGetMock ).getURI();
-    doReturn( httpGetMock ).when( slaveServer ).buildExecuteServiceMethod( anyString(), anyMapOf( String.class,
-        String.class ) );
+    doReturn( httpGetMock ).when( slaveServer ).buildExecuteServiceMethod( anyString(), anyMap());
     slaveServer.setHostname( "hostNameStub" );
     slaveServer.setUsername( "userNAmeStub" );
     slaveServer.execService( "wrong_app_name" );
@@ -189,7 +188,7 @@ public class SlaveServerTest {
     when( client.execute( any(), any( HttpContext.class ) ) ).then( new Answer<HttpResponse>() {
       @Override
       public HttpResponse answer( InvocationOnMock invocation ) throws Throwable {
-        HttpClientContext context = invocation.getArgument( 1, HttpClientContext.class );
+        HttpClientContext context = invocation.getArgument( 1);
         Credentials cred = context.getCredentialsProvider().getCredentials( new AuthScope( "hname", 1111 ) );
         assertEquals( "uname", cred.getUserPrincipal().getName() );
         return mockResponse( 200, responseContent );

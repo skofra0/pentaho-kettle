@@ -35,6 +35,7 @@ import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -84,6 +85,16 @@ public class GetPropertiesServletTest {
       public String toString() {
         return baos.toString();
       }
+
+    @Override
+    public boolean isReady() {
+        return false;
+    }
+
+    @Override
+    public void setWriteListener(WriteListener writeListener) {
+        
+    }
     } );
 
     servlet.doGet( mockHttpServletRequest, mockHttpServletResponse );

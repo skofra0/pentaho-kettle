@@ -24,7 +24,7 @@ package org.pentaho.di.ui.repo.timeout;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,8 +34,6 @@ import org.junit.Test;
 import org.pentaho.di.repository.KettleRepositoryLostException;
 import org.pentaho.di.repository.ReconnectableRepository;
 import org.pentaho.di.ui.repo.controller.RepositoryConnectController;
-import org.pentaho.di.ui.repo.timeout.RepositorySessionTimeoutHandler;
-import org.pentaho.di.ui.repo.timeout.SessionTimeoutHandler;
 import org.pentaho.metastore.api.IMetaStore;
 
 public class RepositorySessionTimeoutHandlerTest {

@@ -2,6 +2,7 @@ package org.pentaho.di.engine.configuration.impl.pentaho.scheduler;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +13,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.mockito.internal.util.reflection.Whitebox.getInternalState;
-import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
 
 public class JobScheduleRequestTest {
 
@@ -22,7 +21,7 @@ public class JobScheduleRequestTest {
     JobScheduleRequest jobScheduleRequest = mock( JobScheduleRequest.class );
     when( jobScheduleRequest.getInputFile() ).thenCallRealMethod();
     String inputFile = "hitachi";
-    setInternalState( jobScheduleRequest, "inputFile", inputFile );
+    Whitebox.setInternalState( jobScheduleRequest, "inputFile", inputFile );
     Assert.assertEquals( inputFile, jobScheduleRequest.getInputFile() );
   }
 
@@ -32,7 +31,7 @@ public class JobScheduleRequestTest {
     doCallRealMethod().when( jobScheduleRequest ).setInputFile( any() );
     String inputFile = "hitachi";
     jobScheduleRequest.setInputFile( inputFile );
-    Assert.assertEquals( inputFile, getInternalState( jobScheduleRequest, "inputFile" ) );
+    Assert.assertEquals( inputFile, Whitebox.getInternalState( jobScheduleRequest, "inputFile" ) );
   }
 
   @Test
@@ -41,7 +40,7 @@ public class JobScheduleRequestTest {
     when( jobScheduleRequest.getJobParameters() ).thenCallRealMethod();
     List<String> jobParameters = new ArrayList<>();
     jobParameters.add( "hitachi" );
-    setInternalState( jobScheduleRequest, "jobParameters", jobParameters );
+    Whitebox.setInternalState( jobScheduleRequest, "jobParameters", jobParameters );
     Assert.assertEquals( jobParameters, jobScheduleRequest.getJobParameters() );
   }
 
@@ -53,7 +52,7 @@ public class JobScheduleRequestTest {
     JobScheduleParam jobScheduleParam = new JobScheduleParam();
     jobParameters.add( jobScheduleParam );
     jobScheduleRequest.setJobParameters( jobParameters );
-    Assert.assertEquals( jobParameters, getInternalState( jobScheduleRequest, "jobParameters" ) );
+    Assert.assertEquals( jobParameters, Whitebox.getInternalState( jobScheduleRequest, "jobParameters" ) );
   }
 
   @Test
@@ -62,7 +61,7 @@ public class JobScheduleRequestTest {
     when( jobScheduleRequest.getPdiParameters() ).thenCallRealMethod();
     Map<String, String> pdiParameters = new HashMap<>();
     pdiParameters.put( "hitachi", "vantara" );
-    setInternalState( jobScheduleRequest, "pdiParameters", pdiParameters );
+    Whitebox.setInternalState( jobScheduleRequest, "pdiParameters", pdiParameters );
     Assert.assertEquals( pdiParameters, jobScheduleRequest.getPdiParameters() );
   }
 
@@ -73,6 +72,6 @@ public class JobScheduleRequestTest {
     Map<String, String> pdiParameters = new HashMap<>();
     pdiParameters.put( "hitachi", "vantara" );
     jobScheduleRequest.setPdiParameters( pdiParameters );
-    Assert.assertEquals( pdiParameters, getInternalState( jobScheduleRequest, "pdiParameters" ) );
+    Assert.assertEquals( pdiParameters, Whitebox.getInternalState( jobScheduleRequest, "pdiParameters" ) );
   }
 }

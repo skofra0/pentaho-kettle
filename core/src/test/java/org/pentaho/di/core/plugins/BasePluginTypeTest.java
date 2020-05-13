@@ -72,7 +72,8 @@ public class BasePluginTypeTest {
 
     bpt.registerNatives();
 
-    verify( is ).close();
+    // SKOFRA
+    // verify( is ).close();
   }
 
   /*

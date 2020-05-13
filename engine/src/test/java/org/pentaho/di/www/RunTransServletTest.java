@@ -22,6 +22,21 @@
 package org.pentaho.di.www;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +44,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LoggingObjectType;
@@ -40,21 +55,6 @@ import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.pentaho.di.trans.step.StepMetaInterface;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
 
 
 @RunWith( MockitoJUnitRunner.class )
@@ -154,7 +154,7 @@ public class RunTransServletTest {
     Mockito.when( transMeta.getVariable( Mockito.anyString() ) ).thenReturn( "default value" );
 
     Mockito.when( transMeta.listParameters() ).thenReturn( new String[] { testParameter } );
-    Mockito.when( request.getParameterNames() ).thenReturn( new StringTokenizer( testParameter ) );
+ //   Mockito.when( request.getParameterNames() ).thenReturn( new StringTokenizer( testParameter ) );
 
     String testValue = "testValue";
     Mockito.when( request.getParameterValues( testParameter ) ).thenReturn( new String[] { testValue } );
