@@ -23,14 +23,13 @@ package org.pentaho.di.core.database;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSetMetaData;
-
 import java.util.Set;
 
-import com.google.common.collect.Sets;
-
-import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
+
+import com.google.common.collect.Sets;
 
 public class MariaDBDatabaseMeta extends MySQLDatabaseMeta {
   private static final Class<?> PKG = MariaDBDatabaseMeta.class;
@@ -53,7 +52,7 @@ public class MariaDBDatabaseMeta extends MySQLDatabaseMeta {
     if ( getAccessType() == DatabaseMeta.TYPE_ACCESS_ODBC ) {
       return "jdbc:odbc:" + databaseName;
     } else {
-      if ( Const.isEmpty( port ) ) {
+      if ( Utils.isEmpty( port ) ) {
         return "jdbc:mariadb://" + hostname + "/" + databaseName;
       } else {
         return "jdbc:mariadb://" + hostname + ":" + port + "/" + databaseName;

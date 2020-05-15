@@ -225,4 +225,19 @@
     <classname>org.pentaho.di.core.database.SnowflakeHVDatabaseMeta</classname>
   </database-type>
 
+  <database-type id="DEEM_MYSQL">
+    <description>Deem MySQL</description>
+    <classname>org.pentaho.di.core.database.DeemMySqlMeta</classname>
+  </database-type>                                                       
+
+  <database-type id="DEEM_INFOBRIGHT">
+    <description>Deem Infobright</description>
+    <classname>org.pentaho.di.core.database.DeemInfobrightMeta</classname>
+  </database-type>                                                       
+
+  <database-type id="INFOR_DATALAKE">
+    <description>Infor DataLake (Beta, download drivers)</description>
+    <classname>org.pentaho.di.core.database.InforDataLakeMeta</classname>
+  </database-type>                                                       
+
  </database-types>

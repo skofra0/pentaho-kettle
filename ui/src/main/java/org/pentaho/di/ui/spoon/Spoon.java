@@ -24,6 +24,10 @@
 package org.pentaho.di.ui.spoon;
 
 import com.google.common.annotations.VisibleForTesting;
+
+import plugin.deem.swt.repo.controller.RepositoryConnectController;
+import plugin.deem.swt.repo.menu.RepositoryConnectMenu;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang.StringUtils;
@@ -89,6 +93,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -192,11 +197,13 @@ import org.pentaho.di.partition.PartitionSchema;
 import org.pentaho.di.pkg.JarfileGenerator;
 import org.pentaho.di.repository.KettleRepositoryLostException;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepositoriesMeta;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryCapabilities;
 import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryElementInterface;
+import org.pentaho.di.repository.RepositoryMeta;
 import org.pentaho.di.repository.RepositoryObject;
 import org.pentaho.di.repository.RepositoryObjectType;
 import org.pentaho.di.repository.RepositoryOperation;
@@ -890,6 +897,10 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
 
       SpoonPerspectiveManager.getInstance().setStartupPerspective( startupPerspective );
       SpoonPerspectiveManager.getInstance().addPerspective( mainPerspective );
+      
+      XulToolbar toolbar = (XulToolbar) mainSpoonContainer.getDocumentRoot().getElementById("main-toolbar");
+      RepositoryConnectMenu repoConnectMenu = new RepositoryConnectMenu(Spoon.getInstance(), (ToolBar) toolbar.getManagedObject(), new RepositoryConnectController());
+      repoConnectMenu.render();
 
       SpoonPluginManager.getInstance().applyPluginsForContainer( "spoon", mainSpoonContainer );
 
@@ -4268,82 +4279,73 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
   }
 
   public void openFile( boolean importfile ) {
-    try {
-      SpoonPerspective activePerspective = SpoonPerspectiveManager.getInstance().getActivePerspective();
+      try {
+          SpoonPerspective activePerspective = SpoonPerspectiveManager.getInstance().getActivePerspective();
 
-      // In case the perspective wants to handle open/save itself, let it...
-      //
-      if ( !importfile ) {
-        if ( activePerspective instanceof SpoonPerspectiveOpenSaveInterface ) {
-          ( (SpoonPerspectiveOpenSaveInterface) activePerspective ).open();
-          return;
-        }
+          // In case the perspective wants to handle open/save itself, let it...
+          //
+          if (!importfile) {
+              if (activePerspective instanceof SpoonPerspectiveOpenSaveInterface) {
+                  ((SpoonPerspectiveOpenSaveInterface) activePerspective).open();
+                  return;
+              }
+          }
+
+          if (rep == null || importfile) { // Load from XML
+
+              FileDialog dialog = new FileDialog(shell, SWT.OPEN);
+              LinkedHashSet<String> extensions = new LinkedHashSet<>();
+              LinkedHashSet<String> extensionNames = new LinkedHashSet<>();
+              StringBuilder allExtensions = new StringBuilder();
+              for (FileListener l : fileListeners) {
+                  for (String ext : l.getSupportedExtensions()) {
+                      extensions.add("*." + ext);
+                      allExtensions.append("*.").append(ext).append(";");
+                  }
+                  Collections.addAll(extensionNames, l.getFileTypeDisplayNames(Locale.getDefault()));
+              }
+              extensions.add("*");
+              extensionNames.add(BaseMessages.getString(PKG, "Spoon.Dialog.OpenFile.AllFiles"));
+
+              String[] exts = new String[extensions.size() + 1];
+              exts[0] = allExtensions.toString();
+              System.arraycopy(extensions.toArray(new String[extensions.size()]), 0, exts, 1, extensions.size());
+
+              String[] extNames = new String[extensionNames.size() + 1];
+              extNames[0] = BaseMessages.getString(PKG, "Spoon.Dialog.OpenFile.AllTypes");
+              System.arraycopy(extensionNames.toArray(new String[extensionNames.size()]), 0, extNames, 1, extensionNames.size());
+
+              dialog.setFilterExtensions(exts);
+
+              setFilterPath(dialog);
+              String filename = dialog.open();
+              if (filename != null) {
+
+                  if (importfile) {
+                      if (activePerspective instanceof SpoonPerspectiveOpenSaveInterface) {
+                          ((SpoonPerspectiveOpenSaveInterface) activePerspective).importFile(filename);
+                          return;
+                      }
+                  }
+                  lastDirOpened = dialog.getFilterPath();
+                  openFile(filename, importfile);
+              }
+          } else {
+              try {
+                  FileDialogOperation fileDialogOperation = new FileDialogOperation(FileDialogOperation.OPEN, FileDialogOperation.ORIGIN_SPOON);
+                  ExtensionPointHandler.callExtensionPoint(log, KettleExtensionPoint.SpoonOpenSaveRepository.id, fileDialogOperation);
+                  if (fileDialogOperation.getRepositoryObject() != null) {
+                      RepositoryObject repositoryObject = (RepositoryObject) fileDialogOperation.getRepositoryObject();
+                      loadObjectFromRepository(repositoryObject.getObjectId(), repositoryObject.getObjectType(), null);
+                  }
+              } catch (Exception e) {
+                  // Ignore
+              }
+          }
+      } catch (KettleRepositoryLostException krle) {
+          new ErrorDialog(getShell(), BaseMessages.getString(PKG, "Spoon.Error"), krle.getPrefaceMessage(), krle);
+          this.closeRepository();
       }
-
-      if ( rep == null || importfile ) { // Load from XML
-
-        FileDialog dialog = new FileDialog( shell, SWT.OPEN );
-
-        LinkedHashSet<String> extensions = new LinkedHashSet<>();
-        LinkedHashSet<String> extensionNames = new LinkedHashSet<>();
-        StringBuilder allExtensions = new StringBuilder();
-        for ( FileListener l : fileListeners ) {
-          for ( String ext : l.getSupportedExtensions() ) {
-            extensions.add( "*." + ext );
-            allExtensions.append( "*." ).append( ext ).append( ";" );
-          }
-          Collections.addAll( extensionNames, l.getFileTypeDisplayNames( Locale.getDefault() ) );
-        }
-        extensions.add( "*" );
-        extensionNames.add( BaseMessages.getString( PKG, "Spoon.Dialog.OpenFile.AllFiles" ) );
-
-        String[] exts = new String[extensions.size() + 1];
-        exts[0] = allExtensions.toString();
-        System.arraycopy( extensions.toArray( new String[extensions.size()] ), 0, exts, 1, extensions.size() );
-
-        String[] extNames = new String[extensionNames.size() + 1];
-        extNames[0] = BaseMessages.getString( PKG, "Spoon.Dialog.OpenFile.AllTypes" );
-        System.arraycopy( extensionNames.toArray( new String[extensionNames.size()] ), 0, extNames, 1, extensionNames
-            .size() );
-
-        dialog.setFilterExtensions( exts );
-
-        setFilterPath( dialog );
-        String filename = dialog.open();
-        if ( filename != null ) {
-
-          if ( importfile ) {
-            if ( activePerspective instanceof SpoonPerspectiveOpenSaveInterface ) {
-              ( (SpoonPerspectiveOpenSaveInterface) activePerspective ).importFile( filename );
-              return;
-            }
-          }
-
-          lastDirOpened = dialog.getFilterPath();
-          openFile( filename, importfile );
-        }
-      } else {
-        try {
-          FileDialogOperation fileDialogOperation =
-            new FileDialogOperation( FileDialogOperation.OPEN, FileDialogOperation.ORIGIN_SPOON );
-          ExtensionPointHandler.callExtensionPoint( log, KettleExtensionPoint.SpoonOpenSaveRepository.id,
-            fileDialogOperation );
-          if ( fileDialogOperation.getRepositoryObject() != null ) {
-            RepositoryObject repositoryObject = (RepositoryObject) fileDialogOperation.getRepositoryObject();
-            loadObjectFromRepository( repositoryObject.getObjectId(), repositoryObject.getObjectType(), null );
-          }
-        } catch ( Exception e ) {
-         // Ignore
-        }
-      }
-    } catch ( KettleRepositoryLostException krle ) {
-      new ErrorDialog(
-          getShell(),
-          BaseMessages.getString( PKG, "Spoon.Error" ),
-          krle.getPrefaceMessage(),
-          krle );
-      this.closeRepository();
-    }
   }
 
   private void setFilterPath( FileDialog dialog ) {
@@ -5295,37 +5297,37 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
       }
 
       if ( ask_name ) {
-        try {
-          String fileType = meta.getFileType().equals( LastUsedFile.FILE_TYPE_TRANSFORMATION )
-            ? FileDialogOperation.TRANSFORMATION : FileDialogOperation.JOB;
-          FileDialogOperation fileDialogOperation = getFileDialogOperation( FileDialogOperation.SAVE,
-            FileDialogOperation.ORIGIN_SPOON );
-          fileDialogOperation.setFileType( fileType );
-          fileDialogOperation.setPath( meta.getRepositoryDirectory().getPath() );
-          //Set the filename so it can be used as the default filename in the save dialog
-          fileDialogOperation.setFilename( meta.getFilename() );
-          ExtensionPointHandler.callExtensionPoint( getLog(), KettleExtensionPoint.SpoonOpenSaveRepository.id,
-            fileDialogOperation );
-          if ( fileDialogOperation.getRepositoryObject() != null ) {
-            RepositoryObject repositoryObject = (RepositoryObject) fileDialogOperation.getRepositoryObject();
-            final RepositoryDirectoryInterface oldDir = meta.getRepositoryDirectory();
-            final String oldName = meta.getName();
-            meta.setRepositoryDirectory( repositoryObject.getRepositoryDirectory() );
-            meta.setName( repositoryObject.getName() );
-            final boolean saved = saveToRepositoryConfirmed( meta );
-            // rename the tab only if the meta object was successfully saved
-            if ( saved ) {
-              delegates.tabs.renameTabs();
-            } else {
-              // if the object wasn't successfully saved, set the name and directory back to their original values
-              meta.setRepositoryDirectory( oldDir );
-              meta.setName( oldName );
-            }
-            return saved;
+          try {
+              String fileType = meta.getFileType().equals(LastUsedFile.FILE_TYPE_TRANSFORMATION) ? FileDialogOperation.TRANSFORMATION : FileDialogOperation.JOB;
+              FileDialogOperation fileDialogOperation = getFileDialogOperation(FileDialogOperation.SAVE, FileDialogOperation.ORIGIN_SPOON);
+              fileDialogOperation.setFileType(fileType);
+              fileDialogOperation.setPath(meta.getRepositoryDirectory().getPath());
+              // Set the filename so it can be used as the default filename in the save dialog
+              fileDialogOperation.setFilename(meta.getFilename());
+              
+              fileDialogOperation.setRepository(rep); // SKOFRA
+              
+              ExtensionPointHandler.callExtensionPoint(getLog(), KettleExtensionPoint.SpoonOpenSaveRepository.id, fileDialogOperation);
+              if (fileDialogOperation.getRepositoryObject() != null) {
+                  RepositoryObject repositoryObject = (RepositoryObject) fileDialogOperation.getRepositoryObject();
+                  final RepositoryDirectoryInterface oldDir = meta.getRepositoryDirectory();
+                  final String oldName = meta.getName();
+                  meta.setRepositoryDirectory(repositoryObject.getRepositoryDirectory());
+                  meta.setName(repositoryObject.getName());
+                  final boolean saved = saveToRepositoryConfirmed(meta);
+                  // rename the tab only if the meta object was successfully saved
+                  if (saved) {
+                      delegates.tabs.renameTabs();
+                  } else {
+                      // if the object wasn't successfully saved, set the name and directory back to their original values
+                      meta.setRepositoryDirectory(oldDir);
+                      meta.setName(oldName);
+                  }
+                  return saved;
+              }
+          } catch (KettleException ke) {
+              // Ignore
           }
-        } catch ( KettleException ke ) {
-          //Ignore
-        }
       } else {
         return saveToRepositoryConfirmed( meta );
       }
@@ -7925,6 +7927,8 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
 
   public void start( CommandLineOption[] options ) throws KettleException {
 
+    selectRep( options ); // SKOFRA Show the repository connection dialog
+
     // Read the start option parameters
     //
     handleStartOptions( options );
@@ -7952,6 +7956,88 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
         PKG, "Spoon.Warning.DevelopmentRelease.Message", Const.CR, BuildVersion.getInstance().getVersion() ) );
       dialog.open();
     }
+  }
+  
+  // SKOFRA
+  public void selectRep(CommandLineOption[] options) {
+      RepositoryMeta repositoryMeta;
+
+      StringBuilder optionRepname = getCommandLineOption(options, "rep").getArgument();
+      StringBuilder optionFilename = getCommandLineOption(options, "file").getArgument();
+      StringBuilder optionUsername = getCommandLineOption(options, "user").getArgument();
+      StringBuilder optionPassword = getCommandLineOption(options, "pass").getArgument();
+
+      if (Utils.isEmpty(optionRepname) && Utils.isEmpty(optionFilename) && props.showRepositoriesDialogAtStartup()) {
+          if (log.isBasic()) {
+              // "Asking for repository"
+              log.logBasic(BaseMessages.getString(PKG, "Spoon.Log.AskingForRepository"));
+          }
+
+          loginDialog = new RepositoriesDialog(shell, null, new ILoginCallback() {
+
+              public void onSuccess(Repository repository) {
+                  setRepository(repository);
+                  SpoonPluginManager.getInstance().notifyLifecycleListeners(SpoonLifeCycleEvent.REPOSITORY_CONNECTED);
+              }
+
+              public void onError(Throwable t) {
+                  onLoginError(t);
+              }
+
+              public void onCancel() {
+                  // do nothing
+              }
+          });
+          hideSplash();
+          loginDialog.show();
+          showSplash();
+      } else if (!Utils.isEmpty(optionRepname) && Utils.isEmpty(optionFilename)) {
+          RepositoriesMeta repsInfo = new RepositoriesMeta();
+          repsInfo.getLog().setLogLevel(log.getLogLevel());
+          try {
+              repsInfo.readData();
+              repositoryMeta = repsInfo.findRepository(optionRepname.toString());
+              if (repositoryMeta != null && !Utils.isEmpty(optionUsername) && !Utils.isEmpty(optionPassword)) {
+                  // Define and connect to the repository...
+                  Repository repo = PluginRegistry.getInstance().loadClass(RepositoryPluginType.class, repositoryMeta, Repository.class);
+                  repo.init(repositoryMeta);
+                  repo.getLog().setLogLevel(log.getLogLevel());
+                  repo.connect(optionUsername != null ? optionUsername.toString() : null, optionPassword != null ? optionPassword.toString() : null);
+                  setRepository(repo);
+              } else {
+                  if (!Utils.isEmpty(optionUsername) && !Utils.isEmpty(optionPassword)) {
+                      String msg = BaseMessages.getString(PKG, "Spoon.Log.NoRepositoriesDefined");
+                      log.logError(msg); // "No repositories defined on this system."
+                      MessageBox mb = new MessageBox(shell, SWT.OK | SWT.ICON_ERROR);
+                      mb.setMessage(BaseMessages.getString(PKG, "Spoon.Error.Repository.NotFound", optionRepname.toString()));
+                      mb.setText(BaseMessages.getString(PKG, "Spoon.Error.Repository.NotFound.Title"));
+                      mb.open();
+                  }
+
+                  loginDialog = new RepositoriesDialog(shell, null, new ILoginCallback() {
+                      public void onSuccess(Repository repository) {
+                          setRepository(repository);
+                          SpoonPluginManager.getInstance().notifyLifecycleListeners(SpoonLifeCycleEvent.REPOSITORY_CONNECTED);
+                      }
+
+                      public void onError(Throwable t) {
+                          onLoginError(t);
+                      }
+
+                      public void onCancel() {
+
+                      }
+                  });
+                  hideSplash();
+                  loginDialog.show();
+                  showSplash();
+              }
+          } catch (Exception e) {
+              hideSplash();
+              // Eat the exception but log it...
+              log.logError("Error reading repositories xml file", e);
+          }
+      }
   }
 
   private void waitForDispose() {
@@ -9257,6 +9343,12 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
       splash.hide();
     }
   }
+  
+  private void showSplash() {
+      if ( splash != null ) {
+        splash.show();
+      }
+    }
 
   private void checkEnvironment() {
     if ( EnvironmentUtils.getInstance().isBrowserEnvironmentCheckDisabled() ) {

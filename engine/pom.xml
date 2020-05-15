@@ -970,6 +970,17 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>8.2.2.jre8</version>
 		</dependency>
+        <dependency>
+            <groupId>net.sf.jt400</groupId>
+            <artifactId>jt400-jdk8</artifactId>
+            <version>${jt400.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 		<dependency>
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>

@@ -46,6 +46,11 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
   private static final Class<?> PKG = MySQLDatabaseMeta.class;
 
   private static final int VARCHAR_LIMIT = 65_535;
+  
+  public static final String DRIVER_CLASS_MARIADB = "org.mariadb.jdbc.Driver";
+  public static final String DRIVER_CLASS_MYSQL = "org.gjt.mm.mysql.Driver";
+
+  private static String driverClass = "";
 
   private static final Set<String>
     SHORT_MESSAGE_EXCEPTIONS =
@@ -100,11 +105,20 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
   }
 
   @Override public String getDriverClass() {
-    if ( getAccessType() == DatabaseMeta.TYPE_ACCESS_ODBC ) {
-      return "sun.jdbc.odbc.JdbcOdbcDriver";
-    } else {
-      return "org.gjt.mm.mysql.Driver";
-    }
+      if (getAccessType() == DatabaseMeta.TYPE_ACCESS_ODBC) {
+          return "sun.jdbc.odbc.JdbcOdbcDriver";
+      } else {
+          // SKOFRA
+          if (driverClass.isEmpty()) {
+              try {
+                  driverClass = DRIVER_CLASS_MARIADB;
+                  Class.forName(driverClass);
+              } catch (Exception e) {
+                  driverClass = DRIVER_CLASS_MYSQL;
+              }
+          }
+          return driverClass;
+      }
   }
 
   @Override public String getURL( String hostname, String port, String databaseName ) {
