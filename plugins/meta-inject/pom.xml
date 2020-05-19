@@ -21,7 +21,7 @@
     <pdi.version>${project.version}</pdi.version>
     <pentaho-metaverse.version>9.0.0.3-542</pentaho-metaverse.version>
     <platform.version>9.0.0.3-542</platform.version>
-    <servlet-api.version>2.3</servlet-api.version>
+    <servlet-api.version>2.5</servlet-api.version>
     <mockito.version>2.28.2</mockito.version>
     <guava.version>17.0</guava.version>
     <jface.version>3.3.0-I20070606-0010</jface.version>

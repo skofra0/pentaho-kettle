@@ -127,7 +127,7 @@ public class SlaveServerTest {
     when( status.getStatusCode() ).thenReturn( statusCode );
     when( resp.getStatusLine() ).thenReturn( status );
     HttpEntity entity = mock( HttpEntity.class );
-    when( entity.getContent() ).thenReturn( IOUtils.getInputStream( entityText ) );
+    when( entity.getContent() ).thenReturn( IOUtils.getInputStreamFromString( entityText ) );
     when( resp.getEntity() ).thenReturn( entity );
     return resp;
   }

@@ -23,7 +23,7 @@
     <commons-lang.version>2.6</commons-lang.version>
     <encoder.version>1.2</encoder.version>
     <guava.version>17.0</guava.version>
-    <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
     <mockito.version>2.28.2</mockito.version>
     <build.revision>${project.version}</build.revision>
     <timestamp>${maven.build.timestamp}</timestamp>
