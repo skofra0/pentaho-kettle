@@ -1,0 +1,18 @@
+<extension-points>
+
+	<extension-point id="FileOpenSaveNewExtensionPoint">
+		<description>SpoonOpenSaveNew</description>
+		<classname>plugin.deem.swt.fileopensave.extension.FileOpenSaveExtensionPoint</classname>
+	</extension-point>
+
+	<extension-point id="RepositoryOpenSaveExtensionPoint">
+		<description>SpoonOpenSaveRepository</description>
+		<classname>plugin.deem.swt.fileopensave.extension.RepositoryOpenSaveExtensionPoint</classname>
+	</extension-point>
+
+	<extension-point id="RepositorySpoonStartExtensionPoint">
+		<description>SpoonStart</description>
+		<classname>plugin.deem.swt.repo.extension.RepositorySpoonStartExtensionPoint</classname>
+	</extension-point>
+
+</extension-points>

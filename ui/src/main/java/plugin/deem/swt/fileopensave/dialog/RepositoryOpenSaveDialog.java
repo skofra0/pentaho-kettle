@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryObjectType;
-import org.pentaho.di.ui.repository.dialog.SelectObjectDialog;
 
 public class RepositoryOpenSaveDialog {
 
@@ -39,7 +38,7 @@ public class RepositoryOpenSaveDialog {
     }
 
     public void open(Repository repository, String directory, String state, String title, String filter, String origin, String filename, String fileType) {
-        SelectObjectDialog sod = new SelectObjectDialog(shell, repository);
+        RepositorySelectObjectDialog sod = new RepositorySelectObjectDialog(shell, repository);
         if (sod.open() != null) {
             RepositoryObjectType type = sod.getObjectType();
             objectType = type.getExtension();

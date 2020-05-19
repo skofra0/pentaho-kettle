@@ -157,11 +157,11 @@
             <artifactId>json</artifactId>
             <version>${pentaho-json.version}</version>
         </dependency>
-        <dependency>
-            <groupId>pentaho</groupId>
-            <artifactId>pdi-osgi-bridge-core</artifactId>
-            <version>${pdi-osgi-bridge.version}</version>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>pentaho</groupId> -->
+<!--             <artifactId>pdi-osgi-bridge-core</artifactId> -->
+<!--             <version>${pdi-osgi-bridge.version}</version> -->
+<!--         </dependency> -->
         <dependency>
             <groupId>org.pentaho</groupId>
             <artifactId>commons-database-model</artifactId>
