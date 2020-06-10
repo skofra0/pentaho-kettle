@@ -16,7 +16,7 @@
   </publications>
  
   <dependencies defaultconf="dev->default">
-    <dependency org="commons-io" name="commons-io" rev="2.6" transitive="false"/>
+    <dependency org="commons-io" name="commons-io" rev="2.7" transitive="false"/>
     <dependency org="org.apache.commons" name="commons-vfs2" rev="2.2" transitive="false"/>
                 
     <dependency org="pentaho-kettle" name="kettle-core" rev="${dependency.kettle.revision}" changing="true"/>  
