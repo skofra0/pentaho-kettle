@@ -44,6 +44,7 @@ import org.pentaho.di.core.plugins.PluginTypeInterface;
 import org.pentaho.di.core.plugins.RepositoryPluginType;
 import org.pentaho.di.core.plugins.StepDialogFragmentType;
 import org.pentaho.di.core.plugins.StepPluginType;
+import org.pentaho.di.deem.PluginService;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.IUser;
 import org.pentaho.di.repository.Repository;
@@ -144,6 +145,7 @@ public class KettleEnvironment {
         //
         pluginClasses.forEach( PluginRegistry::addPluginType );
         PluginRegistry.init();
+        PluginService.getInstance().loadPlugins(); // SKOFRA
 
         // Also read the list of variables.
         //

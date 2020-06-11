@@ -1,4 +1,4 @@
-package org.pentaho.di.core.database;
+package org.pentaho.di.deem.database;
 
 /*
  * /*
@@ -26,6 +26,9 @@ package org.pentaho.di.core.database;
  */
 
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.BaseDatabaseMeta;
+import org.pentaho.di.core.database.DatabaseInterface;
+import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.plugins.DatabaseMetaPlugin;
 import org.pentaho.di.core.row.ValueMetaInterface;
 

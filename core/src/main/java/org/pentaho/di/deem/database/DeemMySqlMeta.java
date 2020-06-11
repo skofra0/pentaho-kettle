@@ -22,12 +22,15 @@
  **************************************************************************
  */
 
-package org.pentaho.di.core.database;
+package org.pentaho.di.deem.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.DatabaseInterface;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.MySQLDatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.plugins.DatabaseMetaPlugin;
 import org.pentaho.di.core.row.ValueMetaInterface;
