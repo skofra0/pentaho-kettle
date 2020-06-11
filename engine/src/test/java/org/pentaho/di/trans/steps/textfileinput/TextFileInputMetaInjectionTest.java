@@ -22,26 +22,9 @@
 
 package org.pentaho.di.trans.steps.textfileinput;
 
-import org.junit.Test;
-import org.pentaho.di.trans.step.StepInjectionMetaEntry;
-import org.pentaho.di.trans.step.StepInjectionUtil;
-import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
-import org.pentaho.di.trans.steps.loadsave.validator.IntLoadSaveValidator;
-import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
-
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import org.pentaho.di.core.row.ValueMetaInterface;
-
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ACCEPT_FILE_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ACCEPT_FILE_NAMES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ACCEPT_FILE_STEP;
@@ -59,6 +42,7 @@ import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjectio
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ERROR_LINES_SKIPPED;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ERROR_TEXT_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.ESCAPE_CHAR;
+import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILENAME_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_ERROR_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_ERROR_MESSAGE_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_EXTENSION_FIELDNAME;
@@ -70,7 +54,6 @@ import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjectio
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_SIZE_FIELDNAME;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_TYPE;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILE_URI_FIELDNAME;
-import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.FILENAME_FIELD;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.HAS_FOOTER;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.HAS_PAGED_LAYOUT;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.HAS_WRAPPED_LINES;
@@ -80,8 +63,8 @@ import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjectio
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.INCLUDE_ROW_NUMBER;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.LINE_NR_FILES_EXTENTION;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.LINE_NR_FILES_TARGET_DIR;
-import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NR_DOC_HEADER_LINES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NO_EMPTY_LINES;
+import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NR_DOC_HEADER_LINES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NR_FOOTER_LINES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NR_HEADER_LINES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.NR_LINES_PER_PAGE;
@@ -94,6 +77,22 @@ import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjectio
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.SKIP_BAD_FILES;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.WARNING_FILES_EXTENTION;
 import static org.pentaho.di.trans.steps.textfileinput.TextFileInputMetaInjection.Entry.WARNING_FILES_TARGET_DIR;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import org.junit.Test;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.trans.step.StepInjectionMetaEntry;
+import org.pentaho.di.trans.step.StepInjectionUtil;
+import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
+import org.pentaho.di.trans.steps.loadsave.validator.IntLoadSaveValidator;
+import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
 
 /**
  * @deprecated replaced by implementation in the ...steps.fileinput.text package

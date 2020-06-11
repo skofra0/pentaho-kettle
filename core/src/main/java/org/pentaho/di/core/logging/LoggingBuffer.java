@@ -22,9 +22,6 @@
 
 package org.pentaho.di.core.logging;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.pentaho.di.core.Const;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +32,10 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.pentaho.di.core.Const;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * This class keeps the last N lines in a buffer

@@ -22,6 +22,14 @@
 
 package org.pentaho.di.junit.rules;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.TimeZone;
+
 import org.apache.commons.io.FileUtils;
 import org.junit.rules.ExternalResource;
 import org.pentaho.di.core.Const;
@@ -42,14 +50,6 @@ import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.core.xml.XMLHandlerCache;
 import org.pentaho.di.i18n.LanguageChoice;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.TimeZone;
 
 public class RestorePDIEnvironment extends ExternalResource {
   private Properties originalProperties;

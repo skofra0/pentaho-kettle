@@ -22,17 +22,6 @@
 
 package org.pentaho.di.trans.steps.orabulkloader;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.vfs2.FileObject;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.variables.VariableSpace;
-import org.pentaho.di.core.vfs.KettleVFS;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -44,6 +33,18 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.commons.vfs2.FileObject;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.variables.VariableSpace;
+import org.pentaho.di.core.vfs.KettleVFS;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Does the opening of the output "stream". It's either a file or inter process communication which is transparant to

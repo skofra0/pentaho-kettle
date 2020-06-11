@@ -28,17 +28,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DataSourceNamingException;
 import org.pentaho.di.core.database.DataSourceProviderInterface;
 import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
-
-import javax.naming.Context;
 
 /**
  * Provides default implementation for looking data sources up in JNDI.

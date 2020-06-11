@@ -21,6 +21,14 @@
  ******************************************************************************/
 package org.pentaho.di.trans.steps.setvalueconstant;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -33,14 +41,6 @@ import org.pentaho.di.trans.steps.loadsave.LoadSaveTester;
 import org.pentaho.di.trans.steps.loadsave.initializer.InitializerInterface;
 import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.ListLoadSaveValidator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 public class SetValueConstantMetaTest implements InitializerInterface<StepMetaInterface> {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

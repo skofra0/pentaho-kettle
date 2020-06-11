@@ -21,6 +21,13 @@
  ******************************************************************************/
 package org.pentaho.di.trans;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.Result;
@@ -35,13 +42,6 @@ import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.pentaho.di.trans.step.StepStatus;
 import org.pentaho.di.trans.steps.TransStepUtil;
 import org.pentaho.di.trans.steps.transexecutor.TransExecutorParameters;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Will run the given sub-transformation with the rows passed to execute

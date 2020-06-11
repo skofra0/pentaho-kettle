@@ -23,9 +23,9 @@
 package org.pentaho.di.job.entries.ftp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -36,8 +36,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
-import org.junit.Test;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.KettleClientEnvironment;

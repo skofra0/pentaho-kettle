@@ -21,10 +21,9 @@
  ******************************************************************************/
 package org.pentaho.di.core.row.value;
 
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
@@ -36,9 +35,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 /**
  * Created by tkafalas on 12/6/2017.

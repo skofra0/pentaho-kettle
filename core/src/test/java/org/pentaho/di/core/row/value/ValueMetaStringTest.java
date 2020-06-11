@@ -22,6 +22,8 @@
 
 package org.pentaho.di.core.row.value;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -32,16 +34,13 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-
-import junit.framework.Assert;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertEquals;
 
 public class ValueMetaStringTest {
   private static final String BASE_VALUE = "Some text";
@@ -955,11 +954,11 @@ public class ValueMetaStringTest {
   private static void assertSignum( String msg, int expected, int actual ) {
     if ( expected < 0 ) {
       if ( actual >= 0 ) {
-        Assert.failNotEquals( msg, "(<0)", actual );
+        Assert.assertEquals( msg, "(<0)", actual );
       }
     } else if ( expected > 0 ) {
       if ( actual <= 0 ) {
-        Assert.failNotEquals( msg, "(>0)", actual );
+        Assert.assertEquals( msg, "(>0)", actual );
       }
     } else {
       assertEquals( msg, expected, actual );

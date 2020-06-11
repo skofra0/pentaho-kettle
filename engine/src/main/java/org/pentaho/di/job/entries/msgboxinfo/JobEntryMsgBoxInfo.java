@@ -22,8 +22,6 @@
 
 package org.pentaho.di.job.entries.msgboxinfo;
 
-import org.pentaho.di.job.entry.validator.JobEntryValidatorUtils;
-
 import java.util.List;
 
 import org.pentaho.di.cluster.SlaveServer;
@@ -41,6 +39,7 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
 import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.validator.JobEntryValidatorUtils;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.metastore.api.IMetaStore;

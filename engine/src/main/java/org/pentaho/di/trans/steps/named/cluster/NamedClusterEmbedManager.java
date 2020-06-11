@@ -21,6 +21,11 @@
  ******************************************************************************/
 package org.pentaho.di.trans.steps.named.cluster;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.pentaho.di.base.AbstractMeta;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.osgi.api.NamedClusterOsgi;
@@ -28,11 +33,6 @@ import org.pentaho.di.core.osgi.api.NamedClusterServiceOsgi;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.metastore.api.exceptions.MetaStoreException;
 import org.pentaho.metastore.persist.MetaStoreFactory;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This class provides centralized logic to embed NamedClusters used by transformations/jobs in the embeddedMetaStore.

@@ -22,16 +22,16 @@
 
 package org.pentaho.di.trans.steps.fileinput.text;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.trans.steps.file.BaseFileField;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class TextFileInputUtilsTest {
   @Test

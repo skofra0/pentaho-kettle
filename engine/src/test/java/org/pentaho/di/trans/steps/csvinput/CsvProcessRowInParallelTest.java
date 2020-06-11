@@ -22,6 +22,10 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -35,9 +39,6 @@ import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-
-import java.io.File;
-import static org.junit.Assert.assertEquals;
 
 /**
  *  We take file with content

@@ -25,7 +25,7 @@ package org.pentaho.test.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.row.value.ValueMetaBase;

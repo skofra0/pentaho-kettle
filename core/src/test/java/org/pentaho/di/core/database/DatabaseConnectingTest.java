@@ -22,15 +22,10 @@
 
 package org.pentaho.di.core.database;
 
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.core.KettleClientEnvironment;
-import org.pentaho.di.core.database.map.DatabaseConnectionMap;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.logging.LoggingObjectInterface;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -45,10 +40,15 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.core.KettleClientEnvironment;
+import org.pentaho.di.core.database.map.DatabaseConnectionMap;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.logging.LoggingObjectInterface;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 /**
  * @author Andrey Khayrutdinov

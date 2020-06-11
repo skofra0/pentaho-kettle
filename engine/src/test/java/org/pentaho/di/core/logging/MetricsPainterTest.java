@@ -22,8 +22,8 @@
 
 package org.pentaho.di.core.logging;
 
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyListOf;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -34,8 +34,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.core.gui.GCInterface;
-import org.pentaho.di.core.metrics.MetricsDuration;
 import org.pentaho.di.core.gui.Point;
+import org.pentaho.di.core.metrics.MetricsDuration;
 
 public class MetricsPainterTest {
   MetricsPainter metricsPainter;

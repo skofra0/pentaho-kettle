@@ -27,20 +27,20 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.LowResourceMonitor;
 import org.eclipse.jetty.server.ServerConnector;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.eclipse.jetty.server.Connector;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Tatsiana_Kasiankova

@@ -23,14 +23,14 @@
 package org.pentaho.di.core.logging;
 
 import java.util.Date;
-import java.util.Queue;
 import java.util.Map;
+import java.util.Queue;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.metrics.MetricsSnapshot;
 import org.pentaho.di.core.metrics.MetricsSnapshotInterface;
 import org.pentaho.di.core.metrics.MetricsSnapshotType;
+import org.pentaho.di.core.util.Utils;
 
 public class LogChannel implements LogChannelInterface {
 

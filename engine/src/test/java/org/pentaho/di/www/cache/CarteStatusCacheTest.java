@@ -23,18 +23,18 @@
 package org.pentaho.di.www.cache;
 
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Map;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.mock;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CarteStatusCacheTest {
 

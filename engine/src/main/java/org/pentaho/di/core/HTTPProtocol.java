@@ -22,6 +22,9 @@
 
 package org.pentaho.di.core;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.auth.AuthenticationException;
@@ -29,9 +32,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.pentaho.di.core.util.HttpClientManager;
 import org.pentaho.di.core.util.Utils;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * HTTP

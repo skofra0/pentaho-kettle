@@ -21,9 +21,6 @@
  ******************************************************************************/
 package org.pentaho.di.core.row.value;
 
-import org.pentaho.di.core.plugins.IValueMetaConverter;
-import org.pentaho.di.core.row.ValueMetaInterface;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -33,6 +30,9 @@ import java.nio.ByteBuffer;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.pentaho.di.core.plugins.IValueMetaConverter;
+import org.pentaho.di.core.row.ValueMetaInterface;
 
 /**
  * This class is intended to facilitate any needed conversions of a ValueMetaInterface field from one type to another.

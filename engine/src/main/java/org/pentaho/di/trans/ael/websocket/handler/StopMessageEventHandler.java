@@ -23,15 +23,15 @@
  */
 package org.pentaho.di.trans.ael.websocket.handler;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.engine.api.remote.Message;
 import org.pentaho.di.engine.api.remote.StopMessage;
 import org.pentaho.di.trans.ael.websocket.TransWebSocketEngineAdapter;
 import org.pentaho.di.trans.ael.websocket.exception.MessageEventHandlerExecutionException;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class StopMessageEventHandler implements MessageEventHandler {
   private static final String TRANSFORMATION_STOP = "TRANSFORMATION_STOP_TRANS_WEBSOCK";

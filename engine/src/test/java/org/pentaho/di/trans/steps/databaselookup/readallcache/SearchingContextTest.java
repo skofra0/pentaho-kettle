@@ -22,13 +22,13 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
-import org.junit.Test;
-
-import java.util.BitSet;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.BitSet;
+
+import org.junit.Test;
 
 /**
  * @author Andrey Khayrutdinov

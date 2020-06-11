@@ -22,10 +22,6 @@
 
 package org.pentaho.di.concurrency;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.pentaho.di.core.BlockingRowSet;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +30,10 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.pentaho.di.core.BlockingRowSet;
 
 /**
  * We have a {@link org.pentaho.di.core.BaseRowSet} with a bunch of attributes (originStepName, originStepCopy,

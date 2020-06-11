@@ -22,13 +22,8 @@
 
 package org.pentaho.di.concurrency;
 
-import org.apache.commons.collections.ListUtils;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.pentaho.di.job.Job;
-import org.pentaho.di.job.JobConfiguration;
-import org.pentaho.di.www.CarteObjectEntry;
-import org.pentaho.di.www.JobMap;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +32,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.apache.commons.collections.ListUtils;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.pentaho.di.job.Job;
+import org.pentaho.di.job.JobConfiguration;
+import org.pentaho.di.www.CarteObjectEntry;
+import org.pentaho.di.www.JobMap;
 
 public class JobMapConcurrencyTest {
   public static final String JOB_NAME_STRING = "job";

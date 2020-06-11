@@ -24,7 +24,26 @@
 
 package org.pentaho.di.trans.ael.websocket;
 
-import com.google.common.collect.Maps;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.stream.Collectors.toMap;
+import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_HALTING;
+import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_RUNNING;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannelInterface;
@@ -53,25 +72,7 @@ import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.pentaho.di.trans.step.StepMetaInterface;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import static com.google.common.base.Strings.isNullOrEmpty;
-import static java.util.stream.Collectors.toMap;
-import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_HALTING;
-import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_RUNNING;
+import com.google.common.collect.Maps;
 
 /**
  * Created by fcamara on 8/17/17.

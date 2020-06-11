@@ -22,6 +22,9 @@
 
 package org.pentaho.di.core;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.row.RowMeta;
@@ -30,9 +33,6 @@ import org.pentaho.di.core.row.ValueMetaAndData;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class ConditionTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

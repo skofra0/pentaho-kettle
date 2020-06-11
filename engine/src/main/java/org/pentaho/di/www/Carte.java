@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -53,6 +52,7 @@ import org.pentaho.di.i18n.BaseMessages;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;

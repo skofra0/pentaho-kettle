@@ -22,6 +22,13 @@
 
 package org.pentaho.di.job.entries.trans;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.CheckResultInterface;
@@ -85,13 +92,6 @@ import org.pentaho.di.www.SlaveServerTransStatus;
 import org.pentaho.metastore.api.IMetaStore;
 import org.pentaho.platform.api.repository2.unified.RepositoryFile;
 import org.w3c.dom.Node;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
 /**
  * This is the job entry that defines a transformation to be run.

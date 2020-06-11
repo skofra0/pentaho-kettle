@@ -25,16 +25,17 @@ package org.pentaho.di.core.logging;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.repository.RepositoryAttributeInterface;
 import org.pentaho.di.trans.HasDatabasesInterface;
 import org.w3c.dom.Node;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public abstract class BaseLogTable {
   public static final String XML_TAG = "field";

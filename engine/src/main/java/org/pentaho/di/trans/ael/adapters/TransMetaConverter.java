@@ -24,7 +24,7 @@
 
 package org.pentaho.di.trans.ael.adapters;
 
-import com.google.common.base.Throwables;
+import static java.util.stream.Collectors.toMap;
 
 import java.io.File;
 import java.io.Serializable;
@@ -54,7 +54,7 @@ import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.tableinput.TableInputMeta;
 import org.pentaho.di.workarounds.ResolvableResource;
 
-import static java.util.stream.Collectors.toMap;
+import com.google.common.base.Throwables;
 
 public class TransMetaConverter {
 

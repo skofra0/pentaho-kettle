@@ -31,11 +31,11 @@ import java.text.SimpleDateFormat;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.mail.Message;
 import javax.mail.Flags.Flag;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.MessagingException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,9 +43,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogLevel;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.utils.TestUtils;

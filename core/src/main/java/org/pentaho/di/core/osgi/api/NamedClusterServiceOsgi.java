@@ -22,11 +22,11 @@
 
 package org.pentaho.di.core.osgi.api;
 
-import org.pentaho.metastore.api.IMetaStore;
-import org.pentaho.metastore.api.exceptions.MetaStoreException;
-
 import java.util.List;
 import java.util.Map;
+
+import org.pentaho.metastore.api.IMetaStore;
+import org.pentaho.metastore.api.exceptions.MetaStoreException;
 
 /**
  * Created by tkafalas on 7/6/2017.

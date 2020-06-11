@@ -22,6 +22,9 @@
 
 package org.pentaho.di.trans.steps.httppost;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -40,9 +43,6 @@ import org.pentaho.di.trans.steps.loadsave.validator.BooleanLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveBooleanArrayLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class HTTPPOSTMetaTest {
   LoadSaveTester loadSaveTester;

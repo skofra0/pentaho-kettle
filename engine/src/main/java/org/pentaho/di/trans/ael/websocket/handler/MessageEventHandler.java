@@ -23,10 +23,10 @@
  */
 package org.pentaho.di.trans.ael.websocket.handler;
 
+import java.io.Serializable;
+
 import org.pentaho.di.engine.api.remote.Message;
 import org.pentaho.di.trans.ael.websocket.exception.MessageEventHandlerExecutionException;
-
-import java.io.Serializable;
 
 /**
  * Created by fcamara on 8/17/17.

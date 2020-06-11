@@ -21,6 +21,16 @@
  ******************************************************************************/
 package org.pentaho.di.core.util;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -28,12 +38,6 @@ import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class UtilsTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

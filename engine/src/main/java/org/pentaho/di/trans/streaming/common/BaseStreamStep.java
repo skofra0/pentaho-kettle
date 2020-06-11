@@ -22,9 +22,11 @@
 
 package org.pentaho.di.trans.streaming.common;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Throwables;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.RowMetaAndData;
@@ -44,10 +46,9 @@ import org.pentaho.di.trans.steps.transexecutor.TransExecutorParameters;
 import org.pentaho.di.trans.streaming.api.StreamSource;
 import org.pentaho.di.trans.streaming.api.StreamWindow;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
 
 @SuppressWarnings ( "WeakerAccess" )
 public class BaseStreamStep extends BaseStep {

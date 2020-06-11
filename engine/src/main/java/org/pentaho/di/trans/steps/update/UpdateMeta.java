@@ -22,7 +22,8 @@
 
 package org.pentaho.di.trans.steps.update;
 
-import com.google.common.primitives.Ints;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -53,12 +54,11 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
-
 import org.pentaho.di.trans.step.utils.RowMetaUtils;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
-import java.util.List;
+import com.google.common.primitives.Ints;
 
 /*
  * Created on 26-apr-2003

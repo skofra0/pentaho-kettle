@@ -22,6 +22,13 @@
 
 package org.pentaho.di.core.util;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 /*! ******************************************************************************
  *
@@ -44,19 +51,11 @@ import org.junit.Before;
  * limitations under the License.
  *
  ******************************************************************************/
-
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.test.util.XXEUtils;
-
-import java.util.ArrayList;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 
 public class SerializationHelperTest {
   private static Repository repo;

@@ -22,14 +22,14 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.pentaho.di.core.row.ValueMetaInterface;
+import static org.junit.Assert.fail;
 
 import java.util.BitSet;
 import java.util.List;
 
-import static org.junit.Assert.fail;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.pentaho.di.core.row.ValueMetaInterface;
 /**
  * @author Andrey Khayrutdinov
  */

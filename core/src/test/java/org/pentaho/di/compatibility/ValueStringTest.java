@@ -22,20 +22,20 @@
 
 package org.pentaho.di.compatibility;
 
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 /**
  * Test class for the basic functionality of ValueString.

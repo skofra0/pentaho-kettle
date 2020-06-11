@@ -22,17 +22,17 @@
 
 package org.pentaho.di.job.entries.getpop;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.sun.mail.imap.IMAPSSLStore;
-import com.sun.mail.pop3.POP3SSLStore;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.vfs.KettleVFS;
-import org.pentaho.di.i18n.BaseMessages;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.Flags;
 import javax.mail.Flags.Flag;
@@ -55,17 +55,19 @@ import javax.mail.search.ReceivedDateTerm;
 import javax.mail.search.RecipientStringTerm;
 import javax.mail.search.SearchTerm;
 import javax.mail.search.SubjectTerm;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.vfs.KettleVFS;
+import org.pentaho.di.i18n.BaseMessages;
+
+import com.google.common.annotations.VisibleForTesting;
+import com.sun.mail.imap.IMAPSSLStore;
+import com.sun.mail.pop3.POP3SSLStore;
 
 /**
  * MailConnection handles the process of connecting to, reading from POP3/IMAP.

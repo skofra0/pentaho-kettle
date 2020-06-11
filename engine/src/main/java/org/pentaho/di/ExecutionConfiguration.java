@@ -22,6 +22,10 @@
 
 package org.pentaho.di;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.Map;
+
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.exception.KettleException;
@@ -29,10 +33,6 @@ import org.pentaho.di.core.logging.LogLevel;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.repository.RepositoriesMeta;
 import org.pentaho.di.repository.Repository;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.Map;
 
 public interface ExecutionConfiguration extends Cloneable {
 

@@ -22,12 +22,14 @@
 
 package org.pentaho.di.core.attributes.metastore;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.pentaho.di.core.AttributesInterface;
 import org.pentaho.metastore.api.BaseMetaStore;
 import org.pentaho.metastore.api.IMetaStoreAttribute;
@@ -42,16 +44,14 @@ import org.pentaho.metastore.api.security.MetaStoreElementOwnerType;
 import org.pentaho.metastore.stores.memory.MemoryMetaStoreAttribute;
 import org.pentaho.metastore.stores.memory.MemoryMetaStoreElement;
 import org.pentaho.metastore.stores.memory.MemoryMetaStoreElementOwner;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.Callable;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 import org.pentaho.metastore.util.MetaStoreUtil;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * @author nhudak

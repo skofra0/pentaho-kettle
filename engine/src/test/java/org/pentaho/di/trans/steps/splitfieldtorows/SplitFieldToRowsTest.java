@@ -22,10 +22,10 @@
 
 package org.pentaho.di.trans.steps.splitfieldtorows;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.pentaho.di.trans.steps.StepMockUtil;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author Andrey Khayrutdinov

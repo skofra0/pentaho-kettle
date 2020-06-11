@@ -22,6 +22,10 @@
 
 package org.pentaho.di.trans.steps.userdefinedjavaclass;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -30,10 +34,6 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
 
 
 public class UserDefinedJavaClassMetaInjectionTest  extends BaseMetadataInjectionTest<UserDefinedJavaClassMeta> {

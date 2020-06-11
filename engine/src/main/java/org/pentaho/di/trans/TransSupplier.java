@@ -21,6 +21,11 @@
  ******************************************************************************/
 package org.pentaho.di.trans;
 
+import java.net.URI;
+import java.util.Arrays;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.plugins.PluginInterface;
@@ -29,11 +34,6 @@ import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.ael.websocket.TransWebSocketEngineAdapter;
-
-import java.net.URI;
-import java.util.Arrays;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class TransSupplier implements Supplier<Trans> {
 

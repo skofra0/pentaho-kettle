@@ -22,6 +22,12 @@
 
 package org.pentaho.di.repository;
 
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.withSettings;
+
 import java.util.Collections;
 
 import org.junit.Before;
@@ -42,8 +48,6 @@ import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import static org.mockito.Mockito.*;
 
 @RunWith( MockitoJUnitRunner.class )
 public class RepositoryImporterTest {

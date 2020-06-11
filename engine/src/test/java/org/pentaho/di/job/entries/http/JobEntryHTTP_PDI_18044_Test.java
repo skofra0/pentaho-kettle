@@ -22,12 +22,17 @@
 
 package org.pentaho.di.job.entries.http;
 
-import com.sun.net.httpserver.BasicAuthenticator;
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpContext;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -42,16 +47,12 @@ import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import static org.junit.Assert.assertTrue;
+import com.sun.net.httpserver.BasicAuthenticator;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 
 public class JobEntryHTTP_PDI_18044_Test {
   public static final String HTTP_HOST = "localhost";

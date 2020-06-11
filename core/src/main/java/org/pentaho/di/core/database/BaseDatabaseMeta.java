@@ -23,16 +23,6 @@
 
 package org.pentaho.di.core.database;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.encryption.Encr;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.variables.VariableSpace;
-import org.pentaho.di.repository.ObjectId;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +35,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.encryption.Encr;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.variables.VariableSpace;
+import org.pentaho.di.repository.ObjectId;
 
 /**
  * This class contains the basic information on a database connection. It is not intended to be used other than the

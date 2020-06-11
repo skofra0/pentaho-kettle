@@ -22,6 +22,9 @@
 
 package org.pentaho.di.trans.steps.javafilter;
 
+import java.util.List;
+import java.util.Objects;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -50,9 +53,6 @@ import org.pentaho.di.trans.step.errorhandling.StreamInterface;
 import org.pentaho.di.trans.step.errorhandling.StreamInterface.StreamType;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Contains the meta-data for the java filter step: calculates conditions using Janino

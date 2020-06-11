@@ -30,8 +30,8 @@ import org.pentaho.di.core.fileinput.FileInputList;
 import org.pentaho.di.core.injection.Injection;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.resource.ResourceEntry;
-import org.pentaho.di.resource.ResourceReference;
 import org.pentaho.di.resource.ResourceEntry.ResourceType;
+import org.pentaho.di.resource.ResourceReference;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 

@@ -24,6 +24,13 @@
 
 package org.pentaho.di.trans.ael.websocket;
 
+import static org.pentaho.di.engine.api.model.Rows.TYPE.OUT;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.engine.api.events.PDIEvent;
 import org.pentaho.di.engine.api.model.Operation;
@@ -42,13 +49,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaDataCombi;
 import org.pentaho.di.trans.step.StepStatus;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.pentaho.di.engine.api.model.Rows.TYPE.OUT;
 
 /**
  * Adapts AEL Operation events to the StepInterface. This class will register handlers to engine events and translate

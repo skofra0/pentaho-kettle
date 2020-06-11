@@ -21,12 +21,12 @@
  ******************************************************************************/
 package org.pentaho.di.job.entries.delay;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.ClassRule;
 import org.pentaho.di.job.entry.loadSave.JobEntryLoadSaveTestSupport;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class JobEntryDelayLoadSaveTest extends JobEntryLoadSaveTestSupport<JobEntryDelay> {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

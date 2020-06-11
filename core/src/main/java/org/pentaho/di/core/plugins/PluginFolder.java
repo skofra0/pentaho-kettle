@@ -22,6 +22,10 @@
 
 package org.pentaho.di.core.plugins;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.vfs2.FileObject;
@@ -32,10 +36,6 @@ import org.pentaho.di.core.exception.KettleFileException;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A folder to search plugins in.

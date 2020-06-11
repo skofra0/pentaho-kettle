@@ -22,8 +22,15 @@
 
 package org.pentaho.di.trans.steps.setvalueconstant;
 
-import junit.framework.Assert;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
+
+import java.lang.reflect.Method;
+import java.util.Collections;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.core.logging.LoggingObjectInterface;
@@ -31,14 +38,6 @@ import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
-
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
 
 /**
  * Tests for "Set field value to a constant" step

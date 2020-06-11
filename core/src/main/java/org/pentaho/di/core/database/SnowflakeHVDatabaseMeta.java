@@ -22,16 +22,6 @@
 
 package org.pentaho.di.core.database;
 
-import com.google.common.base.Preconditions;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.row.ValueMetaInterface;
-
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_BIGNUMBER;
 import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_BINARY;
 import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_BOOLEAN;
@@ -41,6 +31,17 @@ import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_NUMBER;
 import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_STRING;
 import static org.pentaho.di.core.row.ValueMetaInterface.TYPE_TIMESTAMP;
 import static org.pentaho.di.core.util.Utils.isEmpty;
+
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.row.ValueMetaInterface;
+
+import com.google.common.base.Preconditions;
 
 @SuppressWarnings ( "unused" )
 public class SnowflakeHVDatabaseMeta extends BaseDatabaseMeta implements DatabaseInterface {

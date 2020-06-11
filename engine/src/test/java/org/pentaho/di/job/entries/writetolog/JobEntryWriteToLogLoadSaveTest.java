@@ -23,7 +23,6 @@
 package org.pentaho.di.job.entries.writetolog;
 
 import java.util.Arrays;
-
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;

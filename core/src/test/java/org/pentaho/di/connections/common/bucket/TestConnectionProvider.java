@@ -22,10 +22,10 @@
 
 package org.pentaho.di.connections.common.bucket;
 
-  import org.pentaho.di.connections.ConnectionManager;
-  import org.pentaho.di.connections.ConnectionProvider;
-
   import java.util.List;
+
+import org.pentaho.di.connections.ConnectionManager;
+import org.pentaho.di.connections.ConnectionProvider;
 
 public class TestConnectionProvider implements ConnectionProvider<TestConnectionDetails> {
 

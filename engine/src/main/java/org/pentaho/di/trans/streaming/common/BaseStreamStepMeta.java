@@ -22,7 +22,9 @@
 
 package org.pentaho.di.trans.streaming.common;
 
-import com.google.common.base.Strings;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.exception.KettleException;
@@ -45,8 +47,7 @@ import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.transexecutor.TransExecutorMeta;
 import org.pentaho.metastore.api.IMetaStore;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.base.Strings;
 
 public abstract class BaseStreamStepMeta extends StepWithMappingMeta implements StepMetaInterface, ISubTransAwareMeta {
 

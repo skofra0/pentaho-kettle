@@ -23,11 +23,11 @@
 package org.pentaho.di.core.metrics;
 
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.pentaho.di.core.logging.LoggingObjectInterface;
 import org.pentaho.di.core.logging.LoggingRegistry;

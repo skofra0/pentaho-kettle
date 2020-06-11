@@ -25,6 +25,7 @@ package org.pentaho.di.core;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
+
 import org.pentaho.di.core.util.Utils;
 
 /**

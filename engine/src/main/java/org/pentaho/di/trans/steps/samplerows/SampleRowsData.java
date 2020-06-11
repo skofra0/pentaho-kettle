@@ -22,11 +22,12 @@
 
 package org.pentaho.di.trans.steps.samplerows;
 
-import com.google.common.collect.ImmutableRangeSet;
-import com.google.common.collect.RangeSet;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
+
+import com.google.common.collect.ImmutableRangeSet;
+import com.google.common.collect.RangeSet;
 
 /**
  * @author Samatar

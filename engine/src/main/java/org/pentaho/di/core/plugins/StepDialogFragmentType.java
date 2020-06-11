@@ -22,14 +22,14 @@
 
 package org.pentaho.di.core.plugins;
 
+import java.lang.annotation.Annotation;
+import java.net.URL;
+import java.util.List;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.annotations.PluginDialog;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.trans.step.StepDialogInterface;
-
-import java.lang.annotation.Annotation;
-import java.net.URL;
-import java.util.List;
 
 /**
  * This class represents the step dialog fragment type.

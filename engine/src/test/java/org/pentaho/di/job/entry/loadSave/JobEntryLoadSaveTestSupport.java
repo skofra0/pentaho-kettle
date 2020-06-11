@@ -22,6 +22,13 @@
 
 package org.pentaho.di.job.entry.loadSave;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -30,13 +37,6 @@ import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.job.entry.JobEntryInterface;
 import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Andrey Khayrutdinov

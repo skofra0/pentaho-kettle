@@ -22,6 +22,12 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -35,12 +41,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * Test class covers http://jira.pentaho.com/browse/PDI-15270 issue.

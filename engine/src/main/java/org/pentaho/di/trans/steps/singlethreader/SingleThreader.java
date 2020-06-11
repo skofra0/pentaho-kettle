@@ -25,11 +25,11 @@ package org.pentaho.di.trans.steps.singlethreader;
 import java.util.ArrayList;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.logging.KettleLogStore;
 import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.SingleThreadedTransExecutor;
 import org.pentaho.di.trans.StepWithMappingMeta;

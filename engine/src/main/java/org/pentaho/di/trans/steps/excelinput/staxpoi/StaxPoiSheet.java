@@ -37,7 +37,6 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -50,6 +49,8 @@ import org.pentaho.di.core.spreadsheet.KCell;
 import org.pentaho.di.core.spreadsheet.KCellType;
 import org.pentaho.di.core.spreadsheet.KSheet;
 import org.pentaho.di.core.xml.XMLParserFactoryProducer;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Streaming reader for XLSX sheets.<br>

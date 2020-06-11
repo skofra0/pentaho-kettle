@@ -22,6 +22,12 @@
 
 package org.pentaho.di.core.util.serialization;
 
+import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.deserialize;
+import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.serialize;
+import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
+
+import java.util.List;
+
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleXMLException;
@@ -35,12 +41,6 @@ import org.pentaho.di.trans.step.BaseStepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.List;
-
-import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.deserialize;
-import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.serialize;
-import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
 
 /**
  * Handles serialization of meta by implementing getXML/loadXML, readRep/saveRep.

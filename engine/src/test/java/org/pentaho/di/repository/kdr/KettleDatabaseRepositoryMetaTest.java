@@ -25,6 +25,9 @@ package org.pentaho.di.repository.kdr;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,9 +36,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.repository.RepositoriesMeta;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by bmorrise on 4/26/16.

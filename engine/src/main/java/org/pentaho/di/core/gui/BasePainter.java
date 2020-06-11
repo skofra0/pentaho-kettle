@@ -22,6 +22,8 @@
 
 package org.pentaho.di.core.gui;
 
+import java.util.List;
+
 import org.pentaho.di.base.BaseHopMeta;
 import org.pentaho.di.base.BaseMeta;
 import org.pentaho.di.core.Const;
@@ -32,8 +34,6 @@ import org.pentaho.di.core.gui.PrimitiveGCInterface.EImage;
 import org.pentaho.di.core.gui.PrimitiveGCInterface.ELineStyle;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.trans.step.errorhandling.StreamIcon;
-
-import java.util.List;
 
 public abstract class BasePainter<Hop extends BaseHopMeta<?>, Part extends BaseMeta> {
 

@@ -22,10 +22,10 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
+import java.util.BitSet;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-
-import java.util.BitSet;
 
 /**
  * @author Andrey Khayrutdinov

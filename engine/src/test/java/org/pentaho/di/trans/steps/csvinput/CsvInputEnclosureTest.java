@@ -22,6 +22,12 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -33,12 +39,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * @author Andrey Khayrutdinov

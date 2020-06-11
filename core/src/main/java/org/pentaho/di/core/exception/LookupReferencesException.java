@@ -22,11 +22,11 @@
 
 package org.pentaho.di.core.exception;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.repository.RepositoryObjectType;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.repository.RepositoryObjectType;
 
 /**
  * @author Yury Bakhmutski

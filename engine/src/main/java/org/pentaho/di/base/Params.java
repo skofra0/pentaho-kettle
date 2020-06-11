@@ -22,13 +22,13 @@
 
 package org.pentaho.di.base;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang.math.NumberUtils;
 import org.pentaho.di.core.parameters.NamedParams;
 import org.pentaho.di.core.parameters.UnknownParamException;
-
-import java.util.Map;
-import java.util.Collections;
-import java.util.HashMap;
 
 public class Params implements IParams {
 

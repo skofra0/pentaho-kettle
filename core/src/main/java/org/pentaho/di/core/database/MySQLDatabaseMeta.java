@@ -22,7 +22,9 @@
 
 package org.pentaho.di.core.database;
 
-import com.google.common.collect.Sets;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSetMetaData;
+import java.util.Set;
 
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleDatabaseException;
@@ -30,10 +32,7 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSetMetaData;
-
-import java.util.Set;
+import com.google.common.collect.Sets;
 
 /**
  * Contains MySQL specific information through static final members

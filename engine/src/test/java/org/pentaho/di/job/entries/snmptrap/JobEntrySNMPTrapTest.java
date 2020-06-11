@@ -22,7 +22,6 @@
 package org.pentaho.di.job.entries.snmptrap;
 
 import java.util.Arrays;
-
 import java.util.List;
 import java.util.Map;
 

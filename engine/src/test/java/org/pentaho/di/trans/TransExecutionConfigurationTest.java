@@ -22,12 +22,16 @@
 
 package org.pentaho.di.trans;
 
-import static org.mockito.Mockito.anyString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -44,10 +48,6 @@ import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.repository.RepositoriesMeta;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryMeta;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 

@@ -23,7 +23,6 @@ package org.pentaho.di.job.entries.unzip;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
 import java.util.List;
 import java.util.Map;
 

@@ -22,10 +22,10 @@
 
 package org.pentaho.di.core.xml;
 
+import java.io.ByteArrayInputStream;
+
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
-
-import java.io.ByteArrayInputStream;
 
 public class XMLCheckTest {
 

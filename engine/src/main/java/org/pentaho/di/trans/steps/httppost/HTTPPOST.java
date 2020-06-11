@@ -23,7 +23,19 @@
 package org.pentaho.di.trans.steps.httppost;
 
 
-import com.google.common.annotations.VisibleForTesting;
+import static org.pentaho.di.trans.steps.httppost.HTTPPOSTMeta.DEFAULT_ENCODING;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -62,18 +74,7 @@ import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URLEncoder;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.pentaho.di.trans.steps.httppost.HTTPPOSTMeta.DEFAULT_ENCODING;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Make a HTTP Post call

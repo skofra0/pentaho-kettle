@@ -22,7 +22,11 @@
 
 package org.pentaho.di.core;
 
-import com.google.common.util.concurrent.SettableFuture;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicReference;
+
 import org.pentaho.di.core.auth.AuthenticationConsumerPluginType;
 import org.pentaho.di.core.auth.AuthenticationProviderPluginType;
 import org.pentaho.di.core.compress.CompressionPluginType;
@@ -50,10 +54,7 @@ import org.pentaho.di.repository.IUser;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.step.RowDistributionPluginType;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicReference;
+import com.google.common.util.concurrent.SettableFuture;
 
 /**
  * The KettleEnvironment class contains settings and properties for all of Kettle. Initialization of the environment is

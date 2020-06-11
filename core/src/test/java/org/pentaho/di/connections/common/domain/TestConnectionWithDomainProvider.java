@@ -22,10 +22,10 @@
 
 package org.pentaho.di.connections.common.domain;
 
+import java.util.List;
+
 import org.pentaho.di.connections.ConnectionManager;
 import org.pentaho.di.connections.ConnectionProvider;
-
-import java.util.List;
 
 public class TestConnectionWithDomainProvider implements ConnectionProvider<TestConnectionWithDomainDetails> {
 

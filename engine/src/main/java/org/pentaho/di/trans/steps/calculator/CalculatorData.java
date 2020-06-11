@@ -22,15 +22,15 @@
 
 package org.pentaho.di.trans.steps.calculator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaFactory;
 import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Matt

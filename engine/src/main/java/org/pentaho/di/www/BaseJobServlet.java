@@ -21,6 +21,9 @@
  ******************************************************************************/
 package org.pentaho.di.www;
 
+import java.util.Map;
+import java.util.UUID;
+
 import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.base.AbstractMeta;
 import org.pentaho.di.core.Const;
@@ -44,9 +47,6 @@ import org.pentaho.di.trans.TransAdapter;
 import org.pentaho.di.trans.TransConfiguration;
 import org.pentaho.di.trans.TransExecutionConfiguration;
 import org.pentaho.di.trans.TransMeta;
-
-import java.util.Map;
-import java.util.UUID;
 
 public abstract class BaseJobServlet extends BodyHttpServlet {
 

@@ -22,10 +22,10 @@
 
 package org.pentaho.di.connections.vfs;
 
-import org.pentaho.di.connections.ConnectionManager;
-
 import java.util.List;
 import java.util.function.Supplier;
+
+import org.pentaho.di.connections.ConnectionManager;
 
 public abstract class BaseVFSConnectionProvider<T extends VFSConnectionDetails> implements VFSConnectionProvider<T> {
 

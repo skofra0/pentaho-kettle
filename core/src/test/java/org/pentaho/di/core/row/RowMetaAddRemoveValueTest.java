@@ -22,14 +22,14 @@
 
 package org.pentaho.di.core.row;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.di.core.row.value.ValueMetaFactory;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertEquals;
 
 public class RowMetaAddRemoveValueTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

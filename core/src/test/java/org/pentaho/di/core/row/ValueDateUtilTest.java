@@ -22,6 +22,11 @@
 
 package org.pentaho.di.core.row;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -30,11 +35,6 @@ import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.value.ValueMetaDate;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import java.util.Calendar;
-import java.util.TimeZone;
-
-import static org.junit.Assert.assertEquals;
 
 
 public class ValueDateUtilTest {

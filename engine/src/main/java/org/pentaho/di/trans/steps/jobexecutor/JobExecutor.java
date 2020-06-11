@@ -24,10 +24,7 @@ package org.pentaho.di.trans.steps.jobexecutor;
 
 import java.util.ArrayList;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.ResultFile;
 import org.pentaho.di.core.RowMetaAndData;
@@ -39,6 +36,7 @@ import org.pentaho.di.core.logging.LoggingObjectInterface;
 import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaFactory;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.DelegationListener;
 import org.pentaho.di.job.Job;
@@ -53,6 +51,8 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Execute a job for every input row.

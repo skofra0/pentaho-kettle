@@ -21,6 +21,28 @@
  ******************************************************************************/
 package org.pentaho.di.trans.steps.mail;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.pentaho.di.core.util.Assert.assertTrue;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.Properties;
+
+import javax.activation.DataHandler;
+import javax.activation.URLDataSource;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -36,27 +58,6 @@ import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
-
-import javax.activation.DataHandler;
-import javax.activation.URLDataSource;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import java.io.File;
-import java.util.Collections;
-import java.util.Properties;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.pentaho.di.core.util.Assert.assertTrue;
 
 public class MailTest {
 

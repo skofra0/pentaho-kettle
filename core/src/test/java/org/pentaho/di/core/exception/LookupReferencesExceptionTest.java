@@ -22,14 +22,14 @@
 
 package org.pentaho.di.core.exception;
 
-import org.junit.Test;
-import org.pentaho.di.repository.RepositoryObjectType;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
+import org.pentaho.di.repository.RepositoryObjectType;
 
 /**
  * @author Yury Bakhmutski

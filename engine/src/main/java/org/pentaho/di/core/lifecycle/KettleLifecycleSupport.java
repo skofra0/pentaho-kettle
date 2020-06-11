@@ -22,8 +22,10 @@
 
 package org.pentaho.di.core.lifecycle;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Throwables;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
@@ -35,10 +37,8 @@ import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.PluginTypeListener;
 import org.pentaho.di.i18n.BaseMessages;
 
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicBoolean;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Throwables;
 
 /**
  * A single point of contact for Kettle Lifecycle Plugin instances for invoking lifecycle methods.

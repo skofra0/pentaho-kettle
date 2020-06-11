@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.NotePadMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.extension.ExtensionPointHandler;
@@ -44,6 +43,7 @@ import org.pentaho.di.core.gui.Rectangle;
 import org.pentaho.di.core.gui.ScrollBarInterface;
 import org.pentaho.di.core.injection.bean.BeanInjectionInfo;
 import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.partition.PartitionSchema;
 import org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus;

@@ -22,6 +22,10 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -32,10 +36,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Andrey Khayrutdinov

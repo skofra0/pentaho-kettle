@@ -23,8 +23,8 @@
 package org.pentaho.di.trans.steps.syslog;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.entries.syslog.SyslogDefs;
 import org.pentaho.di.trans.Trans;

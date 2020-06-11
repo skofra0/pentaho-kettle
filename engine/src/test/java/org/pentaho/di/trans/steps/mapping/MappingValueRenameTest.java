@@ -22,8 +22,7 @@
 
 package org.pentaho.di.trans.steps.mapping;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MappingValueRenameTest {

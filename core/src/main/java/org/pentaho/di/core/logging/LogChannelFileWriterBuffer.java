@@ -22,11 +22,11 @@
 
 package org.pentaho.di.core.logging;
 
-import org.pentaho.di.core.Const;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.pentaho.di.core.Const;
 
 public class LogChannelFileWriterBuffer {
 

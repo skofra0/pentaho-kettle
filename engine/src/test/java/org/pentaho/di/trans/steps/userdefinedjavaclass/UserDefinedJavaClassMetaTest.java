@@ -23,14 +23,14 @@
 package org.pentaho.di.trans.steps.userdefinedjavaclass;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.trans.step.StepMeta;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class UserDefinedJavaClassMetaTest {
 

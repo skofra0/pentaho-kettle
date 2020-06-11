@@ -22,6 +22,10 @@
 
 package org.pentaho.di.trans.steps.janino;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
@@ -30,10 +34,6 @@ import org.pentaho.di.trans.step.StepInjectionMetaEntry;
 import org.pentaho.di.trans.step.StepInjectionUtil;
 import org.pentaho.di.trans.step.StepMetaInjectionEntryInterface;
 import org.pentaho.di.trans.step.StepMetaInjectionInterface;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * This takes care of the external metadata injection into the JaninoMeta class

@@ -24,10 +24,10 @@ package org.pentaho.di.core.vfs.configuration;
 
 import java.io.IOException;
 
+import org.apache.commons.vfs2.FileSystem;
 import org.apache.commons.vfs2.FileSystemConfigBuilder;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileSystemOptions;
-import org.apache.commons.vfs2.FileSystem;
 import org.apache.commons.vfs2.util.DelegatingFileSystemOptionsBuilder;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;

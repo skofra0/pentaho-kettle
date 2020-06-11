@@ -23,30 +23,6 @@
 
 package org.pentaho.di.trans.steps.script;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileType;
-import org.apache.commons.vfs2.FileUtil;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.database.Database;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.gui.SpoonFactory;
-import org.pentaho.di.core.gui.SpoonInterface;
-import org.pentaho.di.core.row.RowDataUtil;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.variables.VariableSpace;
-import org.pentaho.di.core.vfs.KettleVFS;
-
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.script.Bindings;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -74,6 +50,32 @@ import java.util.Properties;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.script.Bindings;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
+
+import org.apache.commons.vfs2.FileObject;
+import org.apache.commons.vfs2.FileType;
+import org.apache.commons.vfs2.FileUtil;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.gui.SpoonFactory;
+import org.pentaho.di.core.gui.SpoonInterface;
+import org.pentaho.di.core.row.RowDataUtil;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.variables.VariableSpace;
+import org.pentaho.di.core.vfs.KettleVFS;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class ScriptAddedFunctions {
 

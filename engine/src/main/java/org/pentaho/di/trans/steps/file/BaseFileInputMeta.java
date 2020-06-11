@@ -24,7 +24,6 @@ package org.pentaho.di.trans.steps.file;
 
 import java.util.List;
 
-import com.google.common.base.Preconditions;
 import org.pentaho.di.core.fileinput.FileInputList;
 import org.pentaho.di.core.injection.InjectionDeep;
 import org.pentaho.di.core.variables.VariableSpace;
@@ -32,6 +31,8 @@ import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.resource.ResourceReference;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
+
+import com.google.common.base.Preconditions;
 
 /**
  * Base meta for file-based input steps.

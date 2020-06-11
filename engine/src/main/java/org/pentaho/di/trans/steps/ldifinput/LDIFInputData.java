@@ -32,10 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.ZipInputStream;
 
-import netscape.ldap.LDAPAttribute;
-import netscape.ldap.util.LDIF;
-import netscape.ldap.util.LDIFRecord;
-
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.fileinput.FileInputList;
 import org.pentaho.di.core.row.RowMetaInterface;
@@ -43,6 +39,10 @@ import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+
+import netscape.ldap.LDAPAttribute;
+import netscape.ldap.util.LDIF;
+import netscape.ldap.util.LDIFRecord;
 
 /**
  * @author Samatar Hassan

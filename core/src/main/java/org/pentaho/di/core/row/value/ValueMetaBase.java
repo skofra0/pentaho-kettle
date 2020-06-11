@@ -23,32 +23,6 @@
 
 package org.pentaho.di.core.row.value;
 
-import org.pentaho.di.compatibility.Value;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.database.DatabaseInterface;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.database.GreenplumDatabaseMeta;
-import org.pentaho.di.core.database.NetezzaDatabaseMeta;
-import org.pentaho.di.core.database.OracleDatabaseMeta;
-import org.pentaho.di.core.database.PostgreSQLDatabaseMeta;
-import org.pentaho.di.core.database.SQLiteDatabaseMeta;
-import org.pentaho.di.core.database.TeradataDatabaseMeta;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.exception.KettleEOFException;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.gui.PrimitiveGCInterface;
-import org.pentaho.di.core.logging.KettleLogStore;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.core.row.ValueDataUtil;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.xml.XMLHandler;
-import org.pentaho.di.i18n.BaseMessages;
-import org.w3c.dom.Node;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -79,6 +53,32 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import org.pentaho.di.compatibility.Value;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.DatabaseInterface;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.GreenplumDatabaseMeta;
+import org.pentaho.di.core.database.NetezzaDatabaseMeta;
+import org.pentaho.di.core.database.OracleDatabaseMeta;
+import org.pentaho.di.core.database.PostgreSQLDatabaseMeta;
+import org.pentaho.di.core.database.SQLiteDatabaseMeta;
+import org.pentaho.di.core.database.TeradataDatabaseMeta;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.exception.KettleEOFException;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.gui.PrimitiveGCInterface;
+import org.pentaho.di.core.logging.KettleLogStore;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.row.ValueDataUtil;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.pentaho.di.i18n.BaseMessages;
+import org.w3c.dom.Node;
 
 public class ValueMetaBase implements ValueMetaInterface {
 

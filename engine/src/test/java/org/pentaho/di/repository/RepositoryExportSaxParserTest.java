@@ -34,9 +34,8 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.channels.FileChannel;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

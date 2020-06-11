@@ -20,14 +20,7 @@
 
 package org.pentaho.di.core.util;
 
-import org.pentaho.di.core.database.Database;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.di.core.logging.LoggingObject;
-import org.pentaho.di.core.logging.LoggingObjectInterface;
-import org.pentaho.di.core.row.RowMeta;
-import org.pentaho.di.core.row.RowMetaInterface;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +30,14 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.logging.LoggingObject;
+import org.pentaho.di.core.logging.LoggingObjectInterface;
+import org.pentaho.di.core.row.RowMeta;
+import org.pentaho.di.core.row.RowMetaInterface;
 
 /**
  * Static methods for asynchronous execution of actions on a {@link Database},

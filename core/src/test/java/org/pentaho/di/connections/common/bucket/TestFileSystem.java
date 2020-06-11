@@ -22,6 +22,8 @@
 
 package org.pentaho.di.connections.common.bucket;
 
+import java.util.Collection;
+
 import org.apache.commons.vfs2.Capability;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -29,8 +31,6 @@ import org.apache.commons.vfs2.FileSystem;
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.apache.commons.vfs2.provider.AbstractFileName;
 import org.apache.commons.vfs2.provider.AbstractFileSystem;
-
-import java.util.Collection;
 
 public class TestFileSystem extends AbstractFileSystem implements FileSystem {
 

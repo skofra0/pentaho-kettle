@@ -22,22 +22,7 @@
 
 package org.pentaho.di.trans.steps.textfileinput;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.pentaho.di.core.exception.KettlePluginException;
-import org.pentaho.di.core.logging.KettleLogStore;
-import org.pentaho.di.core.logging.KettleLoggingEvent;
-import org.pentaho.di.core.row.value.ValueMetaPluginType;
-import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-import org.pentaho.di.trans.steps.loadsave.LoadSaveTester;
-import org.pentaho.di.trans.steps.loadsave.validator.ArrayLoadSaveValidator;
-import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
-import org.pentaho.di.trans.steps.loadsave.validator.TextFileInputFieldValidator;
-import org.powermock.modules.junit4.PowerMockRunner;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,7 +32,21 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import static org.junit.Assert.assertTrue;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.pentaho.di.core.exception.KettlePluginException;
+import org.pentaho.di.core.logging.KettleLogStore;
+import org.pentaho.di.core.row.value.ValueMetaPluginType;
+import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
+import org.pentaho.di.trans.steps.loadsave.LoadSaveTester;
+import org.pentaho.di.trans.steps.loadsave.validator.ArrayLoadSaveValidator;
+import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
+import org.pentaho.di.trans.steps.loadsave.validator.TextFileInputFieldValidator;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  * @author Andrey Khayrutdinov

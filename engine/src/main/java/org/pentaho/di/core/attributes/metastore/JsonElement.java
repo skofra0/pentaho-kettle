@@ -22,13 +22,8 @@
 
 package org.pentaho.di.core.attributes.metastore;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.base.Strings;
+import java.io.IOException;
+
 import org.pentaho.metastore.api.IMetaStoreAttribute;
 import org.pentaho.metastore.api.IMetaStoreElement;
 import org.pentaho.metastore.api.IMetaStoreElementType;
@@ -37,9 +32,14 @@ import org.pentaho.metastore.stores.memory.MemoryMetaStoreAttribute;
 import org.pentaho.metastore.stores.memory.MemoryMetaStoreElement;
 import org.pentaho.metastore.stores.memory.MemoryMetaStoreElementOwner;
 
-import java.io.IOException;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 
 /**
  * @author nhudak

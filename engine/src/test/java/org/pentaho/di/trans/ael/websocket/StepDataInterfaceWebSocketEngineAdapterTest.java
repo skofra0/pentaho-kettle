@@ -23,6 +23,11 @@
  */
 package org.pentaho.di.trans.ael.websocket;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_INIT;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +35,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.engine.api.model.Operation;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.when;
-import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_INIT;
 
 @RunWith( MockitoJUnitRunner.class )
 public class StepDataInterfaceWebSocketEngineAdapterTest {

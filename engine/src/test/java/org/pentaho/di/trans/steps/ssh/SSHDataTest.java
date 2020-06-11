@@ -22,8 +22,18 @@
 package org.pentaho.di.trans.steps.ssh;
 
 
-import com.trilead.ssh2.HTTPProxyData;
-import com.trilead.ssh2.ServerHostKeyVerifier;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyObject;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.io.ByteArrayInputStream;
+
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileObject;
 import org.junit.Before;
@@ -37,19 +47,10 @@ import org.pentaho.di.core.vfs.KettleVFS;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
 import com.trilead.ssh2.Connection;
-
-import java.io.ByteArrayInputStream;
-
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.isNull;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.trilead.ssh2.HTTPProxyData;
+import com.trilead.ssh2.ServerHostKeyVerifier;
 
 @RunWith( PowerMockRunner.class )
 @PrepareForTest( { SSHData.class, KettleVFS.class } )

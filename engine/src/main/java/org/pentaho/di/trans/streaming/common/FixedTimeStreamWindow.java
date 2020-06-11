@@ -22,17 +22,7 @@
 
 package org.pentaho.di.trans.streaming.common;
 
-import io.reactivex.Flowable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import org.pentaho.di.core.Result;
-import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.trans.SubtransExecutor;
-import org.pentaho.di.trans.streaming.api.StreamWindow;
-import org.pentaho.di.core.Const;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -43,7 +33,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.Result;
+import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.trans.SubtransExecutor;
+import org.pentaho.di.trans.streaming.api.StreamWindow;
+
+import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A StreamWindow implementation which buffers rows of I by a fixed amount of time and size, executing each batch in a

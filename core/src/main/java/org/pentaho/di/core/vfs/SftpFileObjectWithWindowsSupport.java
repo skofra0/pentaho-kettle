@@ -22,13 +22,13 @@
 
 package org.pentaho.di.core.vfs;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.provider.AbstractFileName;
 import org.apache.commons.vfs2.provider.sftp.SftpFileObject;
 import org.apache.commons.vfs2.util.PosixPermissions;
-
-import java.util.List;
-import java.util.Map;
 
 class SftpFileObjectWithWindowsSupport extends SftpFileObject {
 

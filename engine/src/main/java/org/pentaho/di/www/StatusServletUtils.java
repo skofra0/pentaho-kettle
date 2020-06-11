@@ -22,17 +22,18 @@
 
 package org.pentaho.di.www;
 
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.ui.xul.util.XmlParserFactoryProducer;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.util.Optional;
+
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.ui.xul.util.XmlParserFactoryProducer;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 class StatusServletUtils {
 

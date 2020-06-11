@@ -23,17 +23,17 @@
 package org.pentaho.di.imp.rules;
 
 
-import org.junit.Test;
-import org.pentaho.di.imp.rule.ImportValidationFeedback;
-import org.pentaho.di.imp.rule.ImportValidationResultType;
-import org.pentaho.di.trans.TransMeta;
-
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.pentaho.di.imp.rule.ImportValidationFeedback;
+import org.pentaho.di.imp.rule.ImportValidationResultType;
+import org.pentaho.di.trans.TransMeta;
 
 
 public class TransformationHasDescriptionImportRuleTest {

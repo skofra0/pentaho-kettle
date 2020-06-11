@@ -29,8 +29,8 @@ import java.lang.management.ThreadMXBean;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.w3c.dom.Node;
 

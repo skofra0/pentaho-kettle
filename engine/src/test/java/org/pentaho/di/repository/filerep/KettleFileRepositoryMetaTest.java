@@ -22,18 +22,18 @@
 
 package org.pentaho.di.repository.filerep;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.repository.RepositoriesMeta;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 /**
  * Created by bmorrise on 4/26/16.

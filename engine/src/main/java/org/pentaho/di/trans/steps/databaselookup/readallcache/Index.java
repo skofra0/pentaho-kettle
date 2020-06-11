@@ -22,13 +22,12 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-
-import java.util.Comparator;
-
-import java.util.Arrays;
 
 /**
  * @author Andrey Khayrutdinov

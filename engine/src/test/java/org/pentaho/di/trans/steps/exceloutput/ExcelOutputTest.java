@@ -22,8 +22,15 @@
 
 package org.pentaho.di.trans.steps.exceloutput;
 
-import jxl.Workbook;
-import jxl.write.WritableCellFormat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Date;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -39,14 +46,8 @@ import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
+import jxl.Workbook;
+import jxl.write.WritableCellFormat;
 
 /**
  * Created by Yury_Bakhmutski on 12/12/2016.

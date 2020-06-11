@@ -21,12 +21,7 @@
  ******************************************************************************/
 package org.pentaho.di.core.row.value.timestamp;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -40,7 +35,12 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 /**
  * User: Dzmitry Stsiapanau Date: 3/17/14 Time: 4:46 PM

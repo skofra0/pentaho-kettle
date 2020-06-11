@@ -22,6 +22,9 @@
 
 package org.pentaho.di.trans.steps.userdefinedjavaclass;
 
+import java.util.List;
+import java.util.Map;
+
 import org.pentaho.di.core.BlockingRowSet;
 import org.pentaho.di.core.ResultFile;
 import org.pentaho.di.core.RowSet;
@@ -40,9 +43,6 @@ import org.pentaho.di.trans.step.StepListener;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.www.SocketRepository;
-
-import java.util.List;
-import java.util.Map;
 
 public class UserDefinedJavaClass extends BaseStep implements StepInterface {
   private TransformClassBase child;

@@ -22,10 +22,10 @@
 
 package org.pentaho.di.connections.vfs;
 
+import java.util.List;
+
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.pentaho.di.connections.ConnectionProvider;
-
-import java.util.List;
 
 /**
  * Created by bmorrise on 2/3/19.

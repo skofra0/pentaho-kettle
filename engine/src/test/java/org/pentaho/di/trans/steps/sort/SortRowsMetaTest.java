@@ -22,6 +22,8 @@
 
 package org.pentaho.di.trans.steps.sort;
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.Collator;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,8 +34,6 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
 import org.mockito.Mockito;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
@@ -45,7 +45,6 @@ import org.pentaho.di.trans.steps.loadsave.validator.IntLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveBooleanArrayLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveIntArrayLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
-import org.pentaho.di.trans.steps.mock.StepMockHelper;
 
 public class SortRowsMetaTest {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

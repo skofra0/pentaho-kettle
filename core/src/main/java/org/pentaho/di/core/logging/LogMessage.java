@@ -22,13 +22,12 @@
 
 package org.pentaho.di.core.logging;
 
-import org.apache.commons.lang.StringUtils;
-import org.pentaho.di.core.Const;
-
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.pentaho.di.core.Const;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.core.util.StringUtil;
 

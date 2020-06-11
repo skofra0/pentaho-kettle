@@ -40,18 +40,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSelectInfo;
 import org.apache.commons.vfs2.FileSelector;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleXMLException;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettlePluginException;
+import org.pentaho.di.core.exception.KettleXMLException;
 import org.pentaho.di.core.logging.DefaultLogLevel;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogLevel;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
@@ -59,6 +58,8 @@ import org.pentaho.di.i18n.GlobalMessageUtil;
 import org.scannotation.AnnotationDB;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public abstract class BasePluginType implements PluginTypeInterface {
   protected static final Class<?> PKG = BasePluginType.class; // for i18n purposes, needed by Translator2!!

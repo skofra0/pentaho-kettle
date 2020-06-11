@@ -22,11 +22,6 @@
 
 package org.pentaho.di.trans.steps.rssinput;
 
-import it.sauronsoftware.feed4j.FeedParser;
-import it.sauronsoftware.feed4j.FeedXMLParseException;
-import it.sauronsoftware.feed4j.UnsupportedFeedException;
-import it.sauronsoftware.feed4j.bean.FeedItem;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,12 +34,12 @@ import java.text.SimpleDateFormat;
 
 import org.dom4j.DocumentException;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
@@ -54,6 +49,11 @@ import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.xml.sax.SAXParseException;
+
+import it.sauronsoftware.feed4j.FeedParser;
+import it.sauronsoftware.feed4j.FeedXMLParseException;
+import it.sauronsoftware.feed4j.UnsupportedFeedException;
+import it.sauronsoftware.feed4j.bean.FeedItem;
 
 /**
  * Read data from RSS and writes these to one or more output streams. <br/>

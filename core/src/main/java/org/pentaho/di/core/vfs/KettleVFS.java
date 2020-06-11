@@ -22,6 +22,17 @@
 
 package org.pentaho.di.core.vfs;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -43,17 +54,6 @@ import org.pentaho.di.core.vfs.configuration.IKettleFileSystemConfigBuilder;
 import org.pentaho.di.core.vfs.configuration.KettleFileSystemConfigBuilderFactory;
 import org.pentaho.di.core.vfs.configuration.KettleGenericFileSystemConfigBuilder;
 import org.pentaho.di.i18n.BaseMessages;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class KettleVFS {
   public static final String TEMP_DIR = System.getProperty( "java.io.tmpdir" );

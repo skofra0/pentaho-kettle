@@ -22,6 +22,11 @@
 
 package org.pentaho.di.metastore;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
@@ -30,11 +35,6 @@ import org.pentaho.di.core.Const;
 import org.pentaho.metastore.stores.xml.XmlUtil;
 
 import com.google.common.io.Files;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 public class MetaStoreConstTest {
 

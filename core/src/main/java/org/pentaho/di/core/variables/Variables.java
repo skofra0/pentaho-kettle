@@ -22,18 +22,18 @@
 
 package org.pentaho.di.core.variables;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.row.value.ValueMetaBase;
-import org.pentaho.di.core.util.StringUtil;
-import org.pentaho.di.version.BuildVersion;
-
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaBase;
+import org.pentaho.di.core.util.StringUtil;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.version.BuildVersion;
 
 /**
  * This class is an implementation of VariableSpace

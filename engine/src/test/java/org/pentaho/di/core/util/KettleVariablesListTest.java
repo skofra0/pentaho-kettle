@@ -22,16 +22,16 @@
 
 package org.pentaho.di.core.util;
 
-import org.junit.Test;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.KettleVariablesList;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
+
+import org.junit.Test;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.KettleVariablesList;
 
 /**
  * Created by Yury_Bakhmutski on 11/4/2015.

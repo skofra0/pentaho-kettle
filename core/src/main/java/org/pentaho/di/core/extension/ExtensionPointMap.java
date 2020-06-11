@@ -21,10 +21,9 @@
  ******************************************************************************/
 package org.pentaho.di.core.extension;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
@@ -32,8 +31,10 @@ import org.pentaho.di.core.plugins.PluginInterface;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.PluginTypeListener;
 
-import java.util.List;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 
 /**
  * This class maintains a map of ExtensionPointInterface object to its name.

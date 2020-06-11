@@ -22,8 +22,6 @@
 
 package org.pentaho.di.www;
 
-import org.owasp.encoder.Encode;
-
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Iterator;
@@ -32,6 +30,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.owasp.encoder.Encode;
 
 
 public class ListServerSocketServlet extends BaseHttpServlet implements CartePluginInterface {

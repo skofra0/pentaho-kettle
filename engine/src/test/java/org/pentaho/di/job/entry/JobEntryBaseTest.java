@@ -22,16 +22,16 @@
 
 package org.pentaho.di.job.entry;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.pentaho.di.core.util.StringUtil;
-
-import java.util.regex.Pattern;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.regex.Pattern;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.pentaho.di.core.util.StringUtil;
 
 public class JobEntryBaseTest {
 

@@ -21,17 +21,17 @@
  ******************************************************************************/
 package org.pentaho.di.concurrency;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.www.CarteObjectEntry;
-import org.pentaho.di.www.SocketPortAllocation;
-import org.pentaho.di.www.TransformationMap;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.www.CarteObjectEntry;
+import org.pentaho.di.www.SocketPortAllocation;
+import org.pentaho.di.www.TransformationMap;
 
 
 public class TransformationMapConcurrentTest {

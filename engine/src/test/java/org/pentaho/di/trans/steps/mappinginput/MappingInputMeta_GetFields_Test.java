@@ -22,6 +22,12 @@
 
 package org.pentaho.di.trans.steps.mappinginput;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,13 +38,6 @@ import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaPluginType;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.trans.steps.mapping.MappingValueRename;
-
-
-import java.util.Arrays;
-import java.util.List;
-
-import java.util.Collections;
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author Andrey Khayrutdinov

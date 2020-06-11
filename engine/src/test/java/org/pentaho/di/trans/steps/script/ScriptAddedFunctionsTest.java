@@ -22,11 +22,11 @@
 
 package org.pentaho.di.trans.steps.script;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.Date;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 public class ScriptAddedFunctionsTest {
 

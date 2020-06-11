@@ -23,13 +23,13 @@
 
 package org.pentaho.di.core.util.serialization;
 
+import static java.util.Objects.requireNonNull;
+import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.step.StepMetaInterface;
-
-import static java.util.Objects.requireNonNull;
-import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
 
 /**
  * Writes/Reads StepMetaInterface to and from a {@link Repository}

@@ -22,11 +22,6 @@
 
 package org.pentaho.di.core.util;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.variables.Variables;
-import org.pentaho.di.version.BuildVersion;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,6 +35,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.variables.Variables;
+import org.pentaho.di.version.BuildVersion;
 
 public class EnvUtil {
   private static Properties env = null;

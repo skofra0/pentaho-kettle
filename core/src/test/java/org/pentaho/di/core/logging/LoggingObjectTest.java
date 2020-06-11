@@ -23,7 +23,7 @@
 
 package org.pentaho.di.core.logging;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class LoggingObjectTest {

@@ -22,13 +22,6 @@
 
 package org.pentaho.di.cluster;
 
-import junit.framework.Assert;
-import org.apache.commons.codec.binary.Base64;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.core.variables.Variables;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -37,6 +30,13 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.security.NoSuchAlgorithmException;
 import java.util.zip.GZIPOutputStream;
+
+import org.apache.commons.codec.binary.Base64;
+import org.junit.Assert;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.core.variables.Variables;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 public class HttpUtilTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

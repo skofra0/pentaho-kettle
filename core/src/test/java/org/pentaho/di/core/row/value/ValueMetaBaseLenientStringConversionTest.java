@@ -20,12 +20,12 @@
 
 package org.pentaho.di.core.row.value;
 
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
-
-import java.math.BigDecimal;
 
 
 public class ValueMetaBaseLenientStringConversionTest {

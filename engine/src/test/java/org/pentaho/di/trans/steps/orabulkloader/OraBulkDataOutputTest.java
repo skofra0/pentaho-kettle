@@ -21,6 +21,17 @@
  ******************************************************************************/
 package org.pentaho.di.trans.steps.orabulkloader;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.vfs2.provider.local.LocalFile;
 import org.apache.poi.util.TempFile;
 import org.junit.Before;
@@ -32,17 +43,6 @@ import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import java.io.File;
-import java.io.IOException;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
 
 public class OraBulkDataOutputTest {
   private static final String loadMethod = "AUTO_END";

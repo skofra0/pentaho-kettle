@@ -22,11 +22,12 @@
 
 package org.pentaho.di.core.attributes.metastore;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
+
 import org.pentaho.di.core.AttributesInterface;
 import org.pentaho.metastore.test.MetaStoreTestBase;
 
-import java.util.Map;
+import com.google.common.collect.Maps;
 
 /**
  * @author nhudak

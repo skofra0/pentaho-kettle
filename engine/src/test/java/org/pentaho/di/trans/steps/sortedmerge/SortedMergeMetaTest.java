@@ -38,7 +38,6 @@ import org.pentaho.di.trans.steps.loadsave.validator.BooleanLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveBooleanArrayLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
-import org.pentaho.di.trans.steps.mock.StepMockHelper;
 
 public class SortedMergeMetaTest {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

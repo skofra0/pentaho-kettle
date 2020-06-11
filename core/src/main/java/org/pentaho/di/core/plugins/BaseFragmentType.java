@@ -22,12 +22,12 @@
 
 package org.pentaho.di.core.plugins;
 
-import org.pentaho.di.core.exception.KettlePluginException;
-
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Map;
+
+import org.pentaho.di.core.exception.KettlePluginException;
 
 public abstract class BaseFragmentType extends BasePluginType {
 

@@ -22,17 +22,17 @@
 
 package org.pentaho.di.trans.steps.scriptvalues_mod;
 
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.trans.Trans;
-
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
 
 public class ScriptValueAddFunctions_SetVariableScopeTest {
   private static final String VARIABLE_NAME = "variable-name";

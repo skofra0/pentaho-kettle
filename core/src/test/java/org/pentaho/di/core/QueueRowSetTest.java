@@ -21,13 +21,14 @@
  ******************************************************************************/
 package org.pentaho.di.core;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.core.row.RowMeta;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.core.row.RowMeta;
 
 public class QueueRowSetTest {
   Object[] row;

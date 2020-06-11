@@ -25,14 +25,13 @@ package org.pentaho.di.trans.steps.mapping;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.RowSet;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogTableField;
 import org.pentaho.di.core.logging.TransLogTable;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.SingleThreadedTransExecutor;
 import org.pentaho.di.trans.StepWithMappingMeta;
@@ -50,6 +49,8 @@ import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.TransStepUtil;
 import org.pentaho.di.trans.steps.mappinginput.MappingInput;
 import org.pentaho.di.trans.steps.mappingoutput.MappingOutput;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Execute a mapping: a re-usuable transformation

@@ -22,6 +22,9 @@
 
 package org.pentaho.di.core.row;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -41,11 +44,7 @@ import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.core.row.value.ValueMetaTimestamp;
-
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class RowTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

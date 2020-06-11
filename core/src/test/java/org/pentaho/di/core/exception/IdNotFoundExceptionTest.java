@@ -22,13 +22,13 @@
 
 package org.pentaho.di.core.exception;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 import org.pentaho.di.repository.RepositoryObjectType;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Yury Bakhmutski

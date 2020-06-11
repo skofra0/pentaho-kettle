@@ -22,6 +22,10 @@
 
 package org.pentaho.di.compatibility;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,10 +34,6 @@ import java.util.Date;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Test class for the basic functionality of ValueInteger.

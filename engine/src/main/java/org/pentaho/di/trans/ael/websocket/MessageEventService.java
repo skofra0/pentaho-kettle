@@ -23,6 +23,14 @@
  */
 package org.pentaho.di.trans.ael.websocket;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import org.pentaho.di.engine.api.events.PDIEvent;
 import org.pentaho.di.engine.api.model.ModelType;
 import org.pentaho.di.engine.api.remote.Message;
@@ -31,14 +39,6 @@ import org.pentaho.di.engine.api.remote.StopMessage;
 import org.pentaho.di.trans.ael.websocket.exception.HandlerRegistrationException;
 import org.pentaho.di.trans.ael.websocket.exception.MessageEventFireEventException;
 import org.pentaho.di.trans.ael.websocket.handler.MessageEventHandler;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by fcamara on 8/17/17.

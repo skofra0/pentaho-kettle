@@ -22,12 +22,12 @@
 
 package org.pentaho.di.trans.steps.ssh;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.ClassRule;

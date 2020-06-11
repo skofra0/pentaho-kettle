@@ -25,7 +25,6 @@ package org.pentaho.di.trans.debug;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.row.RowMetaInterface;
@@ -34,6 +33,8 @@ import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.RowAdapter;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * For a certain transformation, we want to be able to insert break-points into a transformation. These breakpoints can

@@ -22,7 +22,16 @@
 
 package org.pentaho.di.www;
 
-import com.sun.jersey.spi.container.servlet.ServletContainer;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.servlet.Servlet;
+
 import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.jaas.JAASLoginService;
 import org.eclipse.jetty.security.ConstraintMapping;
@@ -49,7 +58,6 @@ import org.eclipse.jetty.util.security.Password;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.extension.ExtensionPointHandler;
@@ -58,16 +66,10 @@ import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.plugins.CartePluginType;
 import org.pentaho.di.core.plugins.PluginInterface;
 import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 
-import javax.servlet.Servlet;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import com.sun.jersey.spi.container.servlet.ServletContainer;
 
 public class WebServer {
 

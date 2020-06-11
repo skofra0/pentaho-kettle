@@ -51,8 +51,8 @@ import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.TransTestingUtil;
 import org.pentaho.di.trans.step.errorhandling.FileErrorHandler;
-import org.pentaho.di.trans.steps.fileinput.text.TextFileLine;
 import org.pentaho.di.trans.steps.StepMockUtil;
+import org.pentaho.di.trans.steps.fileinput.text.TextFileLine;
 import org.pentaho.di.utils.TestUtils;
 
 /**

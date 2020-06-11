@@ -25,9 +25,9 @@ package org.pentaho.di.imp.rules;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.JobLogTable;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.imp.rule.ImportRuleInterface;
 import org.pentaho.di.imp.rule.ImportValidationFeedback;

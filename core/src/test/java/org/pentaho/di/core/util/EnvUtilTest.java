@@ -22,17 +22,17 @@
 
 package org.pentaho.di.core.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.util.Locale;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import java.util.Locale;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * Created by Yury_Bakhmutski on 11/4/2015.

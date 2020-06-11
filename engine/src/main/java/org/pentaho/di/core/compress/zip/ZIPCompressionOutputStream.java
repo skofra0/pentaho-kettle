@@ -28,9 +28,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.compress.CompressionOutputStream;
 import org.pentaho.di.core.compress.CompressionProvider;
+import org.pentaho.di.core.util.Utils;
 
 public class ZIPCompressionOutputStream extends CompressionOutputStream {
 

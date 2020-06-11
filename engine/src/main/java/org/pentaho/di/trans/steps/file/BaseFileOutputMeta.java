@@ -22,15 +22,16 @@
 
 package org.pentaho.di.trans.steps.file;
 
-import com.google.common.annotations.VisibleForTesting;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.pentaho.di.core.injection.Injection;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * A base implementation for all output file based metas.

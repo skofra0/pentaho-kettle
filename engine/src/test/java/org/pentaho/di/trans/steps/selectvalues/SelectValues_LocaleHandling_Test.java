@@ -22,6 +22,15 @@
 
 package org.pentaho.di.trans.steps.selectvalues;
 
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -37,15 +46,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.pentaho.di.trans.steps.selectvalues.SelectValuesMeta.SelectField;
-
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
-import java.util.Collections;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
 
 /**
  * Note: In Europe (e.g. in UK), week starts on Monday. In USA, it starts on Sunday.

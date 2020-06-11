@@ -22,20 +22,6 @@
 
 package org.pentaho.di.core.row;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.pentaho.di.compatibility.Row;
-import org.pentaho.di.compatibility.Value;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.exception.KettleEOFException;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.exception.KettlePluginException;
-import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.row.value.ValueMetaFactory;
-import org.pentaho.di.core.xml.XMLHandler;
-import org.w3c.dom.Node;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -52,6 +38,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import org.pentaho.di.compatibility.Row;
+import org.pentaho.di.compatibility.Value;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleEOFException;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.exception.KettlePluginException;
+import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.row.value.ValueMetaFactory;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.w3c.dom.Node;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class RowMeta implements RowMetaInterface {
   public static final String XML_META_TAG = "row-meta";

@@ -22,10 +22,10 @@
 
 package org.pentaho.di.www;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
 
 public class ServletTestUtils {
   public static final char[] BAD_CHARACTERS_TO_ESCAPE = {'<', '>', '\'', '\"'};

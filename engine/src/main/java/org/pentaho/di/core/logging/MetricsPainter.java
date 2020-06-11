@@ -25,13 +25,13 @@ package org.pentaho.di.core.logging;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.gui.GCInterface;
 import org.pentaho.di.core.gui.Point;
 import org.pentaho.di.core.gui.PrimitiveGCInterface.EColor;
 import org.pentaho.di.core.gui.PrimitiveGCInterface.EFont;
 import org.pentaho.di.core.gui.Rectangle;
 import org.pentaho.di.core.metrics.MetricsDuration;
+import org.pentaho.di.core.util.Utils;
 
 public class MetricsPainter {
   private GCInterface gc;

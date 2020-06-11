@@ -22,11 +22,11 @@
 
 package org.pentaho.di.core;
 
+import java.util.Date;
+
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.RepositoryDirectory;
-import org.pentaho.di.core.util.Utils;
-
-import java.util.Date;
 
 public class LastUsedFile {
 

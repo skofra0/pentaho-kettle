@@ -22,16 +22,17 @@
 
 package org.pentaho.di.i18n;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.di.core.logging.LogChannelInterface;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.logging.LogChannelInterface;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class GlobalMessages extends AbstractMessageHandler {
   protected static Class<?> PKG = GlobalMessages.class;

@@ -22,6 +22,11 @@
 
 package org.pentaho.di.trans.steps.scriptvalues_mod;
 
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+
+import java.math.BigDecimal;
+
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -33,11 +38,6 @@ import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.TransTestingUtil;
 import org.pentaho.di.trans.steps.StepMockUtil;
-
-import java.math.BigDecimal;
-
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
 
 /**
  * @author Andrey Khayrutdinov

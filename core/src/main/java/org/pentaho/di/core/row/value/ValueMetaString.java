@@ -22,10 +22,10 @@
 
 package org.pentaho.di.core.row.value;
 
+import java.util.Comparator;
+
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-
-import java.util.Comparator;
 
 public class ValueMetaString extends ValueMetaBase implements ValueMetaInterface {
 

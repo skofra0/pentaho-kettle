@@ -22,10 +22,6 @@
 
 package org.pentaho.di.core.database.map;
 
-import org.pentaho.di.core.database.Database;
-import org.pentaho.di.core.database.DatabaseTransactionListener;
-import org.pentaho.di.core.util.Utils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +29,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.DatabaseTransactionListener;
+import org.pentaho.di.core.util.Utils;
 
 /**
  * This class contains a map between on the one hand

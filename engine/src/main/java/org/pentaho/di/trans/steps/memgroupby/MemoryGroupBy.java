@@ -28,10 +28,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.math.stat.descriptive.rank.Percentile;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.RowDataUtil;
@@ -43,6 +41,7 @@ import org.pentaho.di.core.row.value.ValueMetaBase;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
@@ -52,6 +51,8 @@ import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.memgroupby.MemoryGroupByData.HashEntry;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Groups information based on aggregation rules. (sum, count, ...)

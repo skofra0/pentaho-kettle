@@ -22,23 +22,24 @@
 
 package org.pentaho.di.core.logging;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.pentaho.di.core.logging.LoggingObjectType.DATABASE;
+import static org.pentaho.di.core.logging.LoggingObjectType.JOB;
+import static org.pentaho.di.core.logging.LoggingObjectType.JOBENTRY;
+import static org.pentaho.di.core.logging.LoggingObjectType.STEP;
+import static org.pentaho.di.core.logging.LoggingObjectType.TRANS;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Function;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryObjectType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
-import static org.pentaho.di.core.logging.LoggingObjectType.DATABASE;
-import static org.pentaho.di.core.logging.LoggingObjectType.TRANS;
-import static org.pentaho.di.core.logging.LoggingObjectType.STEP;
-import static org.pentaho.di.core.logging.LoggingObjectType.JOB;
-import static org.pentaho.di.core.logging.LoggingObjectType.JOBENTRY;
+import com.google.common.annotations.VisibleForTesting;
 
 public class Slf4jLoggingEventListener implements KettleLoggingEventListener {
 

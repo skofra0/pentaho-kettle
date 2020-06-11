@@ -24,11 +24,11 @@ package org.pentaho.di.core.encryption;
 
 import org.eclipse.jetty.util.security.Password;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginInterface;
 import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.core.util.Utils;
 
 /**
  * This class handles basic encryption of passwords in Kettle. Note that it's not really encryption, it's more

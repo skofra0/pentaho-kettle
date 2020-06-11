@@ -21,8 +21,7 @@
  ******************************************************************************/
 package org.pentaho.di.job.entries.mail;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;

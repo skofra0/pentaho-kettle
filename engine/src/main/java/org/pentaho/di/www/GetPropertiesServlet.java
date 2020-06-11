@@ -22,10 +22,6 @@
 
 package org.pentaho.di.www;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.encryption.Encr;
-import org.pentaho.di.core.util.EnvUtil;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,6 +30,10 @@ import java.util.Properties;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.encryption.Encr;
+import org.pentaho.di.core.util.EnvUtil;
 
 public class GetPropertiesServlet extends BodyHttpServlet {
 

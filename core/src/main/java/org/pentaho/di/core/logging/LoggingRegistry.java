@@ -22,10 +22,6 @@
 
 package org.pentaho.di.core.logging;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.EnvUtil;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -42,6 +38,11 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.util.EnvUtil;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * This class keeps track of all LoggingObjects that implement the LoggingObjectInterface which register with the

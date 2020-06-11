@@ -22,17 +22,6 @@
 
 package org.pentaho.di.www;
 
-import org.owasp.encoder.Encode;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.xml.XMLHandler;
-import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.job.Job;
-import org.pentaho.di.trans.Trans;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.management.OperatingSystemMXBean;
@@ -44,6 +33,18 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.owasp.encoder.Encode;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.job.Job;
+import org.pentaho.di.trans.Trans;
 
 @SuppressWarnings( {"squid:S1192", "squid:S1075" } ) // suppress warnings related to dup'd strings & non-config path
 public class GetStatusServlet extends BaseHttpServlet implements CartePluginInterface {

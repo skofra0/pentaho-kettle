@@ -22,13 +22,13 @@
 
 package org.pentaho.di.trans;
 
+import java.util.List;
+
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.metastore.api.IMetaStore;
-
-import java.util.List;
 
 public class CheckStepsExtension {
   private final List<CheckResultInterface> remarks;

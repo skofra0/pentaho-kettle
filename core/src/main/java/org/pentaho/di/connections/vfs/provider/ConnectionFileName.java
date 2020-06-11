@@ -22,11 +22,11 @@
 
 package org.pentaho.di.connections.vfs.provider;
 
+import java.util.Objects;
+
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileType;
 import org.apache.commons.vfs2.provider.AbstractFileName;
-
-import java.util.Objects;
 
 public class ConnectionFileName extends AbstractFileName {
 

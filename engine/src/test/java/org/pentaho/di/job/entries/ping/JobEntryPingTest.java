@@ -22,7 +22,6 @@
 package org.pentaho.di.job.entries.ping;
 
 import java.util.Arrays;
-
 import java.util.List;
 import java.util.Map;
 

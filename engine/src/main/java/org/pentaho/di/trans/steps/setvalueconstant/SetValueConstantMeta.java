@@ -22,6 +22,9 @@
 
 package org.pentaho.di.trans.steps.setvalueconstant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -48,9 +51,6 @@ import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @InjectionSupported( localizationPrefix = "SetValueConstant.Injection.", groups = { "FIELDS", "OPTIONS" } )
 public class SetValueConstantMeta extends BaseStepMeta implements StepMetaInterface {

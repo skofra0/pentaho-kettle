@@ -27,8 +27,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.StringObjectId;

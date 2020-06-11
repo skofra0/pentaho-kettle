@@ -27,9 +27,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
 
 /**
  * Contains HP Neoview specific information through static final members

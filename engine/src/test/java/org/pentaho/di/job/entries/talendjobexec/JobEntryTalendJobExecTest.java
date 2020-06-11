@@ -24,7 +24,6 @@ package org.pentaho.di.job.entries.talendjobexec;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import java.util.List;
 import java.util.Map;
 

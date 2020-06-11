@@ -22,12 +22,12 @@
 
 package org.pentaho.di.trans.steps.ldapinput;
 
+import java.util.Collections;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.variables.VariableSpace;
-
-import java.util.Collections;
 
 public class LdapProtocolFactoryTest {
 

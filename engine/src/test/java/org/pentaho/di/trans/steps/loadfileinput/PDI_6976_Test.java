@@ -22,7 +22,7 @@
 
 package org.pentaho.di.trans.steps.loadfileinput;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -32,8 +32,6 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 import javax.tools.FileObject;
-
-import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
@@ -46,6 +44,8 @@ import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.metastore.api.IMetaStore;
+
+import junit.framework.TestCase;
 
 /**
  * Tests for LoadFileInputMeta class

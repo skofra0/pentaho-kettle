@@ -26,10 +26,9 @@ import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import org.custommonkey.xmlunit.XMLUnit;
 
 public class XMLFormatterTest {
 

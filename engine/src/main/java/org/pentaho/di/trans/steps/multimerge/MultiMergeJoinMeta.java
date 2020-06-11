@@ -22,6 +22,8 @@
 
 package org.pentaho.di.trans.steps.multimerge;
 
+import java.util.List;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
@@ -51,8 +53,6 @@ import org.pentaho.di.trans.step.errorhandling.StreamIcon;
 import org.pentaho.di.trans.step.errorhandling.StreamInterface.StreamType;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.List;
 
 /**
  * @author Biswapesh

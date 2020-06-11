@@ -22,6 +22,9 @@
 
 package org.pentaho.di.trans.steps.simplemapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -65,9 +68,6 @@ import org.pentaho.di.trans.steps.mappinginput.MappingInputMeta;
 import org.pentaho.di.trans.steps.mappingoutput.MappingOutputMeta;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Meta-data for the Mapping step: contains name of the (sub-)transformation to execute

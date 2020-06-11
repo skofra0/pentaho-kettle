@@ -22,6 +22,10 @@
 
 package org.pentaho.di.connections;
 
+import static org.pentaho.metastore.util.PentahoDefaults.NAMESPACE;
+
+import java.util.List;
+
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,10 +37,6 @@ import org.pentaho.di.connections.vfs.VFSLookupFilter;
 import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.metastore.persist.MetaStoreFactory;
 import org.pentaho.metastore.stores.memory.MemoryMetaStore;
-
-import java.util.List;
-
-import static org.pentaho.metastore.util.PentahoDefaults.NAMESPACE;
 
 /**
  * Created by bmorrise on 3/10/19.

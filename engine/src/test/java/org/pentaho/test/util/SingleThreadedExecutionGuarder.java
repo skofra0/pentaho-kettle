@@ -22,6 +22,8 @@
 
 package org.pentaho.test.util;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -35,8 +37,6 @@ import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
-
-import static org.junit.Assert.assertNotNull;
 
 /**
  * This is a base class for creating guard tests, that check a step cannot be executed in the single-threaded mode

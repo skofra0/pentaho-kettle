@@ -22,13 +22,13 @@
 
 package org.pentaho.di.trans.steps.calculator;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Andrey Khayrutdinov

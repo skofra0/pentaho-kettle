@@ -29,25 +29,13 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 
-import jxl.Cell;
-import jxl.Sheet;
-
-import jxl.read.biff.BiffException;
-import jxl.write.DateFormat;
-import jxl.write.DateFormats;
-import jxl.write.Label;
-import jxl.write.WritableCellFormat;
-import jxl.write.DateTime;
-import jxl.write.NumberFormat;
-import jxl.write.WritableFont;
-import jxl.write.WritableImage;
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ResultFile;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaString;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
@@ -58,13 +46,24 @@ import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
 
+import jxl.Cell;
+import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.biff.StringHelper;
 import jxl.format.CellFormat;
 import jxl.format.Colour;
 import jxl.format.UnderlineStyle;
+import jxl.read.biff.BiffException;
+import jxl.write.DateFormat;
+import jxl.write.DateFormats;
+import jxl.write.DateTime;
+import jxl.write.Label;
+import jxl.write.NumberFormat;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableFont.FontName;
+import jxl.write.WritableImage;
 
 /**
  * Converts input rows to excel cells and then writes this information to one or more files.

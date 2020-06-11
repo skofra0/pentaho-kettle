@@ -22,15 +22,15 @@
 
 package org.pentaho.di.connections.vfs.providers.other;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.apache.commons.vfs2.auth.StaticUserAuthenticator;
 import org.apache.commons.vfs2.impl.DefaultFileSystemConfigBuilder;
 import org.pentaho.di.connections.vfs.BaseVFSConnectionProvider;
 import org.pentaho.di.connections.vfs.VFSRoot;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by bmorrise on 2/3/19.

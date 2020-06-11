@@ -20,7 +20,25 @@
 
 package org.pentaho.di.core.util.serialization;
 
-import com.google.common.annotations.VisibleForTesting;
+import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
+import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Stream.concat;
+import static org.pentaho.di.core.util.serialization.StepMetaProps.STEP_TAG;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
@@ -33,23 +51,7 @@ import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.trans.step.StepMetaInterface;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.Arrays.asList;
-import static java.util.Arrays.stream;
-import static java.util.Collections.singletonList;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Stream.concat;
-import static org.pentaho.di.core.util.serialization.StepMetaProps.STEP_TAG;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * A slim representation of StepMetaInterface properties, used as a

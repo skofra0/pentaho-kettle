@@ -22,25 +22,25 @@
 
 package org.pentaho.di.trans.step;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.junit.Test;
-import org.pentaho.di.cluster.ClusterSchema;
-import org.pentaho.di.cluster.SlaveServer;
-import org.pentaho.di.core.util.AbstractStepMeta;
-import org.pentaho.di.partition.PartitionSchema;
-import org.pentaho.di.utils.TestUtils;
-import org.pentaho.di.trans.steps.missing.MissingTrans;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.junit.Test;
+import org.pentaho.di.cluster.ClusterSchema;
+import org.pentaho.di.cluster.SlaveServer;
+import org.pentaho.di.core.util.AbstractStepMeta;
+import org.pentaho.di.partition.PartitionSchema;
+import org.pentaho.di.trans.steps.missing.MissingTrans;
+import org.pentaho.di.utils.TestUtils;
 
 /**
  * @author Andrey Khayrutdinov

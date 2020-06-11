@@ -23,37 +23,6 @@
 
 package org.pentaho.di.trans.steps.scriptvalues_mod;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileType;
-import org.apache.commons.vfs2.FileUtil;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.EvaluatorException;
-import org.mozilla.javascript.Function;
-import org.mozilla.javascript.JavaScriptException;
-import org.mozilla.javascript.Scriptable;
-import org.mozilla.javascript.ScriptableObject;
-import org.mozilla.javascript.WrappedException;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.database.Database;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.gui.SpoonFactory;
-import org.pentaho.di.core.gui.SpoonInterface;
-import org.pentaho.di.core.row.RowDataUtil;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.variables.VariableSpace;
-import org.pentaho.di.core.vfs.KettleVFS;
-import org.pentaho.di.trans.Trans;
-import org.pentaho.di.trans.step.StepInterface;
-import org.pentaho.di.trans.steps.loadfileinput.LoadFileInput;
-
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -83,6 +52,39 @@ import java.util.Properties;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.vfs2.FileObject;
+import org.apache.commons.vfs2.FileType;
+import org.apache.commons.vfs2.FileUtil;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.EvaluatorException;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.JavaScriptException;
+import org.mozilla.javascript.Scriptable;
+import org.mozilla.javascript.ScriptableObject;
+import org.mozilla.javascript.WrappedException;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.gui.SpoonFactory;
+import org.pentaho.di.core.gui.SpoonInterface;
+import org.pentaho.di.core.row.RowDataUtil;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.variables.VariableSpace;
+import org.pentaho.di.core.vfs.KettleVFS;
+import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.step.StepInterface;
+import org.pentaho.di.trans.steps.loadfileinput.LoadFileInput;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class ScriptValuesAddedFunctions extends ScriptableObject {
 

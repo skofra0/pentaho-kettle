@@ -30,7 +30,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 
 import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;

@@ -21,6 +21,15 @@
  ******************************************************************************/
 package org.pentaho.di.job.entries.getpop;
 
+import static org.mockito.Mockito.when;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.mail.Folder;
+import javax.mail.MessagingException;
+import javax.mail.Store;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +39,6 @@ import org.mockito.stubbing.Answer;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
-
-import javax.mail.Folder;
-import javax.mail.MessagingException;
-import javax.mail.Store;
-import java.io.File;
-import java.io.IOException;
-
-import static org.mockito.Mockito.when;
 
 public class MailConnectionTest {
 

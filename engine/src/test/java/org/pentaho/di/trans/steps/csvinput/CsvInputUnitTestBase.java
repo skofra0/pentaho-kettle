@@ -22,14 +22,14 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.junit.BeforeClass;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author Andrey Khayrutdinov

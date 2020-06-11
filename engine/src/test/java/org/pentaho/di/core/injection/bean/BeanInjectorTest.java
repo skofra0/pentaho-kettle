@@ -22,17 +22,11 @@
 
 package org.pentaho.di.core.injection.bean;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.core.injection.MetaBeanLevel1;
-import org.pentaho.di.core.injection.MetaBeanLevel2;
-import org.pentaho.di.core.logging.KettleLogStore;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
@@ -40,6 +34,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.core.injection.MetaBeanLevel1;
+import org.pentaho.di.core.injection.MetaBeanLevel2;
+import org.pentaho.di.core.logging.KettleLogStore;
 
 public class BeanInjectorTest {
 

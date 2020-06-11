@@ -22,20 +22,20 @@
 
 package org.pentaho.di.repository.filerep;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.UUID;
+
 import org.apache.commons.vfs2.FileObject;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.repository.ObjectId;
-
-import java.util.UUID;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Andrey Khayrutdinov

@@ -22,6 +22,8 @@
 
 package org.pentaho.di.trans.steps.setvalueconstant;
 
+import java.util.List;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.util.StringUtil;
@@ -34,8 +36,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
-
-import java.util.List;
 
 /**
  * Replace Field value by a constant value.

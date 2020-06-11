@@ -22,9 +22,9 @@
 
 package org.pentaho.di.trans.steps.userdefinedjavaclass;
 
-import org.junit.Test;
-
 import static org.junit.Assert.fail;
+
+import org.junit.Test;
 
 /**
  * User: Dzmitry Stsiapanau Date: 2/6/14 Time: 2:29 PM

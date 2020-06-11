@@ -22,13 +22,13 @@
 
 package org.pentaho.di.repository;
 
+import java.util.List;
+
 import org.pentaho.di.cluster.ClusterSchema;
 import org.pentaho.di.cluster.SlaveServer;
-import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.partition.PartitionSchema;
-
-import java.util.List;
 
 /**
  * Additional methods to be added to Repository in next major revision.

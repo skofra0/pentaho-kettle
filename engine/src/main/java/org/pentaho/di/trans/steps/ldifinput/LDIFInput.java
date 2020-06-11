@@ -25,19 +25,14 @@ package org.pentaho.di.trans.steps.ldifinput;
 import java.util.Date;
 import java.util.Enumeration;
 
-import netscape.ldap.LDAPAttribute;
-import netscape.ldap.util.LDIF;
-import netscape.ldap.util.LDIFAttributeContent;
-import netscape.ldap.util.LDIFContent;
-
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ResultFile;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
@@ -47,6 +42,11 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
+
+import netscape.ldap.LDAPAttribute;
+import netscape.ldap.util.LDIF;
+import netscape.ldap.util.LDIFAttributeContent;
+import netscape.ldap.util.LDIFContent;
 
 /**
  * Read all LDIF files, convert them to rows and writes these to one or more output streams.

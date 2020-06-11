@@ -22,6 +22,15 @@
 
 package org.pentaho.di.job.entries.job;
 
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.CheckResultInterface;
@@ -79,15 +88,6 @@ import org.pentaho.di.www.SlaveServerJobStatus;
 import org.pentaho.metastore.api.IMetaStore;
 import org.pentaho.platform.api.repository2.unified.RepositoryFile;
 import org.w3c.dom.Node;
-
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Recursive definition of a Job. This step means that an entire Job has to be executed. It can be the same Job, but

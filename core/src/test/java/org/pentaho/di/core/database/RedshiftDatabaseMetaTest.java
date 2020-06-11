@@ -22,16 +22,6 @@
 
 package org.pentaho.di.core.database;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.pentaho.di.core.KettleClientEnvironment;
-import org.pentaho.di.core.encryption.Encr;
-import org.pentaho.di.core.exception.KettleException;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -42,6 +32,16 @@ import static org.pentaho.di.core.database.RedshiftDatabaseMeta.IAM_SECRET_ACCES
 import static org.pentaho.di.core.database.RedshiftDatabaseMeta.IAM_SESSION_TOKEN;
 import static org.pentaho.di.core.database.RedshiftDatabaseMeta.JDBC_AUTH_METHOD;
 import static org.pentaho.di.core.database.RedshiftDatabaseMeta.PROFILE_CREDENTIALS;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.pentaho.di.core.KettleClientEnvironment;
+import org.pentaho.di.core.encryption.Encr;
+import org.pentaho.di.core.exception.KettleException;
 
 /**
  * Unit tests for RedshiftDatabaseMeta

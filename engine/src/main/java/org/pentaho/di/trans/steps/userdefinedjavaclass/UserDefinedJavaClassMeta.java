@@ -22,9 +22,16 @@
 
 package org.pentaho.di.trans.steps.userdefinedjavaclass;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.codehaus.janino.ClassBodyEvaluator;
+import java.io.IOException;
+import java.io.StringReader;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.codehaus.commons.compiler.CompileException;
+import org.codehaus.janino.ClassBodyEvaluator;
 import org.codehaus.janino.Scanner;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
@@ -59,16 +66,10 @@ import org.pentaho.di.trans.steps.fieldsplitter.DataTypeConverter;
 import org.pentaho.di.trans.steps.userdefinedjavaclass.UserDefinedJavaClassDef.ClassType;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
+
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @InjectionSupported( localizationPrefix = "UserDefinedJavaClass.Injection.", groups = {
   "PARAMETERS", "TARGET_STEPS", "INFO_STEPS", "JAVA_CLASSES", "FIELD_INFO" } )

@@ -25,7 +25,6 @@ package org.pentaho.di.trans.steps.ssh;
 import java.io.CharArrayWriter;
 import java.io.InputStream;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileObject;
@@ -38,6 +37,7 @@ import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.HTTPProxyData;
 

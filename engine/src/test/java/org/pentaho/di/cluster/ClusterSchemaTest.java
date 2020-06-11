@@ -22,20 +22,20 @@
 
 package org.pentaho.di.cluster;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.www.SlaveServerDetection;
+import static org.mockito.ArgumentMatchers.anyObject;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.never;
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.www.SlaveServerDetection;
 
 public class ClusterSchemaTest {
 

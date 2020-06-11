@@ -22,12 +22,12 @@
 
 package org.pentaho.di.connections.common.bucket;
 
+import java.io.InputStream;
+
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileType;
 import org.apache.commons.vfs2.provider.AbstractFileName;
 import org.apache.commons.vfs2.provider.AbstractFileObject;
-
-import java.io.InputStream;
 
 public class TestFileObject extends AbstractFileObject<TestFileSystem> {
 

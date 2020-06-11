@@ -17,6 +17,8 @@
 
 package org.pentaho.di.repository;
 
+import java.io.ByteArrayInputStream;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.pentaho.di.core.Const;
@@ -26,8 +28,6 @@ import org.pentaho.di.core.logging.LoggingBuffer;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.RepositoryPluginType;
 import org.pentaho.di.i18n.BaseMessages;
-
-import java.io.ByteArrayInputStream;
 
 /**
  *  Provides a utility method to connect to repository and return the repository object

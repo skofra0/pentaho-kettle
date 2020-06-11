@@ -23,12 +23,12 @@
  */
 package org.pentaho.di.trans.ael.websocket.exception;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
 
 /**
  * Created by fcamara on 8/17/17.

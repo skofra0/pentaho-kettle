@@ -30,10 +30,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ProgressMonitorListener;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.logging.LoggingObjectInterface;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 
 /**

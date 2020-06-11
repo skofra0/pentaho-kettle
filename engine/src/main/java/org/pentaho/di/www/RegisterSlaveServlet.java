@@ -22,11 +22,6 @@
 
 package org.pentaho.di.www;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.xml.XMLHandler;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -34,6 +29,11 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 public class RegisterSlaveServlet extends BaseHttpServlet implements CartePluginInterface {
   private static final long serialVersionUID = 8513820270964866132L;

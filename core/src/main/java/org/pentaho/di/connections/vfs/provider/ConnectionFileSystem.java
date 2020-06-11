@@ -22,6 +22,9 @@
 
 package org.pentaho.di.connections.vfs.provider;
 
+import java.util.Collection;
+import java.util.function.Supplier;
+
 import org.apache.commons.vfs2.Capability;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -36,9 +39,6 @@ import org.pentaho.di.connections.ConnectionManager;
 import org.pentaho.di.connections.vfs.VFSConnectionDetails;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.core.vfs.KettleVFS;
-
-import java.util.Collection;
-import java.util.function.Supplier;
 
 public class ConnectionFileSystem extends AbstractFileSystem implements FileSystem {
 

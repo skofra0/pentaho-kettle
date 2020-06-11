@@ -21,12 +21,15 @@
  ******************************************************************************/
 package org.pentaho.di.core;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import org.junit.Test;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class SQLStatementTest {
   @Test

@@ -23,6 +23,17 @@
  */
 package org.pentaho.di.trans.ael.websocket;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.pentaho.di.core.util.Assert.assertFalse;
+import static org.pentaho.di.core.util.Assert.assertTrue;
+
+import java.util.Date;
+import java.util.UUID;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,17 +52,6 @@ import org.pentaho.di.engine.api.reporting.LogLevel;
 import org.pentaho.di.trans.ael.websocket.exception.HandlerRegistrationException;
 import org.pentaho.di.trans.ael.websocket.exception.MessageEventFireEventException;
 import org.pentaho.di.trans.ael.websocket.handler.MessageEventHandler;
-
-import java.util.Date;
-import java.util.UUID;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.pentaho.di.core.util.Assert.assertFalse;
-import static org.pentaho.di.core.util.Assert.assertTrue;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
 
 @RunWith( MockitoJUnitRunner.class )
 public class MessageEventServiceTest {

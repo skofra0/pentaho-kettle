@@ -22,19 +22,19 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.row.value.ValueMetaInteger;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaInteger;
 
 /**
  * This is a base class for several similar cases. All of them are checking how indexes work with the same tuple of data:

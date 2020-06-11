@@ -22,9 +22,8 @@
 
 package org.pentaho.di.core.injection.bean;
 
-import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.injection.AfterInjection;
+import static com.google.common.collect.Lists.newLinkedList;
+import static java.util.Objects.requireNonNull;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -38,8 +37,9 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-import static com.google.common.collect.Lists.newLinkedList;
-import static java.util.Objects.requireNonNull;
+import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.injection.AfterInjection;
 
 /**
  * Engine for get/set metadata injection properties from bean.

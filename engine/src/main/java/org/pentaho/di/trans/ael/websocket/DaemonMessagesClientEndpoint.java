@@ -23,6 +23,20 @@
  */
 package org.pentaho.di.trans.ael.websocket;
 
+import java.io.IOException;
+import java.net.URI;
+import java.util.Collections;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.websocket.ClientEndpointConfig;
+import javax.websocket.CloseReason;
+import javax.websocket.ContainerProvider;
+import javax.websocket.Endpoint;
+import javax.websocket.EndpointConfig;
+import javax.websocket.MessageHandler;
+import javax.websocket.Session;
+import javax.websocket.WebSocketContainer;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.engine.api.remote.ExecutionRequest;
@@ -32,20 +46,6 @@ import org.pentaho.di.engine.api.remote.MessageEncoder;
 import org.pentaho.di.engine.api.remote.StopMessage;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.ael.websocket.exception.MessageEventFireEventException;
-
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.ContainerProvider;
-import javax.websocket.CloseReason;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
-
-import java.io.IOException;
-import java.net.URI;
-import java.util.Collections;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by fcamara on 8/17/17.

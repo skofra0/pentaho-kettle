@@ -22,11 +22,11 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.io.BufferedInputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;

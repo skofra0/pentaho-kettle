@@ -22,16 +22,16 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+import java.util.PriorityQueue;
+
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.trans.steps.databaselookup.DatabaseLookupData;
 import org.pentaho.di.trans.steps.databaselookup.DatabaseLookupMeta;
-
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  * This is a read-only array-based cache to be used in

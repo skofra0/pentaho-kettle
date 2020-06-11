@@ -26,14 +26,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.util.Utils;
 
 import com.google.common.annotations.VisibleForTesting;
-
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.util.StringUtil;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.EnvUtil;
 
 /**
  * This class handles basic encryption of passwords in Kettle. Note that it's not really encryption, it's more

@@ -23,7 +23,25 @@
  */
 package org.pentaho.di.trans.ael.websocket;
 
-import com.google.common.base.Strings;
+import java.net.URI;
+import java.security.Principal;
+import java.security.PrivilegedAction;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.security.auth.Subject;
+import javax.security.auth.kerberos.KerberosPrincipal;
+import javax.security.auth.login.AppConfigurationEntry;
+import javax.security.auth.login.Configuration;
+import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
+import javax.websocket.ClientEndpointConfig;
+import javax.websocket.HandshakeResponse;
+
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpHost;
@@ -36,23 +54,7 @@ import org.apache.http.impl.auth.SPNegoScheme;
 import org.apache.http.impl.auth.SPNegoSchemeFactory;
 import org.apache.http.protocol.HttpContext;
 
-import javax.security.auth.Subject;
-import javax.security.auth.kerberos.KerberosPrincipal;
-import javax.security.auth.login.AppConfigurationEntry;
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.HandshakeResponse;
-import java.net.URI;
-import java.security.Principal;
-import java.security.PrivilegedAction;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.google.common.base.Strings;
 
 public class SessionConfigurator extends ClientEndpointConfig.Configurator {
   private static final String WWW_AUTHENTICATE = "WWW-Authenticate";

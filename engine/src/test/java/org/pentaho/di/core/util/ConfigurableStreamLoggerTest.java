@@ -20,15 +20,15 @@
 
 package org.pentaho.di.core.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.logging.LogLevel;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 
 
 public class ConfigurableStreamLoggerTest {

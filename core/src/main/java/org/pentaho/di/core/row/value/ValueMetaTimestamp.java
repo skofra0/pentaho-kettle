@@ -39,7 +39,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
@@ -48,6 +47,7 @@ import org.pentaho.di.core.exception.KettleFileException;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.timestamp.SimpleTimestampFormat;
+import org.pentaho.di.core.util.Utils;
 
 public class ValueMetaTimestamp extends ValueMetaDate {
 

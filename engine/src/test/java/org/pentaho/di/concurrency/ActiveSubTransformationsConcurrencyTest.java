@@ -22,13 +22,13 @@
 
 package org.pentaho.di.concurrency;
 
-import org.junit.Test;
-import org.pentaho.di.trans.Trans;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.junit.Test;
+import org.pentaho.di.trans.Trans;
 
 /**
  * In this test we add new elements to shared transformation concurrently

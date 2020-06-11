@@ -23,8 +23,8 @@
 package org.pentaho.di.core.database;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
 
 /**
  * Contains Hypersonic specific information through static final members

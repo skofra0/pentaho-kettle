@@ -33,7 +33,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.pentaho.di.core.exception.KettleEOFException;
 import org.pentaho.di.core.exception.KettleFileException;
 import org.pentaho.di.core.logging.LogChannel;
@@ -41,6 +40,8 @@ import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.version.BuildVersion;
+
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * This class caches database queries so that the same query doesn't get called twice. Queries are often launched to the

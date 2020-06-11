@@ -22,15 +22,15 @@
 
 package org.pentaho.di.core.util;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import org.mozilla.javascript.Context;
 import org.pentaho.di.compatibility.Value;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.xml.XMLHandler;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * This class contains common code from {@linkplain org.pentaho.di.trans.steps.script.Script} and {@linkplain

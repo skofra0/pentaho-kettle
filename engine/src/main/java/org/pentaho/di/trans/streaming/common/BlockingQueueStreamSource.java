@@ -23,13 +23,7 @@
 
 package org.pentaho.di.trans.streaming.common;
 
-import com.google.common.annotations.VisibleForTesting;
-import io.reactivex.Flowable;
-import io.reactivex.processors.FlowableProcessor;
-import io.reactivex.processors.ReplayProcessor;
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.trans.streaming.api.StreamSource;
+import static org.pentaho.di.i18n.BaseMessages.getString;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -37,7 +31,15 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.pentaho.di.i18n.BaseMessages.getString;
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.trans.streaming.api.StreamSource;
+
+import com.google.common.annotations.VisibleForTesting;
+
+import io.reactivex.Flowable;
+import io.reactivex.processors.FlowableProcessor;
+import io.reactivex.processors.ReplayProcessor;
 
 /**
  * Implementation of StreamSource which handles pause/resume logic, as well as creation of .rows() which generates a

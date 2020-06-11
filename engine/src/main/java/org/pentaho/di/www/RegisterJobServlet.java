@@ -21,15 +21,15 @@
  ******************************************************************************/
 package org.pentaho.di.www;
 
-import org.apache.commons.io.IOUtils;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.job.Job;
-import org.pentaho.di.job.JobConfiguration;
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.job.Job;
+import org.pentaho.di.job.JobConfiguration;
 
 public class RegisterJobServlet extends BaseJobServlet {
 

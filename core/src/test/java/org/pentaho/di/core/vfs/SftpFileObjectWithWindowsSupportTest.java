@@ -22,21 +22,21 @@
 
 package org.pentaho.di.core.vfs;
 
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileType;
-import org.apache.commons.vfs2.provider.GenericFileName;
-import org.apache.commons.vfs2.util.PosixPermissions;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.commons.vfs2.FileObject;
+import org.apache.commons.vfs2.FileType;
+import org.apache.commons.vfs2.provider.GenericFileName;
+import org.apache.commons.vfs2.util.PosixPermissions;
+import org.junit.Test;
 
 public class SftpFileObjectWithWindowsSupportTest {
 

@@ -22,14 +22,17 @@
 
 package org.pentaho.di.www.service.zip;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.pentaho.di.core.util.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entries.unzip.JobEntryUnZip;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.pentaho.di.core.util.Assert.assertNotNull;
 
 public class ZipServiceKettleTest {
 

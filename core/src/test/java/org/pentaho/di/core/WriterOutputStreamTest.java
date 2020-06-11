@@ -21,15 +21,16 @@
  ******************************************************************************/
 package org.pentaho.di.core;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.io.Writer;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import org.junit.Before;
+import org.junit.Test;
 
 public class WriterOutputStreamTest {
   Writer writer = mock( Writer.class );

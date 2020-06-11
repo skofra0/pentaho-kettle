@@ -22,13 +22,13 @@
 
 package org.pentaho.di.core.plugins;
 
+import java.lang.annotation.Annotation;
+import java.util.Map;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.annotations.KettleLifecyclePlugin;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.lifecycle.KettleLifecycleListener;
-
-import java.lang.annotation.Annotation;
-import java.util.Map;
 
 /**
  * Defines a Kettle Environment lifecycle plugin type. These plugins are invoked at Kettle Environment initialization

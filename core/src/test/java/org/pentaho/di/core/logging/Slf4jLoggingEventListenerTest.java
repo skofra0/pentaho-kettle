@@ -22,6 +22,14 @@
 
 package org.pentaho.di.core.logging;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
+import static org.pentaho.di.core.logging.LogLevel.BASIC;
+import static org.pentaho.di.core.logging.LogLevel.ERROR;
+
+import java.util.function.Function;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,14 +38,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.repository.RepositoryObjectType;
 import org.slf4j.Logger;
-
-import java.util.function.Function;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-import static org.pentaho.di.core.logging.LogLevel.BASIC;
-import static org.pentaho.di.core.logging.LogLevel.ERROR;
 
 
 @RunWith ( MockitoJUnitRunner.class )

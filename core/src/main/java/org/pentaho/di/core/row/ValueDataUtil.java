@@ -22,7 +22,19 @@
 
 package org.pentaho.di.core.row;
 
-import com.wcohen.ss.NeedlemanWunsch;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.security.MessageDigest;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.zip.Adler32;
+import java.util.zip.CRC32;
+import java.util.zip.CheckedInputStream;
+
 import org.apache.commons.codec.language.DoubleMetaphone;
 import org.apache.commons.codec.language.Metaphone;
 import org.apache.commons.codec.language.RefinedSoundex;
@@ -43,18 +55,7 @@ import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLCheck;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.security.MessageDigest;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.zip.Adler32;
-import java.util.zip.CRC32;
-import java.util.zip.CheckedInputStream;
+import com.wcohen.ss.NeedlemanWunsch;
 
 public class ValueDataUtil {
 

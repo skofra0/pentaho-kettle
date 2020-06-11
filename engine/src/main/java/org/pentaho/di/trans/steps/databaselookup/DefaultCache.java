@@ -22,18 +22,18 @@
 
 package org.pentaho.di.trans.steps.databaselookup;
 
-import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.TimedRow;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.row.ValueMetaInterface;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.TimedRow;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.ValueMetaInterface;
 
 /**
  * Old code, copied from {@linkplain DatabaseLookup}

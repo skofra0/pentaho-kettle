@@ -22,15 +22,15 @@
 
 package org.pentaho.di.trans.steps.csvinput;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class CsvInputContentParsingTest extends BaseCsvParsingTest {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

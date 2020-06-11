@@ -22,7 +22,17 @@
 
 package org.pentaho.di.repository;
 
-import com.google.common.annotations.VisibleForTesting;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.core.xml.XMLParserFactoryProducer;
 import org.xml.sax.Attributes;
@@ -30,15 +40,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.DefaultHandler2;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import com.google.common.annotations.VisibleForTesting;
 
 public class RepositoryExportSaxParser extends DefaultHandler2 {
 

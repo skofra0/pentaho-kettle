@@ -22,15 +22,15 @@
 
 package org.pentaho.di.core.attributes;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.xml.XMLHandler;
-import org.w3c.dom.Node;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.w3c.dom.Node;
 
 public class AttributesUtil {
 

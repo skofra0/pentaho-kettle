@@ -22,11 +22,11 @@
 
 package org.pentaho.di.job.entry.validator;
 
-import org.pentaho.di.i18n.GlobalMessageUtil;
-
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
+import org.pentaho.di.i18n.GlobalMessageUtil;
 
 /**
  * Utility class for getting formatted strings from validator resource bundle.

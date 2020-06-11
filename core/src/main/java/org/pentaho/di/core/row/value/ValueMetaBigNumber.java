@@ -26,7 +26,6 @@ import java.math.BigDecimal;
 
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.Utils;
 
 public class ValueMetaBigNumber extends ValueMetaBase implements ValueMetaInterface {
 

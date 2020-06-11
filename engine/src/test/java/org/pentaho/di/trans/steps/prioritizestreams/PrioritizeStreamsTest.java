@@ -23,11 +23,11 @@
 package org.pentaho.di.trans.steps.prioritizestreams;
 
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import junit.framework.Assert;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.pentaho.di.core.QueueRowSet;

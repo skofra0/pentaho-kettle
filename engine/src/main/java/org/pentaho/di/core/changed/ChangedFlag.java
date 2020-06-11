@@ -24,8 +24,8 @@ package org.pentaho.di.core.changed;
 
 import java.util.Collections;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChangedFlag implements ChangedFlagInterface {
   private Set<PDIObserver> obs = Collections.newSetFromMap( new ConcurrentHashMap<PDIObserver, Boolean>( ) );

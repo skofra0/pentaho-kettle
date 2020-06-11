@@ -22,6 +22,15 @@
 
 package org.pentaho.di.trans.steps.mappinginput;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Collections;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,15 +42,6 @@ import org.pentaho.di.trans.steps.mapping.MappingValueRename;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.pentaho.di.trans.steps.validator.Validator;
 import org.pentaho.di.trans.steps.validator.ValidatorData;
-
-import java.util.Collections;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * User: Dzmitry Stsiapanau Date: 12/24/13 Time: 12:45 PM

@@ -22,7 +22,13 @@
 
 package org.pentaho.di.kitchen;
 
-import com.google.common.annotations.VisibleForTesting;
+import java.io.File;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 import org.pentaho.di.base.AbstractBaseCommandExecutor;
 import org.pentaho.di.base.CommandExecutorCodes;
 import org.pentaho.di.base.KettleConstants;
@@ -47,12 +53,7 @@ import org.pentaho.di.repository.RepositoryOperation;
 import org.pentaho.di.resource.ResourceUtil;
 import org.pentaho.di.resource.TopLevelResource;
 
-import java.io.File;
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import com.google.common.annotations.VisibleForTesting;
 
 public class KitchenCommandExecutor extends AbstractBaseCommandExecutor {
 

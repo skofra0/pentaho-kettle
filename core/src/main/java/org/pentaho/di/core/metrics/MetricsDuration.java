@@ -24,8 +24,8 @@ package org.pentaho.di.core.metrics;
 
 import java.util.Date;
 
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.util.StringUtil;
+import org.pentaho.di.core.util.Utils;
 
 public class MetricsDuration {
   private Date date;

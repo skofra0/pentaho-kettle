@@ -27,9 +27,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.di.core.exception.KettleValueException;
 
 /**

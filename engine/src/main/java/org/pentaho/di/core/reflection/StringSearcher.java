@@ -22,17 +22,17 @@
 
 package org.pentaho.di.core.reflection;
 
-import org.pentaho.di.core.Condition;
-import org.pentaho.di.core.database.DatabaseInterface;
-import org.pentaho.di.core.plugins.JobEntryPluginType;
-import org.pentaho.di.core.plugins.PluginRegistry;
-import org.pentaho.di.core.plugins.StepPluginType;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Map;
+
+import org.pentaho.di.core.Condition;
+import org.pentaho.di.core.database.DatabaseInterface;
+import org.pentaho.di.core.plugins.JobEntryPluginType;
+import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.core.plugins.StepPluginType;
 
 public class StringSearcher {
   private static final String LOCAL_PACKAGE = "org.pentaho.di";

@@ -22,15 +22,14 @@
 
 package org.pentaho.di.core.database.util;
 
-import com.mysql.jdbc.MysqlDataTruncation;
-import com.mysql.jdbc.PacketTooBigException;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mariadb.jdbc.internal.stream.MaxAllowedPacketException;
-
-import static org.junit.Assert.assertEquals;
-
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.MariaDBDatabaseMeta;
@@ -38,7 +37,8 @@ import org.pentaho.di.core.database.MySQLDatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.logging.LogTableCoreInterface;
 
-import static org.mockito.Mockito.*;
+import com.mysql.jdbc.MysqlDataTruncation;
+import com.mysql.jdbc.PacketTooBigException;
 
 public class DatabaseLogExceptionFactoryTest {
 

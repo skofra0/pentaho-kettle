@@ -20,20 +20,20 @@
 
 package org.pentaho.di.core.extension;
 
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.core.plugins.PluginRegistry;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.isNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
 
 public class ExtensionPointHandlerTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

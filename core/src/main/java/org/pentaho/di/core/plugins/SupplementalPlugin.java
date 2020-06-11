@@ -24,12 +24,12 @@
 
 package org.pentaho.di.core.plugins;
 
-import org.pentaho.di.core.exception.KettlePluginException;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
+import org.pentaho.di.core.exception.KettlePluginException;
 
 /**
  * This is a holder of Plugin Class mappings which supplement those of the stock Plugin.

@@ -21,13 +21,13 @@
  ******************************************************************************/
 package org.pentaho.di.trans;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Assert;
-import org.pentaho.di.partition.PartitionSchema;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.pentaho.di.partition.PartitionSchema;
 
 public class SlaveStepCopyPartitionDistributionTest {
 

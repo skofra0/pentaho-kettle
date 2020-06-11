@@ -22,6 +22,14 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.StringTokenizer;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,14 +39,6 @@ import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.trans.steps.databaselookup.DatabaseLookupData;
 import org.pentaho.di.trans.steps.databaselookup.DatabaseLookupMeta;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNull;
 
 /**
  * @author Andrey Khayrutdinov

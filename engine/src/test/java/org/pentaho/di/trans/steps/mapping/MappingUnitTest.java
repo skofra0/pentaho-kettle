@@ -22,9 +22,16 @@
 
 package org.pentaho.di.trans.steps.mapping;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.matchers.JUnitMatchers;
 import org.mockito.Mockito;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.trans.SingleThreadedTransExecutor;
@@ -36,12 +43,6 @@ import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.mappinginput.MappingInput;
 import org.pentaho.di.trans.steps.mappingoutput.MappingOutput;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
-
-import java.util.Arrays;
-import java.util.Collections;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.matchers.JUnitMatchers;
 
 /**
  * @author Andrey Khayrutdinov

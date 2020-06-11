@@ -22,10 +22,10 @@
 
 package org.pentaho.di.trans.steps.textfileinput;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * User: Dzmitry Stsiapanau Date: 3/11/14 Time: 11:44 AM

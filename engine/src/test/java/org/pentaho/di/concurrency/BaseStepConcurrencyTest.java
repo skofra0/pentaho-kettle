@@ -22,6 +22,13 @@
 
 package org.pentaho.di.concurrency;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.junit.Test;
 import org.pentaho.di.core.RowSet;
 import org.pentaho.di.core.row.RowMetaInterface;
@@ -31,13 +38,6 @@ import org.pentaho.di.trans.step.BaseStep;
 import org.pentaho.di.trans.step.RowListener;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepPartitioningMeta;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class BaseStepConcurrencyTest {
     private static final String STEP_META = "StepMeta";

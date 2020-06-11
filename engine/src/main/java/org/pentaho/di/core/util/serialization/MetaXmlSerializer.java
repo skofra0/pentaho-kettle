@@ -20,10 +20,14 @@
 
 package org.pentaho.di.core.util.serialization;
 
-import org.pentaho.di.core.xml.XMLHandler;
-import org.pentaho.di.core.xml.XMLParserFactoryProducer;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import static com.google.common.base.Preconditions.checkArgument;
+import static org.pentaho.di.core.util.serialization.StepMetaProps.STEP_TAG;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -33,14 +37,11 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static org.pentaho.di.core.util.serialization.StepMetaProps.STEP_TAG;
+import org.pentaho.di.core.xml.XMLHandler;
+import org.pentaho.di.core.xml.XMLParserFactoryProducer;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Converts StepMetaProps to/from an XML string using JAXB.

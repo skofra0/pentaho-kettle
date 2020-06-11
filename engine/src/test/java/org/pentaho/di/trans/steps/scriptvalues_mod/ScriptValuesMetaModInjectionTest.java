@@ -23,6 +23,8 @@
 
 package org.pentaho.di.trans.steps.scriptvalues_mod;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -32,8 +34,6 @@ import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import static org.junit.Assert.assertEquals;
 
 public class ScriptValuesMetaModInjectionTest extends BaseMetadataInjectionTest<ScriptValuesMetaMod> {
 

@@ -23,6 +23,15 @@
 
 package org.pentaho.di.trans;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.BIT_STATUS_SUM;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.FINISHED;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.INITIALIZING;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.PAUSED;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.PREPARING;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.RUNNING;
+import static org.pentaho.di.trans.Trans.BitMaskStatus.STOPPED;
+
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -32,12 +41,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Queue;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -52,7 +61,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.common.base.Preconditions;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -60,8 +68,6 @@ import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.BlockingBatchingRowSet;
 import org.pentaho.di.core.BlockingRowSet;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.ConnectionUtil;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.Counter;
 import org.pentaho.di.core.ExecutorInterface;
 import org.pentaho.di.core.ExtensionDataInterface;
@@ -110,7 +116,9 @@ import org.pentaho.di.core.parameters.NamedParamsDefault;
 import org.pentaho.di.core.parameters.UnknownParamException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaString;
+import org.pentaho.di.core.util.ConnectionUtil;
 import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.variables.Variables;
 import org.pentaho.di.core.vfs.KettleVFS;
@@ -149,14 +157,7 @@ import org.pentaho.di.www.StartExecutionTransServlet;
 import org.pentaho.di.www.WebResult;
 import org.pentaho.metastore.api.IMetaStore;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.FINISHED;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.RUNNING;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.STOPPED;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.PREPARING;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.INITIALIZING;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.PAUSED;
-import static org.pentaho.di.trans.Trans.BitMaskStatus.BIT_STATUS_SUM;
+import com.google.common.base.Preconditions;
 
 
 /**

@@ -22,12 +22,6 @@
 
 package org.pentaho.di.www.cache;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.io.FileUtils;
-import org.hibernate.cache.CacheException;
-import org.pentaho.di.core.Const;
-import org.hibernate.cache.Cache;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -38,6 +32,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.hibernate.cache.Cache;
+import org.hibernate.cache.CacheException;
+import org.pentaho.di.core.Const;
+
+import com.google.common.annotations.VisibleForTesting;
 
 
 public class CarteStatusCache implements Cache {

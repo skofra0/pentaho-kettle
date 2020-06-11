@@ -22,17 +22,10 @@
 
 package org.pentaho.di.core.xml;
 
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleXMLException;
-import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXParseException;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import javax.xml.parsers.DocumentBuilder;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -41,10 +34,16 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.when;
+import javax.xml.parsers.DocumentBuilder;
+
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleXMLException;
+import org.pentaho.di.junit.rules.RestorePDIEnvironment;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXParseException;
 
 public class XMLHandlerUnitTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

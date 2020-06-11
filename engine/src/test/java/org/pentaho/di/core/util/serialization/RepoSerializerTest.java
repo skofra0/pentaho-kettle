@@ -20,6 +20,14 @@
 
 package org.pentaho.di.core.util.serialization;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.serialize;
+import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -31,14 +39,6 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.Repository;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.pentaho.di.core.util.serialization.MetaXmlSerializer.serialize;
-import static org.pentaho.di.core.util.serialization.StepMetaProps.from;
 
 @RunWith ( MockitoJUnitRunner.class )
 public class RepoSerializerTest {

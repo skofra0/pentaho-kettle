@@ -22,13 +22,6 @@
 
 package org.pentaho.di.cluster;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Base64OutputStream;
-import org.apache.commons.lang.StringUtils;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.variables.VariableSpace;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -39,6 +32,13 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64OutputStream;
+import org.apache.commons.lang.StringUtils;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.variables.VariableSpace;
 
 public class HttpUtil {
 

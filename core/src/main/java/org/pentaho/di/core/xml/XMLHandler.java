@@ -22,32 +22,8 @@
 
 package org.pentaho.di.core.xml;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.vfs2.FileObject;
-import org.owasp.encoder.Encode;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.KettleAttributeInterface;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.exception.KettleXMLException;
-import org.pentaho.di.core.row.ValueMeta;
-import org.pentaho.di.core.row.value.timestamp.SimpleTimestampFormat;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.vfs.KettleVFS;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.InputSource;
+import static org.pentaho.di.core.row.value.ValueMetaBase.convertStringToBoolean;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -71,7 +47,32 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import static org.pentaho.di.core.row.value.ValueMetaBase.convertStringToBoolean;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.vfs2.FileObject;
+import org.owasp.encoder.Encode;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.KettleAttributeInterface;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleXMLException;
+import org.pentaho.di.core.row.ValueMeta;
+import org.pentaho.di.core.row.value.timestamp.SimpleTimestampFormat;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.core.vfs.KettleVFS;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 
 
 /**

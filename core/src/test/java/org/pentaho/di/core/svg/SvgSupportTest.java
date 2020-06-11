@@ -21,15 +21,15 @@
  ******************************************************************************/
 package org.pentaho.di.core.svg;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.io.ByteArrayInputStream;
+
+import org.junit.Before;
+import org.junit.Test;
 
 
 /**

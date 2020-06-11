@@ -25,10 +25,13 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import static org.mockito.BDDMockito.doReturn;
-import static org.mockito.BDDMockito.mock;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,10 +45,6 @@ import org.pentaho.di.core.row.value.ValueMetaInternetAddress;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.core.row.value.ValueMetaTimestamp;
-
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 public class MySQLDatabaseMetaTest {
   MySQLDatabaseMeta nativeMeta, odbcMeta;

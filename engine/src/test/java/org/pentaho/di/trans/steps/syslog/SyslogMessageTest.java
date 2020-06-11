@@ -22,6 +22,15 @@
 
 package org.pentaho.di.trans.steps.syslog;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyObject;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.RETURNS_MOCKS;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,15 +40,6 @@ import org.pentaho.di.core.logging.LoggingObjectInterface;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
 import org.productivity.java.syslog4j.SyslogConfigIF;
 import org.productivity.java.syslog4j.SyslogIF;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.anyObject;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.RETURNS_MOCKS;
 
 /**
  * User: Dzmitry Stsiapanau Date: 1/23/14 Time: 11:04 AM

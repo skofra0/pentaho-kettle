@@ -22,14 +22,13 @@
 
 package org.pentaho.di.trans.steps.excelinput;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 public class ExcelInputContentParsingTest extends BaseExcelParsingTest {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

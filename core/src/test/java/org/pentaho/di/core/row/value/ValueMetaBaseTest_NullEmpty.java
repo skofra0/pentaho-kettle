@@ -22,11 +22,11 @@
 
 package org.pentaho.di.core.row.value;
 
-import org.junit.Test;
-import org.pentaho.di.core.Const;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import org.junit.Test;
+import org.pentaho.di.core.Const;
 
 public class ValueMetaBaseTest_NullEmpty {
 

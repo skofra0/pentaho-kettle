@@ -28,13 +28,13 @@ import java.util.Map;
 
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.plugins.BasePluginType;
 import org.pentaho.di.core.plugins.PluginAnnotationType;
 import org.pentaho.di.core.plugins.PluginFolderInterface;
 import org.pentaho.di.core.plugins.PluginMainClassType;
 import org.pentaho.di.core.plugins.PluginTypeInterface;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.w3c.dom.Document;

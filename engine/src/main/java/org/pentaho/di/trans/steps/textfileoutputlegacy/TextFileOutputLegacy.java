@@ -23,6 +23,8 @@
 package org.pentaho.di.trans.steps.textfileoutputlegacy;
 
 
+import java.io.IOException;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.util.EnvUtil;
@@ -33,8 +35,6 @@ import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.textfileoutput.TextFileOutput;
-
-import java.io.IOException;
 
 /**
  * This is deprecated version with capability run as command.

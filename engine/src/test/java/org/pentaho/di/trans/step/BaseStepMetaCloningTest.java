@@ -22,14 +22,6 @@
 
 package org.pentaho.di.trans.step;
 
-import org.junit.Test;
-import org.pentaho.di.core.database.Database;
-import org.pentaho.di.repository.Repository;
-import org.pentaho.di.trans.step.errorhandling.Stream;
-import org.pentaho.di.trans.step.errorhandling.StreamInterface;
-
-import java.util.List;
-
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -38,6 +30,14 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.pentaho.di.core.database.Database;
+import org.pentaho.di.repository.Repository;
+import org.pentaho.di.trans.step.errorhandling.Stream;
+import org.pentaho.di.trans.step.errorhandling.StreamInterface;
 
 public class BaseStepMetaCloningTest {
 

@@ -22,21 +22,6 @@
 
 package org.pentaho.di.core.plugins;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettlePluginClassMapException;
-import org.pentaho.di.core.exception.KettlePluginException;
-import org.pentaho.di.core.logging.KettleLogStore;
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.core.logging.Metrics;
-import org.pentaho.di.core.row.RowBuffer;
-import org.pentaho.di.core.row.RowMeta;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.row.value.ValueMetaString;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.i18n.BaseMessages;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -62,6 +47,21 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettlePluginClassMapException;
+import org.pentaho.di.core.exception.KettlePluginException;
+import org.pentaho.di.core.logging.KettleLogStore;
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.logging.Metrics;
+import org.pentaho.di.core.row.RowBuffer;
+import org.pentaho.di.core.row.RowMeta;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaString;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.i18n.BaseMessages;
 
 /**
  * This singleton provides access to all the plugins in the Kettle universe.<br> It allows you to register types and

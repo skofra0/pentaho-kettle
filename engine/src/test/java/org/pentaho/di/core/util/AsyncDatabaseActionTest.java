@@ -20,19 +20,8 @@
 
 package org.pentaho.di.core.util;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.pentaho.di.core.KettleEnvironment;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.database.H2DatabaseMeta;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.logging.KettleLogStore;
-import org.pentaho.di.core.logging.KettleLoggingEvent;
-import org.pentaho.di.core.logging.KettleLoggingEventListener;
-import org.pentaho.di.core.logging.LogLevel;
-import org.pentaho.di.core.row.RowMetaInterface;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -46,8 +35,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Stream;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.H2DatabaseMeta;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.KettleLogStore;
+import org.pentaho.di.core.logging.KettleLoggingEvent;
+import org.pentaho.di.core.logging.KettleLoggingEventListener;
+import org.pentaho.di.core.logging.LogLevel;
+import org.pentaho.di.core.row.RowMetaInterface;
 
 public class AsyncDatabaseActionTest {
 

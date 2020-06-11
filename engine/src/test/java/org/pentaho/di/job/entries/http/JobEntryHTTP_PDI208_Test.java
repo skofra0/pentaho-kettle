@@ -45,12 +45,12 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.job.Job;
+import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
 public class JobEntryHTTP_PDI208_Test {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

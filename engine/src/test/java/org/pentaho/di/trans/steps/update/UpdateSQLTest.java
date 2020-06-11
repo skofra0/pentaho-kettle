@@ -22,14 +22,14 @@
 
 package org.pentaho.di.trans.steps.update;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.trans.step.utils.RowMetaUtils;
+
+import junit.framework.TestCase;
 
 public class UpdateSQLTest extends TestCase {
 

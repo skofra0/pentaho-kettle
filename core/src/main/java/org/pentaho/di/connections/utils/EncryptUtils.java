@@ -22,10 +22,6 @@
 
 package org.pentaho.di.connections.utils;
 
-import org.apache.commons.lang.StringUtils;
-import org.pentaho.di.connections.annotations.Encrypted;
-import org.pentaho.di.core.encryption.Encr;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +29,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.pentaho.di.connections.annotations.Encrypted;
+import org.pentaho.di.core.encryption.Encr;
 
 public class EncryptUtils {
 

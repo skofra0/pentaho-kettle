@@ -34,7 +34,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.apache.xmlbeans.impl.piccolo.util.DuplicateKeyException;
 import org.owasp.encoder.Encode;
 import org.pentaho.di.core.gui.AreaOwner;
@@ -46,6 +45,8 @@ import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.JobPainter;
 import org.pentaho.di.job.entry.JobEntryCopy;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class GetJobImageServlet extends BaseHttpServlet implements CartePluginInterface {
 

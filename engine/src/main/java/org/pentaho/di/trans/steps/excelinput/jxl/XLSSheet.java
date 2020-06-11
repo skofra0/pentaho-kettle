@@ -22,11 +22,11 @@
 
 package org.pentaho.di.trans.steps.excelinput.jxl;
 
-import jxl.Cell;
-import jxl.Sheet;
-
 import org.pentaho.di.core.spreadsheet.KCell;
 import org.pentaho.di.core.spreadsheet.KSheet;
+
+import jxl.Cell;
+import jxl.Sheet;
 
 public class XLSSheet implements KSheet {
   private Sheet sheet;

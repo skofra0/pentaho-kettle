@@ -22,9 +22,9 @@
 
 package org.pentaho.di.core.row;
 
-import junit.framework.TestCase;
-
 import org.pentaho.di.core.exception.KettleValueException;
+
+import junit.framework.TestCase;
 
 public class RowDataUtilTest extends TestCase {
   public boolean arrayCompare( Object[] arr1, int start1, Object[] arr2, int start2, int len ) {

@@ -22,18 +22,18 @@
 
 package org.pentaho.di.repository.filerep;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.nio.file.Paths;
+import java.util.UUID;
+
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
-
-import java.nio.file.Paths;
-import java.util.UUID;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Andrey Khayrutdinov

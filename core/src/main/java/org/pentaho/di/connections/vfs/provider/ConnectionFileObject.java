@@ -22,6 +22,9 @@
 
 package org.pentaho.di.connections.vfs.provider;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSelector;
@@ -33,9 +36,6 @@ import org.apache.commons.vfs2.provider.AbstractFileName;
 import org.apache.commons.vfs2.provider.AbstractFileObject;
 import org.apache.commons.vfs2.provider.URLFileName;
 import org.apache.commons.vfs2.util.RandomAccessMode;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * The FileObject implementation for the PVFS (Pentaho VFS) vfs provider.

@@ -21,14 +21,13 @@
 package org.pentaho.di.core.logging;
 
 
-import org.junit.Assert;
-
-import org.junit.Test;
-import org.pentaho.di.core.Const;
-
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.pentaho.di.core.Const;
 
 public class LoggingBufferTest {
 

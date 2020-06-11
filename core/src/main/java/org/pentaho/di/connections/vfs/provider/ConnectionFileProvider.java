@@ -22,16 +22,16 @@
 
 package org.pentaho.di.connections.vfs.provider;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.apache.commons.vfs2.Capability;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileSystem;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.apache.commons.vfs2.provider.AbstractOriginatingFileProvider;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 public class ConnectionFileProvider extends AbstractOriginatingFileProvider {
 

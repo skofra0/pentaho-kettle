@@ -22,8 +22,6 @@
 
 package org.pentaho.di.core.plugins;
 
-import org.pentaho.di.core.exception.KettleException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -31,6 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+
+import org.pentaho.di.core.exception.KettleException;
 
 /**
  * This interface describes the plugin itself, the IDs it listens too, what libraries (jar files) it uses, the names,

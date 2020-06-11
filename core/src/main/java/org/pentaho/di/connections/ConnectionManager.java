@@ -22,10 +22,7 @@
 
 package org.pentaho.di.connections;
 
-import org.pentaho.di.connections.utils.EncryptUtils;
-import org.pentaho.metastore.api.IMetaStore;
-import org.pentaho.metastore.api.exceptions.MetaStoreException;
-import org.pentaho.metastore.persist.MetaStoreFactory;
+import static org.pentaho.metastore.util.PentahoDefaults.NAMESPACE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +31,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static org.pentaho.metastore.util.PentahoDefaults.NAMESPACE;
+import org.pentaho.di.connections.utils.EncryptUtils;
+import org.pentaho.metastore.api.IMetaStore;
+import org.pentaho.metastore.api.exceptions.MetaStoreException;
+import org.pentaho.metastore.persist.MetaStoreFactory;
 
 /**
  * A class from managing named connections in PDI

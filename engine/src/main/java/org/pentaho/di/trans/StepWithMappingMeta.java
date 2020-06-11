@@ -22,6 +22,19 @@
 
 package org.pentaho.di.trans;
 
+import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_ENTRY_CURRENT_DIRECTORY;
+import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_JOB_FILENAME_DIRECTORY;
+import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_JOB_FILENAME_NAME;
+import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_TRANSFORMATION_FILENAME_DIRECTORY;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.ObjectLocationSpecificationMethod;
@@ -46,19 +59,6 @@ import org.pentaho.di.resource.ResourceNamingInterface;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.mapping.MappingIODefinition;
 import org.pentaho.metastore.api.IMetaStore;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_ENTRY_CURRENT_DIRECTORY;
-import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_JOB_FILENAME_DIRECTORY;
-import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_JOB_FILENAME_NAME;
-import static org.pentaho.di.core.Const.INTERNAL_VARIABLE_TRANSFORMATION_FILENAME_DIRECTORY;
 
 /**
  * This class is supposed to use in steps where the mapping to sub transformations takes place

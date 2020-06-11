@@ -22,13 +22,14 @@
 
 package org.pentaho.di.trans.steps.tableinput;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.List;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.ProgressNullMonitorListener;
-import org.pentaho.di.core.injection.Injection;
-import org.pentaho.di.core.injection.InjectionSupported;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
@@ -36,11 +37,14 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.exception.KettleXMLException;
+import org.pentaho.di.core.injection.Injection;
+import org.pentaho.di.core.injection.InjectionSupported;
 import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaFactory;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
@@ -64,10 +68,6 @@ import org.pentaho.di.trans.step.errorhandling.StreamInterface.StreamType;
 import org.pentaho.metastore.api.IMetaStore;
 import org.pentaho.ui.xul.util.XmlParserFactoryProducer;
 import org.w3c.dom.Node;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.List;
 
 /*
  * Created on 2-jun-2003

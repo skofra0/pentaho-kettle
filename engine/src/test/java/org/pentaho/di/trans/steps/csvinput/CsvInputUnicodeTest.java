@@ -26,12 +26,11 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.logging.LoggingObjectInterface;

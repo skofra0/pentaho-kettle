@@ -22,12 +22,12 @@
 
 package org.pentaho.di.core.database;
 
+import java.sql.SQLException;
+import java.util.Map;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.ValueMetaInterface;
-
-import java.sql.SQLException;
-import java.util.Map;
 
 /**
  * Contains Generic Database Connection information through static final members

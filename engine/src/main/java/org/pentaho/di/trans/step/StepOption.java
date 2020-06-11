@@ -22,14 +22,14 @@
 
 package org.pentaho.di.trans.step;
 
+import java.util.List;
+
 import org.apache.commons.lang.BooleanUtils;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.i18n.BaseMessages;
-
-import java.util.List;
 
 public class StepOption {
   private static Class<?> PKG = StepOption.class;

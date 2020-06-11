@@ -22,24 +22,25 @@
 
 package org.pentaho.di.core.database;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.dbcp.BasicDataSource;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.core.database.util.DatabaseUtil;
-import org.pentaho.di.core.encryption.Encr;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.i18n.BaseMessages;
-
-import javax.sql.DataSource;
-
 import java.sql.Connection;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.locks.ReentrantLock;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.util.DatabaseUtil;
+import org.pentaho.di.core.encryption.Encr;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.i18n.BaseMessages;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class ConnectionPoolUtil {
 

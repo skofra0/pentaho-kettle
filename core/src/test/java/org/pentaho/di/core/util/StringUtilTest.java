@@ -25,8 +25,9 @@ package org.pentaho.di.core.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
 import org.junit.Test;
+
+import junit.framework.TestCase;
 
 /**
  * Test class for the basic functionality of StringUtil.

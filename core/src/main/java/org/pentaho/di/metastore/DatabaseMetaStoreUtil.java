@@ -28,13 +28,13 @@ import java.util.List;
 import java.util.Properties;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.plugins.DatabasePluginType;
 import org.pentaho.di.core.plugins.PluginInterface;
 import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.repository.StringObjectId;
 import org.pentaho.metastore.api.IMetaStore;
 import org.pentaho.metastore.api.IMetaStoreAttribute;

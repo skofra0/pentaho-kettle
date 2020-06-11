@@ -22,8 +22,9 @@
 
 package org.pentaho.di.trans.steps.missing;
 
+import static org.junit.Assert.assertFalse;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -43,8 +44,6 @@ import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.StepMockUtil;
 import org.pentaho.di.trans.steps.datagrid.DataGridMeta;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
-
-import static org.junit.Assert.assertFalse;
 
 public class MissingTransStepTest {
   private StepMockHelper<DataGridMeta, StepDataInterface> helper;

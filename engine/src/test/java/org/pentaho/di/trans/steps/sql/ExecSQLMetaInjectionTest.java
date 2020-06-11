@@ -22,11 +22,14 @@
 
 package org.pentaho.di.trans.steps.sql;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.injection.BaseMetadataInjectionTest;
@@ -35,12 +38,6 @@ import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.shared.SharedObjectInterface;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
-import org.powermock.reflect.Whitebox;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class ExecSQLMetaInjectionTest extends BaseMetadataInjectionTest<ExecSQLMeta> {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

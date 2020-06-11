@@ -22,6 +22,12 @@
 
 package org.pentaho.di.job.entries.dostounix;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -31,12 +37,6 @@ import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author Andrey Khayrutdinov

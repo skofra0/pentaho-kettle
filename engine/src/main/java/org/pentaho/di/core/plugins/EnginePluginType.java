@@ -21,13 +21,13 @@
  ******************************************************************************/
 package org.pentaho.di.core.plugins;
 
+import java.lang.annotation.Annotation;
+import java.util.Map;
+
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.annotations.EnginePlugin;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.engine.api.Engine;
-
-import java.lang.annotation.Annotation;
-import java.util.Map;
 
 /**
  * Plugin for interacting with {@link Engine} implementations.

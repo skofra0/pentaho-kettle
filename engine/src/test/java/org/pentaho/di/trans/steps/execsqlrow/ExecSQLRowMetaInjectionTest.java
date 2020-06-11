@@ -22,19 +22,19 @@
 
 package org.pentaho.di.trans.steps.execsqlrow;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.injection.BaseMetadataInjectionTest;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaString;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ExecSQLRowMetaInjectionTest extends BaseMetadataInjectionTest<ExecSQLRowMeta> {
 

@@ -22,9 +22,9 @@
 
 package org.pentaho.di.trans.steps.databaselookup.readallcache;
 
-import org.pentaho.di.core.row.ValueMetaInterface;
-
 import java.util.BitSet;
+
+import org.pentaho.di.core.row.ValueMetaInterface;
 
 /**
  * @author Andrey Khayrutdinov

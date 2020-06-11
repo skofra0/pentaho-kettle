@@ -22,6 +22,15 @@
 
 package org.pentaho.di.trans;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Properties;
+import java.util.function.Supplier;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -29,16 +38,6 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.trans.ael.websocket.TransWebSocketEngineAdapter;
-
-import java.util.Properties;
-import java.util.function.Supplier;
-
-import static org.junit.Assert.assertEquals;
-
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class TransSupplierTest {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

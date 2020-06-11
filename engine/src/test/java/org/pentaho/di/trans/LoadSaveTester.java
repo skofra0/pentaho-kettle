@@ -27,12 +27,12 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import org.pentaho.di.repository.Repository;
-import org.pentaho.di.trans.steps.loadsave.MemoryRepository;
-import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
 import org.pentaho.di.base.LoadSaveBase;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.xml.XMLHandler;
+import org.pentaho.di.repository.Repository;
+import org.pentaho.di.trans.steps.loadsave.MemoryRepository;
+import org.pentaho.di.trans.steps.loadsave.validator.FieldLoadSaveValidator;
 
 public class LoadSaveTester<T extends Partitioner> extends LoadSaveBase<T> {
 

@@ -31,8 +31,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 
-import java.text.MessageFormat;
-
 /**
  * @author Tatsiana_Kasiankova
  *

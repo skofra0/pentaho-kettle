@@ -22,12 +22,12 @@
 
 package org.pentaho.di.i18n;
 
+import java.util.Locale;
+
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import java.util.Locale;
 
 public class GlobalMessageUtilTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

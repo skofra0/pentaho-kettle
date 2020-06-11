@@ -25,12 +25,12 @@ package org.pentaho.di.core.config;
 import java.util.HashMap;
 import java.util.Map;
 
-import ognl.OgnlContext;
-import ognl.OgnlException;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.pentaho.di.core.exception.KettleConfigException;
 import org.pentaho.di.i18n.BaseMessages;
+
+import ognl.OgnlContext;
+import ognl.OgnlException;
 
 /**
  * Helper class that allows properties to be set based on predefined prefixes, such as ognl:.

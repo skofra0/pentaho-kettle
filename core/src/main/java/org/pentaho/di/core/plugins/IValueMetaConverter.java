@@ -21,9 +21,9 @@
  ******************************************************************************/
 package org.pentaho.di.core.plugins;
 
-import org.pentaho.di.core.row.value.ValueMetaConversionException;
-
 import java.text.SimpleDateFormat;
+
+import org.pentaho.di.core.row.value.ValueMetaConversionException;
 
 /**
  * Created by tkafalas on 12/4/2017.

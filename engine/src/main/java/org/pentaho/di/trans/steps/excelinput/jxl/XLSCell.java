@@ -22,15 +22,15 @@
 
 package org.pentaho.di.trans.steps.excelinput.jxl;
 
+import org.pentaho.di.core.spreadsheet.KCell;
+import org.pentaho.di.core.spreadsheet.KCellType;
+
 import jxl.BooleanCell;
 import jxl.Cell;
 import jxl.CellType;
 import jxl.DateCell;
 import jxl.LabelCell;
 import jxl.NumberCell;
-
-import org.pentaho.di.core.spreadsheet.KCell;
-import org.pentaho.di.core.spreadsheet.KCellType;
 
 public class XLSCell implements KCell {
 

@@ -22,12 +22,12 @@
 package org.pentaho.di.core.parameters;
 
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import org.junit.Test;
 
 /**
  * Created by mburgess on 10/13/15.

@@ -22,8 +22,13 @@
 
 package org.pentaho.di.trans.steps.groupby;
 
-import junit.framework.Assert;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,11 +40,6 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.trans.steps.mock.StepMockHelper;
-
-import java.util.Arrays;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
 
 public class GroupByNullInputTest {
 

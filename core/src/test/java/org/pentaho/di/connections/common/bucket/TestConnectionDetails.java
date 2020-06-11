@@ -22,11 +22,9 @@
 
 package org.pentaho.di.connections.common.bucket;
 
-import org.pentaho.di.connections.ConnectionDetails;
 import org.pentaho.di.connections.annotations.Encrypted;
 import org.pentaho.di.connections.vfs.VFSConnectionDetails;
 import org.pentaho.metastore.persist.MetaStoreAttribute;
-import org.pentaho.metastore.persist.MetaStoreElement;
 import org.pentaho.metastore.persist.MetaStoreElementType;
 
 @MetaStoreElementType(

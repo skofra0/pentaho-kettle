@@ -21,14 +21,13 @@
  ******************************************************************************/
 package org.pentaho.di.job.entries.simpleeval;
 
-import org.junit.ClassRule;
-import org.pentaho.di.job.entry.loadSave.JobEntryLoadSaveTestSupport;
-import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import java.util.Arrays;
+import org.junit.ClassRule;
+import org.pentaho.di.job.entry.loadSave.JobEntryLoadSaveTestSupport;
+import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
 public class JobEntrySimpleEvalLoadSaveTest extends JobEntryLoadSaveTestSupport<JobEntrySimpleEval> {
   @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();

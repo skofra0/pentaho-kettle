@@ -22,6 +22,8 @@
 
 package org.pentaho.di.trans.step.errorhandling;
 
+import static org.apache.commons.lang.StringUtils.isBlank;
+
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -39,8 +41,6 @@ import org.pentaho.di.core.exception.KettleFileException;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.step.BaseStep;
-
-import static org.apache.commons.lang.StringUtils.isBlank;
 
 public abstract class AbstractFileErrorHandler implements FileErrorHandler {
   private static Class<?> PKG = AbstractFileErrorHandler.class; // for i18n purposes, needed by Translator2!!

@@ -22,11 +22,11 @@
 
 package org.pentaho.di.connections.vfs;
 
-import org.pentaho.di.connections.LookupFilter;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.pentaho.di.connections.LookupFilter;
 
 /**
  * Created by bmorrise on 2/12/19.

@@ -21,21 +21,21 @@
  ******************************************************************************/
 package org.pentaho.di.trans.step.errorhandling;
 
-import org.apache.commons.vfs2.FileObject;
-import org.junit.Test;
-import org.pentaho.di.core.vfs.KettleVFS;
-import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.BaseStep;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.spy;
 
 import java.io.File;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.spy;
+import org.apache.commons.vfs2.FileObject;
+import org.junit.Test;
+import org.pentaho.di.core.vfs.KettleVFS;
+import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.step.BaseStep;
 
 public class AbstractFileErrorHandlerTest {
 

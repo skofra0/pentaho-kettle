@@ -22,11 +22,10 @@
 
 package org.pentaho.di.job.entry.validator;
 
-import org.apache.commons.validator.util.ValidatorUtils;
-
 import java.util.List;
 
 import org.apache.commons.validator.GenericValidator;
+import org.apache.commons.validator.util.ValidatorUtils;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.CheckResultSourceInterface;
 

@@ -22,11 +22,12 @@
 
 package org.pentaho.di.core.lifecycle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 /**
  * Created by mburgess on 10/12/15.

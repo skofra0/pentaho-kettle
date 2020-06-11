@@ -22,6 +22,11 @@
 
 package org.pentaho.di.core.encryption;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.security.Key;
 import java.security.KeyPair;
 import java.util.Arrays;
 
@@ -30,12 +35,6 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.logging.KettleLogStore;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import java.security.Key;
-
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 public class CertificateGenEncryptUtilTest {
   @ClassRule public static RestorePDIEnvironment env = new RestorePDIEnvironment();

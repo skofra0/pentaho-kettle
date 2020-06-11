@@ -22,10 +22,10 @@
 
 package org.pentaho.di.base;
 
-import org.pentaho.di.core.parameters.NamedParams;
-
 import java.io.Serializable;
 import java.util.Map;
+
+import org.pentaho.di.core.parameters.NamedParams;
 
 public interface IParams extends Serializable {
 

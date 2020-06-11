@@ -22,13 +22,13 @@
 
 package org.pentaho.di.core.util;
 
+import java.io.File;
+
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
-
-import java.io.File;
 
 public class FileUtil {
   public static boolean createParentFolder( Class<?> PKG, String filename, boolean createParentFolder,

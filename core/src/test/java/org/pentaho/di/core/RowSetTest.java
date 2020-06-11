@@ -23,6 +23,9 @@
 package org.pentaho.di.core;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.pentaho.di.core.row.RowMeta;
@@ -30,9 +33,6 @@ import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.junit.rules.RestorePDIEnvironment;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Test class for the basic functionality of RowSet.

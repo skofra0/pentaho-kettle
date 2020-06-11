@@ -22,15 +22,6 @@
 
 package org.pentaho.di.core.row.value;
 
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.database.DatabaseInterface;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.database.PostgreSQLDatabaseMeta;
-import org.pentaho.di.core.exception.KettleDatabaseException;
-import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.Utils;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -40,6 +31,15 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
+
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.database.DatabaseInterface;
+import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.PostgreSQLDatabaseMeta;
+import org.pentaho.di.core.exception.KettleDatabaseException;
+import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.Utils;
 
 public class ValueMetaInternetAddress extends ValueMetaDate {
 

@@ -23,17 +23,6 @@
 
 package org.pentaho.di.core;
 
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.text.StrBuilder;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.core.util.Utils;
-import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.laf.BasePropertyHandler;
-import org.pentaho.di.version.BuildVersion;
-
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedReader;
@@ -65,6 +54,17 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.text.StrBuilder;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
+import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.laf.BasePropertyHandler;
+import org.pentaho.di.version.BuildVersion;
 
 
 /**

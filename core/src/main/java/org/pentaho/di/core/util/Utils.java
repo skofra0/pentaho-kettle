@@ -22,10 +22,10 @@
 
 package org.pentaho.di.core.util;
 
+import java.util.List;
+
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.variables.VariableSpace;
-
-import java.util.List;
 
 /* Levenshtein in Java, originally from Josh Drew's code at
  * http://joshdrew.com/

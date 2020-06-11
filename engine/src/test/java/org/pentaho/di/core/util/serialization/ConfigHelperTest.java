@@ -22,15 +22,16 @@
 
 package org.pentaho.di.core.util.serialization;
 
-import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.pentaho.di.core.util.serialization.ConfigHelper.conf;
 
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.pentaho.di.core.util.serialization.ConfigHelper.conf;
+import org.junit.Test;
+
+import com.google.common.collect.ImmutableMap;
 
 public class ConfigHelperTest {
 

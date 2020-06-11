@@ -21,12 +21,12 @@
  ******************************************************************************/
 package org.pentaho.di.core.database;
 
-import org.pentaho.di.core.encryption.Encr;
+import static org.pentaho.di.core.util.Utils.isEmpty;
 
 import java.util.Arrays;
 import java.util.Map;
 
-import static org.pentaho.di.core.util.Utils.isEmpty;
+import org.pentaho.di.core.encryption.Encr;
 
 /**
  * @author mbatchelor

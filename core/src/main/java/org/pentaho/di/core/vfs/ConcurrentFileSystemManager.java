@@ -22,6 +22,10 @@
 
 package org.pentaho.di.core.vfs;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.apache.commons.vfs2.Capability;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -33,10 +37,6 @@ import org.apache.commons.vfs2.NameScope;
 import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 import org.apache.commons.vfs2.provider.FileProvider;
 import org.pentaho.di.core.osgi.api.VfsEmbeddedFileSystemCloser;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * This class is aimed to be a thread-safe version of

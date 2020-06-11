@@ -22,6 +22,8 @@
 
 package org.pentaho.di.trans.steps.textfileoutputlegacy;
 
+import java.util.List;
+
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleXMLException;
@@ -38,8 +40,6 @@ import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.textfileoutput.TextFileOutputMeta;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.List;
 
 /**
  * This is deprecated version with capability run as command.

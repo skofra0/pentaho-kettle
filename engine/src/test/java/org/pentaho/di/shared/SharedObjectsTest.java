@@ -22,8 +22,8 @@
 
 package org.pentaho.di.shared;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,6 +31,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 
 import org.apache.commons.vfs2.FileObject;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -38,8 +39,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.vfs.KettleVFS;
-
-import org.junit.Assert;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 
 /**

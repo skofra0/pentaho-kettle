@@ -22,6 +22,11 @@
 
 package org.pentaho.di.job;
 
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.spy;
+
+import java.io.ByteArrayInputStream;
+
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -32,11 +37,6 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
 import org.pentaho.di.shared.SharedObjects;
 import org.w3c.dom.Document;
-
-import java.io.ByteArrayInputStream;
-
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.spy;
 
 /**
  * @author Andrey Khayrutdinov

@@ -27,8 +27,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.imp.rule.ImportValidationFeedback;
 import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.imp.rule.ImportValidationFeedback;
 
 /**
  * This class is used to write export feedback. Usually it is transaction or job export result info.

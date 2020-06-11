@@ -21,20 +21,18 @@
  ******************************************************************************/
 package org.pentaho.di.core.database;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import org.junit.Test;
-
 import org.pentaho.di.core.exception.KettleDatabaseException;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertArrayEquals;
-
-import static org.mockito.BDDMockito.doReturn;
-import static org.mockito.BDDMockito.doThrow;
-import static org.mockito.BDDMockito.mock;
 
 public class MariaDBDatabaseMetaTest extends MySQLDatabaseMetaTest {
   /**

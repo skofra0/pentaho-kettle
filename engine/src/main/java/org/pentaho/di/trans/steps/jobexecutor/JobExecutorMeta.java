@@ -22,6 +22,10 @@
 
 package org.pentaho.di.trans.steps.jobexecutor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -77,10 +81,6 @@ import org.pentaho.di.trans.step.errorhandling.StreamInterface;
 import org.pentaho.di.trans.step.errorhandling.StreamInterface.StreamType;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Meta-data for the Job executor step.

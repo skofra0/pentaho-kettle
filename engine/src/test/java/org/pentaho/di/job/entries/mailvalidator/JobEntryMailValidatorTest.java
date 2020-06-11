@@ -22,8 +22,8 @@
 package org.pentaho.di.job.entries.mailvalidator;
 
 import static org.junit.Assert.assertNotNull;
-import java.util.Arrays;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

@@ -24,17 +24,6 @@
 
 package org.pentaho.di.trans.ael.adapters;
 
-import org.pentaho.di.engine.api.ExecutionContext;
-import org.pentaho.di.engine.api.events.PDIEvent;
-import org.pentaho.di.engine.api.model.Operation;
-import org.pentaho.di.engine.api.reporting.Status;
-import org.pentaho.di.trans.step.BaseStepData;
-import org.pentaho.di.trans.step.StepDataInterface;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.util.concurrent.atomic.AtomicReference;
-
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_DISPOSED;
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_EMPTY;
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_FINISHED;
@@ -43,6 +32,17 @@ import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_PAUSED;
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_RUNNING;
 import static org.pentaho.di.trans.step.BaseStepData.StepExecutionStatus.STATUS_STOPPED;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.pentaho.di.engine.api.ExecutionContext;
+import org.pentaho.di.engine.api.events.PDIEvent;
+import org.pentaho.di.engine.api.model.Operation;
+import org.pentaho.di.engine.api.reporting.Status;
+import org.pentaho.di.trans.step.BaseStepData;
+import org.pentaho.di.trans.step.StepDataInterface;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * Maps AEL Status events to corresponding step state.
