@@ -82,11 +82,9 @@ import org.w3c.dom.Node;
 public class ValueMetaBase implements ValueMetaInterface {
   protected static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2
 
-  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL( EnvUtil
-      .getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSS" );
+  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL( EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ); // SKOFRA "yyyy/MM/dd HH:mm:ss.SSS" 
 
-  public static final String DEFAULT_TIMESTAMP_FORMAT_MASK = Const.NVL( EnvUtil
-      .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
+  public static final String DEFAULT_TIMESTAMP_FORMAT_MASK = Const.NVL( EnvUtil .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
 
   public static final String XML_META_TAG = "value-meta";
   public static final String XML_DATA_TAG = "value-data";
