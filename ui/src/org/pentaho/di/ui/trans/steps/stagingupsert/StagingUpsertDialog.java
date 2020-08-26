@@ -2,6 +2,7 @@
 package org.pentaho.di.ui.trans.steps.stagingupsert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,6 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
     private Label wlVersion;
     private CCombo wVersion;
 
-
     private Button wGetLU;
     private FormData fdGetLU;
     private Listener lsGetLU;
@@ -108,7 +108,7 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
 
     private boolean getpreviousFields = false;
 
-    protected Button  wGetDefaultKeys;
+    protected Button wGetDefaultKeys;
     private FormData fdGetDefaultKeys;
     /**
      * List of ColumnInfo that should have the field names of the selected database table
@@ -275,7 +275,6 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
         fdVersion.right = new FormAttachment(100, 0);
         wVersion.setLayoutData(fdVersion);
 
-
         wVersion.addFocusListener(new FocusListener() {
             public void focusLost(org.eclipse.swt.events.FocusEvent e) {}
 
@@ -334,8 +333,7 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
                 getDefaultKeys();
             }
         });
-        
-        
+
         // THE BUTTONS
         wOK = new Button(shell, SWT.PUSH);
         wOK.setText(BaseMessages.getString(PKG, "System.Button.OK"));
@@ -846,7 +844,6 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
             if (log.isDebug()) {
                 logDebug(BaseMessages.getString(PKG, "StagingUpsertDialog.Log.LookingAtConnection") + inf.toString());
             }
-
             DatabaseExplorerDialog std = new DatabaseExplorerDialog(shell, SWT.NONE, inf, transMeta.getDatabases());
             std.setSelectedSchemaAndTable(wSchema.getText(), wTable.getText());
             if (std.open()) {
@@ -886,13 +883,18 @@ public class StagingUpsertDialog extends BaseStepDialog implements StepDialogInt
                 TableItemInsertListener listener = new TableItemInsertListener() {
                     public boolean tableItemInserted(TableItem tableItem, ValueMetaInterface v) {
                         tableItem.setText(2, "=");
-                        if (StringUtils.isNotEmpty(v.getComments()) && v.getComments().endsWith("(x)")) {
-                            return true;
-                        }
-                        return false;
+                        return StringUtils.isNotEmpty(v.getComments()) && v.getComments().endsWith("(x)");
                     }
                 };
                 BaseStepDialog.getFieldsFromPrevious(r, wKey, 1, new int[] {1, 3}, new int[] {}, -1, -1, listener);
+                if (!Arrays.asList(r.getFieldNames()).contains(wVersion.getText())) {
+                    for (ValueMetaInterface v : r.getValueMetaList()) {
+                        if (v.getComments().endsWith(" (v)")) {
+                            wVersion.setText(v.getName());
+                            break;
+                        }
+                    }
+                }
             }
         } catch (KettleException ke) {
             new ErrorDialog(shell, BaseMessages.getString(PKG, "StagingUpsertDialog.FailedToGetFields.DialogTitle"), BaseMessages.getString(PKG, "StagingUpsertDialog.FailedToGetFields.DialogMessage"), ke);
