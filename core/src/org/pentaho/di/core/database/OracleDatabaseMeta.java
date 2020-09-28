@@ -27,12 +27,11 @@ import java.sql.ResultSet;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.variables.VariableSpace;
-
-import no.deem.core.utils.Strings;
 
 /**
  * Contains Oracle specific information through static final members
@@ -356,7 +355,7 @@ public class OracleDatabaseMeta extends BaseDatabaseMeta implements DatabaseInte
         StringBuilder retval = new StringBuilder(128);
 
         String nlsLengthSematics = ""; // SKOFRA
-        if (Strings.isNotBlank(ORACLE_NLS_LENGTH_SEMANTICS)) {
+        if (StringUtils.isNotBlank(ORACLE_NLS_LENGTH_SEMANTICS)) {
             nlsLengthSematics = " " + ORACLE_NLS_LENGTH_SEMANTICS;
         }
 
