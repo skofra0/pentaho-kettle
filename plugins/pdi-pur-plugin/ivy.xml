@@ -52,7 +52,7 @@
 
     <!-- misc third-party -->
     <dependency org="commons-logging" name="commons-logging" rev="1.2" transitive="false" />
-    <dependency org="commons-io" name="commons-io" rev="2.6" conf="default->default;test->default" />
+    <dependency org="commons-io" name="commons-io" rev="2.8.0" conf="default->default;test->default" />
 
   <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30" />  -->
    <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30" />  -->
@@ -64,7 +64,7 @@
 
     <!--  test dependencies -->
     <dependency org="junit" name="junit" rev="4.11" conf="test->default" />
-    <dependency org="commons-codec" name="commons-codec" rev="1.14" conf="test->default" />
+    <dependency org="commons-codec" name="commons-codec" rev="1.15" conf="test->default" />
     <dependency org="commons-logging" name="commons-logging" rev="1.2" conf="test->default" />
     <dependency org="commons-digester" name="commons-digester" rev="2.1" conf="test->default" />
     <dependency org="commons-lang" name="commons-lang" rev="2.6" conf="test->default" />

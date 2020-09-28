@@ -378,7 +378,7 @@ public class Const {
     public static final String GENERALIZED_DATE_TIME_FORMAT = "yyyyddMM_hhmmss";
     public static final String GENERALIZED_DATE_TIME_FORMAT_MILLIS = "yyyyddMM_hhmmssSSS";
 
-    /**
+    /** 
      * Default we store our information in Unicode UTF-8 character set.
      */
     public static final String XML_ENCODING = "UTF-8";

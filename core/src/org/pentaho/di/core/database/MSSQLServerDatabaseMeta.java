@@ -229,7 +229,11 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
     switch ( type ) {
       case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
       case ValueMetaInterface.TYPE_DATE:
-        retval += "DATETIME";
+        if (length>=8 && length<=10) { // SKOFRA
+            retval += "DATE"; // SKOFA
+        } else {
+            retval += "DATETIME";
+        }
         break;
       case ValueMetaInterface.TYPE_BOOLEAN:
         if ( supportsBooleanDataType() ) {
