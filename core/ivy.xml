@@ -75,7 +75,7 @@
     <dependency org="org.apache.karaf" name="org.apache.karaf.main" rev="4.1.5" transitive="false"/>
 
     <dependency org="org.springframework" name="spring-test"         rev="${dependency.spring.framework.revision}"      transitive="true" conf="test->default"/>
-    <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="true" conf="test->default"/>
+    <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="false"/>
     <dependency org="com.google.guava"    name="guava"               rev="17.0"       transitive="false"/>
     
 	<!-- Java 11 j2ee 
