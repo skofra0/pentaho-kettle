@@ -114,10 +114,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                 }
             }
             if (update) {
-                // Create the update row...
-                
-                
-                Object[] updateRow = new Object[data.updateParameterRowMeta.size() ];
+                Object[] updateRow = new Object[data.updateParameterRowMeta.size()];
                 int j = 0;
                 for (int i = 0; i < data.valuenrs.length; i++) {
                     if (meta.getUpdate()[i].booleanValue()) {
@@ -130,8 +127,8 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                     updateRow[j + i] = lookupRow[i];
                 }
 
-                if (StringUtils.isNotBlank(meta.getVersionField()) && data.versionFieldNumber>=0) {
-                    updateRow[updateRow.length-1] = row[data.versionFieldNumber];
+                if (StringUtils.isNotBlank(meta.getVersionField()) && data.versionFieldNumber >= 0) {
+                    updateRow[updateRow.length - 1] = row[data.versionFieldNumber];
                 }
 
                 if (log.isRowLevel()) {
@@ -213,14 +210,14 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             // Cache the position of the compare fields in Row row
             //
             data.valuenrs = new int[meta.getUpdateLookup().length];
-            
-            if (StringUtils.isNotBlank(meta.getVersionField()))  {
-                data.versionFieldNumber =  getInputRowMeta().indexOfValue(meta.getVersionField());
-                if ( data.versionFieldNumber<0) {
+
+            if (StringUtils.isNotBlank(meta.getVersionField())) {
+                data.versionFieldNumber = getInputRowMeta().indexOfValue(meta.getVersionField());
+                if (data.versionFieldNumber < 0) {
                     logError("VariatonNumber field not found as input: " + meta.getVersionField());
                 }
             }
-            
+
             for (int i = 0; i < meta.getUpdateLookup().length; i++) {
                 data.valuenrs[i] = getInputRowMeta().indexOfValue(meta.getUpdateStream()[i]);
                 if (data.valuenrs[i] < 0) {
@@ -248,7 +245,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                     insertValue.setName(meta.getUpdateLookup()[i]);
                     data.insertRowMeta.addValueMeta(insertValue);
                 } else {
-                    throw new KettleStepException("The same column can't be inserted into the target row twice: " + insValue.getName()); 
+                    throw new KettleStepException("The same column can't be inserted into the target row twice: " + insValue.getName());
                 }
             }
             data.db.prepareInsert(data.insertRowMeta, environmentSubstitute(meta.getSchemaName()), environmentSubstitute(meta.getTableName()));
@@ -264,9 +261,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
 
         try {
             lookupValues(getInputRowMeta(), r); // add new values to the row in rowset[0].
-            putRow(data.outputRowMeta, r); // Nothing changed to the input, return the same row, pass a "cloned" metadata
-                                           // row.
-
+            putRow(data.outputRowMeta, r); // Nothing changed to the input, return the same row, pass a "cloned" metadata row.
             if (checkFeedback(getLinesRead())) {
                 if (log.isBasic()) {
                     logBasic(BaseMessages.getString(PKG, "StagingUpsert.Log.LineNumber") + getLinesRead());
@@ -311,9 +306,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             if (i != 0) {
                 sql += " AND ";
             }
-
             sql += " ( ( ";
-
             sql += databaseMeta.quoteField(meta.getKeyLookup()[i]);
             if ("BETWEEN".equalsIgnoreCase(meta.getKeyCondition()[i])) {
                 sql += " BETWEEN ? AND ? ";
@@ -323,9 +316,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                 if ("IS NULL".equalsIgnoreCase(meta.getKeyCondition()[i]) || "IS NOT NULL".equalsIgnoreCase(meta.getKeyCondition()[i])) {
                     sql += " " + meta.getKeyCondition()[i] + " ";
                 } else if ("= ~NULL".equalsIgnoreCase(meta.getKeyCondition()[i])) {
-
                     sql += " IS NULL AND ";
-
                     if (databaseMeta.requiresCastToVariousForIsNull()) {
                         sql += " CAST(? AS VARCHAR(256)) IS NULL ";
                     } else {
@@ -372,7 +363,6 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                 } else {
                     comma = true;
                 }
-
                 sql += databaseMeta.quoteField(meta.getUpdateLookup()[i]);
                 sql += " = ?" + Const.CR;
                 data.updateParameterRowMeta.addValueMeta(rowMeta.searchValueMeta(meta.getUpdateStream()[i]).clone());
@@ -394,9 +384,7 @@ public class StagingUpsert extends BaseStep implements StepInterface {
             } else if ("IS NULL".equalsIgnoreCase(meta.getKeyCondition()[i]) || "IS NOT NULL".equalsIgnoreCase(meta.getKeyCondition()[i])) {
                 sql += " " + meta.getKeyCondition()[i] + " ";
             } else if ("= ~NULL".equalsIgnoreCase(meta.getKeyCondition()[i])) {
-
                 sql += " IS NULL AND ";
-
                 if (databaseMeta.requiresCastToVariousForIsNull()) {
                     sql += "CAST(? AS VARCHAR(256)) IS NULL";
                 } else {
@@ -407,17 +395,17 @@ public class StagingUpsert extends BaseStep implements StepInterface {
                 sql += " ) OR ( " + databaseMeta.quoteField(meta.getKeyLookup()[i]) + " = ?";
                 // equality check, cloning so auto-rename because of adding same fieldname does not cause problems
                 data.updateParameterRowMeta.addValueMeta(rowMeta.searchValueMeta(meta.getKeyStream()[i]).clone());
-
             } else {
                 sql += " " + meta.getKeyCondition()[i] + " ? ";
                 data.updateParameterRowMeta.addValueMeta(rowMeta.searchValueMeta(meta.getKeyStream()[i]).clone());
             }
-            
+
             sql += " ) ) ";
         }
-        if (!StringUtils.isBlank(meta.getVersionField()) && data.versionFieldNumber>=0) {
-            sql += " AND " + meta.getVersionField()+ " < ?";
-            ValueMetaInterface metaVersion = rowMeta.searchValueMeta(meta.getUpdateStream()[data.versionFieldNumber]).clone();
+        if (!StringUtils.isBlank(meta.getVersionField()) && data.versionFieldNumber >= 0) {
+            sql += " AND " + meta.getVersionField() + " < ?";
+            ValueMetaInterface metaVersion = rowMeta.getValueMeta(data.versionFieldNumber).clone();
+            // ValueMetaInterface metaVersion = rowMeta.searchValueMeta(meta.getUpdateStream()[data.versionFieldNumber]).clone();
             data.updateParameterRowMeta.addValueMeta(metaVersion);
         }
 

@@ -50,7 +50,6 @@ public class StagingUpsertData extends BaseStepData implements StepDataInterface
 
     public StagingUpsertData() {
         super();
-
         db = null;
     }
 }

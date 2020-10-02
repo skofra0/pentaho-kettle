@@ -629,27 +629,27 @@ public class StagingUpsertMeta extends BaseStepMeta implements StepMetaInterface
                         db.connect();
 
                         String schemaTable = databaseMeta.getQuotedSchemaTableCombination(schemaName, tableName);
-                        String cr_table = db.getDDL(schemaTable, tableFields, null, false, null, true);
+                        String crTable = db.getDDL(schemaTable, tableFields, null, false, null, true);
 
-                        String cr_index = "";
-                        String[] idx_fields = null;
+                        String crIndex = "";
+                        String[] idxFields = null;
 
                         if (keyLookup != null && keyLookup.length > 0) {
-                            idx_fields = new String[keyLookup.length];
+                            idxFields = new String[keyLookup.length];
                             for (int i = 0; i < keyLookup.length; i++) {
-                                idx_fields[i] = keyLookup[i];
+                                idxFields[i] = keyLookup[i];
                             }
                         } else {
                             retval.setError(BaseMessages.getString(PKG, "StagingUpsertMeta.CheckResult.MissingKeyFields"));
                         }
 
                         // Key lookup dimensions...
-                        if (idx_fields != null && idx_fields.length > 0 && !db.checkIndexExists(schemaName, tableName, idx_fields)) {
+                        if (idxFields != null && idxFields.length > 0 && !db.checkIndexExists(schemaName, tableName, idxFields)) {
                             String indexname = "idx_" + tableName + "_lookup";
-                            cr_index = db.getCreateIndexStatement(schemaTable, indexname, idx_fields, false, true, false, true);
+                            crIndex = db.getCreateIndexStatement(schemaTable, indexname, idxFields, false, true, false, true);
                         }
 
-                        String sql = cr_table + cr_index;
+                        String sql = crTable + crIndex;
                         if (sql.length() == 0) {
                             retval.setSQL(null);
                         } else {
