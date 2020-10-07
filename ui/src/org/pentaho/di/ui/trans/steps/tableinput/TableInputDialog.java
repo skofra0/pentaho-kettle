@@ -681,7 +681,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
 
     // SKOFRA
     private String convertNameToJavaName(final String description) {
-
         String temp = "";
         if (description != null) {
             temp = description.toLowerCase();
@@ -692,7 +691,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         if (temp.endsWith("_")) {
             temp = temp.substring(0, temp.length() - 1);
         }
-
         return temp;
     }
 
@@ -708,7 +706,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         } else {
             // The foreach check box...
             wEachRow.setEnabled(false);
-     //       wEachRow.setSelection(false);
             wlEachRow.setEnabled(false);
 
             // The preview button...
@@ -751,6 +748,9 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         }
     }
 
+    /**
+     * SKOFRA
+     */
     private void editVaribles() {
         TableInputMeta oneMeta = new TableInputMeta();
         getInfo(oneMeta, true);

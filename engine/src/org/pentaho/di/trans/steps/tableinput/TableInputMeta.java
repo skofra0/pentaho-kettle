@@ -64,8 +64,8 @@ import java.util.List;
  */
 public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     private static Class<?> PKG = TableInputMeta.class; // for i18n purposes, needed by Translator2!!
-    
-    public static final  String EXECUTE_METHOD_PREPARED = "Prepared - ?";
+
+    public static final String EXECUTE_METHOD_PREPARED = "Prepared - ?";
     public static final String EXECUTE_METHOD_VARIABLE = "Variable - ${VAR}";
 
     private DatabaseMeta databaseMeta;
@@ -108,7 +108,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     public void setExecuteEachInputRowByString(String executeMethod) {
         this.executeEachInputRowAsPreparedStatment = !TableInputMeta.EXECUTE_METHOD_VARIABLE.equals(executeMethod);
     }
-    
+
     /**
      * @return Returns the database.
      */
@@ -234,6 +234,11 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         // First try without connecting to the database... (can be S L O W)
         String sNewSQL = sql;
         if (isVariableReplacementActive()) {
+            // SKOFRA START
+            if (!isExecuteEachInputRowAsPreparedStatment()) {
+                setDefaultVariables(space);
+            }
+            // SKOFRA END
             sNewSQL = db.environmentSubstitute(sql);
             if (space != null) {
                 sNewSQL = space.environmentSubstitute(sNewSQL);
@@ -326,7 +331,6 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         retval.append("      </fields>").append(Const.CR);
         // SKOFRA variables
 
-
         return retval.toString();
     }
 
@@ -391,7 +395,6 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             throw new KettleException("Unable to save step information to the repository for id_step=" + id_step, e);
         }
     }
-
 
     public void check(List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, String[] input, String[] output, RowMetaInterface info, VariableSpace space, Repository repository, IMetaStore metaStore) {
         CheckResult cr;
@@ -650,5 +653,18 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         variableName = new String[count];
         defaultValue = new String[count];
     }
-}
 
+    public void setDefaultVariables(VariableSpace space) {
+        for (int i = 0; i < getFieldName().length; i++) {
+            if (!Const.isEmpty(getFieldName()[i])) {
+                String value = space.environmentSubstitute(getDefaultValue()[i]);
+                if (value == null) {
+                    value = "";
+                }
+                String varname = getVariableName()[i];
+                space.setVariable(varname, value);
+            }
+        }
+    }
+
+}

@@ -25,12 +25,10 @@ package org.pentaho.di.trans.steps.tableinput;
 import java.sql.ResultSet;
 
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.RowSet;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
@@ -55,39 +53,8 @@ public class TableInput extends BaseStep implements StepInterface {
     private TableInputMeta meta;
     private TableInputData data;
 
-  public TableInput( StepMeta stepMeta, StepDataInterface stepDataInterface, int copyNr, TransMeta transMeta,
-    Trans trans ) {
+  public TableInput( StepMeta stepMeta, StepDataInterface stepDataInterface, int copyNr, TransMeta transMeta, Trans trans ) {
         super(stepMeta, stepDataInterface, copyNr, transMeta, trans);
-    }
-
-    private RowMetaAndData readStartDate() throws KettleException {
-        if (log.isDetailed()) {
-            logDetailed("Reading from step [" + data.infoStream.getStepname() + "]");
-        }
-
-        RowMetaInterface parametersMeta = new RowMeta();
-        Object[] parametersData = new Object[] {};
-
-        RowSet rowSet = findInputRowSet(data.infoStream.getStepname());
-        if (rowSet != null) {
-            Object[] rowData = getRowFrom(rowSet); // rows are originating from "lookup_from"
-            while (rowData != null) {
-                parametersData = RowDataUtil.addRowData(parametersData, parametersMeta.size(), rowData);
-                parametersMeta.addRowMeta(rowSet.getRowMeta());
-                rowData = getRowFrom(rowSet); // take all input rows if needed!
-            }
-            if (parametersMeta.size() == 0) {
-        throw new KettleException( "Expected to read parameters from step ["
-          + data.infoStream.getStepname() + "] but none were found." );
-            }
-        } else {
-      throw new KettleException( "Unable to find rowset to read from, perhaps step ["
-        + data.infoStream.getStepname() + "] doesn't exist. (or perhaps you are trying a preview?)" );
-        }
-
-        RowMetaAndData parameters = new RowMetaAndData(parametersMeta, parametersData);
-
-        return parameters;
     }
 
     public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
@@ -361,7 +328,7 @@ public class TableInput extends BaseStep implements StepInterface {
         return true;
     }
 
-    private void setValue(RowSet rowSet, Object[] row  ,int i, boolean usedefault) throws KettleException {
+    private void setValue(RowSet rowSet, Object[] row, int i, boolean usedefault) throws KettleException {
         String value = null;
         if (usedefault) {
             value = environmentSubstitute(meta.getDefaultValue()[i]);
