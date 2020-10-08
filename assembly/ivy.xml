@@ -181,9 +181,9 @@
     <dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.10"  transitive="false"/>
 
     <!-- Deem -->
-    <dependency org="no.deem.etl"     name="deem-etl-plugins-libs"      rev="6.1.0.107"  transitive="true"/>
-    <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
-    <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
+    <dependency org="no.deem.etl"     name="deem-etl-plugins-libs"      rev="6.1.0.108"  transitive="true"/>
+    <dependency org="com.force.api"   name="force-wsc" rev="47.0.0" transitive="false"/>
+    <dependency org="com.force.api"   name="force-partner-api" rev="47.0.0" transitive="false"/>
 
 <!-- Java 11 j2ee 
     <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  

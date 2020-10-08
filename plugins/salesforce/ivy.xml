@@ -21,8 +21,8 @@
     <dependency org="pentaho-kettle" name="kettle-core"        rev="${dependency.kettle.revision}" conf="dev->default" changing="true"/>
     <dependency org="pentaho-kettle" name="kettle-engine"      rev="${dependency.kettle.revision}" conf="dev->default" changing="true"/>
     <dependency org="pentaho-kettle" name="kettle-ui-swt"      rev="${dependency.kettle.revision}" conf="dev->default" changing="true"/>
-    <dependency org="com.force.api"   name="force-partner-api" rev="41.0.0" transitive="false"/>
-    <dependency org="com.force.api"   name="force-wsc" rev="41.0.0" transitive="false"/>
+    <dependency org="com.force.api"   name="force-partner-api" rev="47.0.0" transitive="false"/>
+    <dependency org="com.force.api"   name="force-wsc" rev="47.0.0" transitive="false"/>
 
     <!-- SWT it required to compile any version of any architecture will work -->
     <dependency org="org.eclipse.swt" name="swt-linux-x86_64" rev="4.3.2" conf="dev->default" transitive="false"/>
