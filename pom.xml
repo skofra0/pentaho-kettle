@@ -76,6 +76,7 @@
 		<wstx-asl.version>3.2.4</wstx-asl.version>
 
 		<!-- SKOFRA  -->
+        <deem-etl.version>6.1.0.112-SNAPSHOT</deem-etl.version>
 	    <fasterxml-jackson.version>2.11.0</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.11.0</fasterxml-jackson-databind.version>
 		<commons-beanutils.version>1.9.4</commons-beanutils.version>

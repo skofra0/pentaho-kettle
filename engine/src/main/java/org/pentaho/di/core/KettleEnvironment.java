@@ -48,13 +48,14 @@ import org.pentaho.di.core.plugins.PluginTypeInterface;
 import org.pentaho.di.core.plugins.RepositoryPluginType;
 import org.pentaho.di.core.plugins.StepDialogFragmentType;
 import org.pentaho.di.core.plugins.StepPluginType;
-import org.pentaho.di.deem.PluginService;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.IUser;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.step.RowDistributionPluginType;
 
 import com.google.common.util.concurrent.SettableFuture;
+
+import no.deem.plugin.RegistrerPluginService;
 
 /**
  * The KettleEnvironment class contains settings and properties for all of Kettle. Initialization of the environment is
@@ -146,7 +147,8 @@ public class KettleEnvironment {
         //
         pluginClasses.forEach( PluginRegistry::addPluginType );
         PluginRegistry.init();
-        PluginService.getInstance().loadPlugins(); // SKOFRA
+        
+        RegistrerPluginService.getInstance().loadPlugins(); // SKOFRA
 
         // Also read the list of variables.
         //

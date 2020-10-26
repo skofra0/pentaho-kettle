@@ -2,13 +2,13 @@ package plugin.deem.swt;
 
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.extension.ExtensionPointPluginType;
-import org.pentaho.di.core.plugins.PluginRegistry;
-import org.pentaho.di.deem.PluginAdapter;
 
-public class PluginAdapterExtensionPoint implements PluginAdapter {
+import no.deem.plugin.RegistrerPluginAdapter;
+
+public class PluginAdapterExtensionPoint implements RegistrerPluginAdapter {
 
     @Override
-    public void registerPlugin(PluginRegistry registry) {
+    public void registerPlugin() {
         try {
             ExtensionPointPluginType.getInstance().registerCustom(plugin.deem.swt.fileopensave.extension.FileOpenSaveExtensionPoint.class, null, "FileOpenSaveNewExtensionPoint", "SpoonOpenSaveNew", "pen the new file browser", null);
             ExtensionPointPluginType.getInstance().registerCustom(plugin.deem.swt.fileopensave.extension.RepositoryOpenSaveExtensionPoint.class, null, "RepositoryOpenSaveExtensionPoint", "SpoonOpenSaveRepository", "Open the repository browser", null);
