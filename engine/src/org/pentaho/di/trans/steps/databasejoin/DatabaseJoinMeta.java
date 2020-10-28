@@ -41,6 +41,7 @@ import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.DatabaseImpact;
 import org.pentaho.di.trans.Trans;
@@ -379,7 +380,7 @@ public class DatabaseJoinMeta extends BaseStepMeta implements StepMetaInterface 
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", fixDatabaseMetaMissingId(databaseMeta) );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this) );
       rep.saveStepAttribute( id_transformation, id_step, "rowlimit", rowLimit );
       rep.saveStepAttribute( id_transformation, id_step, "sql", sql );
       rep.saveStepAttribute( id_transformation, id_step, "outer_join", outerJoin );

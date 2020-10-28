@@ -613,8 +613,7 @@ public interface Repository {
    * @param code
    * @param database
    */
-  public void saveDatabaseMetaStepAttribute( ObjectId id_transformation, ObjectId id_step, String code,
-    DatabaseMeta database ) throws KettleException;
+  public void saveDatabaseMetaStepAttribute( ObjectId id_transformation, ObjectId id_step, String code, DatabaseMeta database ) throws KettleException;
 
   /**
    * This method is introduced to avoid having to go over an integer/string/whatever in the interface and the job entry
@@ -625,8 +624,7 @@ public interface Repository {
    * @return
    * @throws KettleException
    */
-  public DatabaseMeta loadDatabaseMetaFromJobEntryAttribute( ObjectId id_jobentry, String nameCode, String idCode,
-    List<DatabaseMeta> databases ) throws KettleException;
+  public DatabaseMeta loadDatabaseMetaFromJobEntryAttribute( ObjectId id_jobentry, String nameCode, String idCode, List<DatabaseMeta> databases ) throws KettleException;
 
   /**
    * This method is introduced to avoid having to go over an integer/string/whatever in the interface and the job entry

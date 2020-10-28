@@ -51,7 +51,6 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.ObjectRevision;
-import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.resource.ResourceDefinition;
@@ -1038,10 +1037,5 @@ public class BaseStepMeta implements Cloneable, StepAttributesInterface {
     public void check(List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, String[] input, String[] output, RowMetaInterface info, Repository repository, IMetaStore metaStore) {}
 
     public void check(List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, String[] input, String[] output, RowMetaInterface info, VariableSpace space, Repository repository, IMetaStore metaStore) {}
-
-    // SKOFRA
-    protected DatabaseMeta fixDatabaseMetaMissingId(DatabaseMeta databaseMeta) {
-        return RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this);
-    }
 
 }

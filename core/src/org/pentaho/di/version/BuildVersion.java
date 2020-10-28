@@ -32,6 +32,10 @@ import org.pentaho.di.core.exception.KettleVersionException;
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.xml.XMLHandler;
 
+import no.deem.core.utils.Strings;
+import no.deem.core.version.SemanticVersion;
+import no.deem.core.version.Versions;
+
 /**
  * Singleton class to allow us to see on which date & time the kettle3.jar was built.
  * 
@@ -96,12 +100,23 @@ public class BuildVersion {
     }
   }
 
+  private void loadBuildInfoFromDeemVersion() throws Exception {
+      SemanticVersion semanticVersion = Versions.getSemanticVersion();
+      version = semanticVersion.toString();
+      revision = semanticVersion.toString();
+      buildDate = semanticVersion.getTimestamp();
+      buildUser = "Deem";
+  }
+
   private BuildVersion() {
     try {
       loadBuildInfoFromManifest();
     } catch ( Throwable e ) {
       try {
-        loadBuildInfoFromEnvironmentVariables();
+        loadBuildInfoFromDeemVersion();
+        if (Strings.isBlank(version)) {
+            loadBuildInfoFromEnvironmentVariables();
+        }
       } catch ( Throwable e2 ) {
         version = "Unknown";
         revision = "0";

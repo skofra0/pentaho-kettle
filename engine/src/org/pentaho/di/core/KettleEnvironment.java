@@ -22,8 +22,10 @@
 
 package org.pentaho.di.core;
 
-import com.google.common.base.Throwables;
 import com.google.common.util.concurrent.SettableFuture;
+
+import no.deem.plugin.RegistrerPluginService;
+
 import org.pentaho.di.core.auth.AuthenticationConsumerPluginType;
 import org.pentaho.di.core.auth.AuthenticationProviderPluginType;
 import org.pentaho.di.core.compress.CompressionPluginType;
@@ -119,6 +121,8 @@ public class KettleEnvironment {
         PluginRegistry.addPluginType( AuthenticationProviderPluginType.getInstance() );
         PluginRegistry.addPluginType( AuthenticationConsumerPluginType.getInstance() );
         PluginRegistry.init();
+
+        RegistrerPluginService.getInstance().loadPlugins(); // SKOFRA
 
         // Also read the list of variables.
         //
