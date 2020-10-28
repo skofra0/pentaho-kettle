@@ -31,7 +31,7 @@
 	<classpathentry kind="lib" path="dist/lib/commons-cli-1.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-codec-1.15.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-collections-3.2.2.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-compiler-3.1.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-compress-1.20.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-configuration-1.9.jar"/>
@@ -48,7 +48,7 @@
 	<classpathentry kind="lib" path="dist/lib/commons-validator-1.3.1.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-vfs2-2.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/ecj-4.6.1.jar"/>
 	<classpathentry kind="lib" path="dist/lib/edtftpj-2.1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/enunciate-core-annotations-1.27.jar"/>
 	<classpathentry kind="lib" path="dist/lib/enunciate-jersey-rt-1.27.jar"/>
