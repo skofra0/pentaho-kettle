@@ -114,13 +114,14 @@
 	<classpathentry kind="lib" path="dist/lib/libformula-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="dist/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="dist/lib/mail-1.4.7.jar"/>
-	<classpathentry kind="lib" path="dist/lib/mariadb-java-client-2.6.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/mariadb-java-client-2.7.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/metastore-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="dist/lib/mssql-jdbc-8.4.1.jre8.jar"/>
 	<classpathentry kind="lib" path="dist/lib/mstor-0.9.13.jar"/>
 	<classpathentry kind="lib" path="dist/lib/nekohtml-1.9.15.jar"/>
 	<classpathentry kind="lib" path="dist/lib/odfdom-java-0.8.6.jar"/>
 	<classpathentry kind="lib" path="dist/lib/ognl-2.6.9.jar"/>
+	<classpathentry kind="lib" path="dist/lib/opencsv-4.6.jar"/>
 	<classpathentry kind="lib" path="dist/lib/org.apache.karaf.main-4.1.5.jar"/>
 	<classpathentry kind="lib" path="dist/lib/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="dist/lib/pentaho-capability-manager-6.1.0.0-188.jar"/>
@@ -161,14 +162,13 @@
 	<classpathentry kind="lib" path="dist/lib/xmlgraphics-commons-2.3.jar"/>
 	<classpathentry kind="lib" path="dist/libswt/win64/swt.jar"/>
 	<classpathentry exported="true" kind="lib" path="dist/lib/json-path-2.1.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-client-jsonrpc2"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-common"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-ionapi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-client-jsonrpc2"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-mvxapi-m3-client"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-xledger"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-plugins"/>
-	<classpathentry kind="lib" path="dist/lib/opencsv-4.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-plugins-extras"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

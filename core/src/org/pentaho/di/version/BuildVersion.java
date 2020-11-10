@@ -101,7 +101,7 @@ public class BuildVersion {
   }
 
   private void loadBuildInfoFromDeemVersion() throws Exception {
-      SemanticVersion semanticVersion = Versions.getSemanticVersion();
+      SemanticVersion semanticVersion = Versions.getSemanticVersion("deem-pdi");
       version = semanticVersion.toString();
       revision = semanticVersion.toString();
       buildDate = semanticVersion.getTimestamp();
