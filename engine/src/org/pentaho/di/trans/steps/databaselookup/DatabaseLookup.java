@@ -31,6 +31,7 @@ import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.MSSQLServerDatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -435,6 +436,10 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
   private void loadAllTableDataIntoTheCache() throws KettleException {
     DatabaseMeta dbMeta = meta.getDatabaseMeta();
+    String noLock = "";
+    if (dbMeta.getDatabaseInterface() instanceof MSSQLServerDatabaseMeta) {
+        noLock = " WITH (NOLOCK)";
+     }
 
     Database db = getDatabase( dbMeta );
     connectDatabase( db );
@@ -463,10 +468,9 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
           environmentSubstitute( meta.getSchemaName() ),
           environmentSubstitute( meta.getTablename() ) );
 
-
       // where? //SKOFRA
-      if (StringUtils.isNotEmpty(meta.getWhereClause()))
-      {
+      sql +=  noLock;
+      if (StringUtils.isNotEmpty(meta.getWhereClause())) {
           sql += " WHERE "+environmentSubstitute(meta.getWhereClause());
       }
 
