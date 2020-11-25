@@ -208,7 +208,7 @@ public class PurRepositoryIT extends RepositoryTestBase implements ApplicationCo
     mp.defineInstance( "repositoryAdminUsername", repositoryAdminUsername );
     mp.defineInstance( "RepositoryFileProxyFactory",
         new RepositoryFileProxyFactory( testJcrTemplate, repositoryFileDao ) );
-    mp.defineInstance( "useMultiByteEncoding", new Boolean( false ) );
+    mp.defineInstance( "useMultiByteEncoding", Boolean.valueOf( false ) );
 
     // Start the micro-platform
     mp.start();

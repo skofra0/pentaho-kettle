@@ -107,7 +107,7 @@ public class KettleClientEnvironment {
 
     Encr.init( passwordEncoderPluginID );
 
-    initialized = new Boolean( true );
+    initialized = Boolean.valueOf( true );
   }
 
   public static boolean isInitialized() {

@@ -366,7 +366,7 @@ public class PreviewRowsDialog {
     String strNr;
     lineNr++;
     try {
-      strNr = wFields.getNumberColumn().getValueMeta().getString( new Long( lineNr ) );
+      strNr = wFields.getNumberColumn().getValueMeta().getString( Long.valueOf( lineNr ) );
     } catch ( Exception e ) {
       strNr = Integer.toString( lineNr );
     }

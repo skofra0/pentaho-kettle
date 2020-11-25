@@ -177,8 +177,8 @@ public class UIEERepositoryDirectoryIT extends RepositoryTestBase implements App
     mp.defineInstance( "repositoryAdminUsername", repositoryAdminUsername );
     mp.defineInstance( "RepositoryFileProxyFactory",
         new RepositoryFileProxyFactory( testJcrTemplate, repositoryFileDao ) );
-    mp.defineInstance( "useMultiByteEncoding", new Boolean( false ) );
-    mp.defineInstance( IAclService.class, new Boolean( false ) );
+    mp.defineInstance( "useMultiByteEncoding", Boolean.valueOf( false ) );
+    mp.defineInstance( IAclService.class, Boolean.valueOf( false ) );
 
     // Start the micro-platform
     mp.start();

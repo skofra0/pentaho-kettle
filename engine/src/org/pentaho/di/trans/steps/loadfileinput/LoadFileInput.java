@@ -414,7 +414,7 @@ public class LoadFileInput extends BaseStep implements StepInterface {
 
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && meta.getRowNumberField() != null && meta.getRowNumberField().length() > 0 ) {
-        outputRowData[rowIndex++] = new Long( data.rownr );
+        outputRowData[rowIndex++] = Long.valueOf( data.rownr );
       }
       // Possibly add short filename...
       if ( meta.getShortFileNameField() != null && meta.getShortFileNameField().length() > 0 ) {
@@ -431,7 +431,7 @@ public class LoadFileInput extends BaseStep implements StepInterface {
 
       // add Hidden
       if ( meta.isHiddenField() != null && meta.isHiddenField().length() > 0 ) {
-        outputRowData[rowIndex++] = new Boolean( data.hidden );
+        outputRowData[rowIndex++] = Boolean.valueOf( data.hidden );
       }
       // Add modification date
       if ( meta.getLastModificationDateField() != null && meta.getLastModificationDateField().length() > 0 ) {

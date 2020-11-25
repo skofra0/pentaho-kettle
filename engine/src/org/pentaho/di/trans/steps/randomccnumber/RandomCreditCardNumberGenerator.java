@@ -166,7 +166,7 @@ public class RandomCreditCardNumberGenerator {
     // generate digits
 
     while ( ccnumber.length() < ( length - 1 ) ) {
-      ccnumber += new Double( Math.floor( Math.random() * 10 ) ).intValue();
+      ccnumber += Double.valueOf( Math.floor( Math.random() * 10 ) ).intValue();
     }
 
     // reverse number and convert to int
@@ -175,7 +175,7 @@ public class RandomCreditCardNumberGenerator {
 
     List<Integer> reversedCCnumberList = new Vector<Integer>();
     for ( int i = 0; i < reversedCCnumberString.length(); i++ ) {
-      reversedCCnumberList.add( new Integer( String.valueOf( reversedCCnumberString.charAt( i ) ) ) );
+      reversedCCnumberList.add( Integer.valueOf( String.valueOf( reversedCCnumberString.charAt( i ) ) ) );
     }
 
     // calculate sum
@@ -201,7 +201,7 @@ public class RandomCreditCardNumberGenerator {
 
     // calculate check digit
 
-    int checkdigit = new Double( ( ( Math.floor( sum / 10 ) + 1 ) * 10 - sum ) % 10 ).intValue();
+    int checkdigit = Double.valueOf( ( ( Math.floor( sum / 10 ) + 1 ) * 10 - sum ) % 10 ).intValue();
     ccnumber += checkdigit;
 
     return ccnumber;

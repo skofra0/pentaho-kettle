@@ -84,13 +84,13 @@ public class DetectLastRowStepTest extends TestCase {
     RowMetaInterface rm = createRowMetaInterface();
 
     Object[] r1 =
-      new Object[] { "KETTLE1", new Long( 123L ), new Double( 10.5D ), Boolean.TRUE, BigDecimal.valueOf( 123.45 ) };
+      new Object[] { "KETTLE1", Long.valueOf( 123L ), Double.valueOf( 10.5D ), Boolean.TRUE, BigDecimal.valueOf( 123.45 ) };
     Object[] r2 =
       new Object[] {
-        "KETTLE2", new Long( 500L ), new Double( 20.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ) };
+        "KETTLE2", Long.valueOf( 500L ), Double.valueOf( 20.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ) };
     Object[] r3 =
       new Object[] {
-        "KETTLE3", new Long( 501L ), new Double( 21.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ) };
+        "KETTLE3", Long.valueOf( 501L ), Double.valueOf( 21.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -131,15 +131,15 @@ public class DetectLastRowStepTest extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "KETTLE1", new Long( 123L ), new Double( 10.5D ), Boolean.TRUE, BigDecimal.valueOf( 123.45 ),
+        "KETTLE1", Long.valueOf( 123L ), Double.valueOf( 10.5D ), Boolean.TRUE, BigDecimal.valueOf( 123.45 ),
         ( nrRows == 1 ? Boolean.TRUE : Boolean.FALSE ) };
     Object[] r2 =
       new Object[] {
-        "KETTLE2", new Long( 500L ), new Double( 20.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ),
+        "KETTLE2", Long.valueOf( 500L ), Double.valueOf( 20.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ),
         ( nrRows == 2 ? Boolean.TRUE : Boolean.FALSE ) };
     Object[] r3 =
       new Object[] {
-        "KETTLE3", new Long( 501L ), new Double( 21.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ),
+        "KETTLE3", Long.valueOf( 501L ), Double.valueOf( 21.0D ), Boolean.FALSE, BigDecimal.valueOf( 123.45 ),
         ( nrRows == 3 ? Boolean.TRUE : Boolean.FALSE ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );

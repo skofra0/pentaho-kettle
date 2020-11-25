@@ -215,7 +215,7 @@ public class ReplaceStringDialog extends BaseStepDialog implements StepDialogInt
 
             // Remember these fields...
             for ( int i = 0; i < row.size(); i++ ) {
-              inputFields.put( row.getValueMeta( i ).getName(), new Integer( i ) );
+              inputFields.put( row.getValueMeta( i ).getName(), Integer.valueOf( i ) );
             }
 
             setComboBoxes();

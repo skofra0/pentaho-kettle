@@ -102,7 +102,7 @@ public class VersionCheckerListener implements LifecycleListener, GUIOption<Bool
   public Boolean getLastValue() {
     // the default is true
     String prop = Props.getInstance().getProperty( PDI_CHECK_VERSION_FLAG );
-    return prop == null ? true : new Boolean( prop );
+    return prop == null ? true : Boolean.valueOf( prop );
   }
 
   public void setValue( Boolean val ) {

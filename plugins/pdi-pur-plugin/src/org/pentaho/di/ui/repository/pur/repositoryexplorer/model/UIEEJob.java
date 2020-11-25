@@ -173,7 +173,7 @@ public class UIEEJob extends UIJob implements ILockObject, IRevisionObject, IAcl
       hasAccess = new HashMap<RepositoryFilePermission, Boolean>();
     }
     if ( hasAccess.get( perm ) == null ) {
-      hasAccess.put( perm, new Boolean( aclService.hasAccess( repObj.getObjectId(), perm ) ) );
+      hasAccess.put( perm, Boolean.valueOf( aclService.hasAccess( repObj.getObjectId(), perm ) ) );
     }
     return hasAccess.get( perm ).booleanValue();
   }

@@ -450,7 +450,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
   private synchronized int searchStepAttributeIndexInBuffer( ObjectId id_step, String code, long nr ) throws KettleValueException {
     Object[] key = new Object[] { new LongObjectId( id_step ).longValue(), // ID_STEP
       code, // CODE
-      new Long( nr ), // NR
+      Long.valueOf( nr ), // NR
     };
 
     int index = Collections.binarySearch( stepAttributesBuffer, key, new StepAttributeComparator() );
@@ -602,7 +602,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
       KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     par.addValue(
       new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ),
-      new Long( nr ) );
+      Long.valueOf( nr ) );
 
     if ( psStepAttributesLookup == null ) {
       setLookupStepAttribute();
@@ -622,7 +622,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     par.addValue( new ValueMeta(
       KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     par.addValue( new ValueMeta(
-      KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+      KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
 
     if ( psTransAttributesLookup == null ) {
       setLookupTransAttribute();
@@ -643,7 +643,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
       new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     par.addValue(
       new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ),
-      new Long( nr ) );
+      Long.valueOf( nr ) );
 
     if ( psJobAttributesLookup == null ) {
       setLookupJobAttribute();
@@ -845,7 +845,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     table.addValue( new ValueMeta(
       KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     table.addValue( new ValueMeta(
-      KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+      KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
 
     return database.getRows( sql, table.getRowMeta(), table.getData(), ResultSet.FETCH_FORWARD, false, 0, null );
   }
@@ -941,7 +941,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     table.addValue( new ValueMeta(
       KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     table.addValue( new ValueMeta(
-      KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+      KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
 
     return database.getRows( sql, table.getRowMeta(), table.getData(), ResultSet.FETCH_FORWARD, false, 0, null );
   }
@@ -998,9 +998,9 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_ID_JOBENTRY_ATTRIBUTE, ValueMetaInterface.TYPE_INTEGER ), id );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_ID_JOB, ValueMetaInterface.TYPE_INTEGER ), id_job );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_ID_JOBENTRY, ValueMetaInterface.TYPE_INTEGER ), id_jobentry );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_NUMBER ), new Double( value_num ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_NUMBER ), Double.valueOf( value_num ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_VALUE_STR, ValueMetaInterface.TYPE_STRING ), value_str );
 
     database.prepareInsert( table.getRowMeta(), KettleDatabaseRepository.TABLE_R_JOBENTRY_ATTRIBUTE );
@@ -1084,7 +1084,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     par.addValue( new ValueMeta(
       KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
     par.addValue( new ValueMeta(
-      KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+      KettleDatabaseRepository.FIELD_JOBENTRY_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
 
     if ( pstmt_entry_attributes == null ) {
       setLookupJobEntryAttribute();
@@ -1381,9 +1381,9 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_ID_STEP_ATTRIBUTE, ValueMetaInterface.TYPE_INTEGER ), id );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_ID_TRANSFORMATION, ValueMetaInterface.TYPE_INTEGER ), id_transformation );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_ID_STEP, ValueMetaInterface.TYPE_INTEGER ), id_step );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_NUMBER ), new Double( value_num ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_NUMBER ), Double.valueOf( value_num ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ATTRIBUTE_VALUE_STR, ValueMetaInterface.TYPE_STRING ), value_str );
 
     /*
@@ -1414,9 +1414,9 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
 
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_ID_TRANS_ATTRIBUTE, ValueMetaInterface.TYPE_INTEGER ), id );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_ID_TRANSFORMATION, ValueMetaInterface.TYPE_INTEGER ), id_transformation );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_INTEGER ), new Long( value_num ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( value_num ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANS_ATTRIBUTE_VALUE_STR, ValueMetaInterface.TYPE_STRING ), value_str );
 
     /*
@@ -1449,9 +1449,9 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
 
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_ID_JOB_ATTRIBUTE, ValueMetaInterface.TYPE_INTEGER ), id );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_ID_JOB, ValueMetaInterface.TYPE_INTEGER ), id_job );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), new Long( nr ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_NR, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( nr ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_CODE, ValueMetaInterface.TYPE_STRING ), code );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_INTEGER ), new Long( value_num ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_VALUE_NUM, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( value_num ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_JOB_ATTRIBUTE_VALUE_STR, ValueMetaInterface.TYPE_STRING ), value_str );
 
     /*
@@ -1503,7 +1503,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
 
     database.prepareUpdate( tablename, codes, condition, sets );
 
-    values.addValue( new ValueMeta( idfield, ValueMetaInterface.TYPE_INTEGER ), new Long( id ) );
+    values.addValue( new ValueMeta( idfield, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( id ) );
 
     database.setValuesUpdate( values.getRowMeta(), values.getData() );
     database.updateRow();

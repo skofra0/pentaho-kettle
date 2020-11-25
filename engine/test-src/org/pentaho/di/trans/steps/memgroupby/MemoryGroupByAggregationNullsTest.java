@@ -146,7 +146,7 @@ public class MemoryGroupByAggregationNullsTest {
     aggregate.agg[0] = null;
     step.setAllNullsAreZero( true );
     Object[] row = step.getAggregateResult( aggregate );
-    Assert.assertEquals( "Returns 0 if aggregation is null", new Long( 0 ), row[0] );
+    Assert.assertEquals( "Returns 0 if aggregation is null", Long.valueOf( 0 ), row[0] );
   }
 
   @Test

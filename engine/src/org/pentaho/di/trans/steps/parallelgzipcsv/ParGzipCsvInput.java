@@ -673,7 +673,7 @@ public class ParGzipCsvInput extends BaseStep implements StepInterface {
       }
 
       if ( data.isAddingRowNumber ) {
-        outputRowData[data.rownumFieldIndex] = new Long( data.rowNumber++ );
+        outputRowData[data.rownumFieldIndex] = Long.valueOf( data.rowNumber++ );
       }
 
       incrementLinesInput();

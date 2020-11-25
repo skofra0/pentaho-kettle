@@ -178,7 +178,7 @@ public class LDIFInput extends BaseStep implements StepInterface {
       }
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Const.isEmpty( meta.getRowNumberField() ) ) {
-        outputRowData[data.totalpreviousfields + rowIndex++] = new Long( data.rownr );
+        outputRowData[data.totalpreviousfields + rowIndex++] = Long.valueOf( data.rownr );
       }
 
       // See if we need to add the content type to the row...
@@ -204,11 +204,11 @@ public class LDIFInput extends BaseStep implements StepInterface {
       }
       // Add Size
       if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-        outputRowData[rowIndex++] = new Long( data.size );
+        outputRowData[rowIndex++] = Long.valueOf( data.size );
       }
       // add Hidden
       if ( meta.isHiddenField() != null && meta.isHiddenField().length() > 0 ) {
-        outputRowData[rowIndex++] = new Boolean( data.hidden );
+        outputRowData[rowIndex++] = Boolean.valueOf( data.hidden );
       }
       // Add modification date
       if ( meta.getLastModificationDateField() != null && meta.getLastModificationDateField().length() > 0 ) {
@@ -372,7 +372,7 @@ public class LDIFInput extends BaseStep implements StepInterface {
           data.rootUriName = data.file.getName().getRootURI();
         }
         if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-          data.size = new Long( data.file.getContent().getSize() );
+          data.size = Long.valueOf( data.file.getContent().getSize() );
         }
       } catch ( Exception e ) {
         throw new KettleException( e );

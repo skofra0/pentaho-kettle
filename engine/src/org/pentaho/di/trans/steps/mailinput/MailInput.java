@@ -540,7 +540,7 @@ public class MailInput extends BaseStep implements StepInterface {
 
           switch ( meta.getInputFields()[i].getColumn() ) {
             case MailInputField.COLUMN_MESSAGE_NR:
-              r[index] = new Long( message.getMessageNumber() );
+              r[index] = Long.valueOf( message.getMessageNumber() );
               break;
             case MailInputField.COLUMN_SUBJECT:
               r[index] = message.getSubject();
@@ -575,25 +575,25 @@ public class MailInput extends BaseStep implements StepInterface {
               r[index] = data.mailConn.getFolderName();
               break;
             case MailInputField.COLUMN_SIZE:
-              r[index] = new Long( message.getSize() );
+              r[index] = Long.valueOf( message.getSize() );
               break;
             case MailInputField.COLUMN_FLAG_DRAFT:
-              r[index] = new Boolean( data.mailConn.isMessageDraft( message ) );
+              r[index] = Boolean.valueOf( data.mailConn.isMessageDraft( message ) );
               break;
             case MailInputField.COLUMN_FLAG_FLAGGED:
-              r[index] = new Boolean( data.mailConn.isMessageFlagged( message ) );
+              r[index] = Boolean.valueOf( data.mailConn.isMessageFlagged( message ) );
               break;
             case MailInputField.COLUMN_FLAG_NEW:
-              r[index] = new Boolean( data.mailConn.isMessageNew( message ) );
+              r[index] = Boolean.valueOf( data.mailConn.isMessageNew( message ) );
               break;
             case MailInputField.COLUMN_FLAG_READ:
-              r[index] = new Boolean( data.mailConn.isMessageRead( message ) );
+              r[index] = Boolean.valueOf( data.mailConn.isMessageRead( message ) );
               break;
             case MailInputField.COLUMN_FLAG_DELETED:
-              r[index] = new Boolean( data.mailConn.isMessageDeleted( message ) );
+              r[index] = Boolean.valueOf( data.mailConn.isMessageDeleted( message ) );
               break;
             case MailInputField.COLUMN_ATTACHED_FILES_COUNT:
-              r[index] = new Long( data.mailConn.getAttachedFilesCount( message, null ) );
+              r[index] = Long.valueOf( data.mailConn.getAttachedFilesCount( message, null ) );
               break;
             case MailInputField.COLUMN_HEADER:
               String name = meta.getInputFields()[i].getName();

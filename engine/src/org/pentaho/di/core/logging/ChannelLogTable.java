@@ -192,7 +192,7 @@ public class ChannelLogTable extends BaseLogTable implements Cloneable, LogTable
             switch ( ID.valueOf( field.getId() ) ) {
 
               case ID_BATCH:
-                value = new Long( loggingHierarchy.getBatchId() );
+                value = Long.valueOf( loggingHierarchy.getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = loggingObject.getLogChannelId();

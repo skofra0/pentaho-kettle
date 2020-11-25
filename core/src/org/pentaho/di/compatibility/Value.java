@@ -1971,10 +1971,10 @@ public class Value implements Cloneable, XMLInterface, Serializable {
           }
           break;
         case VALUE_TYPE_INTEGER:
-          hash ^= new Long( getInteger() ).hashCode();
+          hash ^= Long.valueOf( getInteger() ).hashCode();
           break;
         case VALUE_TYPE_NUMBER:
-          hash ^= ( new Double( getNumber() ) ).hashCode();
+          hash ^= ( Double.valueOf( getNumber() ) ).hashCode();
           break;
         case VALUE_TYPE_STRING:
           if ( getString() != null ) {

@@ -165,7 +165,7 @@ public class ValueNumber implements ValueInterface, Cloneable {
 
   @Override
   public Serializable getSerializable() {
-    return new Double( number );
+    return Double.valueOf( number );
   }
 
   @Override

@@ -1289,7 +1289,7 @@ public class ScriptDialog extends BaseStepDialog implements StepDialogInterface 
               valueData = Long.valueOf( 0L );
             }
             if ( valueMeta.isNumber() ) {
-              valueData = new Double( 0.0 );
+              valueData = Double.valueOf( 0.0 );
             }
             if ( valueMeta.isBigNumber() ) {
               valueData = BigDecimal.ZERO;

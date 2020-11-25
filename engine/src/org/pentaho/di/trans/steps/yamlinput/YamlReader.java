@@ -213,26 +213,26 @@ public class YamlReader {
     switch ( valueMeta.getType() ) {
       case ValueMetaInterface.TYPE_INTEGER:
         if ( value instanceof Integer ) {
-          o = new Long( (Integer) value );
+          o = Long.valueOf( (Integer) value );
         } else if ( value instanceof BigInteger ) {
-          o = new Long( ( (BigInteger) value ).longValue() );
+          o = Long.valueOf( ( (BigInteger) value ).longValue() );
         } else if ( value instanceof Long ) {
-          o = new Long( (Long) value );
+          o = Long.valueOf( (Long) value );
         } else {
-          o = new Long( value.toString() );
+          o = Long.valueOf( value.toString() );
         }
         break;
       case ValueMetaInterface.TYPE_NUMBER:
         if ( value instanceof Integer ) {
-          o = new Double( (Integer) value );
+          o = Double.valueOf( (Integer) value );
         } else if ( value instanceof BigInteger ) {
-          o = new Double( ( (BigInteger) value ).doubleValue() );
+          o = Double.valueOf( ( (BigInteger) value ).doubleValue() );
         } else if ( value instanceof Long ) {
-          o = new Double( (Long) value );
+          o = Double.valueOf( (Long) value );
         } else if ( value instanceof Double ) {
           o = value;
         } else {
-          o = new Double( (String) value );
+          o = Double.valueOf( (String) value );
         }
         break;
       case ValueMetaInterface.TYPE_BIGNUMBER:

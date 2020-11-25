@@ -3055,32 +3055,32 @@ public class BaseStep implements VariableSpace, StepInterface, LoggingObjectInte
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.Copy" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( copynr );
+    data[nr] = Double.valueOf( copynr );
     nr++;
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.LinesReaded" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( lines_read );
+    data[nr] = Double.valueOf( lines_read );
     nr++;
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.LinesWritten" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( lines_written );
+    data[nr] = Double.valueOf( lines_written );
     nr++;
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.LinesUpdated" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( lines_updated );
+    data[nr] = Double.valueOf( lines_updated );
     nr++;
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.LinesSkipped" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( lines_skipped );
+    data[nr] = Double.valueOf( lines_skipped );
     nr++;
 
     r.addValueMeta( new ValueMeta(
       BaseMessages.getString( PKG, "BaseStep.ColumnName.Errors" ), ValueMetaInterface.TYPE_NUMBER ) );
-    data[nr] = new Double( errors );
+    data[nr] = Double.valueOf( errors );
     nr++;
 
     r.addValueMeta( new ValueMeta( "start_date", ValueMetaInterface.TYPE_DATE ) );

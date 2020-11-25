@@ -80,7 +80,7 @@ public class CalculatorTest extends TestCase {
     }
     Object[] r1 = new Object[] {
       Timestamp.valueOf( "1970-01-01 00:00:00.100100" ),
-      new Long( 1 ),
+      Long.valueOf( 1 ),
       date
     };
 

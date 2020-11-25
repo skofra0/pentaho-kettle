@@ -178,7 +178,7 @@ public class UIEETransformation extends UITransformation implements ILockObject,
       hasAccess = new HashMap<RepositoryFilePermission, Boolean>();
     }
     if ( hasAccess.get( perm ) == null ) {
-      hasAccess.put( perm, new Boolean( aclService.hasAccess( getObjectId(), perm ) ) );
+      hasAccess.put( perm, Boolean.valueOf( aclService.hasAccess( getObjectId(), perm ) ) );
     }
     return hasAccess.get( perm ).booleanValue();
   }

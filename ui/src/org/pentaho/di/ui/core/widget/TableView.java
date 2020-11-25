@@ -1220,7 +1220,7 @@ public class TableView extends Composite {
       // first time through, so update
       shouldRefresh = true;
       this.sortfieldLast = this.sortfield;
-      this.sortingDescendingLast = new Boolean( this.sortingDescending );
+      this.sortingDescendingLast = Boolean.valueOf( this.sortingDescending );
 
       this.sortfield = sortField;
       this.sortingDescending = sortingDescending;
@@ -1301,7 +1301,7 @@ public class TableView extends Composite {
         if ( !bg.equals( defaultBackgroundColor ) ) {
           String colorName = "bg " + bg.toString();
           r[0] = colorName;
-          r[1] = new Long( ( bg.getRed() << 16 ) + ( bg.getGreen() << 8 ) + ( bg.getBlue() ) );
+          r[1] = Long.valueOf( ( bg.getRed() << 16 ) + ( bg.getGreen() << 8 ) + ( bg.getBlue() ) );
           // Save it in the used colors map!
           usedColors.put( colorName, bg );
         }
@@ -2870,7 +2870,7 @@ public class TableView extends Composite {
     RowMetaInterface rowMeta = getRowWithoutValues();
     Object[] rowData = new Object[rowMeta.size()];
 
-    rowData[0] = new Long( nr );
+    rowData[0] = Long.valueOf( nr );
     for ( int i = 1; i < rowMeta.size(); i++ ) {
       rowData[i] = ti.getText( i );
     }

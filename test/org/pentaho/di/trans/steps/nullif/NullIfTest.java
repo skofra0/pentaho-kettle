@@ -71,15 +71,15 @@ public class NullIfTest extends TestCase {
 
     RowMetaInterface rm = createRowMetaInterface();
 
-    Object[] r1 = new Object[] { "abc", new Long( 1L ) };
-    Object[] r2 = new Object[] { "ABC", new Long( 1L ) };
-    Object[] r3 = new Object[] { "tst", new Long( 2L ) };
-    Object[] r4 = new Object[] { "tst", new Long( 3L ) };
-    Object[] r5 = new Object[] { "TST", new Long( 2L ) };
-    Object[] r6 = new Object[] { "tst", new Long( 1L ) };
+    Object[] r1 = new Object[] { "abc", Long.valueOf( 1L ) };
+    Object[] r2 = new Object[] { "ABC", Long.valueOf( 1L ) };
+    Object[] r3 = new Object[] { "tst", Long.valueOf( 2L ) };
+    Object[] r4 = new Object[] { "tst", Long.valueOf( 3L ) };
+    Object[] r5 = new Object[] { "TST", Long.valueOf( 2L ) };
+    Object[] r6 = new Object[] { "tst", Long.valueOf( 1L ) };
     Object[] r7 = new Object[] { "", null };
-    Object[] r8 = new Object[] { null, new Long( 8L ) };
-    Object[] r9 = new Object[] { "abc", new Long( 2L ) };
+    Object[] r8 = new Object[] { null, Long.valueOf( 8L ) };
+    Object[] r9 = new Object[] { "abc", Long.valueOf( 2L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -104,13 +104,13 @@ public class NullIfTest extends TestCase {
 
     Object[] r1 = new Object[] { "abc", null };
     Object[] r2 = new Object[] { "ABC", null };
-    Object[] r3 = new Object[] { null, new Long( 2L ) };
-    Object[] r4 = new Object[] { null, new Long( 3L ) };
-    Object[] r5 = new Object[] { "TST", new Long( 2L ) };
+    Object[] r3 = new Object[] { null, Long.valueOf( 2L ) };
+    Object[] r4 = new Object[] { null, Long.valueOf( 3L ) };
+    Object[] r5 = new Object[] { "TST", Long.valueOf( 2L ) };
     Object[] r6 = new Object[] { null, null };
     Object[] r7 = new Object[] { "", null };
-    Object[] r8 = new Object[] { null, new Long( 8L ) };
-    Object[] r9 = new Object[] { "abc", new Long( 2L ) };
+    Object[] r8 = new Object[] { null, Long.valueOf( 8L ) };
+    Object[] r9 = new Object[] { "abc", Long.valueOf( 2L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

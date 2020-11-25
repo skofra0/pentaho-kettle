@@ -231,7 +231,7 @@ public class CombinationLookup extends BaseStep implements StepInterface {
       }
 
       if ( meta.useHash() ) {
-        val_hash = new Long( data.hashRowMeta.oldXORHashCode( hashRow ) );
+        val_hash = Long.valueOf( data.hashRowMeta.oldXORHashCode( hashRow ) );
         lookupRow[lookupIndex] = val_hash;
         lookupIndex++;
       }
@@ -273,7 +273,7 @@ public class CombinationLookup extends BaseStep implements StepInterface {
                 .getTechnicalKeyField() );
             break;
           case CREATION_METHOD_AUTOINC:
-            val_key = new Long( 0 ); // value to accept new key...
+            val_key = Long.valueOf( 0 ); // value to accept new key...
             break;
           case CREATION_METHOD_SEQUENCE:
             val_key =
@@ -637,7 +637,7 @@ public class CombinationLookup extends BaseStep implements StepInterface {
         try {
           keys = data.prepStatementInsert.getGeneratedKeys(); // 1 key
           if ( keys.next() ) {
-            val_key = new Long( keys.getLong( 1 ) );
+            val_key = Long.valueOf( keys.getLong( 1 ) );
           } else {
             throw new KettleDatabaseException( "Unable to retrieve auto-increment of combi insert key : "
               + meta.getTechnicalKeyField() + ", no fields in resultset" );

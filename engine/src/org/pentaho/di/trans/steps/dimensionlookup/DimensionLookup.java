@@ -209,7 +209,7 @@ public class DimensionLookup extends BaseStep implements StepInterface {
 
       determineTechKeyCreation();
 
-      data.notFoundTk = new Long( meta.getDatabaseMeta().getNotFoundTK( isAutoIncrement() ) );
+      data.notFoundTk = Long.valueOf( meta.getDatabaseMeta().getNotFoundTK( isAutoIncrement() ) );
       // if (meta.getKeyRename()!=null && meta.getKeyRename().length()>0) data.notFoundTk.setName(meta.getKeyRename());
 
       if ( getCopy() == 0 ) {
@@ -505,7 +505,7 @@ public class DimensionLookup extends BaseStep implements StepInterface {
         }
 
         valueDateTo = data.max_date;
-        valueVersion = new Long( 1L ); // Versions always start at 1.
+        valueVersion = Long.valueOf( 1L ); // Versions always start at 1.
 
         // get a new value from the sequence generator chosen.
         //

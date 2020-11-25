@@ -369,7 +369,7 @@ public class TransLogTable extends BaseLogTable implements Cloneable, LogTableIn
 
             switch ( ID.valueOf( field.getId() ) ) {
               case ID_BATCH:
-                value = new Long( trans.getBatchId() );
+                value = Long.valueOf( trans.getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = trans.getLogChannelId();
@@ -381,25 +381,25 @@ public class TransLogTable extends BaseLogTable implements Cloneable, LogTableIn
                 value = status.getStatus();
                 break;
               case LINES_READ:
-                value = new Long( result.getNrLinesRead() );
+                value = Long.valueOf( result.getNrLinesRead() );
                 break;
               case LINES_WRITTEN:
-                value = new Long( result.getNrLinesWritten() );
+                value = Long.valueOf( result.getNrLinesWritten() );
                 break;
               case LINES_INPUT:
-                value = new Long( result.getNrLinesInput() );
+                value = Long.valueOf( result.getNrLinesInput() );
                 break;
               case LINES_OUTPUT:
-                value = new Long( result.getNrLinesOutput() );
+                value = Long.valueOf( result.getNrLinesOutput() );
                 break;
               case LINES_UPDATED:
-                value = new Long( result.getNrLinesUpdated() );
+                value = Long.valueOf( result.getNrLinesUpdated() );
                 break;
               case LINES_REJECTED:
-                value = new Long( result.getNrLinesRejected() );
+                value = Long.valueOf( result.getNrLinesRejected() );
                 break;
               case ERRORS:
-                value = new Long( result.getNrErrors() );
+                value = Long.valueOf( result.getNrErrors() );
                 break;
               case STARTDATE:
                 value = trans.getStartDate();

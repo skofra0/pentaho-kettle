@@ -116,7 +116,7 @@ public class XMLInputSax extends BaseStep implements StepInterface {
 
     // See if we need to add the row number to the row...
     if ( meta.includeRowNumber() && !Const.isEmpty( meta.getRowNumberField() ) ) {
-      outputRowData[outputIndex] = new Long( data.rownr );
+      outputRowData[outputIndex] = Long.valueOf( data.rownr );
     }
 
     data.rownr++;

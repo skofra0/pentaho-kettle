@@ -714,7 +714,7 @@ public class ValueMetaBase implements ValueMetaInterface {
   // DATE + NUMBER
 
   protected Double convertDateToNumber( Date date ) {
-    return new Double( date.getTime() );
+    return Double.valueOf( date.getTime() );
   }
 
   protected Date convertNumberToDate( Double number ) {
@@ -724,7 +724,7 @@ public class ValueMetaBase implements ValueMetaInterface {
   // DATE + INTEGER
 
   protected Long convertDateToInteger( Date date ) {
-    return new Long( date.getTime() );
+    return Long.valueOf( date.getTime() );
   }
 
   protected Date convertIntegerToDate( Long number ) {
@@ -798,7 +798,7 @@ public class ValueMetaBase implements ValueMetaInterface {
 
       }
 
-      return new Double( number.doubleValue() );
+      return Double.valueOf( number.doubleValue() );
     } catch ( Exception e ) {
       throw new KettleValueException( toString() + " : couldn't convert String to number ", e );
     }
@@ -1018,7 +1018,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     try {
       Number number;
       if ( lenientStringToNumber ) {
-        number = new Long( getDecimalFormat( false ).parse( string ).longValue() );
+        number = Long.valueOf( getDecimalFormat( false ).parse( string ).longValue() );
       } else {
         ParsePosition parsePosition = new ParsePosition( 0 );
         number = getDecimalFormat( false ).parse( string, parsePosition );
@@ -1030,7 +1030,7 @@ public class ValueMetaBase implements ValueMetaInterface {
         }
 
       }
-      return new Long( number.longValue() );
+      return Long.valueOf( number.longValue() );
     } catch ( Exception e ) {
       throw new KettleValueException( toString() + " : couldn't convert String to Integer", e );
     }
@@ -1111,7 +1111,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     if ( bool == null ) {
       return null;
     }
-    return new Double( bool.booleanValue() ? 1.0 : 0.0 );
+    return Double.valueOf( bool.booleanValue() ? 1.0 : 0.0 );
   }
 
   protected Boolean convertNumberToBoolean( Double number ) {
@@ -1643,29 +1643,29 @@ public class ValueMetaBase implements ValueMetaInterface {
             case STORAGE_TYPE_BINARY_STRING:
               return convertDateToNumber( (Date) convertBinaryStringToNativeType( (byte[]) object ) );
             case STORAGE_TYPE_INDEXED:
-              return new Double( ( (Date) index[( (Integer) object ).intValue()] ).getTime() );
+              return Double.valueOf( ( (Date) index[( (Integer) object ).intValue()] ).getTime() );
             default:
               throw new KettleValueException( toString() + " : Unknown storage type " + storageType + " specified." );
           }
         case TYPE_INTEGER:
           switch ( storageType ) {
             case STORAGE_TYPE_NORMAL:
-              return new Double( ( (Long) object ).doubleValue() );
+              return Double.valueOf( ( (Long) object ).doubleValue() );
             case STORAGE_TYPE_BINARY_STRING:
-              return new Double( ( (Long) convertBinaryStringToNativeType( (byte[]) object ) ).doubleValue() );
+              return Double.valueOf( ( (Long) convertBinaryStringToNativeType( (byte[]) object ) ).doubleValue() );
             case STORAGE_TYPE_INDEXED:
-              return new Double( ( (Long) index[( (Integer) object ).intValue()] ).doubleValue() );
+              return Double.valueOf( ( (Long) index[( (Integer) object ).intValue()] ).doubleValue() );
             default:
               throw new KettleValueException( toString() + " : Unknown storage type " + storageType + " specified." );
           }
         case TYPE_BIGNUMBER:
           switch ( storageType ) {
             case STORAGE_TYPE_NORMAL:
-              return new Double( ( (BigDecimal) object ).doubleValue() );
+              return Double.valueOf( ( (BigDecimal) object ).doubleValue() );
             case STORAGE_TYPE_BINARY_STRING:
-              return new Double( ( (BigDecimal) convertBinaryStringToNativeType( (byte[]) object ) ).doubleValue() );
+              return Double.valueOf( ( (BigDecimal) convertBinaryStringToNativeType( (byte[]) object ) ).doubleValue() );
             case STORAGE_TYPE_INDEXED:
-              return new Double( ( (BigDecimal) index[( (Integer) object ).intValue()] ).doubleValue() );
+              return Double.valueOf( ( (BigDecimal) index[( (Integer) object ).intValue()] ).doubleValue() );
             default:
               throw new KettleValueException( toString() + " : Unknown storage type " + storageType + " specified." );
           }
@@ -1725,12 +1725,12 @@ public class ValueMetaBase implements ValueMetaInterface {
         case TYPE_NUMBER:
           switch ( storageType ) {
             case STORAGE_TYPE_NORMAL:
-              return new Long( Math.round( ( (Double) object ).doubleValue() ) );
+              return Long.valueOf( Math.round( ( (Double) object ).doubleValue() ) );
             case STORAGE_TYPE_BINARY_STRING:
-              return new Long( Math.round( ( (Double) convertBinaryStringToNativeType( (byte[]) object ) )
+              return Long.valueOf( Math.round( ( (Double) convertBinaryStringToNativeType( (byte[]) object ) )
                   .doubleValue() ) );
             case STORAGE_TYPE_INDEXED:
-              return new Long( Math.round( ( (Double) index[( (Integer) object ).intValue()] ).doubleValue() ) );
+              return Long.valueOf( Math.round( ( (Double) index[( (Integer) object ).intValue()] ).doubleValue() ) );
             default:
               throw new KettleValueException( toString() + " : Unknown storage type " + storageType + " specified." );
           }
@@ -1739,7 +1739,7 @@ public class ValueMetaBase implements ValueMetaInterface {
             case STORAGE_TYPE_NORMAL:
               return convertDateToInteger( (Date) object );
             case STORAGE_TYPE_BINARY_STRING:
-              return new Long( ( (Date) convertBinaryStringToNativeType( (byte[]) object ) ).getTime() );
+              return Long.valueOf( ( (Date) convertBinaryStringToNativeType( (byte[]) object ) ).getTime() );
             case STORAGE_TYPE_INDEXED:
               return convertDateToInteger( (Date) index[( (Integer) object ).intValue()] );
             default:
@@ -1748,11 +1748,11 @@ public class ValueMetaBase implements ValueMetaInterface {
         case TYPE_BIGNUMBER:
           switch ( storageType ) {
             case STORAGE_TYPE_NORMAL:
-              return new Long( ( (BigDecimal) object ).longValue() );
+              return Long.valueOf( ( (BigDecimal) object ).longValue() );
             case STORAGE_TYPE_BINARY_STRING:
-              return new Long( ( (BigDecimal) convertBinaryStringToNativeType( (byte[]) object ) ).longValue() );
+              return Long.valueOf( ( (BigDecimal) convertBinaryStringToNativeType( (byte[]) object ) ).longValue() );
             case STORAGE_TYPE_INDEXED:
-              return new Long( ( (BigDecimal) index[( (Integer) object ).intValue()] ).longValue() );
+              return Long.valueOf( ( (BigDecimal) index[( (Integer) object ).intValue()] ).longValue() );
             default:
               throw new KettleValueException( toString() + " : Unknown storage type " + storageType + " specified." );
           }
@@ -2560,7 +2560,7 @@ public class ValueMetaBase implements ValueMetaInterface {
   }
 
   protected Double readNumber( DataInputStream inputStream ) throws IOException {
-    Double d = new Double( inputStream.readDouble() );
+    Double d = Double.valueOf( inputStream.readDouble() );
     // System.out.println("Read number("+getName()+") ["+d+"]");
     return d;
   }
@@ -2570,7 +2570,7 @@ public class ValueMetaBase implements ValueMetaInterface {
   }
 
   protected Long readInteger( DataInputStream inputStream ) throws IOException {
-    Long l = new Long( inputStream.readLong() );
+    Long l = Long.valueOf( inputStream.readLong() );
     // System.out.println("Read integer("+getName()+") ["+l+"]");
     return l;
   }
@@ -4686,7 +4686,7 @@ public class ValueMetaBase implements ValueMetaInterface {
           data = Boolean.valueOf( resultSet.getBoolean( index + 1 ) );
           break;
         case ValueMetaInterface.TYPE_NUMBER:
-          data = new Double( resultSet.getDouble( index + 1 ) );
+          data = Double.valueOf( resultSet.getDouble( index + 1 ) );
           break;
         case ValueMetaInterface.TYPE_BIGNUMBER:
           data = resultSet.getBigDecimal( index + 1 );

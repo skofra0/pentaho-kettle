@@ -569,7 +569,7 @@ public class StringOperationsMeta extends BaseStepMeta implements StepMetaInterf
           if ( Const.isEmpty( fieldInStream[idx] ) ) {
             cr =
               new CheckResult( CheckResult.TYPE_RESULT_ERROR, BaseMessages.getString(
-                PKG, "StringOperationsMeta.CheckResult.InStreamFieldMissing", new Integer( idx + 1 )
+                PKG, "StringOperationsMeta.CheckResult.InStreamFieldMissing", Integer.valueOf( idx + 1 )
                   .toString() ), stepinfo );
             remarks.add( cr );
 

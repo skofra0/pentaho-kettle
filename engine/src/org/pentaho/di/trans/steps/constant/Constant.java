@@ -126,7 +126,7 @@ public class Constant extends BaseStep implements StepInterface {
                     data.df.setDecimalFormatSymbols( data.dfs );
                   }
 
-                  rowData[i] = new Double( data.nf.parse( stringValue ).doubleValue() );
+                  rowData[i] = Double.valueOf( data.nf.parse( stringValue ).doubleValue() );
                 } catch ( Exception e ) {
                   String message =
                     BaseMessages.getString(
@@ -158,7 +158,7 @@ public class Constant extends BaseStep implements StepInterface {
 
               case ValueMetaInterface.TYPE_INTEGER:
                 try {
-                  rowData[i] = new Long( Long.parseLong( stringValue ) );
+                  rowData[i] = Long.valueOf( Long.parseLong( stringValue ) );
                 } catch ( Exception e ) {
                   String message =
                     BaseMessages.getString(

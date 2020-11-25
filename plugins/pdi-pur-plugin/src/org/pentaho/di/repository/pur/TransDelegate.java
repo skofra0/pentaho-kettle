@@ -755,8 +755,8 @@ public class TransDelegate extends AbstractDelegate implements ITransformer, ISh
 
     rootNode.setProperty( PROP_TABLE_NAME_MAXDATE, transMeta.getMaxDateTable() );
     rootNode.setProperty( PROP_FIELD_NAME_MAXDATE, transMeta.getMaxDateField() );
-    rootNode.setProperty( PROP_OFFSET_MAXDATE, new Double( transMeta.getMaxDateOffset() ) );
-    rootNode.setProperty( PROP_DIFF_MAXDATE, new Double( transMeta.getMaxDateDifference() ) );
+    rootNode.setProperty( PROP_OFFSET_MAXDATE, Double.valueOf( transMeta.getMaxDateOffset() ) );
+    rootNode.setProperty( PROP_DIFF_MAXDATE, Double.valueOf( transMeta.getMaxDateDifference() ) );
 
     rootNode.setProperty( PROP_CREATED_USER, transMeta.getCreatedUser() );
     rootNode.setProperty( PROP_CREATED_DATE, transMeta.getCreatedDate() );

@@ -217,13 +217,13 @@ public class Rest extends BaseStep implements StepInterface {
 
       // add status to output
       if ( !Const.isEmpty( data.resultCodeFieldName ) ) {
-        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( status ) );
+        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( status ) );
         returnFieldsOffset++;
       }
 
       // add response time to output
       if ( !Const.isEmpty( data.resultResponseFieldName ) ) {
-        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( responseTime ) );
+        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( responseTime ) );
       }
     } catch ( Exception e ) {
       throw new KettleException( BaseMessages.getString( PKG, "Rest.Error.CanNotReadURL", data.realUrl ), e );

@@ -113,7 +113,7 @@ public class ValueMetaTest extends TestCase {
     intValueMeta.setConversionMask( null );
     intValueMeta.setLength( 7 );
 
-    Long originalValue = new Long( 123L );
+    Long originalValue = Long.valueOf( 123L );
 
     String string = intValueMeta.getString( originalValue );
 
@@ -134,7 +134,7 @@ public class ValueMetaTest extends TestCase {
     numValueMeta.setDecimalSymbol( "," );
     numValueMeta.setGroupingSymbol( "." );
 
-    Double originalValue = new Double( 123.456 );
+    Double originalValue = Double.valueOf( 123.456 );
 
     String string = numValueMeta.getString( originalValue );
 
@@ -382,9 +382,9 @@ public class ValueMetaTest extends TestCase {
     intValueMeta.setStorageMetadata( strValueMeta );
 
     Long integerValue = intValueMeta.getInteger( data );
-    assertEquals( new Long( 1234L ), integerValue );
+    assertEquals( Long.valueOf( 1234L ), integerValue );
     Double numberValue = intValueMeta.getNumber( data );
-    assertEquals( new Double( 1234 ), numberValue );
+    assertEquals( Double.valueOf( 1234 ), numberValue );
     BigDecimal bigNumberValue = intValueMeta.getBigNumber( data );
     assertEquals( new BigDecimal( 1234 ), bigNumberValue );
     Date dateValue = intValueMeta.getDate( data );
@@ -422,9 +422,9 @@ public class ValueMetaTest extends TestCase {
     numValueMeta.setStorageMetadata( strValueMeta );
 
     Long integerValue = numValueMeta.getInteger( data );
-    assertEquals( new Long( 1235L ), integerValue );
+    assertEquals( Long.valueOf( 1235L ), integerValue );
     Double numberValue = numValueMeta.getNumber( data );
-    assertEquals( new Double( 1234.56 ), numberValue );
+    assertEquals( Double.valueOf( 1234.56 ), numberValue );
     BigDecimal bigNumberValue = numValueMeta.getBigNumber( data );
     assertEquals( BigDecimal.valueOf( 1234.56 ), bigNumberValue );
     Date dateValue = numValueMeta.getDate( data );
@@ -475,9 +475,9 @@ public class ValueMetaTest extends TestCase {
     // -- Matt
 
     Long integerValue = numValueMeta.getInteger( data ); // -8165278906150410137
-    assertEquals( new Long( -5045838617297571962L ), integerValue );
+    assertEquals( Long.valueOf( -5045838617297571962L ), integerValue );
     Double numberValue = numValueMeta.getNumber( data ); // 3.49834334332123E35
-    assertEquals( new Double( "3.4983433433212304E25" ), numberValue );
+    assertEquals( Double.valueOf( "3.4983433433212304E25" ), numberValue );
     BigDecimal bigNumberValue = numValueMeta.getBigNumber( data ); // 349834334332123041219009345634314343
     assertEquals( new BigDecimal( originalValue ), bigNumberValue );
     Date dateValue = numValueMeta.getDate( data );
@@ -487,10 +487,10 @@ public class ValueMetaTest extends TestCase {
   }
 
   public void testCompareIntegersNormalStorageData() throws Exception {
-    Long integer1 = new Long( 1234L );
-    Long integer2 = new Long( 1235L );
-    Long integer3 = new Long( 1233L );
-    Long integer4 = new Long( 1234L );
+    Long integer1 = Long.valueOf( 1234L );
+    Long integer2 = Long.valueOf( 1235L );
+    Long integer3 = Long.valueOf( 1233L );
+    Long integer4 = Long.valueOf( 1234L );
     Long integer5 = null;
     Long integer6 = null;
 
@@ -511,10 +511,10 @@ public class ValueMetaTest extends TestCase {
   }
 
   public void testCompareNumbersNormalStorageData() throws Exception {
-    Double number1 = new Double( 1234.56 );
-    Double number2 = new Double( 1235.56 );
-    Double number3 = new Double( 1233.56 );
-    Double number4 = new Double( 1234.56 );
+    Double number1 = Double.valueOf( 1234.56 );
+    Double number2 = Double.valueOf( 1235.56 );
+    Double number3 = Double.valueOf( 1233.56 );
+    Double number4 = Double.valueOf( 1234.56 );
     Double number5 = null;
     Double number6 = null;
 
@@ -583,9 +583,9 @@ public class ValueMetaTest extends TestCase {
   }
 
   public void testCompareBooleanNormalStorageData() throws Exception {
-    Boolean boolean1 = new Boolean( false );
-    Boolean boolean2 = new Boolean( true );
-    Boolean boolean3 = new Boolean( false );
+    Boolean boolean1 = Boolean.valueOf( false );
+    Boolean boolean2 = Boolean.valueOf( true );
+    Boolean boolean3 = Boolean.valueOf( false );
     Boolean boolean4 = null;
     Boolean boolean5 = null;
 

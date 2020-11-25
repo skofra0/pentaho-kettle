@@ -143,7 +143,7 @@ public class DummyPluginMeta extends BaseStepMeta implements StepMetaInterface
 
 	public void setDefault()
 	{
-		value = new ValueMetaAndData( new ValueMeta("valuename", ValueMetaInterface.TYPE_NUMBER), new Double(123.456) );
+		value = new ValueMetaAndData( new ValueMeta("valuename", ValueMetaInterface.TYPE_NUMBER), Double.valueOf(123.456) );
 		value.getValueMeta().setLength(12);
         value.getValueMeta().setPrecision(4);
 	}

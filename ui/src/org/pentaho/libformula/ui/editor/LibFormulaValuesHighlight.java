@@ -333,7 +333,7 @@ public class LibFormulaValuesHighlight implements LineStyleListener {
      */
     void initialize() {
       fgKeys = new Hashtable<String, Integer>();
-      Integer k = new Integer( KEY );
+      Integer k = Integer.valueOf( KEY );
       for ( int i = 0; i < fgKeywords.length; i++ ) {
         fgKeys.put( fgKeywords[i], k );
       }
@@ -346,7 +346,7 @@ public class LibFormulaValuesHighlight implements LineStyleListener {
 
     private void initializeValueNames() {
       kfKeys = new Hashtable<String, Integer>();
-      Integer k = new Integer( VALUESNAME );
+      Integer k = Integer.valueOf( VALUESNAME );
       for ( int i = 0; i < valueNames.length; i++ ) {
         kfKeys.put( valueNames[i], k );
       }

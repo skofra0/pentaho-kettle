@@ -161,7 +161,7 @@ public class ValueInteger implements ValueInterface, Cloneable {
 
   @Override
   public Serializable getSerializable() {
-    return new Long( number );
+    return Long.valueOf( number );
   }
 
   @Override

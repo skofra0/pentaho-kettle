@@ -79,7 +79,7 @@ public class LetterPairSimilarity {
 
   public static double getSimiliarity( String str1, String str2 ) {
     if ( Const.isEmpty( str1 ) && Const.isEmpty( str2 ) ) {
-      return new Double( 1 );
+      return Double.valueOf( 1 );
     }
     ArrayList<String> pairs1 = wordLetterPairs( str1.toUpperCase() );
     ArrayList<String> pairs2 = wordLetterPairs( str2.toUpperCase() );

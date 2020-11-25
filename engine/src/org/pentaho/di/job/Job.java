@@ -1019,7 +1019,7 @@ public class Job extends Thread implements VariableSpace, NamedParams, HasLogCha
 
       try {
         // See if we have to add a batch id...
-        Long id_batch = new Long( 1 );
+        Long id_batch = Long.valueOf( 1 );
         if ( jobMeta.getJobLogTable().isBatchIdUsed() ) {
           id_batch = logcon.getNextBatchId( ldb, schemaName, tableName, jobLogTable.getKeyField().getFieldName() );
           setBatchId( id_batch.longValue() );

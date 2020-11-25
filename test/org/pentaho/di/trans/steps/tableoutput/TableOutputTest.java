@@ -116,13 +116,13 @@ public class TableOutputTest extends TestCase {
 
     RowMetaInterface rm = createSourceRowMetaInterface1();
 
-    Object[] r1 = new Object[] { new Long( 100L ), new Long( 1000L ) };
-    Object[] r2 = new Object[] { new Long( 101L ), new Long( 1001L ) };
-    Object[] r3 = new Object[] { new Long( 102L ), new Long( 1002L ) };
-    Object[] r4 = new Object[] { new Long( 103L ), new Long( 1003L ) };
-    Object[] r5 = new Object[] { new Long( 104L ), new Long( 1004L ) };
-    Object[] r6 = new Object[] { new Long( 105L ), new Long( 1005L ) };
-    Object[] r7 = new Object[] { new Long( 106L ), new Long( 1006L ) };
+    Object[] r1 = new Object[] { Long.valueOf( 100L ), Long.valueOf( 1000L ) };
+    Object[] r2 = new Object[] { Long.valueOf( 101L ), Long.valueOf( 1001L ) };
+    Object[] r3 = new Object[] { Long.valueOf( 102L ), Long.valueOf( 1002L ) };
+    Object[] r4 = new Object[] { Long.valueOf( 103L ), Long.valueOf( 1003L ) };
+    Object[] r5 = new Object[] { Long.valueOf( 104L ), Long.valueOf( 1004L ) };
+    Object[] r6 = new Object[] { Long.valueOf( 105L ), Long.valueOf( 1005L ) };
+    Object[] r7 = new Object[] { Long.valueOf( 106L ), Long.valueOf( 1006L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -159,13 +159,13 @@ public class TableOutputTest extends TestCase {
 
     RowMetaInterface rm = createJIRA897RowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 100L ), target_table1, new Long( 1000L ) };
-    Object[] r2 = new Object[] { new Long( 101L ), target_table2, new Long( 1001L ) };
-    Object[] r3 = new Object[] { new Long( 102L ), target_table1, new Long( 1002L ) };
-    Object[] r4 = new Object[] { new Long( 103L ), target_table2, new Long( 1003L ) };
-    Object[] r5 = new Object[] { new Long( 104L ), target_table2, new Long( 1004L ) };
-    Object[] r6 = new Object[] { new Long( 105L ), target_table1, new Long( 1005L ) };
-    Object[] r7 = new Object[] { new Long( 106L ), target_table1, new Long( 1006L ) };
+    Object[] r1 = new Object[] { Long.valueOf( 100L ), target_table1, Long.valueOf( 1000L ) };
+    Object[] r2 = new Object[] { Long.valueOf( 101L ), target_table2, Long.valueOf( 1001L ) };
+    Object[] r3 = new Object[] { Long.valueOf( 102L ), target_table1, Long.valueOf( 1002L ) };
+    Object[] r4 = new Object[] { Long.valueOf( 103L ), target_table2, Long.valueOf( 1003L ) };
+    Object[] r5 = new Object[] { Long.valueOf( 104L ), target_table2, Long.valueOf( 1004L ) };
+    Object[] r6 = new Object[] { Long.valueOf( 105L ), target_table1, Long.valueOf( 1005L ) };
+    Object[] r7 = new Object[] { Long.valueOf( 106L ), target_table1, Long.valueOf( 1006L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -186,13 +186,13 @@ public class TableOutputTest extends TestCase {
 
     RowMetaInterface rm = createSourceRowMetaInterface1();
 
-    Object[] r1 = new Object[] { new Long( 100L ), new Long( 1000L ) };
-    Object[] r2 = new Object[] { new Long( 101L ), new Long( 1001L ) };
-    Object[] r3 = new Object[] { new Long( 102L ), new Long( 1002L ) };
-    Object[] r4 = new Object[] { new Long( 103L ), new Long( 1003L ) };
-    Object[] r5 = new Object[] { new Long( 104L ), new Long( 1004L ) };
-    Object[] r6 = new Object[] { new Long( 105L ), new Long( 1005L ) };
-    Object[] r7 = new Object[] { new Long( 106L ), new Long( 1006L ) };
+    Object[] r1 = new Object[] { Long.valueOf( 100L ), Long.valueOf( 1000L ) };
+    Object[] r2 = new Object[] { Long.valueOf( 101L ), Long.valueOf( 1001L ) };
+    Object[] r3 = new Object[] { Long.valueOf( 102L ), Long.valueOf( 1002L ) };
+    Object[] r4 = new Object[] { Long.valueOf( 103L ), Long.valueOf( 1003L ) };
+    Object[] r5 = new Object[] { Long.valueOf( 104L ), Long.valueOf( 1004L ) };
+    Object[] r6 = new Object[] { Long.valueOf( 105L ), Long.valueOf( 1005L ) };
+    Object[] r7 = new Object[] { Long.valueOf( 106L ), Long.valueOf( 1006L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

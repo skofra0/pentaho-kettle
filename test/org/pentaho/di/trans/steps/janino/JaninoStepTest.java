@@ -79,8 +79,8 @@ public class JaninoStepTest extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "string-value", new Long( 42L ), new Double( 23.0 ), new BigDecimal( 11.0 ), new Date(),
-        new byte[] { 1, 2, 3, 4, 5 }, new Boolean( true ) };
+        "string-value", Long.valueOf( 42L ), Double.valueOf( 23.0 ), new BigDecimal( 11.0 ), new Date(),
+        new byte[] { 1, 2, 3, 4, 5 }, Boolean.valueOf( true ) };
 
     Object[] n = { null, null, null, null, null, null, null };
 
@@ -99,8 +99,8 @@ public class JaninoStepTest extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "string-value", new Long( 42L ), new Double( 23.0 ), new BigDecimal( 11.0 ), new Date( 10000000 ),
-        new byte[] { 1, 2, 3, 4, 5 }, new Boolean( true ) };
+        "string-value", Long.valueOf( 42L ), Double.valueOf( 23.0 ), new BigDecimal( 11.0 ), new Date( 10000000 ),
+        new byte[] { 1, 2, 3, 4, 5 }, Boolean.valueOf( true ) };
 
     Object[] n = { null, null, null, null, null, null, null };
 
@@ -192,9 +192,9 @@ public class JaninoStepTest extends TestCase {
       new JaninoMetaFunction(
         "string", "(string==null)?null:\"string-value\"", ValueMeta.TYPE_STRING, -1, -1, "string" ),
       new JaninoMetaFunction(
-        "integer", "(integer==null)?null:new Long(42L)", ValueMeta.TYPE_INTEGER, -1, -1, "integer" ),
+        "integer", "(integer==null)?null:Long.valueOf(42L)", ValueMeta.TYPE_INTEGER, -1, -1, "integer" ),
       new JaninoMetaFunction(
-        "number", "(number==null)?null:new Double(23.0)", ValueMeta.TYPE_NUMBER, -1, -1, "number" ),
+        "number", "(number==null)?null:Double.valueOf(23.0)", ValueMeta.TYPE_NUMBER, -1, -1, "number" ),
       new JaninoMetaFunction(
         "bigdecimal", "(bigdecimal==null)?null:new java.math.BigDecimal(11.0)", ValueMeta.TYPE_BIGNUMBER,
         -1, -1, "bigdecimal" ),

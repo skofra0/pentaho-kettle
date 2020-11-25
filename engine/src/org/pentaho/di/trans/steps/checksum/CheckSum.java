@@ -227,11 +227,11 @@ public class CheckSum extends BaseStep implements StepInterface {
     if ( meta.getCheckSumType().equals( CheckSumMeta.TYPE_CRC32 ) ) {
       CRC32 crc32 = new CRC32();
       crc32.update( Buff.toString().getBytes() );
-      retval = new Long( crc32.getValue() );
+      retval = Long.valueOf( crc32.getValue() );
     } else {
       Adler32 adler32 = new Adler32();
       adler32.update( Buff.toString().getBytes() );
-      retval = new Long( adler32.getValue() );
+      retval = Long.valueOf( adler32.getValue() );
     }
 
     return retval;

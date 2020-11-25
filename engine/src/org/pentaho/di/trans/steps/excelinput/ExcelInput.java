@@ -251,13 +251,13 @@ public class ExcelInput extends BaseStep implements StepInterface {
 
     // Do we need to include the sheet rownumber?
     if ( !Const.isEmpty( meta.getSheetRowNumberField() ) ) {
-      r[rowIndex] = new Long( data.rownr );
+      r[rowIndex] = Long.valueOf( data.rownr );
       rowIndex++;
     }
 
     // Do we need to include the rownumber?
     if ( !Const.isEmpty( meta.getRowNumberField() ) ) {
-      r[rowIndex] = new Long( getLinesWritten() + 1 );
+      r[rowIndex] = Long.valueOf( getLinesWritten() + 1 );
       rowIndex++;
     }
     // Possibly add short filename...
@@ -277,12 +277,12 @@ public class ExcelInput extends BaseStep implements StepInterface {
     }
     // Add Size
     if ( !Const.isEmpty( meta.getSizeField() ) ) {
-      r[rowIndex] = new Long( data.size );
+      r[rowIndex] = Long.valueOf( data.size );
       rowIndex++;
     }
     // add Hidden
     if ( !Const.isEmpty( meta.isHiddenField() ) ) {
-      r[rowIndex] = new Boolean( data.hidden );
+      r[rowIndex] = Boolean.valueOf( data.hidden );
       rowIndex++;
     }
     // Add modification date
@@ -534,7 +534,7 @@ public class ExcelInput extends BaseStep implements StepInterface {
           data.rootUriName = data.file.getName().getRootURI();
         }
         if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-          data.size = new Long( data.file.getContent().getSize() );
+          data.size = Long.valueOf( data.file.getContent().getSize() );
         }
 
         if ( meta.isAddResultFile() ) {

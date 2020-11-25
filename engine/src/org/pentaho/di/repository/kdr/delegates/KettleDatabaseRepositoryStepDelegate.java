@@ -373,9 +373,9 @@ public class KettleDatabaseRepositoryStepDelegate extends KettleDatabaseReposito
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_DESCRIPTION, ValueMetaInterface.TYPE_STRING ), description );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_ID_STEP_TYPE, ValueMetaInterface.TYPE_INTEGER ), id_step_type );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_DISTRIBUTE, ValueMetaInterface.TYPE_BOOLEAN ), Boolean.valueOf( distribute ) );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_COPIES, ValueMetaInterface.TYPE_INTEGER ), new Long( copies ) );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_X, ValueMetaInterface.TYPE_INTEGER ), new Long( gui_location_x ) );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_Y, ValueMetaInterface.TYPE_INTEGER ), new Long( gui_location_y ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_COPIES, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( copies ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_X, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( gui_location_x ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_Y, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( gui_location_y ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_GUI_DRAW, ValueMetaInterface.TYPE_BOOLEAN ), Boolean.valueOf( gui_draw ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_STEP_COPIES_STRING, ValueMetaInterface.TYPE_STRING ), copiesString );
 

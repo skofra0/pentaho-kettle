@@ -282,7 +282,7 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
           double n = aggregate.counts[i];
           double x = subjMeta.getNumber( subj );
           // for standard deviation null is exact 0
-          double sum = value == null ? new Double( 0 ) : (Double) value;
+          double sum = value == null ? Double.valueOf( 0 ) : (Double) value;
           double mean = aggregate.mean[i];
 
           double delta = x - mean;
@@ -304,13 +304,13 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
             if ( !aggregate.distinctObjs[i].contains( obj ) ) {
               aggregate.distinctObjs[i].add( obj );
               // null is exact 0, or we will not be able to ++.
-              value = value == null ? new Long( 0 ) : value;
+              value = value == null ? Long.valueOf( 0 ) : value;
               aggregate.agg[i] = (Long) value + 1;
             }
             // SKOFRA COUNT DISTINCT SHOULD NOT RETURN null
             } else {
                 if (value == null) {
-                    aggregate.agg[ i ] =  new Long( 0 );
+                    aggregate.agg[ i ] =  Long.valueOf( 0 );
                 }
             // SKOFRAR END    
           }
@@ -493,7 +493,7 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
           case MemoryGroupByMeta.TYPE_GROUP_AVERAGE:
             ag =
               ValueDataUtil.divide( data.aggMeta.getValueMeta( i ), ag, new ValueMeta(
-                "c", ValueMetaInterface.TYPE_INTEGER ), new Long( aggregate.counts[i] ) );
+                "c", ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( aggregate.counts[i] ) );
             break;
           case MemoryGroupByMeta.TYPE_GROUP_MEDIAN:
           case MemoryGroupByMeta.TYPE_GROUP_PERCENTILE:
@@ -511,7 +511,7 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
             break;
           case MemoryGroupByMeta.TYPE_GROUP_COUNT_ANY:
           case MemoryGroupByMeta.TYPE_GROUP_COUNT_ALL:
-            ag = new Long( aggregate.counts[i] );
+            ag = Long.valueOf( aggregate.counts[i] );
             break;
           case MemoryGroupByMeta.TYPE_GROUP_COUNT_DISTINCT:
             break;

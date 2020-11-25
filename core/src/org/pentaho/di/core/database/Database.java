@@ -4136,7 +4136,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
             v = Boolean.valueOf( cstmt.getBoolean( pos ) );
             break;
           case ValueMetaInterface.TYPE_NUMBER:
-            v = new Double( cstmt.getDouble( pos ) );
+            v = Double.valueOf( cstmt.getDouble( pos ) );
             break;
           case ValueMetaInterface.TYPE_BIGNUMBER:
             v = cstmt.getBigDecimal( pos );
@@ -4181,7 +4181,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
               v = Boolean.valueOf( cstmt.getBoolean( pos + i ) );
               break;
             case ValueMetaInterface.TYPE_NUMBER:
-              v = new Double( cstmt.getDouble( pos + i ) );
+              v = Double.valueOf( cstmt.getDouble( pos + i ) );
               break;
             case ValueMetaInterface.TYPE_BIGNUMBER:
               v = cstmt.getBigDecimal( pos + i );

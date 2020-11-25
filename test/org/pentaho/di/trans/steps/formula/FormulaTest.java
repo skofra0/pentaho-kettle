@@ -61,7 +61,7 @@ public class FormulaTest {
     RowMetaInterface rm = new RowMeta();
     for ( int i = 0; i < value.length; i++ ) {
       rm.addValueMeta( new ValueMetaInteger( keys[ i ] ) );
-      row[ i ] = new Long( value[ i ] );
+      row[ i ] = Long.valueOf( value[ i ] );
     }
     list.add( new RowMetaAndData( rm, row ) );
     return list;

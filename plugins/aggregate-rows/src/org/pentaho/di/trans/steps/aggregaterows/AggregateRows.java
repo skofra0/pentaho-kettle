@@ -67,7 +67,7 @@ public class AggregateRows extends BaseStep implements StepInterface {
             if ( data.values[i] == null ) {
               data.values[i] = number;
             } else {
-              data.values[i] = new Double( ( (Double) data.values[i] ).doubleValue() + number.doubleValue() );
+              data.values[i] = Double.valueOf( ( (Double) data.values[i] ).doubleValue() + number.doubleValue() );
             }
 
             break;
@@ -138,10 +138,10 @@ public class AggregateRows extends BaseStep implements StepInterface {
           agg[i] = data.values[i];
           break;
         case AggregateRowsMeta.TYPE_AGGREGATE_COUNT:
-          agg[i] = new Double( data.counts[i] );
+          agg[i] = Double.valueOf( data.counts[i] );
           break;
         case AggregateRowsMeta.TYPE_AGGREGATE_AVERAGE:
-          agg[i] = new Double( ( (Double) data.values[i] ).doubleValue() / data.counts[i] );
+          agg[i] = Double.valueOf( ( (Double) data.values[i] ).doubleValue() / data.counts[i] );
           break;
 
         default:

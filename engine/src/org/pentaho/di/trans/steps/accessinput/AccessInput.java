@@ -169,7 +169,7 @@ public class AccessInput extends BaseStep implements StepInterface {
 
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Const.isEmpty( meta.getRowNumberField() ) ) {
-        r[rowIndex++] = new Long( data.rownr );
+        r[rowIndex++] = Long.valueOf( data.rownr );
       }
       // Possibly add short filename...
       if ( meta.getShortFileNameField() != null && meta.getShortFileNameField().length() > 0 ) {
@@ -185,11 +185,11 @@ public class AccessInput extends BaseStep implements StepInterface {
       }
       // Add Size
       if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-        r[rowIndex++] = new Long( data.size );
+        r[rowIndex++] = Long.valueOf( data.size );
       }
       // add Hidden
       if ( meta.isHiddenField() != null && meta.isHiddenField().length() > 0 ) {
-        r[rowIndex++] = new Boolean( data.hidden );
+        r[rowIndex++] = Boolean.valueOf( data.hidden );
       }
       // Add modification date
       if ( meta.getLastModificationDateField() != null && meta.getLastModificationDateField().length() > 0 ) {
@@ -319,7 +319,7 @@ public class AccessInput extends BaseStep implements StepInterface {
         data.rootUriName = data.file.getName().getRootURI();
       }
       if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-        data.size = new Long( data.file.getContent().getSize() );
+        data.size = Long.valueOf( data.file.getContent().getSize() );
       }
 
       if ( meta.resetRowNumber() ) {

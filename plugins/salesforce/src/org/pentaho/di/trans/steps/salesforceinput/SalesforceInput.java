@@ -247,7 +247,7 @@ public class SalesforceInput extends BaseStep implements StepInterface {
 
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Const.isEmpty( meta.getRowNumberField() ) ) {
-        outputRowData[rowIndex++] = new Long( data.rownr );
+        outputRowData[rowIndex++] = Long.valueOf( data.rownr );
       }
 
       if ( meta.includeDeletionDate() && !Const.isEmpty( meta.getDeletionDateField() ) ) {

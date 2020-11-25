@@ -170,10 +170,10 @@ public class JavaScriptSpecialTest extends TestCase {
 
     RowMetaInterface rm = createRowMetaInterface3();
 
-    Object[] r1 = new Object[] { new Long( 1 ), new Double( 1.0D ), "1" };
-    Object[] r2 = new Object[] { new Long( 2 ), new Double( 2.0D ), "2" };
-    Object[] r3 = new Object[] { new Long( 3 ), new Double( 3.0D ), "3" };
-    Object[] r4 = new Object[] { new Long( 4 ), new Double( 4.0D ), "4" };
+    Object[] r1 = new Object[] { Long.valueOf( 1 ), Double.valueOf( 1.0D ), "1" };
+    Object[] r2 = new Object[] { Long.valueOf( 2 ), Double.valueOf( 2.0D ), "2" };
+    Object[] r3 = new Object[] { Long.valueOf( 3 ), Double.valueOf( 3.0D ), "3" };
+    Object[] r4 = new Object[] { Long.valueOf( 4 ), Double.valueOf( 4.0D ), "4" };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -209,20 +209,20 @@ public class JavaScriptSpecialTest extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        new Long( 1 ), new Double( 1.0D ), "1", new Long( 2 ), new Double( 2.0D ), "2", new Long( 2 ),
-        new Double( 2.0D ), "2" };
+        Long.valueOf( 1 ), Double.valueOf( 1.0D ), "1", Long.valueOf( 2 ), Double.valueOf( 2.0D ), "2", Long.valueOf( 2 ),
+        Double.valueOf( 2.0D ), "2" };
     Object[] r2 =
       new Object[] {
-        new Long( 2 ), new Double( 2.0D ), "2", new Long( 3 ), new Double( 3.0D ), "3", new Long( 3 ),
-        new Double( 3.0D ), "3" };
+        Long.valueOf( 2 ), Double.valueOf( 2.0D ), "2", Long.valueOf( 3 ), Double.valueOf( 3.0D ), "3", Long.valueOf( 3 ),
+        Double.valueOf( 3.0D ), "3" };
     Object[] r3 =
       new Object[] {
-        new Long( 3 ), new Double( 3.0D ), "3", new Long( 4 ), new Double( 4.0D ), "4", new Long( 4 ),
-        new Double( 4.0D ), "4" };
+        Long.valueOf( 3 ), Double.valueOf( 3.0D ), "3", Long.valueOf( 4 ), Double.valueOf( 4.0D ), "4", Long.valueOf( 4 ),
+        Double.valueOf( 4.0D ), "4" };
     Object[] r4 =
       new Object[] {
-        new Long( 4 ), new Double( 4.0D ), "4", new Long( 5 ), new Double( 5.0D ), "5", new Long( 5 ),
-        new Double( 5.0D ), "5" };
+        Long.valueOf( 4 ), Double.valueOf( 4.0D ), "4", Long.valueOf( 5 ), Double.valueOf( 5.0D ), "5", Long.valueOf( 5 ),
+        Double.valueOf( 5.0D ), "5" };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

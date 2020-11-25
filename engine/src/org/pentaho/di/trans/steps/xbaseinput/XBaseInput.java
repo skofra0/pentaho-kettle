@@ -141,7 +141,7 @@ public class XBaseInput extends BaseStep implements StepInterface {
 
     // Possibly add a row number...
     if ( meta.isRowNrAdded() ) {
-      row[outputIndex++] = new Long( getLinesInput() );
+      row[outputIndex++] = Long.valueOf( getLinesInput() );
     }
 
     putRow( data.outputRowMeta, row ); // fill the rowset(s). (wait for empty)

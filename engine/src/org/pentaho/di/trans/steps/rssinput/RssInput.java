@@ -283,7 +283,7 @@ public class RssInput extends BaseStep implements StepInterface {
       }
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() ) {
-        outputRowData[data.totalpreviousfields + rowIndex++] = new Long( data.rownr );
+        outputRowData[data.totalpreviousfields + rowIndex++] = Long.valueOf( data.rownr );
       }
 
       RowMetaInterface irow = getInputRowMeta();

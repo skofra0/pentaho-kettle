@@ -63,25 +63,25 @@ public class ExecSQLRow extends BaseStep implements StepInterface {
     if ( upd != null && upd.length() > 0 ) {
       ValueMeta meta = new ValueMeta( upd, ValueMetaInterface.TYPE_INTEGER );
       meta.setLength( ValueMetaInterface.DEFAULT_INTEGER_LENGTH, 0 );
-      resultRow.addValue( meta, new Long( result.getNrLinesUpdated() ) );
+      resultRow.addValue( meta, Long.valueOf( result.getNrLinesUpdated() ) );
     }
 
     if ( ins != null && ins.length() > 0 ) {
       ValueMeta meta = new ValueMeta( ins, ValueMetaInterface.TYPE_INTEGER );
       meta.setLength( ValueMetaInterface.DEFAULT_INTEGER_LENGTH, 0 );
-      resultRow.addValue( meta, new Long( result.getNrLinesOutput() ) );
+      resultRow.addValue( meta, Long.valueOf( result.getNrLinesOutput() ) );
     }
 
     if ( del != null && del.length() > 0 ) {
       ValueMeta meta = new ValueMeta( del, ValueMetaInterface.TYPE_INTEGER );
       meta.setLength( ValueMetaInterface.DEFAULT_INTEGER_LENGTH, 0 );
-      resultRow.addValue( meta, new Long( result.getNrLinesDeleted() ) );
+      resultRow.addValue( meta, Long.valueOf( result.getNrLinesDeleted() ) );
     }
 
     if ( read != null && read.length() > 0 ) {
       ValueMeta meta = new ValueMeta( read, ValueMetaInterface.TYPE_INTEGER );
       meta.setLength( ValueMetaInterface.DEFAULT_INTEGER_LENGTH, 0 );
-      resultRow.addValue( meta, new Long( result.getNrLinesRead() ) );
+      resultRow.addValue( meta, Long.valueOf( result.getNrLinesRead() ) );
     }
 
     return resultRow;

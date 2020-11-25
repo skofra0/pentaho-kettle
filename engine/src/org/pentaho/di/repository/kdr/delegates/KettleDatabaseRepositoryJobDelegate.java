@@ -904,7 +904,7 @@ public class KettleDatabaseRepositoryJobDelegate extends KettleDatabaseRepositor
       new ValueMeta( KettleDatabaseRepository.FIELD_JOB_JOB_VERSION, ValueMetaInterface.TYPE_STRING ), jobMeta
         .getJobversion() );
     table.addValue(
-      new ValueMeta( KettleDatabaseRepository.FIELD_JOB_JOB_STATUS, ValueMetaInterface.TYPE_INTEGER ), new Long(
+      new ValueMeta( KettleDatabaseRepository.FIELD_JOB_JOB_STATUS, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf(
         jobMeta.getJobstatus() < 0 ? -1L : jobMeta.getJobstatus() ) );
 
     table.addValue( new ValueMeta(

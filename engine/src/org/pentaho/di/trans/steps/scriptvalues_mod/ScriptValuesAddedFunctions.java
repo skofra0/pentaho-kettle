@@ -376,11 +376,11 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     if ( ArgList.length == 1 ) {
       try {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         } else {
-          return new Double( Math.abs( Context.toNumber( ArgList[0] ) ) );
+          return Double.valueOf( Math.abs( Context.toNumber( ArgList[0] ) ) );
         }
       } catch ( Exception e ) {
         return null;
@@ -395,11 +395,11 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     if ( ArgList.length == 1 ) {
       try {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         } else {
-          return new Double( Math.ceil( Context.toNumber( ArgList[0] ) ) );
+          return Double.valueOf( Math.ceil( Context.toNumber( ArgList[0] ) ) );
         }
       } catch ( Exception e ) {
         return null;
@@ -414,11 +414,11 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     if ( ArgList.length == 1 ) {
       try {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         } else {
-          return new Double( Math.floor( Context.toNumber( ArgList[0] ) ) );
+          return Double.valueOf( Math.floor( Context.toNumber( ArgList[0] ) ) );
         }
       } catch ( Exception e ) {
         return null;
@@ -434,7 +434,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     if ( ArgList.length == 2 ) {
       try {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         } else {
@@ -443,15 +443,15 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
           Calendar startDate = Calendar.getInstance();
           startDate.setTime( dIn );
           if ( strType.equals( "y" ) ) {
-            return new Double( startDate.get( Calendar.DAY_OF_YEAR ) );
+            return Double.valueOf( startDate.get( Calendar.DAY_OF_YEAR ) );
           } else if ( strType.equals( "m" ) ) {
-            return new Double( startDate.get( Calendar.DAY_OF_MONTH ) );
+            return Double.valueOf( startDate.get( Calendar.DAY_OF_MONTH ) );
           } else if ( strType.equals( "w" ) ) {
-            return new Double( startDate.get( Calendar.DAY_OF_WEEK ) );
+            return Double.valueOf( startDate.get( Calendar.DAY_OF_WEEK ) );
           } else if ( strType.equals( "wm" ) ) {
-            return new Double( startDate.get( Calendar.DAY_OF_WEEK_IN_MONTH ) );
+            return Double.valueOf( startDate.get( Calendar.DAY_OF_WEEK_IN_MONTH ) );
           }
-          return new Double( startDate.get( Calendar.DAY_OF_YEAR ) );
+          return Double.valueOf( startDate.get( Calendar.DAY_OF_YEAR ) );
         }
       } catch ( Exception e ) {
         return null;
@@ -550,7 +550,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     if ( ArgList.length == 3 ) {
       try {
         if ( isNull( ArgList, new int[] { 0, 1, 2 } ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList, new int[] { 0, 1, 2 } ) ) {
           return Context.getUndefinedValue();
         } else {
@@ -578,12 +578,12 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
             startDate.getTimeInMillis() + startDate.getTimeZone().getOffset( startDate.getTimeInMillis() );
 
           if ( strType.equals( "y" ) ) {
-            return new Double( endDate.get( Calendar.YEAR ) - startDate.get( Calendar.YEAR ) );
+            return Double.valueOf( endDate.get( Calendar.YEAR ) - startDate.get( Calendar.YEAR ) );
           } else if ( strType.equals( "m" ) ) {
             int iMonthsToAdd = ( endDate.get( Calendar.YEAR ) - startDate.get( Calendar.YEAR ) ) * 12;
-            return new Double( ( endDate.get( Calendar.MONTH ) - startDate.get( Calendar.MONTH ) ) + iMonthsToAdd );
+            return Double.valueOf( ( endDate.get( Calendar.MONTH ) - startDate.get( Calendar.MONTH ) ) + iMonthsToAdd );
           } else if ( strType.equals( "d" ) ) {
-            return new Double( ( ( endL - startL ) / 86400000 ) );
+            return Double.valueOf( ( ( endL - startL ) / 86400000 ) );
           } else if ( strType.equals( "wd" ) ) {
             int iOffset = -1;
             if ( endDate.before( startDate ) ) {
@@ -597,18 +597,18 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
               endDate.add( Calendar.DATE, iOffset );
               endL = endDate.getTimeInMillis() + endDate.getTimeZone().getOffset( endDate.getTimeInMillis() );
             }
-            return new Double( iRC );
+            return Double.valueOf( iRC );
           } else if ( strType.equals( "w" ) ) {
             int iDays = (int) ( ( endL - startL ) / 86400000 );
-            return new Double( iDays / 7 );
+            return Double.valueOf( iDays / 7 );
           } else if ( strType.equals( "ss" ) ) {
-            return new Double( ( ( endL - startL ) / 1000 ) );
+            return Double.valueOf( ( ( endL - startL ) / 1000 ) );
           } else if ( strType.equals( "mi" ) ) {
-            return new Double( ( ( endL - startL ) / 60000 ) );
+            return Double.valueOf( ( ( endL - startL ) / 60000 ) );
           } else if ( strType.equals( "hh" ) ) {
-            return new Double( ( ( endL - startL ) / 3600000 ) );
+            return Double.valueOf( ( ( endL - startL ) / 3600000 ) );
           } else {
-            return new Double( ( ( endL - startL ) / 86400000 ) );
+            return Double.valueOf( ( ( endL - startL ) / 86400000 ) );
           }
           /*
            * End Bugfix
@@ -843,14 +843,14 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     try {
       if ( ArgList.length == 1 ) {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         }
         java.util.Date dArg1 = (java.util.Date) Context.jsToJava( ArgList[0], java.util.Date.class );
         Calendar cal = Calendar.getInstance();
         cal.setTime( dArg1 );
-        return new Double( cal.get( Calendar.YEAR ) );
+        return Double.valueOf( cal.get( Calendar.YEAR ) );
       } else {
         throw Context.reportRuntimeError( "The function call year requires 1 argument." );
       }
@@ -864,14 +864,14 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     try {
       if ( ArgList.length == 1 ) {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         }
         java.util.Date dArg1 = (java.util.Date) Context.jsToJava( ArgList[0], java.util.Date.class );
         Calendar cal = Calendar.getInstance();
         cal.setTime( dArg1 );
-        return new Double( cal.get( Calendar.MONTH ) );
+        return Double.valueOf( cal.get( Calendar.MONTH ) );
       } else {
         throw Context.reportRuntimeError( "The function call month requires 1 argument." );
       }
@@ -886,7 +886,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     try {
       if ( ArgList.length == 1 ) {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         }
@@ -897,13 +897,13 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
         // Patch by Ingo Klose: calendar months start at 0 in java.
         int iMonth = cal.get( Calendar.MONTH );
         if ( iMonth <= 2 ) {
-          return new Double( 1 );
+          return Double.valueOf( 1 );
         } else if ( iMonth <= 5 ) {
-          return new Double( 2 );
+          return Double.valueOf( 2 );
         } else if ( iMonth <= 8 ) {
-          return new Double( 3 );
+          return Double.valueOf( 3 );
         } else {
-          return new Double( 4 );
+          return Double.valueOf( 4 );
         }
       } else {
         throw Context.reportRuntimeError( "The function call quarter requires 1 argument." );
@@ -918,14 +918,14 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
     try {
       if ( ArgList.length == 1 ) {
         if ( isNull( ArgList[0] ) ) {
-          return new Double( Double.NaN );
+          return Double.valueOf( Double.NaN );
         } else if ( isUndefined( ArgList[0] ) ) {
           return Context.getUndefinedValue();
         }
         java.util.Date dArg1 = (java.util.Date) Context.jsToJava( ArgList[0], java.util.Date.class );
         Calendar cal = Calendar.getInstance();
         cal.setTime( dArg1 );
-        return new Double( cal.get( Calendar.WEEK_OF_YEAR ) );
+        return Double.valueOf( cal.get( Calendar.WEEK_OF_YEAR ) );
       } else {
         throw Context.reportRuntimeError( "The function call week requires 1 argument." );
       }
@@ -1211,11 +1211,11 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
         Pattern p = Pattern.compile( Context.toString( ArgList[i] ) );
         Matcher m = p.matcher( strToMatch );
         if ( m.matches() ) {
-          return new Double( i );
+          return Double.valueOf( i );
         }
       }
     }
-    return new Double( -1 );
+    return Double.valueOf( -1 );
   }
 
   public static void sendMail( Context actualContext, Scriptable actualObject, Object[] ArgList,
@@ -1390,7 +1390,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
       case 1:
         try {
           if ( isNull( ArgList[0] ) ) {
-            return new Double( Double.NaN );
+            return Double.valueOf( Double.NaN );
           } else if ( isUndefined( ArgList[0] ) ) {
             return Context.getUndefinedValue();
           }
@@ -1407,7 +1407,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
       case 2:
         try {
           if ( isNull( ArgList, new int[] { 0, 1 } ) ) {
-            return new Double( Double.NaN );
+            return Double.valueOf( Double.NaN );
           } else if ( isUndefined( ArgList, new int[] { 0, 1 } ) ) {
             return Context.getUndefinedValue();
           }
@@ -1418,7 +1418,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
           }
           DecimalFormat formatter = new DecimalFormat( sArg2 );
           dRC = ( formatter.parse( sArg1 ) ).doubleValue();
-          return new Double( dRC );
+          return Double.valueOf( dRC );
         } catch ( Exception e ) {
           throw Context.reportRuntimeError( "Could not convert the String with the given format :"
             + e.getMessage() );
@@ -1427,7 +1427,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
       case 3:
         try {
           if ( isNull( ArgList, new int[] { 0, 1, 2 } ) ) {
-            return new Double( Double.NaN );
+            return Double.valueOf( Double.NaN );
           } else if ( isUndefined( ArgList, new int[] { 0, 1, 2 } ) ) {
             return Context.getUndefinedValue();
           }
@@ -1438,7 +1438,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
             DecimalFormatSymbols dfs = new DecimalFormatSymbols( EnvUtil.createLocale( sArg3.toLowerCase() ) );
             DecimalFormat formatter = new DecimalFormat( sArg2, dfs );
             dRC = ( formatter.parse( sArg1 ) ).doubleValue();
-            return new Double( dRC );
+            return Double.valueOf( dRC );
           }
         } catch ( Exception e ) {
           throw Context.reportRuntimeError( e.getMessage() );
@@ -1447,7 +1447,7 @@ public class ScriptValuesAddedFunctions extends ScriptableObject {
       default:
         throw Context.reportRuntimeError( "The function call str2num requires 1, 2, or 3 arguments." );
     }
-    return new Double( dRC );
+    return Double.valueOf( dRC );
   }
 
   public static Object isNum( Context actualContext, Scriptable actualObject, Object[] ArgList,

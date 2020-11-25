@@ -202,7 +202,7 @@ public class XBase {
             // Convert to double!!
             try {
               if ( rowobj[i] != null ) {
-                r[i] = new Double( (Float) rowobj[i] );
+                r[i] = Double.valueOf( (Float) rowobj[i] );
               }
             } catch ( NumberFormatException e ) {
               throw new KettleException( "Error parsing field #"

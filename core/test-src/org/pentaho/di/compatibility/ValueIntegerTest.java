@@ -94,9 +94,9 @@ public class ValueIntegerTest extends TestCase {
     assertEquals( 0L, vs2.getDate().getTime() );
     assertEquals( 3L, vs3.getDate().getTime() );
 
-    assertEquals( new Long( -4L ), vs1.getSerializable() );
-    assertEquals( new Long( 0L ), vs2.getSerializable() );
-    assertEquals( new Long( 3L ), vs3.getSerializable() );
+    assertEquals( Long.valueOf( -4L ), vs1.getSerializable() );
+    assertEquals( Long.valueOf( 0L ), vs2.getSerializable() );
+    assertEquals( Long.valueOf( 3L ), vs3.getSerializable() );
   }
 
   /**

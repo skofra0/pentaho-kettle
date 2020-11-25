@@ -77,7 +77,7 @@ public class RowGeneratorTest extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "string_value", Boolean.TRUE, new Long( 20L ), Timestamp.valueOf( "1970-01-01 00:00:00.000" ) };
+        "string_value", Boolean.TRUE, Long.valueOf( 20L ), Timestamp.valueOf( "1970-01-01 00:00:00.000" ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r1 ) );

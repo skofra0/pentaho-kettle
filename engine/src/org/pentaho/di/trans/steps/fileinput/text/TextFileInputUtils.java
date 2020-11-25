@@ -353,7 +353,7 @@ public class TextFileInputUtils {
     Long errorCount = null;
     if ( info.errorHandling.errorIgnored && info.getErrorCountField() != null && info.getErrorCountField()
         .length() > 0 ) {
-      errorCount = new Long( 0L );
+      errorCount = Long.valueOf( 0L );
     }
     String errorFields = null;
     if ( info.errorHandling.errorIgnored && info.getErrorFieldsField() != null && info.getErrorFieldsField()
@@ -402,7 +402,7 @@ public class TextFileInputUtils {
               value = null;
 
               if ( errorCount != null ) {
-                errorCount = new Long( errorCount.longValue() + 1L );
+                errorCount = Long.valueOf( errorCount.longValue() + 1L );
               }
               if ( errorFields != null ) {
                 StringBuilder sb = new StringBuilder( errorFields );
@@ -475,7 +475,7 @@ public class TextFileInputUtils {
 
         // Possibly add a row number...
         if ( info.content.includeRowNumber ) {
-          r[index] = new Long( rowNr );
+          r[index] = Long.valueOf( rowNr );
           index++;
         }
 

@@ -1476,7 +1476,7 @@ public class EnterOptionsDialog extends Dialog {
         case CHECK_BOX:
           final Button btn = new Button( wGeneralComp, SWT.CHECK );
           props.setLook( btn );
-          btn.setSelection( new Boolean( e.getLastValue().toString() ).booleanValue() );
+          btn.setSelection( Boolean.valueOf( e.getLastValue().toString() ).booleanValue() );
           btn.setText( e.getLabelText() );
           FormData btnData = new FormData();
           btnData.left = new FormAttachment( middle, 0 );

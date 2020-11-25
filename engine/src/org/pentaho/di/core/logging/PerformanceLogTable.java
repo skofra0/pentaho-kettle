@@ -210,10 +210,10 @@ public class PerformanceLogTable extends BaseLogTable implements Cloneable, LogT
             switch ( ID.valueOf( field.getId() ) ) {
 
               case ID_BATCH:
-                value = new Long( snapShot.getBatchId() );
+                value = Long.valueOf( snapShot.getBatchId() );
                 break;
               case SEQ_NR:
-                value = new Long( snapShot.getSeqNr() );
+                value = Long.valueOf( snapShot.getSeqNr() );
                 break;
               case LOGDATE:
                 value = snapShot.getDate();
@@ -225,34 +225,34 @@ public class PerformanceLogTable extends BaseLogTable implements Cloneable, LogT
                 value = snapShot.getStepName();
                 break;
               case STEP_COPY:
-                value = new Long( snapShot.getStepCopy() );
+                value = Long.valueOf( snapShot.getStepCopy() );
                 break;
               case LINES_READ:
-                value = new Long( snapShot.getLinesRead() );
+                value = Long.valueOf( snapShot.getLinesRead() );
                 break;
               case LINES_WRITTEN:
-                value = new Long( snapShot.getLinesWritten() );
+                value = Long.valueOf( snapShot.getLinesWritten() );
                 break;
               case LINES_INPUT:
-                value = new Long( snapShot.getLinesInput() );
+                value = Long.valueOf( snapShot.getLinesInput() );
                 break;
               case LINES_OUTPUT:
-                value = new Long( snapShot.getLinesOutput() );
+                value = Long.valueOf( snapShot.getLinesOutput() );
                 break;
               case LINES_UPDATED:
-                value = new Long( snapShot.getLinesUpdated() );
+                value = Long.valueOf( snapShot.getLinesUpdated() );
                 break;
               case LINES_REJECTED:
-                value = new Long( snapShot.getLinesRejected() );
+                value = Long.valueOf( snapShot.getLinesRejected() );
                 break;
               case ERRORS:
-                value = new Long( snapShot.getErrors() );
+                value = Long.valueOf( snapShot.getErrors() );
                 break;
               case INPUT_BUFFER_ROWS:
-                value = new Long( snapShot.getInputBufferSize() );
+                value = Long.valueOf( snapShot.getInputBufferSize() );
                 break;
               case OUTPUT_BUFFER_ROWS:
-                value = new Long( snapShot.getOutputBufferSize() );
+                value = Long.valueOf( snapShot.getOutputBufferSize() );
                 break;
               default:
                 break;

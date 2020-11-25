@@ -195,7 +195,7 @@ public class SystemData extends BaseStep implements StepInterface {
           row[index] = cal.getTime();
           break;
         case TYPE_SYSTEM_INFO_COPYNR:
-          row[index] = new Long( getCopy() );
+          row[index] = Long.valueOf( getCopy() );
           break;
         case TYPE_SYSTEM_INFO_TRANS_NAME:
           row[index] = getTransMeta().getName();
@@ -207,10 +207,10 @@ public class SystemData extends BaseStep implements StepInterface {
           row[index] = getTransMeta().getModifiedDate();
           break;
         case TYPE_SYSTEM_INFO_TRANS_BATCH_ID:
-          row[index] = new Long( getTrans().getBatchId() );
+          row[index] = Long.valueOf( getTrans().getBatchId() );
           break;
         case TYPE_SYSTEM_INFO_JOB_BATCH_ID:
-          row[index] = new Long( getTrans().getPassedBatchId() );
+          row[index] = Long.valueOf( getTrans().getPassedBatchId() );
           break;
         case TYPE_SYSTEM_INFO_HOSTNAME_REAL:
           row[index] = Const.getHostnameReal();
@@ -255,7 +255,7 @@ public class SystemData extends BaseStep implements StepInterface {
           row[index] = BuildVersion.getInstance().getBuildDateAsLocalDate();
           break;
         case TYPE_SYSTEM_INFO_CURRENT_PID:
-          row[index] = new Long( Management.getPID() );
+          row[index] = Long.valueOf( Management.getPID() );
           break;
         case TYPE_SYSTEM_INFO_JVM_TOTAL_MEMORY:
           row[index] = Runtime.getRuntime().totalMemory();

@@ -114,28 +114,28 @@ public class ShapeFileReader extends BaseStep implements StepInterface
 					outputRow[outputIndex++] = data.shapeFile.getFileHeader().getShapeTypeDesc();
 					
 					// The shape nr
-					outputRow[outputIndex++] = new Long(data.shapeNr+1);
+					outputRow[outputIndex++] = Long.valueOf(data.shapeNr+1);
 	
 					// The part nr
-					outputRow[outputIndex++] = new Long(partnr);
+					outputRow[outputIndex++] = Long.valueOf(partnr);
 
 					// The nr of parts
-					outputRow[outputIndex++] = new Long(eplm.nrparts);
+					outputRow[outputIndex++] = Long.valueOf(eplm.nrparts);
 
 					// The point nr
-					outputRow[outputIndex++] = new Long(j+1);
+					outputRow[outputIndex++] = Long.valueOf(j+1);
 	
 					// The nr of points
-					outputRow[outputIndex++] = new Long(eplm.nrpoints);
+					outputRow[outputIndex++] = Long.valueOf(eplm.nrpoints);
 	
 					// The X coordinate
-					outputRow[outputIndex++] = new Double(eplm.point[j].x);
+					outputRow[outputIndex++] = Double.valueOf(eplm.point[j].x);
 	
 					// The Y coordinate
-					outputRow[outputIndex++] = new Double(eplm.point[j].y);
+					outputRow[outputIndex++] = Double.valueOf(eplm.point[j].y);
 	
 					// The measure
-					outputRow[outputIndex++] = new Double(eplm.measures[j]);
+					outputRow[outputIndex++] = Double.valueOf(eplm.measures[j]);
 	
 					// The Values in the DBF file...
 					// PolyLimeM, point #"+j+", add dbf data";
@@ -177,28 +177,28 @@ public class ShapeFileReader extends BaseStep implements StepInterface
 					outputRow[outputIndex++] = data.shapeFile.getFileHeader().getShapeTypeDesc();
 					
 					// The shape nr
-					outputRow[outputIndex++] = new Long(data.shapeNr+1);
+					outputRow[outputIndex++] = Long.valueOf(data.shapeNr+1);
 	
 					// The part nr
-					outputRow[outputIndex++] = new Long(partnr);
+					outputRow[outputIndex++] = Long.valueOf(partnr);
 	
 					// The nr of parts
-					outputRow[outputIndex++] = new Long(epl.nrparts);
+					outputRow[outputIndex++] = Long.valueOf(epl.nrparts);
 	
 					// The point nr
-					outputRow[outputIndex++] = new Long(j+1);
+					outputRow[outputIndex++] = Long.valueOf(j+1);
 	
 					// The nr of points
-					outputRow[outputIndex++] = new Long(epl.nrpoints);
+					outputRow[outputIndex++] = Long.valueOf(epl.nrpoints);
 	
 					// The X coordinate
-					outputRow[outputIndex++] = new Double(epl.point[j].x);
+					outputRow[outputIndex++] = Double.valueOf(epl.point[j].x);
 	
 					// The Y coordinate
-					outputRow[outputIndex++] = new Double(epl.point[j].y);
+					outputRow[outputIndex++] = Double.valueOf(epl.point[j].y);
 	
 					// The measure
-					outputRow[outputIndex++] = new Double(0.0);
+					outputRow[outputIndex++] = Double.valueOf(0.0);
 	
 					// The Values in the DBF file...
 					// PolyLime, point #"+j+", add dbf data";
@@ -241,28 +241,28 @@ public class ShapeFileReader extends BaseStep implements StepInterface
 					outputRow[outputIndex++] = data.shapeFile.getFileHeader().getShapeTypeDesc();
 					
 					// The shape nr
-					outputRow[outputIndex++] = new Long(data.shapeNr+1);
+					outputRow[outputIndex++] = Long.valueOf(data.shapeNr+1);
 
 					// The part nr
-					outputRow[outputIndex++] = new Long(partnr);
+					outputRow[outputIndex++] = Long.valueOf(partnr);
 
 					// The nr of parts
-					outputRow[outputIndex++] = new Long(epl.nrparts);
+					outputRow[outputIndex++] = Long.valueOf(epl.nrparts);
 
 					// The point nr
-					outputRow[outputIndex++] = new Long(j+1);
+					outputRow[outputIndex++] = Long.valueOf(j+1);
 
 					// The nr of points
-					outputRow[outputIndex++] = new Long(epl.nrpoints);
+					outputRow[outputIndex++] = Long.valueOf(epl.nrpoints);
 
 					// The X coordinate
-					outputRow[outputIndex++] = new Double(epl.point[j].x);
+					outputRow[outputIndex++] = Double.valueOf(epl.point[j].x);
 	
 					// The Y coordinate
-					outputRow[outputIndex++] = new Double(epl.point[j].y);
+					outputRow[outputIndex++] = Double.valueOf(epl.point[j].y);
 	
 					// The measure
-					outputRow[outputIndex++] = new Double(0.0);
+					outputRow[outputIndex++] = Double.valueOf(0.0);
 	
 					// The Values in the DBF file...
 					// PolyLime, point #"+j+", add dbf data";
@@ -296,28 +296,28 @@ public class ShapeFileReader extends BaseStep implements StepInterface
 			    outputRow[outputIndex++] = data.shapeFile.getFileHeader().getShapeTypeDesc();
 				
 				// The shape nr
-			    outputRow[outputIndex++] = new Long(data.shapeNr);
+			    outputRow[outputIndex++] = Long.valueOf(data.shapeNr);
 
 				// The part nr
-			    outputRow[outputIndex++] = new Long(0L);
+			    outputRow[outputIndex++] = Long.valueOf(0L);
 
 				// The nr of parts
-			    outputRow[outputIndex++] = new Long(0L);
+			    outputRow[outputIndex++] = Long.valueOf(0L);
 
 				// The point nr
-			    outputRow[outputIndex++] = new Long(0L);
+			    outputRow[outputIndex++] = Long.valueOf(0L);
 				
 				// The nr of points
-			    outputRow[outputIndex++] = new Long(0L);
+			    outputRow[outputIndex++] = Long.valueOf(0L);
 
 				// The X coordinate
-			    outputRow[outputIndex++] = new Double(ep.x);
+			    outputRow[outputIndex++] = Double.valueOf(ep.x);
 
 				// The Y coordinate
-			    outputRow[outputIndex++] = new Double(ep.y);
+			    outputRow[outputIndex++] = Double.valueOf(ep.y);
 				
 				// The measure
-			    outputRow[outputIndex++] = new Double(0.0);
+			    outputRow[outputIndex++] = Double.valueOf(0.0);
 
 				// The Values in the DBF file...
 				// PolyLimeM, point #"+data.shapeNr+", add dbf data";

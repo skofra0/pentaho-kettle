@@ -215,7 +215,7 @@ public class Translator2 {
             }
           }
         }
-        nrKeysPerFolder.put( sourceFolder, new Integer( nrKeys ) );
+        nrKeysPerFolder.put( sourceFolder, Integer.valueOf( nrKeys ) );
       }
 
       DecimalFormat pctFormat = new DecimalFormat( "#00.00" );

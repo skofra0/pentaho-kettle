@@ -168,7 +168,7 @@ public class MetricsLogTable extends BaseLogTable implements Cloneable, LogTable
           if ( subject != null ) {
             switch ( ID.valueOf( field.getId() ) ) {
               case ID_BATCH:
-                value = new Long( loggingMetric.getBatchId() );
+                value = Long.valueOf( loggingMetric.getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = snapshot.getLogChannelId();

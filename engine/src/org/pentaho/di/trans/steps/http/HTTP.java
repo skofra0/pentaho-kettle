@@ -211,11 +211,11 @@ public class HTTP extends BaseStep implements StepInterface {
         }
 
         if ( !Const.isEmpty( meta.getResultCodeFieldName() ) ) {
-          newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( statusCode ) );
+          newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( statusCode ) );
           returnFieldsOffset++;
         }
         if ( !Const.isEmpty( meta.getResponseTimeFieldName() ) ) {
-          newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( responseTime ) );
+          newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( responseTime ) );
         }
 
       } finally {

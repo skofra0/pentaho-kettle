@@ -95,7 +95,7 @@ public class UIEEDatabaseConnection extends UIDatabaseConnection implements IAcl
       hasAccess = new HashMap<RepositoryFilePermission, Boolean>();
     }
     if ( hasAccess.get( perm ) == null ) {
-      hasAccess.put( perm, new Boolean( aclService.hasAccess( getDatabaseMeta().getObjectId(), perm ) ) );
+      hasAccess.put( perm, Boolean.valueOf( aclService.hasAccess( getDatabaseMeta().getObjectId(), perm ) ) );
     }
     return hasAccess.get( perm ).booleanValue();
   }

@@ -98,9 +98,9 @@ public class ValueNumberTest extends TestCase {
     assertEquals( 3L, vs3.getDate().getTime() );
     assertEquals( 3L, vs4.getDate().getTime() );
 
-    assertEquals( new Double( -4.0D ), vs1.getSerializable() );
-    assertEquals( new Double( 0.0D ), vs2.getSerializable() );
-    assertEquals( new Double( 3.0D ), vs3.getSerializable() );
+    assertEquals( Double.valueOf( -4.0D ), vs1.getSerializable() );
+    assertEquals( Double.valueOf( 0.0D ), vs2.getSerializable() );
+    assertEquals( Double.valueOf( 3.0D ), vs3.getSerializable() );
   }
 
   /**

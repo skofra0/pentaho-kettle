@@ -95,7 +95,7 @@ public class StepMetastructure extends BaseStep implements StepInterface {
 
         ValueMetaInterface v_position = data.outputRowMeta.getValueMeta( 0 );
         metastructureRow =
-          RowDataUtil.addValueData( metastructureRow, 0, v_position.convertDataCompatible( v_position, new Long(
+          RowDataUtil.addValueData( metastructureRow, 0, v_position.convertDataCompatible( v_position, Long.valueOf(
             i + 1 ) ) );
 
         metastructureRow = RowDataUtil.addValueData( metastructureRow, 1, v.getName() );
@@ -104,13 +104,13 @@ public class StepMetastructure extends BaseStep implements StepInterface {
 
         ValueMetaInterface v_length = data.outputRowMeta.getValueMeta( 4 );
         metastructureRow =
-          RowDataUtil.addValueData( metastructureRow, 4, v_length.convertDataCompatible( v_length, new Long( v
+          RowDataUtil.addValueData( metastructureRow, 4, v_length.convertDataCompatible( v_length, Long.valueOf( v
             .getLength() ) ) );
 
         ValueMetaInterface v_precision = data.outputRowMeta.getValueMeta( 5 );
         metastructureRow =
           RowDataUtil.addValueData( metastructureRow, 5, v_precision.convertDataCompatible(
-            v_precision, new Long( v.getPrecision() ) ) );
+            v_precision, Long.valueOf( v.getPrecision() ) ) );
 
         metastructureRow = RowDataUtil.addValueData( metastructureRow, 6, v.getOrigin() );
 
@@ -118,7 +118,7 @@ public class StepMetastructure extends BaseStep implements StepInterface {
           ValueMetaInterface v_rowCount = data.outputRowMeta.getValueMeta( 7 );
           metastructureRow =
             RowDataUtil.addValueData( metastructureRow, 7, v_rowCount.convertDataCompatible(
-              v_rowCount, new Long( data.rowCount ) ) );
+              v_rowCount, Long.valueOf( data.rowCount ) ) );
         }
         putRow( data.outputRowMeta, metastructureRow.clone() );
       }

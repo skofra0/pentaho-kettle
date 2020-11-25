@@ -126,7 +126,7 @@ public class SecretKeyGenerator extends BaseStep implements StepInterface {
 
         if ( data.addSecretKeyLengthOutput ) {
           // add secret key len
-          row[index++] = new Long( data.secretKeyLen[i] );
+          row[index++] = Long.valueOf( data.secretKeyLen[i] );
         }
 
         if ( data.readsRows ) {

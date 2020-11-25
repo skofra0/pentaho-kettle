@@ -232,14 +232,14 @@ public class Formula extends BaseStep implements StepInterface {
 			if (fn.isNeedDataConversion()) {
 				value = convertDataToTargetValueMeta(realIndex, formulaResult);
 			} else {
-				value = new Double(((Number) formulaResult).doubleValue());
+				value = Double.valueOf(((Number) formulaResult).doubleValue());
 			}
 			break;
 		case FormulaData.RETURN_TYPE_INTEGER:
 			if (fn.isNeedDataConversion()) {
 				value = convertDataToTargetValueMeta(realIndex, formulaResult);
 			} else {
-				value = new Long(((Integer) formulaResult).intValue());
+				value = Long.valueOf(((Integer) formulaResult).intValue());
 			}
 			break;
 		case FormulaData.RETURN_TYPE_LONG:

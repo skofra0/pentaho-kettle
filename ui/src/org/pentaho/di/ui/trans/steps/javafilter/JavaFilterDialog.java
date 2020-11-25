@@ -294,7 +294,7 @@ public class JavaFilterDialog extends BaseStepDialog implements StepDialogInterf
         //
         /*
          * int nrNonEmptyFields = wFields.nrNonEmpty(); for (int i=0;i<nrNonEmptyFields;i++) { TableItem item =
-         * wFields.getNonEmpty(i); fields.put(item.getText(1), new Integer(1000000+i)); // The number is just to debug
+         * wFields.getNonEmpty(i); fields.put(item.getText(1), Integer.valueOf(1000000+i)); // The number is just to debug
          * the origin of the fieldname }
          */
 

@@ -1307,7 +1307,7 @@ public class KettleDatabaseRepositoryTransDelegate extends KettleDatabaseReposit
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_DESCRIPTION, ValueMetaInterface.TYPE_STRING ), transMeta.getDescription() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_EXTENDED_DESCRIPTION, ValueMetaInterface.TYPE_STRING ), transMeta.getExtendedDescription() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_VERSION, ValueMetaInterface.TYPE_STRING ), transMeta.getTransversion() );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_STATUS, ValueMetaInterface.TYPE_INTEGER ), new Long( transMeta.getTransstatus() < 0 ? -1L : transMeta.getTransstatus() ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_STATUS, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( transMeta.getTransstatus() < 0 ? -1L : transMeta.getTransstatus() ) );
     TransLogTable logTable = transMeta.getTransLogTable();
     StepMeta step = (StepMeta) logTable.getSubject( TransLogTable.ID.LINES_READ );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_STEP_READ, ValueMetaInterface.TYPE_INTEGER ), step == null ? null : step.getObjectId() );
@@ -1327,15 +1327,15 @@ public class KettleDatabaseRepositoryTransDelegate extends KettleDatabaseReposit
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_DATABASE_MAXDATE, ValueMetaInterface.TYPE_INTEGER ), transMeta.getMaxDateConnection() == null ? new LongObjectId( -1L ).longValue() : new LongObjectId( transMeta.getMaxDateConnection().getObjectId() ).longValue() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_TABLE_NAME_MAXDATE, ValueMetaInterface.TYPE_STRING ), transMeta.getMaxDateTable() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_FIELD_NAME_MAXDATE, ValueMetaInterface.TYPE_STRING ), transMeta.getMaxDateField() );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_OFFSET_MAXDATE, ValueMetaInterface.TYPE_NUMBER ), new Double( transMeta.getMaxDateOffset() ) );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_DIFF_MAXDATE, ValueMetaInterface.TYPE_NUMBER ), new Double( transMeta.getMaxDateDifference() ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_OFFSET_MAXDATE, ValueMetaInterface.TYPE_NUMBER ), Double.valueOf( transMeta.getMaxDateOffset() ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_DIFF_MAXDATE, ValueMetaInterface.TYPE_NUMBER ), Double.valueOf( transMeta.getMaxDateDifference() ) );
 
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_CREATED_USER, ValueMetaInterface.TYPE_STRING ), transMeta.getCreatedUser() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_CREATED_DATE, ValueMetaInterface.TYPE_DATE ), transMeta.getCreatedDate() );
 
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_MODIFIED_USER, ValueMetaInterface.TYPE_STRING ), transMeta.getModifiedUser() );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_MODIFIED_DATE, ValueMetaInterface.TYPE_DATE ), transMeta.getModifiedDate() );
-    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_SIZE_ROWSET, ValueMetaInterface.TYPE_INTEGER ), new Long( transMeta.getSizeRowset() ) );
+    table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_SIZE_ROWSET, ValueMetaInterface.TYPE_INTEGER ), Long.valueOf( transMeta.getSizeRowset() ) );
     table.addValue( new ValueMeta( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_DIRECTORY, ValueMetaInterface.TYPE_INTEGER ), transMeta.getRepositoryDirectory().getObjectId() );
 
     repository.connectionDelegate.getDatabase().prepareInsert( table.getRowMeta(), KettleDatabaseRepository.TABLE_R_TRANSFORMATION );

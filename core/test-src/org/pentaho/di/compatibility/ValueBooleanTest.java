@@ -87,8 +87,8 @@ public class ValueBooleanTest extends TestCase {
     assertNull( vs1.getDate() );
     assertNull( vs2.getDate() );
 
-    assertEquals( new Boolean( true ), vs1.getSerializable() );
-    assertEquals( new Boolean( false ), vs2.getSerializable() );
+    assertEquals( Boolean.valueOf( true ), vs1.getSerializable() );
+    assertEquals( Boolean.valueOf( false ), vs2.getSerializable() );
   }
 
   /**

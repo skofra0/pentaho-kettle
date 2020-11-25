@@ -540,7 +540,7 @@ public class S3CsvInput extends BaseStep implements StepInterface
 			}
 			
 			if (data.isAddingRowNumber) {
-				outputRowData[outputIndex++] = new Long(data.rowNumber++);
+				outputRowData[outputIndex++] = Long.valueOf(data.rowNumber++);
 			}
 		
 			incrementLinesInput();

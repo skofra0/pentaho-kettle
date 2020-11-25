@@ -194,6 +194,9 @@
     <dependency org="com.sun.xml.bind"       name="jaxb-core"   rev="2.3.0"  transitive="false"/>  
     <dependency org="com.sun.xml.bind"       name="jaxb-impl"   rev="2.3.0"  transitive="false"/>  
 -->	
+    <dependency org="jakarta.xml.bind"     name="jakarta.xml.bind-api"  rev="2.3.3"  transitive="true"/>  
+    <dependency org="com.sun.xml.bind"     name="jaxb-impl"             rev="2.3.3"  transitive="true"/>  
+ 
     <!-- Third-party JDBC dependencies -->
  <!--  
     <dependency org="org.apache.derby"     name="derby"                 rev="10.2.1.6"      transitive="false"/>
