@@ -58,6 +58,7 @@ import org.w3c.dom.Node;
 public class MailMeta extends BaseStepMeta implements StepMetaInterface {
     private static Class<?> PKG = MailMeta.class; // for i18n purposes, needed by Translator2!!
 
+    public static final String DEFAULT_CONFIGFILE = "${MAIL_CONFIG_FILE}"; // SKOFRA
     private String configFile; // SKOFRA external config file
 
     private String server;
@@ -238,7 +239,7 @@ public class MailMeta extends BaseStepMeta implements StepMetaInterface {
     }
 
     public void setDefault() {
-        this.configFile = "${MAIL_CONFIG_FILE}";
+        this.configFile = "";
     }   
 
     public String getXML() throws KettleException {

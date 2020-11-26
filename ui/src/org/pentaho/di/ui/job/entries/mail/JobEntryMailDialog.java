@@ -103,7 +103,9 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     private TextVar wConfigFile;
     private FormData fdlConfigFile, fdConfigFile;
     private Button wbConfigFile;
+    private Button wbDefaultConfigFile;
     private FormData fdbConfigFile;
+    private FormData fdbDefaultConfigFile;
 
     private LabelTextVar wServer;
 
@@ -471,15 +473,24 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
         fdlConfigFile.top = new FormAttachment(0, margin + 8);
         fdlConfigFile.right = new FormAttachment(middle, -margin);
         wlConfigFile.setLayoutData(fdlConfigFile);
+        
+        wbDefaultConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+        props.setLook(wbDefaultConfigFile);
+        wbDefaultConfigFile.setText(BaseMessages.getString(PKG, "JobMail.Default.Button"));
+       fdbDefaultConfigFile = new FormData();
+        fdbDefaultConfigFile.right = new FormAttachment(100, 0);
+        fdbDefaultConfigFile.top = new FormAttachment(0, margin + 5);
+        wbDefaultConfigFile.setLayoutData(fdbDefaultConfigFile);
 
         wbConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
         props.setLook(wbConfigFile);
         wbConfigFile.setText(BaseMessages.getString(PKG, "JobMail.Browse.Button"));
         fdbConfigFile = new FormData();
-        fdbConfigFile.right = new FormAttachment(100, 0);
+       // fdbConfigFile.right = new FormAttachment(100, 0);
+        fdbConfigFile.right = new FormAttachment(wbDefaultConfigFile, -margin);
         fdbConfigFile.top = new FormAttachment(0, margin + 5);
         wbConfigFile.setLayoutData(fdbConfigFile);
-
+        
         wConfigFile = new TextVar(jobMeta, wServerGroup, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
         wConfigFile.setToolTipText(BaseMessages.getString(PKG, "JobMail.ConfigFile.Tooltip"));
         props.setLook(wConfigFile);
@@ -503,6 +514,13 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
                 }
                 setUseAuth();
             }
+        });
+        
+       wbDefaultConfigFile.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+               wConfigFile.setText(JobEntryMail.DEFAULT_CONFIGFILE);
+           }
         });
         // Config file end
 

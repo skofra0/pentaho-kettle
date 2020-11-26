@@ -89,7 +89,8 @@ import org.w3c.dom.Node;
 public class JobEntryMail extends JobEntryBase implements Cloneable, JobEntryInterface {
     private static Class<?> PKG = JobEntryMail.class; // for i18n purposes, needed by Translator2!!
 
-    private String configFile = "${MAIL_CONFIG_FILE}"; // SKOFRA
+    public static final String DEFAULT_CONFIGFILE = "${MAIL_CONFIG_FILE}"; // SKOFRA
+    private String configFile = ""; // SKOFRA
 
     private String server;
 
@@ -240,6 +241,7 @@ public class JobEntryMail extends JobEntryBase implements Cloneable, JobEntryInt
     public void loadXML(Node entrynode, List<DatabaseMeta> databases, List<SlaveServer> slaveServers, Repository rep, IMetaStore metaStore) throws KettleXMLException {
         try {
             super.loadXML(entrynode, databases, slaveServers);
+            setConfigFile(XMLHandler.getTagValue(entrynode, "configFile"));// SKOFRA
             setServer(XMLHandler.getTagValue(entrynode, "server"));
             setPort(XMLHandler.getTagValue(entrynode, "port"));
             setDestination(XMLHandler.getTagValue(entrynode, "destination"));

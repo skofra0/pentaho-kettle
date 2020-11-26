@@ -23,6 +23,10 @@
 
 package org.pentaho.di.ui.trans.steps.mail;
 
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Random;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabFolder;
@@ -66,10 +70,6 @@ import org.pentaho.di.ui.core.widget.LabelTextVar;
 import org.pentaho.di.ui.core.widget.TableView;
 import org.pentaho.di.ui.core.widget.TextVar;
 import org.pentaho.di.ui.trans.step.BaseStepDialog;
-
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Send mail step. based on Mail job entry
@@ -138,7 +138,9 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     private TextVar wConfigFile;
     private FormData fdlConfigFile, fdConfigFile;
     private Button wbConfigFile;
+    private Button wbDefaultConfigFile;
     private FormData fdbConfigFile;
+    private FormData fdbDefaultConfigFile;
 
     private CCombo wServer;
 
@@ -723,12 +725,21 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
         fdlConfigFile.top = new FormAttachment(0, margin + 5);
         fdlConfigFile.right = new FormAttachment(middle, -margin);
         wlConfigFile.setLayoutData(fdlConfigFile);
+        
+        wbDefaultConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+        props.setLook(wbDefaultConfigFile);
+        wbDefaultConfigFile.setText(BaseMessages.getString(PKG, "Mail.Default.Button"));
+        fdbDefaultConfigFile = new FormData();
+        fdbDefaultConfigFile.right = new FormAttachment(100, 0);
+        fdbDefaultConfigFile.top = new FormAttachment(0, margin + 5);
+        wbDefaultConfigFile.setLayoutData(fdbDefaultConfigFile);
 
         wbConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
         props.setLook(wbConfigFile);
         wbConfigFile.setText(BaseMessages.getString(PKG, "Mail.Browse.Button"));
         fdbConfigFile = new FormData();
-        fdbConfigFile.right = new FormAttachment(100, 0);
+        //fdbConfigFile.right = new FormAttachment(100, 0);
+        fdbConfigFile.right = new FormAttachment(wbDefaultConfigFile, -margin);
         fdbConfigFile.top = new FormAttachment(0, margin + 5);
         wbConfigFile.setLayoutData(fdbConfigFile);
 
@@ -755,6 +766,13 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
                 }
                 setUseAuth();
             }
+        });
+        
+        wbDefaultConfigFile.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+               wConfigFile.setText(MailMeta.DEFAULT_CONFIGFILE);
+           }
         });
         // Config file end
 
