@@ -6,11 +6,11 @@
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>pdi-plugins</artifactId>
-    <version>9.0.3-001</version>
+    <version>9.0.3-002</version>
   </parent>
 
   <artifactId>get-fields</artifactId>
-  <version>9.0.3-001</version>
+  <version>9.0.3-002</version>
   <packaging>pom</packaging>
 
   <name>Get Fields Plugin</name>

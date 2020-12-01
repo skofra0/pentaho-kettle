@@ -7,7 +7,7 @@
 
 	<groupId>org.pentaho.di</groupId>
 	<artifactId>pdi</artifactId>
-	<version>9.0.3-001</version>
+	<version>9.0.3-002</version>
 	<packaging>pom</packaging>
 
 	<name>Pentaho Data Integration</name>
@@ -76,7 +76,8 @@
 		<wstx-asl.version>3.2.4</wstx-asl.version>
 
 		<!-- SKOFRA  -->
-        <deem-etl.version>6.1.0.112-SNAPSHOT</deem-etl.version>
+        <deem-etl.version>6.1.0.119</deem-etl.version>
+        <deem.version>5.1.65</deem.version>
 	    <fasterxml-jackson.version>2.11.0</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.11.0</fasterxml-jackson-databind.version>
 		<commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -338,10 +339,9 @@
 
 
 	<repositories>
-
 		<repository>
-			<id>merit-maven2-repository</id>
-			<url>http://nomovwbi1.infor.com:8081/nexus/content/groups/public/</url>
+			<id>bdo-nexus</id>
+			<url>http://10.241.62.16:8081/nexus/content/groups/public/</url>
 		</repository>
 
 <!-- 		<repository> -->
@@ -360,5 +360,22 @@
 
 	</repositories>
 
- 
+	<distributionManagement>
+		<repository>
+			<id>bdo-nexus</id>
+			<url>http://10.241.62.16:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>bdo-nexus</id>
+			<url>http://10.241.62.16:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>bdo-nexus</id>
+			<url>http://10.241.62.16:8081/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories> 
 </project>
