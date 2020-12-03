@@ -182,8 +182,8 @@
 
     <!-- Deem 
     -->
-    <dependency org="no.deem.etl"     name="deem-etl-plugins"           rev="6.1.0.118"  transitive="true"/>
-    <dependency org="no.deem.etl"     name="deem-etl-plugins-extras"    rev="6.1.0.118"  transitive="true"/>
+    <dependency org="no.deem.etl"     name="deem-etl-plugins"           rev="6.1.0.119"  transitive="true"/>
+    <dependency org="no.deem.etl"     name="deem-etl-plugins-extras"    rev="6.1.0.119"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="47.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="47.0.0" transitive="false"/>
 
