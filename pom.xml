@@ -75,6 +75,13 @@
 		<encoder.version>1.2</encoder.version>
 		<wstx-asl.version>3.2.4</wstx-asl.version>
 
+<!-- 		<common.version>3.13.0</common.version> -->
+<!--     	<jface.version>3.21.0</jface.version> -->
+<!--     	<commands.version>3.9.700</commands.version> -->
+    	<common.version>3.3.0-v20070426</common.version>
+    	<jface.version>3.3.0-I20070606-0010</jface.version>
+    	<commands.version>3.3.0-I20070605-0010</commands.version>
+
 		<!-- SKOFRA  -->
         <deem-etl.version>6.1.0.119</deem-etl.version>
         <deem.version>5.1.65</deem.version>
@@ -92,7 +99,7 @@
 	    <jaxen.version>1.2.0</jaxen.version>
 		<poi.version>4.0.1</poi.version>
         <httpclient.version>4.5.12</httpclient.version>
-        <httpcore.version>4.4.13</httpcore.version>
+        <httpcore.version>4.4.14</httpcore.version>
         <jt400.version>10.2</jt400.version>
    <!-- <h2.version>1.2.131</h2.version> -->
         <h2.version>1.3.176</h2.version>
