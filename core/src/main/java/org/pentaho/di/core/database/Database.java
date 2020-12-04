@@ -1838,7 +1838,8 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
   }
 
   void setMysqlFetchSize( PreparedStatement ps, int fs, int getMaxRows ) throws SQLException, KettleDatabaseException {
-    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) {
+    // if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() == 3 ) { // SKOFRA
+    if ( databaseMeta.isStreamingResults() && getDatabaseMetaData().getDriverMajorVersion() < 5 ) { // SKOFRA
       ps.setFetchSize( Integer.MIN_VALUE );
     } else if ( fs <= getMaxRows ) {
       // PDI-11373 do not set fetch size more than max rows can returns
@@ -3427,7 +3428,11 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
         switch ( sqltype ) {
           case java.sql.Types.CHAR:
           case java.sql.Types.VARCHAR:
-            val = new ValueMetaString( name );
+          case java.sql.Types.NVARCHAR:      // SKOFRA
+          case java.sql.Types.NCHAR:         // SKOFRA
+          case java.sql.Types.LONGVARCHAR:   // SKOFRA
+          case java.sql.Types.LONGNVARCHAR:  // SKOFRA
+           val = new ValueMetaString( name );
             break;
           case java.sql.Types.BIGINT:
           case java.sql.Types.INTEGER:
@@ -3445,6 +3450,8 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
           case java.sql.Types.DATE:
           case java.sql.Types.TIME:
           case java.sql.Types.TIMESTAMP:
+          case java.sql.Types.TIME_WITH_TIMEZONE:       // SKOFRA
+          case java.sql.Types.TIMESTAMP_WITH_TIMEZONE:  // SKOFRA
             val = new ValueMetaDate( name );
             break;
           case java.sql.Types.BOOLEAN:

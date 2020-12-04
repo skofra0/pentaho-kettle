@@ -949,9 +949,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>no.deem.deem</groupId>
-			<artifactId>deem-core</artifactId>
-			<version>${deem.version}</version>
+			<groupId>no.deem.etl</groupId>
+			<artifactId>deem-etl-core</artifactId>
+			<version>${deem-etl.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>

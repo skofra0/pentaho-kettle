@@ -531,6 +531,10 @@ public class DatabaseMeta extends SharedObjectBase implements Cloneable, XMLInte
     databaseInterface.addDefaultOptions();
     setSupportsBooleanDataType( true );
     setSupportsTimestampDataType( true );
+    
+    
+    
+    
   }
 
   /**

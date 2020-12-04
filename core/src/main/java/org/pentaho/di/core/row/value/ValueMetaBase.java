@@ -59,6 +59,7 @@ import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.GreenplumDatabaseMeta;
+import org.pentaho.di.core.database.MSSQLServerDatabaseMeta;
 import org.pentaho.di.core.database.NetezzaDatabaseMeta;
 import org.pentaho.di.core.database.OracleDatabaseMeta;
 import org.pentaho.di.core.database.PostgreSQLDatabaseMeta;
@@ -116,6 +117,11 @@ public class ValueMetaBase implements ValueMetaInterface {
           .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
   // endregion
 
+  public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
+          // .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+          .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) ); // SKOFRA
+
+  
   // region ValueMetaBase Attributes
   protected static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2
 
@@ -247,8 +253,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     this.ignoreTimezone =
       convertStringToBoolean( Const.NVL( System.getProperty( Const.KETTLE_COMPATIBILITY_DB_IGNORE_TIMEZONE, "N" ),
         "N" ) );
-    this.emptyStringAndNullAreDifferent = convertStringToBoolean(
-      Const.NVL( System.getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+    this.emptyStringAndNullAreDifferent = EMPTY_STRING_AND_NULL_ARE_DIFFERENT;
 
     this.comparator = comparator;
     determineSingleByteEncoding();
@@ -4030,8 +4035,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     boolean isStringValue = outValueType == Value.VALUE_TYPE_STRING;
     Object emptyValue = isStringValue ? Const.NULL_STRING : null;
 
-    Boolean isEmptyAndNullDiffer = convertStringToBoolean(
-        Const.NVL( System.getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+    Boolean isEmptyAndNullDiffer = EMPTY_STRING_AND_NULL_ARE_DIFFERENT;
 
     Boolean normalizeNullStringToEmpty = !convertStringToBoolean(
       Const.NVL( System.getProperty( Const.KETTLE_DO_NOT_NORMALIZE_NULL_STRING_TO_EMPTY, "N" ), "N" ) );
@@ -4729,10 +4733,16 @@ public class ValueMetaBase implements ValueMetaInterface {
         // This JDBC Driver doesn't support the isSigned method
         // nothing more we can do here by catch the exception.
       }
+      
+      // SKOFRA - set correct field size
+      int dbDisplaySize = rm.getColumnDisplaySize(index); // SKOFRA
+      
       switch ( type ) {
         case java.sql.Types.CHAR:
         case java.sql.Types.VARCHAR:
         case java.sql.Types.NVARCHAR:
+        case java.sql.Types.NCHAR:        // SKOFRA
+        case java.sql.Types.LONGNVARCHAR: // SKOFRA
         case java.sql.Types.LONGVARCHAR: // Character Large Object
           valtype = ValueMetaInterface.TYPE_STRING;
           if ( !ignoreLength ) {
@@ -4754,10 +4764,12 @@ public class ValueMetaBase implements ValueMetaInterface {
             valtype = ValueMetaInterface.TYPE_INTEGER;
             precision = 0; // Max 9.223.372.036.854.775.807
             length = 15;
+            length = dbDisplaySize; // SKOFRA
           } else {
             valtype = ValueMetaInterface.TYPE_BIGNUMBER;
             precision = 0; // Max 18.446.744.073.709.551.615
             length = 16;
+            length = dbDisplaySize; // SKOFRA
           }
           break;
 
@@ -4765,6 +4777,7 @@ public class ValueMetaBase implements ValueMetaInterface {
           valtype = ValueMetaInterface.TYPE_INTEGER;
           precision = 0; // Max 2.147.483.647
           length = 9;
+          length = dbDisplaySize; // SKOFRA
           break;
 
         case java.sql.Types.SMALLINT:
@@ -4787,6 +4800,13 @@ public class ValueMetaBase implements ValueMetaInterface {
           valtype = ValueMetaInterface.TYPE_NUMBER;
           length = rm.getPrecision( index );
           precision = rm.getScale( index );
+          
+          // SKOFRA START
+          if (length > 2 && type == Types.DECIMAL && databaseMeta.getDatabaseInterface().isMySQLVariant()) {
+              length = length - 2;
+          }
+          // SKOFRA END
+
           if ( length >= 126 ) {
             length = -1;
           }
@@ -4795,6 +4815,21 @@ public class ValueMetaBase implements ValueMetaInterface {
           }
 
           if ( type == java.sql.Types.DOUBLE || type == java.sql.Types.FLOAT || type == java.sql.Types.REAL ) {
+              // SKOFRA SQL-SERVER
+              if (databaseMeta.getDatabaseInterface() instanceof MSSQLServerDatabaseMeta) {
+                  if (length == 0) {
+                      length = 18;
+                  }
+                  if (precision == 0) {
+                      precision = 4;
+                      if (length>=15) {
+                          precision = 6;
+                      }
+                  }
+              }
+              // SKOFRA END
+  
+              
             if ( precision == 0 ) {
               precision = -1; // precision is obviously incorrect if the type if
               // Double/Float/Real

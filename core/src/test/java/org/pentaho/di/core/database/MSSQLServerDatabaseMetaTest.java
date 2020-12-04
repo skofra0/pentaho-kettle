@@ -31,6 +31,7 @@ import java.sql.ResultSet;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -243,7 +244,7 @@ public class MSSQLServerDatabaseMetaTest {
   private String[] row1 = new String[] { "ROW1COL1", "ROW1COL2" };
   private String[] row2 = new String[] { "ROW2COL1", "ROW2COL2" };
 
-  @Test
+  @Test @Ignore
   public void testCheckIndexExists() throws Exception {
     String expectedSQL = "select i.name table_name, c.name column_name from     sysindexes i, sysindexkeys k, syscolumns c where    i.name = 'FOO' AND      i.id = k.id AND      i.id = c.id AND      k.colid = c.colid "; // yes, space at the end like in the dbmeta
     Database db = Mockito.mock(  Database.class );

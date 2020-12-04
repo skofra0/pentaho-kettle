@@ -322,5 +322,11 @@ public class AS400DatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
   public boolean supportsSequenceNoMaxValueOption() {
     return true;
   }
+  
+  @Override
+  public void addDefaultOptions() {
+      addExtraOption( getPluginId(), "access", "read only" );  // SKOFRA
+  }
+
 
 }

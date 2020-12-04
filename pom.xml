@@ -83,8 +83,8 @@
     	<commands.version>3.3.0-I20070605-0010</commands.version>
 
 		<!-- SKOFRA  -->
-        <deem-etl.version>6.1.0.119</deem-etl.version>
-        <deem.version>5.1.65</deem.version>
+        <deem-etl.version>6.1.0.120</deem-etl.version>
+        <deem.version>5.1.66</deem.version>
 	    <fasterxml-jackson.version>2.11.0</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.11.0</fasterxml-jackson-databind.version>
 		<commons-beanutils.version>1.9.4</commons-beanutils.version>

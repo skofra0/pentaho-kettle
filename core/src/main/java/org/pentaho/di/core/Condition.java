@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.exception.KettleXMLException;
 import org.pentaho.di.core.row.RowMetaInterface;
@@ -78,7 +79,7 @@ public class Condition implements Cloneable, XMLInterface {
 
   public static final String[] functions = new String[] {
     "=", "<>", "<", "<=", ">", ">=", "REGEXP", "IS NULL", "IS NOT NULL", "IN LIST", "CONTAINS", "STARTS WITH",
-    "ENDS WITH", "LIKE", "TRUE" };
+    "ENDS WITH", "LIKE", "TRUE", "IS EMPTY" , "NOT IS EMPTY" }; // SKOFRA
 
   public static final int FUNC_EQUAL = 0;
   public static final int FUNC_NOT_EQUAL = 1;
@@ -95,6 +96,8 @@ public class Condition implements Cloneable, XMLInterface {
   public static final int FUNC_ENDS_WITH = 12;
   public static final int FUNC_LIKE = 13;
   public static final int FUNC_TRUE = 14;
+  public static final int FUNC_IS_EMPTY      = 15;  // SKOFRA 
+  public static final int FUNC_NOT_IS_EMPTY  = 16;  // SKOFRA
 
   //
   // These parameters allow for:
@@ -497,6 +500,16 @@ public class Condition implements Cloneable, XMLInterface {
               retval = false;
             }
             break;
+            // SKOFRA0  
+         case FUNC_IS_EMPTY :          
+              string = fieldMeta.getCompatibleString(field); 
+              retval = StringUtils.isEmpty(string);
+              break;
+          // SKOFRA0  
+         case FUNC_NOT_IS_EMPTY :          
+              string = fieldMeta.getCompatibleString(field); 
+              retval = StringUtils.isNotEmpty(string);
+              break;
           case FUNC_LIKE:
             // Converts to a regular expression
             // TODO: optimize the patterns and String replacements
