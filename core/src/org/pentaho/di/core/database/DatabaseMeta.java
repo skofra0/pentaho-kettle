@@ -527,21 +527,17 @@ public class DatabaseMeta extends SharedObjectBase implements Cloneable, XMLInte
 
     addExtraOption( mySQL, "defaultFetchSize", "1000" ); // SKOFRA
     addExtraOption( mySQL, "useCursorFetch", "true" );
-    // addExtraOption( mySQL, "jdbcCompliantTruncation", "false" );
 
     String infoBright = infoBrightPlugin.getIds()[0];
     addExtraOption( infoBright, "characterEncoding", "UTF-8" );
     addExtraOption( infoBright, "defaultFetchSize", "1000" );  // SKOFRA
     addExtraOption( infoBright, "useCursorFetch", "true" );
-    // addExtraOption( infoBright, "jdbcCompliantTruncation", "false" );
 
     addExtraOption( "DEEM_MYSQL", "defaultFetchSize", "1000" ); // SKOFRA
     addExtraOption( "DEEM_MYSQL", "useCursorFetch", "true" );
-    // addExtraOption( "DEEM_MYSQL", "jdbcCompliantTruncation", "false" );
 
     addExtraOption( "DEEM_INFOBRIGHT", "defaultFetchSize", "1000" ); // SKOFRA
     addExtraOption( "DEEM_INFOBRIGHT", "useCursorFetch", "true" );
-    // addExtraOption( "DEEM_INFOBRIGHT", "jdbcCompliantTruncation", "false" );
     
     String as400 = as400Plugin.getIds()[0];
     addExtraOption( as400, "access", "read only" );  // SKOFRA

@@ -3071,8 +3071,8 @@ public class Database implements VariableSpace, LoggingObjectInterface {
             break;
           case java.sql.Types.DATE:
           case java.sql.Types.TIME:
-          case java.sql.Types.TIME_WITH_TIMEZONE:       // SKOFRA
           case java.sql.Types.TIMESTAMP:
+          case java.sql.Types.TIME_WITH_TIMEZONE:       // SKOFRA
           case java.sql.Types.TIMESTAMP_WITH_TIMEZONE:  // SKOFRA
             val = new ValueMetaDate( name );
             break;

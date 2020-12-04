@@ -355,9 +355,9 @@ public class OracleDatabaseMeta extends BaseDatabaseMeta implements DatabaseInte
         StringBuilder retval = new StringBuilder(128);
 
         String nlsLengthSematics = ""; // SKOFRA
-        if (StringUtils.isNotBlank(ORACLE_NLS_LENGTH_SEMANTICS)) {
-            nlsLengthSematics = " " + ORACLE_NLS_LENGTH_SEMANTICS;
-        }
+        if (StringUtils.isNotBlank(ORACLE_NLS_LENGTH_SEMANTICS)) { // SKOFRA
+            nlsLengthSematics = " " + ORACLE_NLS_LENGTH_SEMANTICS; // SKOFRA
+        } // SKOFRA
 
         String fieldname = v.getName();
         int length = v.getLength();
