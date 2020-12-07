@@ -7,12 +7,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-common"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-ionapi"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-client-jsonrpc2"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-mvxapi-m3-client"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-cloudapi-xledger"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-ionapi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-mvxapi-m3-client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-xledger"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-plugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-plugins-extras"/>
 	<classpathentry kind="lib" path="dist/lib/SassyReader-0.5.jar"/>
 	<classpathentry kind="lib" path="dist/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/batik-anim-1.11.jar"/>

@@ -78,7 +78,8 @@
     <dependency org="pentaho"             name="simple-jndi"         rev="1.0.0"      transitive="false"/>
     <dependency org="com.google.guava"    name="guava"               rev="17.0"       transitive="false"/>
     
-    <dependency org="no.deem.deem"     name="deem-core"              rev="5.1.65"  transitive="true"/>
+    <dependency org="no.deem.deem"     name="deem-core"              rev="5.1.66"  transitive="true"/>
+  <!--  <dependency org="no.deem.etl"     name="deem-etl-core"              rev="6.1.0.120"  transitive="true"/> -->
     
 	<!-- Java 11 j2ee 
     <dependency org="com.sun.activation"     name="javax.activation"   rev="1.2.0"  transitive="false"/>  
