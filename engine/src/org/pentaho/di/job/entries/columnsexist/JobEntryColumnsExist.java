@@ -42,7 +42,6 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
-import org.pentaho.di.job.entry.JobEntryInterface;
 import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepoReconnectFix;
@@ -157,6 +156,7 @@ public class JobEntryColumnsExist extends JobEntryBase implements Cloneable, Job
     }
   }
 
+  // SKOFRA
   @Override
   public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
       RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connection, databases);

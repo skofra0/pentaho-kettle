@@ -362,7 +362,7 @@ public class DeleteMeta extends BaseStepMeta implements StepMetaInterface {
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this) );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this) ); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "commit", commitSize );
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );
       rep.saveStepAttribute( id_transformation, id_step, "table", tableName );

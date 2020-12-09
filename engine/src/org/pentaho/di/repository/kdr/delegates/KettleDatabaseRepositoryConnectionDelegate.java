@@ -143,8 +143,7 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
     }
     try {
        	// SKOFRA REP_kettle.properties , artf42347 : Add kettle.properties with repo prefix
-    	try
-		{
+    	try {
 			String file = repository.getName() + "_" + Const.KETTLE_PROPERTIES;
 			Properties kettleProperties = EnvUtil.readProperties(file);
 			System.getProperties().putAll(kettleProperties);

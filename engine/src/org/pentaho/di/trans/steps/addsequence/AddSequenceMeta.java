@@ -340,7 +340,7 @@ public class AddSequenceMeta extends BaseStepMeta implements StepMetaInterface {
 
       rep.saveStepAttribute( id_transformation, id_step, "use_database", useDatabase );
 
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(database, this));
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(database, this)); // SKOFRA
 
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );
       rep.saveStepAttribute( id_transformation, id_step, "seqname", sequenceName );

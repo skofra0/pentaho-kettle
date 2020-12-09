@@ -219,7 +219,7 @@ public class KettleDatabaseRepositoryJobEntryDelegate extends KettleDatabaseRepo
         // THIS IS THE PLUGIN/JOB-ENTRY BEING SAVED!
         //
 
-        // SKOFRA - REPO RECONECT DATABASE FIX
+        // SKOFRA - REPO RECONNECT DATABASE FIX
         if (entry instanceof JobEntryInterfaceWithDatabase) {
             List<DatabaseMeta> databases = Collections.emptyList();
             if (copy.getParentJobMeta()!=null) {

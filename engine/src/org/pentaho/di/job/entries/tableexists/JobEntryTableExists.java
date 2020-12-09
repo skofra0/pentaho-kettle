@@ -122,6 +122,7 @@ public class JobEntryTableExists extends JobEntryBase implements Cloneable, JobE
     }
   }
 
+  // SKOFRA
   @Override
   public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
       RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connection, databases);

@@ -195,12 +195,12 @@ public class JobEntryMysqlBulkLoad extends JobEntryBase implements Cloneable, Jo
     }
   }
   
+  // SKOFRA
   @Override
   public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
       RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connection, databases);
       saveRep(rep, metaStore, id_job);
   }
-
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_job ) throws KettleException {
     try {
