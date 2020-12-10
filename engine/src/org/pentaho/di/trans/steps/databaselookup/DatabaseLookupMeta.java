@@ -61,7 +61,6 @@ import java.util.List;
 public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterface,
     ProvidesModelerMeta {
   private static Class<?> PKG = DatabaseLookupMeta.class; // for i18n purposes, needed by Translator2!!
-
   public static final String[] conditionStrings = new String[] {
       "=", "<>", "<", "<=", ">", ">=", "LIKE", "BETWEEN", "IS NULL", "IS NOT NULL", };
 
@@ -113,7 +112,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
   private String orderByClause;
 
   /** where clause... */
-  private String whereClause;          
+  private String whereClause; // SKOFRA
 
   /** Cache values we look up --> faster */
   private boolean cached;
@@ -216,17 +215,14 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
   /**
    * @return Returns the whereClause.
    */
-  public String getWhereClause()
-  {
+  public String getWhereClause() {
       return whereClause;
   }
-  
 
-   /**
+  /**
    * @param whereClause The whereClause to set.
    */
-  public void setWhereClause(String whereClause)
-  {
+  public void setWhereClause(String whereClause) {
       this.whereClause = whereClause;
   }
 
@@ -582,7 +578,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
       orderByClause = rep.getStepAttributeString( id_step, "lookup_orderby" );
       failingOnMultipleResults = rep.getStepAttributeBoolean( id_step, "fail_on_multiple" );
       eatingRowOnLookupFailure = rep.getStepAttributeBoolean( id_step, "eat_row_on_failure" );
-      whereClause            =      rep.getStepAttributeString (id_step, "lookup_where");  //SKOFRA
+      whereClause = rep.getStepAttributeString(id_step, "lookup_where"); // SKOFRA
 
       int nrkeys = rep.countNrStepAttributes( id_step, "lookup_key_field" );
       int nrvalues = rep.countNrStepAttributes( id_step, "return_value_name" );
@@ -633,8 +629,7 @@ public class DatabaseLookupMeta extends BaseStepMeta implements StepMetaInterfac
         rep.saveStepAttribute( id_transformation, id_step, i, "return_value_name", returnValueField[i] );
         rep.saveStepAttribute( id_transformation, id_step, i, "return_value_rename", returnValueNewName[i] );
         rep.saveStepAttribute( id_transformation, id_step, i, "return_value_default", returnValueDefault[i] );
-        rep.saveStepAttribute( id_transformation, id_step, i, "return_value_type", ValueMeta
-            .getTypeDesc( returnValueDefaultType[i] ) );
+        rep.saveStepAttribute( id_transformation, id_step, i, "return_value_type", ValueMeta.getTypeDesc( returnValueDefaultType[i] ) );
       }
 
       // Also, save the step-database relationship!

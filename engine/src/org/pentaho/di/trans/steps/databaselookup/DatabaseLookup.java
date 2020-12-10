@@ -436,10 +436,10 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
 
   private void loadAllTableDataIntoTheCache() throws KettleException {
     DatabaseMeta dbMeta = meta.getDatabaseMeta();
-    String noLock = "";
+    String noLock = ""; // SKOFRA
     if (dbMeta.getDatabaseInterface() instanceof MSSQLServerDatabaseMeta) {
         noLock = " WITH (NOLOCK)";
-     }
+    }
 
     Database db = getDatabase( dbMeta );
     connectDatabase( db );

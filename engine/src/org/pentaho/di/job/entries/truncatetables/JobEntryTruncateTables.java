@@ -172,7 +172,6 @@ public class JobEntryTruncateTables extends JobEntryBase implements Cloneable, J
       saveRep(rep, metaStore, id_job);
   }
 
-
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_job ) throws KettleException {
     try {
       rep.saveDatabaseMetaJobEntryAttribute( id_job, getObjectId(), "connection", "id_database", connection );
