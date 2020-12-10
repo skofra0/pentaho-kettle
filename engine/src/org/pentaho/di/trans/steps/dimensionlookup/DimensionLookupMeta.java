@@ -958,7 +958,7 @@ public class DimensionLookupMeta extends BaseStepMeta implements StepMetaInterfa
     try {
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );
       rep.saveStepAttribute( id_transformation, id_step, "table", tableName );
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this));
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this)); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "commit", commitSize );
       rep.saveStepAttribute( id_transformation, id_step, "update", update );
 
