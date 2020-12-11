@@ -741,7 +741,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     headerEnabled = true;
     footerEnabled = false;
     fileName = "file";
-    extension = "xls";
+    extension = "xlsx"; // SKOFRA (xls)
     doNotOpenNewFileInit = false;
     stepNrInFilename = false;
     dateInFilename = false;
@@ -836,7 +836,9 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     }
 
     if ( realextension != null && realextension.length() != 0 ) {
-      retval += "." + realextension;
+        if (!retval.toLowerCase().endsWith("." + realextension.toLowerCase()))  { // SKOFRA
+            retval += "." + realextension;
+        }
     }
 
     return retval;

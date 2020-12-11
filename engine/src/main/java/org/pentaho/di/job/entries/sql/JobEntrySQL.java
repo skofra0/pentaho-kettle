@@ -45,10 +45,11 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
-import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.job.entry.validator.AndValidator;
 import org.pentaho.di.job.entry.validator.JobEntryValidatorUtils;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.resource.ResourceEntry;
 import org.pentaho.di.resource.ResourceEntry.ResourceType;
@@ -63,7 +64,7 @@ import org.w3c.dom.Node;
  * @since 05-11-2003
  *
  */
-public class JobEntrySQL extends JobEntryBase implements Cloneable, JobEntryInterface {
+public class JobEntrySQL extends JobEntryBase implements Cloneable, JobEntryInterfaceWithDatabase {
   public static final String USE_VARIABLE_SUBSTITUTION_TAG = "useVariableSubstitution";
   public static final String SQLFROMFILE_TAG = "sqlfromfile";
   public static final String SQLFILENAME_TAG = "sqlfilename";
@@ -98,20 +99,17 @@ public class JobEntrySQL extends JobEntryBase implements Cloneable, JobEntryInte
   }
 
   public String getXML() {
-    @SuppressWarnings( "StringBufferReplaceableByString" )
     StringBuilder retval = new StringBuilder( 200 );
 
-    retval.append( super.getXML() );
+    retval.append(super.getXML());
 
-    retval.append( INDENT ).append( XMLHandler.addTagValue( "sql", sql ) );
-    retval.append( INDENT ).append(
-      XMLHandler.addTagValue( USE_VARIABLE_SUBSTITUTION_TAG, useVariableSubstitution ? "T" : "F" ) );
-    retval.append( INDENT ).append( XMLHandler.addTagValue( SQLFROMFILE_TAG, sqlFromFile ? "T" : "F" ) );
-    retval.append( INDENT ).append( XMLHandler.addTagValue( SQLFILENAME_TAG, sqlFilename ) );
-    retval.append( INDENT ).append( XMLHandler.addTagValue( SEND_ONE_STATEMENT_TAG, sendOneStatement ? "T" : "F" ) );
+    retval.append(INDENT).append(XMLHandler.addTagValue("sql", sql));
+    retval.append(INDENT).append(XMLHandler.addTagValue(USE_VARIABLE_SUBSTITUTION_TAG, useVariableSubstitution ? "T" : "F"));
+    retval.append(INDENT).append(XMLHandler.addTagValue(SQLFROMFILE_TAG, sqlFromFile ? "T" : "F"));
+    retval.append(INDENT).append(XMLHandler.addTagValue(SQLFILENAME_TAG, sqlFilename));
+    retval.append(INDENT).append(XMLHandler.addTagValue(SEND_ONE_STATEMENT_TAG, sendOneStatement ? "T" : "F"));
 
-    retval.append( INDENT ).append(
-      XMLHandler.addTagValue( CONNECTION_TAG, databaseMeta == null ? null : databaseMeta.getName() ) );
+    retval.append(INDENT).append(XMLHandler.addTagValue(CONNECTION_TAG, databaseMeta == null ? null : databaseMeta.getName()));
 
     return retval.toString();
   }
@@ -174,21 +172,26 @@ public class JobEntrySQL extends JobEntryBase implements Cloneable, JobEntryInte
     }
   }
 
+  // SKOFRA
+  @Override
+  public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
+      RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(databaseMeta, databases);
+      saveRep(rep, metaStore, id_job);
+  }
+
   // Save the attributes of this job entry
   //
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId idJob ) throws KettleException {
     try {
-      rep.saveDatabaseMetaJobEntryAttribute( idJob, getObjectId(), CONNECTION_TAG, ID_DATABASE, databaseMeta );
+        rep.saveDatabaseMetaJobEntryAttribute(idJob, getObjectId(), CONNECTION_TAG, ID_DATABASE, databaseMeta);
 
-      rep.saveJobEntryAttribute( idJob, getObjectId(), SQL_TAG, sql );
-      rep.saveJobEntryAttribute( idJob, getObjectId(), USE_VARIABLE_SUBSTITUTION_TAG, useVariableSubstitution
-        ? "T" : "F" );
-      rep.saveJobEntryAttribute( idJob, getObjectId(), SQLFROMFILE_TAG, sqlFromFile ? "T" : "F" );
-      rep.saveJobEntryAttribute( idJob, getObjectId(), SQLFILENAME_TAG, sqlFilename );
-      rep.saveJobEntryAttribute( idJob, getObjectId(), SEND_ONE_STATEMENT_TAG, sendOneStatement ? "T" : "F" );
-    } catch ( KettleDatabaseException dbe ) {
-      throw new KettleException(
-        "Unable to save job entry of type 'sql' to the repository for idJob=" + idJob, dbe );
+        rep.saveJobEntryAttribute(idJob, getObjectId(), SQL_TAG, sql);
+        rep.saveJobEntryAttribute(idJob, getObjectId(), USE_VARIABLE_SUBSTITUTION_TAG, useVariableSubstitution ? "T" : "F");
+        rep.saveJobEntryAttribute(idJob, getObjectId(), SQLFROMFILE_TAG, sqlFromFile ? "T" : "F");
+        rep.saveJobEntryAttribute(idJob, getObjectId(), SQLFILENAME_TAG, sqlFilename);
+        rep.saveJobEntryAttribute(idJob, getObjectId(), SEND_ONE_STATEMENT_TAG, sendOneStatement ? "T" : "F");
+    } catch (KettleDatabaseException dbe) {
+        throw new KettleException("Unable to save job entry of type 'sql' to the repository for idJob=" + idJob, dbe);
     }
   }
 

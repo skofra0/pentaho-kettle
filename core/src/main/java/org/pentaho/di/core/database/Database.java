@@ -2632,8 +2632,10 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
     // Extract the name from the result set meta data...
     //
     String name;
-    if ( databaseMeta.isMySQLVariant() ) {
-      name = databaseMeta.getDatabaseInterface().getLegacyColumnName( getDatabaseMetaData(), rm, i );
+    // if ( databaseMeta.isMySQLVariant() ) { // SKOFRA
+    //   name = databaseMeta.getDatabaseInterface().getLegacyColumnName( getDatabaseMetaData(), rm, i ); // Old drivers not in use
+    if ( databaseMeta.isMySQLVariant()  ) {
+      name = new String( rm.getColumnLabel( i ) );
     } else {
       name = new String( rm.getColumnName( i ) );
     }

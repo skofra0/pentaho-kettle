@@ -25,9 +25,11 @@ package org.pentaho.di.trans.steps.databaselookup;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.MSSQLServerDatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -125,7 +127,8 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     }
 
     if ( add == null ) {
-      if ( !( meta.isCached() && meta.isLoadingAllDataInCache() ) || data.hasDBCondition ) { // do not go to the
+        // SKOFRA  
+        if ( !( meta.isCached() && meta.isLoadingAllDataInCache() && StringUtils.isEmpty(meta.getWhereClause()) ) || data.hasDBCondition ) { // do not go to the
         // database when all rows
         // are in (exception LIKE
         // operator)
@@ -137,7 +140,7 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
         }
 
         data.db.setValuesLookup( data.lookupMeta, lookupRow );
-        add = data.db.getLookup( meta.isFailingOnMultipleResults() );
+        add = data.db.getLookup( meta.isFailingOnMultipleResults(), false ); // SKOFRA
         cache_now = true;
       }
     }
@@ -196,7 +199,8 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
     // Store in cache if we need to!
     // If we already loaded all data into the cache, storing more makes no sense.
     //
-    if ( meta.isCached() && cache_now && !meta.isLoadingAllDataInCache() && data.allEquals ) {
+  //if (meta.isCached() && cache_now && !meta.isLoadingAllDataInCache() && data.allEquals ) { // SKOFRA
+    if (meta.isCached() && cache_now && !(meta.isLoadingAllDataInCache() && StringUtils.isEmpty(meta.getWhereClause())) && data.allEquals) { // SKOFRA
       data.cache.storeRowInCache( meta, data.lookupMeta, lookupRow, add );
     }
 
@@ -433,6 +437,10 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
   private void loadAllTableDataIntoTheCache() throws KettleException {
     DatabaseMeta dbMeta = meta.getDatabaseMeta();
 
+    String noLock = ""; // SKOFRA
+    if (dbMeta.getDatabaseInterface() instanceof MSSQLServerDatabaseMeta) { // SKOFRA
+        noLock = " WITH (NOLOCK)";
+    }
     Database db = getDatabase( dbMeta );
     connectDatabase( db );
 
@@ -460,10 +468,19 @@ public class DatabaseLookup extends BaseStep implements StepInterface {
           environmentSubstitute( meta.getSchemaName() ),
           environmentSubstitute( meta.getTablename() ) );
 
+      // where? //SKOFRA
+      sql +=  noLock;
+      if (StringUtils.isNotEmpty(meta.getWhereClause())) {
+          sql += " WHERE "+environmentSubstitute(meta.getWhereClause());
+      }
+
       // order by?
       if ( meta.getOrderByClause() != null && meta.getOrderByClause().length() != 0 ) {
         sql += " ORDER BY " + meta.getOrderByClause();
       }
+
+      // SKOFRA
+      if (log.isDetailed()) logDetailed(sql);
 
       // Now that we have the SQL constructed, let's store the rows...
       //

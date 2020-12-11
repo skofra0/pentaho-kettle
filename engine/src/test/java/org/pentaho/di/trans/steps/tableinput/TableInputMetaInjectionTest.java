@@ -50,7 +50,7 @@ public class TableInputMetaInjectionTest extends BaseMetadataInjectionTest<Table
     } );
     check( "EXECUTE_FOR_EACH_ROW", new BooleanGetter() {
       public boolean get() {
-        return meta.isExecuteEachInputRow();
+        return meta.isExecuteEachInputRowAsPreparedStatment();
       }
     } );
     check( "REPLACE_VARIABLES", new BooleanGetter() {

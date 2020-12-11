@@ -39,6 +39,7 @@ import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.shared.SharedObjectInterface;
 import org.pentaho.di.trans.Trans;
@@ -262,7 +263,7 @@ public class ColumnExistsMeta extends BaseStepMeta implements StepMetaInterface 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step )
     throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", database );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(database, this) ); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "tablename", tablename );
       rep.saveStepAttribute( id_transformation, id_step, "schemaname", schemaname );
       rep.saveStepAttribute( id_transformation, id_step, "istablenameInfield", istablenameInfield );

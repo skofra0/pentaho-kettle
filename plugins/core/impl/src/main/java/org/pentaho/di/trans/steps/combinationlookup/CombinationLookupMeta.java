@@ -29,17 +29,16 @@ import java.util.Objects;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.annotations.Step;
-import org.pentaho.di.core.injection.AfterInjection;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ProvidesModelerMeta;
 import org.pentaho.di.core.SQLStatement;
+import org.pentaho.di.core.annotations.Step;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.exception.KettleXMLException;
+import org.pentaho.di.core.injection.AfterInjection;
 import org.pentaho.di.core.injection.Injection;
 import org.pentaho.di.core.injection.InjectionSupported;
 import org.pentaho.di.core.row.RowMeta;
@@ -47,10 +46,12 @@ import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaDate;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.shared.SharedObjectInterface;
 import org.pentaho.di.trans.DatabaseImpact;
@@ -544,39 +545,37 @@ public class CombinationLookupMeta extends BaseStepMeta implements StepMetaInter
   }
 
   @Override
-  public void readRep( Repository rep, IMetaStore metaStore, ObjectId id_step, List<DatabaseMeta> databases )
-    throws KettleException {
-    this.databases = databases;
-    try {
-      databaseMeta = rep.loadDatabaseMetaFromStepAttribute( id_step, "id_connection", databases );
+  public void readRep(Repository rep, IMetaStore metaStore, ObjectId id_step, List<DatabaseMeta> databases) throws KettleException {
+      this.databases = databases;
+      try {
+          databaseMeta = rep.loadDatabaseMetaFromStepAttribute(id_step, "id_connection", databases);
 
-      schemaName = rep.getStepAttributeString( id_step, "schema" );
-      tablename = rep.getStepAttributeString( id_step, "table" );
-      commitSize = (int) rep.getStepAttributeInteger( id_step, "commit" );
-      cacheSize = (int) rep.getStepAttributeInteger( id_step, "cache_size" );
-      replaceFields = rep.getStepAttributeBoolean( id_step, "replace" );
-      preloadCache = rep.getStepAttributeBoolean( id_step, "preloadCache" );
-      useHash = rep.getStepAttributeBoolean( id_step, "crc" );
-      hashField = rep.getStepAttributeString( id_step, "crcfield" );
+          schemaName = rep.getStepAttributeString(id_step, "schema");
+          tablename = rep.getStepAttributeString(id_step, "table");
+          commitSize = (int) rep.getStepAttributeInteger(id_step, "commit");
+          cacheSize = (int) rep.getStepAttributeInteger(id_step, "cache_size");
+          replaceFields = rep.getStepAttributeBoolean(id_step, "replace");
+          preloadCache = rep.getStepAttributeBoolean(id_step, "preloadCache");
+          useHash = rep.getStepAttributeBoolean(id_step, "crc");
+          hashField = rep.getStepAttributeString(id_step, "crcfield");
 
-      int nrkeys = rep.countNrStepAttributes( id_step, "lookup_key_name" );
+          int nrkeys = rep.countNrStepAttributes(id_step, "lookup_key_name");
 
-      allocate( nrkeys );
+          allocate(nrkeys);
 
-      for ( int i = 0; i < nrkeys; i++ ) {
-        keyField[ i ] = rep.getStepAttributeString( id_step, i, "lookup_key_name" );
-        keyLookup[ i ] = rep.getStepAttributeString( id_step, i, "lookup_key_field" );
+          for (int i = 0; i < nrkeys; i++) {
+              keyField[i] = rep.getStepAttributeString(id_step, i, "lookup_key_name");
+              keyLookup[i] = rep.getStepAttributeString(id_step, i, "lookup_key_field");
+          }
+
+          technicalKeyField = rep.getStepAttributeString(id_step, "return_name");
+          useAutoinc = rep.getStepAttributeBoolean(id_step, "use_autoinc");
+          sequenceFrom = rep.getStepAttributeString(id_step, "sequence");
+          techKeyCreation = rep.getStepAttributeString(id_step, "creation_method");
+          lastUpdateField = rep.getStepAttributeString(id_step, "last_update_field");
+      } catch (Exception e) {
+          throw new KettleException(BaseMessages.getString(PKG, "CombinationLookupMeta.Exception.UnexpectedErrorWhileReadingStepInfo"), e);
       }
-
-      technicalKeyField = rep.getStepAttributeString( id_step, "return_name" );
-      useAutoinc = rep.getStepAttributeBoolean( id_step, "use_autoinc" );
-      sequenceFrom = rep.getStepAttributeString( id_step, "sequence" );
-      techKeyCreation = rep.getStepAttributeString( id_step, "creation_method" );
-      lastUpdateField = rep.getStepAttributeString( id_step, "last_update_field" );
-    } catch ( Exception e ) {
-      throw new KettleException( BaseMessages.getString(
-        PKG, "CombinationLookupMeta.Exception.UnexpectedErrorWhileReadingStepInfo" ), e );
-    }
   }
 
   @Override
@@ -585,7 +584,7 @@ public class CombinationLookupMeta extends BaseStepMeta implements StepMetaInter
     try {
       rep.saveStepAttribute( id_transformation, id_step, "schema", schemaName );
       rep.saveStepAttribute( id_transformation, id_step, "table", tablename );
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this) ); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "commit", commitSize );
       rep.saveStepAttribute( id_transformation, id_step, "cache_size", cacheSize );
       rep.saveStepAttribute( id_transformation, id_step, "replace", replaceFields );

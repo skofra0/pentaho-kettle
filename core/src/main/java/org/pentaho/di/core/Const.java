@@ -60,6 +60,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.text.StrBuilder;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaBase;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
@@ -189,8 +190,8 @@ public class Const {
    * @deprecated Use {@link Const#getUserHomeDirectory()} instead.
    */
   @Deprecated
-  public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System
-    .getProperty( "user.home" ) );
+  // public static final String USER_HOME_DIRECTORY = NVL( System.getProperty( "KETTLE_HOME" ), System .getProperty( "user.home" ) );
+  public static final String USER_HOME_DIRECTORY = NVL(NVL(getDIHomeDirectory(), System.getProperty("KETTLE_HOME")), System.getProperty("user.home")); // SKOFRA
 
   /**
    * Path to the simple-jndi directory
@@ -1113,6 +1114,7 @@ public class Const {
   // Null values tweaks
   public static final String KETTLE_AGGREGATION_MIN_NULL_IS_VALUED = "KETTLE_AGGREGATION_MIN_NULL_IS_VALUED";
   public static final String KETTLE_AGGREGATION_ALL_NULLS_ARE_ZERO = "KETTLE_AGGREGATION_ALL_NULLS_ARE_ZERO";
+  public static final String KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION = "KETTLE_NULLS_ARE_ZERO_THROW_EXCEPTION"; // SKOFRA
 
   /**
    * The name of the variable containing an alternative default timestamp format
@@ -2177,7 +2179,7 @@ public class Const {
    * @return The local repositories file.
    */
   public static String getKettleLocalRepositoriesFile() {
-    return "repositories.xml";
+    return "repositories_v90.xml"; // SKOFRA repositories.xml
   }
 
   /**
@@ -3746,5 +3748,47 @@ public class Const {
 
   public static String getDeprecatedPrefix() {
     return " " + BaseMessages.getString( PKG, "Const.Deprecated" );
+  }
+  
+  // SKOFRA
+  public static String getKettlePropertiesFileDeemVariables(String kettleHomeDir) {
+      StringBuilder out = new StringBuilder();
+
+      String diHomeDir = getDeemDesignerHomeFolder(kettleHomeDir);
+
+      out.append(CR);
+      out.append("KETTLE_SYSTEM_HOSTNAME=" + Const.getHostnameReal() + CR);
+      out.append("## KETTLE_DEFAULT_DATE_FORMAT=" + ValueMetaBase.DATE_FORMAT_MSSQL + CR);
+      out.append(CR);
+      out.append("BI_ENCLOSURE=^" + CR);
+      out.append("BI_SEPARATOR=|" + CR);
+      out.append("BI_SQL_NO_LOCK=" + CR);
+      out.append("BI_AUTO_CREATE_TABLES=NO" + CR);
+      out.append("BI_TEMP=" + diHomeDir + "temp/" + CR);
+      out.append("BI_EXPORT=" + diHomeDir + "export/" + CR);
+      out.append("BI_IMPORT=" + diHomeDir + "import/" + CR);
+      out.append(CR);
+      out.append("MAIL_CONFIG_FILE=" + diHomeDir + "mail.properties" + CR);
+      out.append(CR);
+      out.append("IONAPI_FILE=" + diHomeDir + "TENANT_TRN.ionapi" + CR);
+      out.append("DATALAKE_HOURS=-26" + CR);
+      out.append("DATALAKE_DAYS=-2" + CR);
+      out.append(CR);
+      out.append("M3_CONO=100" + CR);
+      out.append("M3_DIVI= BETWEEN '' AND '999'" + CR);
+
+      return out.toString();
+  }
+
+  // SKOFRA
+  public static String getDeemDesignerHomeFolder(String kettleHomeDir) {
+      String diHomeDir = StringUtils.trimToEmpty(kettleHomeDir);
+      if (diHomeDir.endsWith(".kettle")) {
+          diHomeDir = diHomeDir.substring(0, diHomeDir.length() - 7).replace("\\", "/");
+      }
+      if (!diHomeDir.endsWith("/") && !diHomeDir.endsWith("\\")) {
+          diHomeDir += "/";
+      }
+      return diHomeDir;
   }
 }

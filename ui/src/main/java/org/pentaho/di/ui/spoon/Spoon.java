@@ -844,11 +844,11 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     loadSettings();
 
     transExecutionConfiguration = new TransExecutionConfiguration();
-    transExecutionConfiguration.setGatheringMetrics( true );
+    transExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
     transPreviewExecutionConfiguration = new TransExecutionConfiguration();
-    transPreviewExecutionConfiguration.setGatheringMetrics( true );
+    transPreviewExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
     transDebugExecutionConfiguration = new TransExecutionConfiguration();
-    transDebugExecutionConfiguration.setGatheringMetrics( true );
+    transDebugExecutionConfiguration.setGatheringMetrics( false ); // SKOFRA true->false (performance problem)
 
     jobExecutionConfiguration = new JobExecutionConfiguration();
 
@@ -4333,6 +4333,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
           } else {
               try {
                   FileDialogOperation fileDialogOperation = new FileDialogOperation(FileDialogOperation.OPEN, FileDialogOperation.ORIGIN_SPOON);
+                  fileDialogOperation.setRepository(rep); // SKOFRA
                   ExtensionPointHandler.callExtensionPoint(log, KettleExtensionPoint.SpoonOpenSaveRepository.id, fileDialogOperation);
                   if (fileDialogOperation.getRepositoryObject() != null) {
                       RepositoryObject repositoryObject = (RepositoryObject) fileDialogOperation.getRepositoryObject();

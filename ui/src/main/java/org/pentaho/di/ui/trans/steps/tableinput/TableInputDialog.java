@@ -24,6 +24,7 @@ package org.pentaho.di.ui.trans.steps.tableinput;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.FocusAdapter;
@@ -95,7 +96,7 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
   private FormData fdlLimit, fdLimit;
 
   private Label wlEachRow;
-  private Button wEachRow;
+  private CCombo wEachRow; // SKOFRA
   private FormData fdlEachRow, fdEachRow;
 
   private Label wlVariables;
@@ -119,6 +120,9 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
 
   private Label wlPosition;
   private FormData fdlPosition;
+
+  private Button wEditVariables; // SKOFRA
+  private Listener lsEditVariables; // SKOFRA
 
   public TableInputDialog( Shell parent, Object in, TransMeta transMeta, String sname ) {
     super( parent, (BaseStepMeta) in, transMeta, sname );
@@ -186,7 +190,9 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     wCancel.setText( BaseMessages.getString( PKG, "System.Button.Cancel" ) );
     // wHelp = createHelpButton(shell, stepMeta);
 
-    setButtonPositions( new Button[] { wOK, wPreview, wCancel }, margin, null );
+    wEditVariables = new Button(shell, SWT.PUSH); // SKOFRA
+    wEditVariables.setText("Variables"); // SKOFRA
+    setButtonPositions(new Button[] {wOK, wPreview, wEditVariables, wCancel}, margin, null); // SKOFRA
 
     // Limit input ...
     wlLimit = new Label( shell, SWT.RIGHT );
@@ -215,7 +221,9 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     fdlEachRow.right = new FormAttachment( middle, -margin );
     fdlEachRow.bottom = new FormAttachment( wLimit, -margin );
     wlEachRow.setLayoutData( fdlEachRow );
-    wEachRow = new Button( shell, SWT.CHECK );
+    wEachRow = new CCombo(shell, SWT.BORDER | SWT.READ_ONLY); // SKOFRA
+    wEachRow.add(TableInputMeta.EXECUTE_METHOD_PREPARED); // SKOFRA
+    wEachRow.add(TableInputMeta.EXECUTE_METHOD_VARIABLE); // SKOFRA
     props.setLook( wEachRow );
     fdEachRow = new FormData();
     fdEachRow.left = new FormAttachment( middle, 0 );
@@ -427,10 +435,16 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         setFlags();
       }
     };
+    lsEditVariables = new Listener() { // SKOFRA
+        public void handleEvent(Event e) {
+            editVaribles();
+        }
+    };
 
     wCancel.addListener( SWT.Selection, lsCancel );
     wPreview.addListener( SWT.Selection, lsPreview );
     wOK.addListener( SWT.Selection, lsOK );
+    wEditVariables.addListener(SWT.Selection, lsEditVariables); // SKOFRA
     wbTable.addListener( SWT.Selection, lsbTable );
     wDatefrom.addListener( SWT.Selection, lsDatefrom );
     wDatefrom.addListener( SWT.FocusOut, lsDatefrom );
@@ -504,7 +518,8 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     StreamInterface infoStream = input.getStepIOMeta().getInfoStreams().get( 0 );
     if ( infoStream.getStepMeta() != null ) {
       wDatefrom.setText( infoStream.getStepname() );
-      wEachRow.setSelection( input.isExecuteEachInputRow() );
+      // wEachRow.setSelection( input.isExecuteEachInputRowAsPreparedStatment() );
+      wEachRow.setText(input.getExecuteEachInputRowAsString()); // SKOFRA
     } else {
       wEachRow.setEnabled( false );
       wlEachRow.setEnabled( false );
@@ -548,7 +563,8 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     meta.setRowLimit( wLimit.getText() );
     StreamInterface infoStream = input.getStepIOMeta().getInfoStreams().get( 0 );
     infoStream.setStepMeta( transMeta.findStep( wDatefrom.getText() ) );
-    meta.setExecuteEachInputRow( wEachRow.getSelection() );
+    // meta.setExecuteEachInputRowAsPreparedStatment( wEachRow.getSelection() );
+    meta.setExecuteEachInputRowByString(wEachRow.getText()); // SKOFRA
     meta.setVariableReplacementActive( wVariables.getSelection() );
     meta.setLazyConversionActive( wLazyConversion.getSelection() );
     meta.setCachedRowMetaActive( wCachedRowMeta.getSelection() );
@@ -595,10 +611,66 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
           case SWT.CANCEL:
             break;
           case SWT.NO:
-            wSQL.setText( sql );
-            break;
+              // SKOFRA - START SQL WITH RTRIM AND FIELD RENAME
+
+              Database db = new Database(loggingObject, inf);
+              db.shareVariablesWith(transMeta);
+              try {
+                  db.connect();
+                  RowMetaInterface fields = db.getQueryFields(sql, false);
+                  if (fields != null) {
+                      int maxFieldLength = 0;
+                      for (int i = 0; i < fields.size(); i++) {
+                          ValueMetaInterface field = fields.getValueMeta(i);
+                          int curLength = (std.getTableName() + inf.quoteField(field.getName())).length() + 13;
+                          if (curLength > maxFieldLength) {
+                              maxFieldLength = curLength;
+                          }
+                      }
+
+                      String tableName = std.getTableName();
+                      if (std.getTableName().length() > 6) {
+                          tableName = "T1";
+                      }
+
+                      sql = "SELECT" + Const.CR; //$NON-NLS-1$
+                      for (int i = 0; i < fields.size(); i++) {
+                          ValueMetaInterface field = fields.getValueMeta(i);
+                          String line;
+                          if (i == 0)
+                              line = "     ";
+                          else
+                              line = "-- , ";
+                          if (field.isString()) {
+                              line += "RTRIM(" + tableName + "." + inf.quoteField(field.getName()) + ")";
+                          } else {
+                              line += "      " + tableName + "." + inf.quoteField(field.getName());
+                          }
+                          sql += StringUtils.rightPad(line, maxFieldLength);
+                          sql += " AS \"" + convertNameToJavaName(field.getName()) + "\"" + Const.CR;
+                      }
+                      sql += "FROM " + inf.getQuotedSchemaTableCombination(std.getSchemaName(), std.getTableName()) + "  AS " + tableName + Const.CR; //$NON-NLS-1$
+                      wSQL.setText(sql);
+                  } else {
+                      MessageBox mb = new MessageBox(shell, SWT.OK | SWT.ICON_ERROR);
+                      mb.setMessage(BaseMessages.getString(PKG, "TableInputDialog.ERROR_CouldNotRetrieveFields") + Const.CR + BaseMessages.getString(PKG, "TableInputDialog.PerhapsNoPermissions")); //$NON-NLS-1$ //$NON-NLS-2$
+                      mb.setText(BaseMessages.getString(PKG, "TableInputDialog.DialogCaptionError2")); //$NON-NLS-1$
+                      mb.open();
+                  }
+              } catch (KettleException e) {
+                  MessageBox mb = new MessageBox(shell, SWT.OK | SWT.ICON_ERROR);
+                  mb.setText(BaseMessages.getString(PKG, "TableInputDialog.DialogCaptionError3")); //$NON-NLS-1$
+                  mb.setMessage(BaseMessages.getString(PKG, "TableInputDialog.AnErrorOccurred") + Const.CR + e.getMessage()); //$NON-NLS-1$
+                  mb.open();
+              } finally {
+                  db.disconnect();
+              }
+              break;
+          // SKOFRA END
+          // wSQL.setText( sql );
+          // break;
           case SWT.YES:
-            Database db = new Database( loggingObject, inf );
+            db = new Database( loggingObject, inf );
             db.shareVariablesWith( transMeta );
             try {
               db.connect();
@@ -649,6 +721,21 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
 
   }
 
+  // SKOFRA
+  private String convertNameToJavaName(final String description) {
+      String temp = "";
+      if (description != null) {
+          temp = description.toLowerCase();
+      }
+      temp = temp.replaceAll("\\W", "_");
+      temp = temp.replaceAll("__", "_");
+      temp = temp.replaceAll("__", "_");
+      if (temp.endsWith("_")) {
+          temp = temp.substring(0, temp.length() - 1);
+      }
+      return temp;
+  }
+
   private void setFlags() {
     if ( !Utils.isEmpty( wDatefrom.getText() ) ) {
       // The foreach check box...
@@ -660,7 +747,7 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     } else {
       // The foreach check box...
       wEachRow.setEnabled( false );
-      wEachRow.setSelection( false );
+      // wEachRow.setSelection( false ); // SKOFRA
       wlEachRow.setEnabled( false );
 
       // The preview button...
@@ -712,6 +799,16 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
       }
 
     }
+  }
+
+  /**
+   * SKOFRA
+   */
+  private void editVaribles() {
+      TableInputMeta oneMeta = new TableInputMeta();
+      getInfo(oneMeta, true);
+      TableInputVariableDialog prd = new TableInputVariableDialog(shell, input, transMeta, wStepname.getText());
+      prd.open();
   }
 
 }

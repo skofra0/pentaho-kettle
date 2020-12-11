@@ -339,6 +339,12 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
             if ( !aggregate.distinctObjs[i].contains( obj ) ) {
               aggregate.distinctObjs[i].add( obj );
             }
+            // SKOFRA COUNT DISTINCT SHOULD NOT RETURN null
+            } else {
+                if (value == null) {
+                    aggregate.agg[ i ] =  Long.valueOf( 0 );
+                }
+            // SKOFRA END    
           }
           aggregate.counts[i] = aggregate.distinctObjs[i].size();
           break;

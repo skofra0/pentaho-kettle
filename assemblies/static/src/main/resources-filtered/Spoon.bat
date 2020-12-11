@@ -1,30 +1,21 @@
 @echo off
 
-REM *****************************************************************************
-REM
-REM Pentaho Data Integration
-REM
-REM Copyright (C) 2005 - ${copyright.year} by Hitachi Vantara : http://www.hitachivantara.com
-REM
-REM *****************************************************************************
-REM
-REM Licensed under the Apache License, Version 2.0 (the "License");
-REM you may not use this file except in compliance with
-REM the License. You may obtain a copy of the License at
-REM
-REM    http://www.apache.org/licenses/LICENSE-2.0
-REM
-REM Unless required by applicable law or agreed to in writing, software
-REM distributed under the License is distributed on an "AS IS" BASIS,
-REM WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-REM See the License for the specific language governing permissions and
-REM limitations under the License.
-REM
-REM *****************************************************************************
-
 setlocal 
 
 cd /D %~dp0
+
+
+:: *****************************************************
+:: ** Override properties for current installation    **
+:: ** Remove REM to activate statements               **
+:: *****************************************************
+IF "%PENTAHO_DI_JAVA_OPTIONS%"=="" SET PENTAHO_DI_JAVA_OPTIONS="-Xmx1048m"
+SET USER_LOCALE="-Duser.country=no" "-Duser.language=NO" "-Duser.region=NO"
+REM SET USER_LOCALE="-Duser.country=en" "-Duser.language=US" "-Duser.region=US"
+REM SET KETTLE_HOME=d:/deem/di6
+REM SET PENTAHO_JAVA_HOME=C:/Program Files/Java/jdk1.8.0_121
+
+
 
 REM **************************************************
 REM ** Set console window properties                **
@@ -135,6 +126,6 @@ REM Eventually call java instead of javaw and do not run in a separate window
 if not "%SPOON_CONSOLE%"=="1" set SPOON_START_OPTION=start %STARTTITLE%
 
 @echo on
-%SPOON_START_OPTION% "%_PENTAHO_JAVA%" %OPT% -jar launcher\launcher.jar -lib ..\%LIBSPATH% %_cmdline%
+%SPOON_START_OPTION% "%_PENTAHO_JAVA%" %OPT% %USER_LOCALE% -jar launcher\launcher.jar -lib ..\%LIBSPATH% %_cmdline%
 @echo off
 if "%SPOON_PAUSE%"=="1" pause

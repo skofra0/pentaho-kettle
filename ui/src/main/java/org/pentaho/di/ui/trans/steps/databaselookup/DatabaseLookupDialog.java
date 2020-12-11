@@ -109,6 +109,11 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
   private Label wlOrderBy;
   private Text wOrderBy;
   private FormData fdlOrderBy, fdOrderBy;
+  
+  // SKOFRA
+  private Label        wlWhereClause;
+  private Text         wWhereClause;
+  private FormData     fdlWhereClause, fdWhereClause;
 
   private Label wlFailMultiple;
   private Button wFailMultiple;
@@ -333,12 +338,33 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
       }
     } );
 
+    // Where clause // SKOFRA
+    wlWhereClause=new Label(shell, SWT.RIGHT);
+    wlWhereClause.setText(BaseMessages.getString(PKG,"DatabaseLookupDialog.WhereClause.Label"));
+    props.setLook(wlWhereClause);
+    wlWhereClause.setEnabled(input.isCached());
+    fdlWhereClause=new FormData();
+    fdlWhereClause.left   = new FormAttachment(0, 0);
+    fdlWhereClause.right  = new FormAttachment(middle, -margin);
+    fdlWhereClause.top    = new FormAttachment(wCacheLoadAll, margin);
+    wlWhereClause.setLayoutData(fdlWhereClause);
+    wWhereClause=new Text(shell, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    props.setLook(wWhereClause);
+    wWhereClause.setEnabled(input.isCached());
+    wWhereClause.addModifyListener(lsMod);
+    fdWhereClause=new FormData();
+    fdWhereClause.left   = new FormAttachment(middle, 0);
+    fdWhereClause.right  = new FormAttachment(100, 0);
+    fdWhereClause.top    = new FormAttachment(wCacheLoadAll, margin);
+    wWhereClause.setLayoutData(fdWhereClause);
+    // SKOFRA END
+    
     wlKey = new Label( shell, SWT.NONE );
     wlKey.setText( BaseMessages.getString( PKG, "DatabaseLookupDialog.Keys.Label" ) );
     props.setLook( wlKey );
     fdlKey = new FormData();
     fdlKey.left = new FormAttachment( 0, 0 );
-    fdlKey.top = new FormAttachment( wCacheLoadAll, margin );
+    fdlKey.top = new FormAttachment( wWhereClause, margin );
     wlKey.setLayoutData( fdlKey );
 
     int nrKeyCols = 4;
@@ -529,6 +555,7 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
     wStepname.addSelectionListener( lsDef );
     wTable.addSelectionListener( lsDef );
     wOrderBy.addSelectionListener( lsDef );
+    wWhereClause.addSelectionListener( lsDef ); // SKOFRA
     wCachesize.addSelectionListener( lsDef );
 
     // Detect X or ALT-F4 or something that kills this window...
@@ -709,6 +736,9 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
     }
     wFailMultiple.setSelection( input.isFailingOnMultipleResults() );
     wEatRows.setSelection( input.isEatingRowOnLookupFailure() );
+    if (input.getWhereClause()!=null) { 
+        wWhereClause.setText(input.getWhereClause()); // SKOFRA
+    }
 
     wKey.setRowNums();
     wKey.optWidth( true );
@@ -775,6 +805,7 @@ public class DatabaseLookupDialog extends BaseStepDialog implements StepDialogIn
     input.setOrderByClause( wOrderBy.getText() );
     input.setFailingOnMultipleResults( wFailMultiple.getSelection() );
     input.setEatingRowOnLookupFailure( wEatRows.getSelection() );
+    input.setWhereClause( wWhereClause.getText() );
 
     stepname = wStepname.getText(); // return value
 

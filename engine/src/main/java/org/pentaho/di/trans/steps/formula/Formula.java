@@ -115,6 +115,7 @@ public class Formula extends BaseStep implements StepInterface {
   }
 
   private Object[] calcFields( RowMetaInterface rowMeta, Object[] r ) throws KettleValueException {
+    FormulaMetaFunction currentFormula = null; // SKOFRA artf48472 : Formula - Integer/BigDecimal Type support (logging)
     try {
       Object[] outputRowData = RowDataUtil.createResizedCopy( r, data.outputRowMeta.size() );
       int tempIndex = rowMeta.size();
@@ -130,6 +131,7 @@ public class Formula extends BaseStep implements StepInterface {
         data.formulas = new org.pentaho.reporting.libraries.formula.Formula[meta.getFormula().length];
         for ( int i = 0; i < meta.getFormula().length; i++ ) {
           FormulaMetaFunction fn = meta.getFormula()[i];
+          currentFormula = fn; // SKOFRA
           if ( !Utils.isEmpty( fn.getFieldName() ) ) {
             data.formulas[i] = data.createFormula( meta.getFormula()[i].getFormula() );
           } else {
@@ -199,9 +201,14 @@ public class Formula extends BaseStep implements StepInterface {
         }
       }
 
+      currentFormula = null; // SKOFRA
       return outputRowData;
     } catch ( Throwable e ) {
-      throw new KettleValueException( e );
+        String msg = "Formula Error:"; // SKOFRA
+        if (currentFormula != null) { // SKOFRA
+            msg = currentFormula.getFieldName() + " = " + currentFormula.getFormula(); // SKOFRA
+        }
+        throw new KettleValueException(msg, e); // SKOFRA
     }
   }
 

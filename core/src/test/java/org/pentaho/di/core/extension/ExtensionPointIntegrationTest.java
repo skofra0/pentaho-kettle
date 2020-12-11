@@ -103,7 +103,7 @@ public class ExtensionPointIntegrationTest {
     assertEquals( KettleExtensionPoint.values().length - 1, ExtensionPointMap.getInstance().getNumberOfRows() );
   }
 
-  private static Class createClassRuntime( KettleExtensionPoint ep ) throws NotFoundException, CannotCompileException {
+  private static Class<?> createClassRuntime( KettleExtensionPoint ep ) throws NotFoundException, CannotCompileException {
     return createClassRuntime( ep, "" );
   }
 
@@ -116,7 +116,7 @@ public class ExtensionPointIntegrationTest {
    * @throws NotFoundException
    * @throws CannotCompileException
    */
-  private static Class createClassRuntime( KettleExtensionPoint ep, String addition )
+  private static Class<?> createClassRuntime( KettleExtensionPoint ep, String addition )
       throws NotFoundException, CannotCompileException {
     final CtClass ctClass = pool.makeClass( "Plugin" + ep.id + addition );
     ctClass.addInterface( pool.get( ExtensionPointInterface.class.getCanonicalName() ) );

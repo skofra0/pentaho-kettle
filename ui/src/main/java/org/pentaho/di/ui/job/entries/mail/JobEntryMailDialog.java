@@ -104,7 +104,17 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
   private FormData fdDestinationCc;
 
   private FormData fdDestinationBCc;
-
+  
+  // SKOFRA
+  private Label wlConfigFile;
+  private TextVar wConfigFile;
+  private FormData fdlConfigFile, fdConfigFile;
+  private Button wbConfigFile;
+  private Button wbDefaultConfigFile;
+  private FormData fdbConfigFile;
+  private FormData fdbDefaultConfigFile;
+  // SKOFRA END
+  
   private LabelTextVar wServer;
 
   private FormData fdServer;
@@ -477,13 +487,73 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     servergroupLayout.marginHeight = 10;
     wServerGroup.setLayout( servergroupLayout );
 
+    // Config file (SKOFRA)
+    wlConfigFile = new Label(wServerGroup, SWT.RIGHT);
+    wlConfigFile.setText(BaseMessages.getString(PKG, "JobMail.ConfigFile.Label"));
+    props.setLook(wlConfigFile);
+    fdlConfigFile = new FormData();
+    fdlConfigFile.left = new FormAttachment(0, 0);
+    fdlConfigFile.top = new FormAttachment(0, margin + 8);
+    fdlConfigFile.right = new FormAttachment(middle, -margin);
+    wlConfigFile.setLayoutData(fdlConfigFile);
+    
+    wbDefaultConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+    props.setLook(wbDefaultConfigFile);
+    wbDefaultConfigFile.setText(BaseMessages.getString(PKG, "JobMail.Default.Button"));
+   fdbDefaultConfigFile = new FormData();
+    fdbDefaultConfigFile.right = new FormAttachment(100, 0);
+    fdbDefaultConfigFile.top = new FormAttachment(0, margin + 5);
+    wbDefaultConfigFile.setLayoutData(fdbDefaultConfigFile);
+
+    wbConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+    props.setLook(wbConfigFile);
+    wbConfigFile.setText(BaseMessages.getString(PKG, "JobMail.Browse.Button"));
+    fdbConfigFile = new FormData();
+   // fdbConfigFile.right = new FormAttachment(100, 0);
+    fdbConfigFile.right = new FormAttachment(wbDefaultConfigFile, -margin);
+    fdbConfigFile.top = new FormAttachment(0, margin + 5);
+    wbConfigFile.setLayoutData(fdbConfigFile);
+    
+    wConfigFile = new TextVar(jobMeta, wServerGroup, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    wConfigFile.setToolTipText(BaseMessages.getString(PKG, "JobMail.ConfigFile.Tooltip"));
+    props.setLook(wConfigFile);
+    wConfigFile.addModifyListener(lsMod);
+    fdConfigFile = new FormData();
+    fdConfigFile.left = new FormAttachment(middle, 0);
+    fdConfigFile.top = new FormAttachment(0, margin + 8);
+    fdConfigFile.right = new FormAttachment(wbConfigFile, -margin);
+    wConfigFile.setLayoutData(fdConfigFile);
+
+    wbConfigFile.addSelectionListener(new SelectionAdapter() {
+        @Override
+        public void widgetSelected(final SelectionEvent e) {
+            final FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+            dialog.setFilterExtensions(new String[] {"*.properties", "*"});
+            if (wConfigFile.getText() != null) {
+                dialog.setFileName(wConfigFile.getText());
+            }
+            if (dialog.open() != null) {
+                wConfigFile.setText(dialog.getFilterPath() + System.getProperty("file.separator") + dialog.getFileName());
+            }
+            setUseAuth();
+        }
+    });
+    
+   wbDefaultConfigFile.addSelectionListener(new SelectionAdapter() {
+        @Override
+        public void widgetSelected(final SelectionEvent e) {
+           wConfigFile.setText(JobEntryMail.DEFAULT_CONFIGFILE);
+       }
+    });
+    // Config file end
+
     // Server line
     wServer = new LabelTextVar( jobMeta, wServerGroup, BaseMessages.getString( PKG, "JobMail.SMTPServer.Label" ),
       BaseMessages.getString( PKG, "JobMail.SMTPServer.Tooltip" ) );
     wServer.addModifyListener( lsMod );
     fdServer = new FormData();
     fdServer.left = new FormAttachment( 0, 0 );
-    fdServer.top = new FormAttachment( 0, margin );
+    fdServer.top = new FormAttachment( wConfigFile, margin ); // SKOFRA
     fdServer.right = new FormAttachment( 100, 0 );
     wServer.setLayoutData( fdServer );
 
@@ -732,7 +802,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     wUseHTML.setLayoutData( fdUseHTML );
     wUseHTML.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
-        SetEnabledEncoding();
+        setEnabledEncoding();
         jobEntry.setChanged();
       }
     } );
@@ -1333,7 +1403,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
 
     getData();
 
-    SetEnabledEncoding();
+    setEnabledEncoding();
     activeUsePriority();
     setFlags();
     setUseAuth();
@@ -1359,7 +1429,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     wSensitivity.setEnabled( wUsePriority.getSelection() );
   }
 
-  private void SetEnabledEncoding() {
+  private void setEnabledEncoding() {
     wEncoding.setEnabled( wUseHTML.getSelection() );
     wlEncoding.setEnabled( wUseHTML.getSelection() );
     wlImageFilename.setEnabled( wUseHTML.getSelection() );
@@ -1390,17 +1460,32 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
   }
 
   protected void setUseAuth() {
-    wAuthUser.setEnabled( wUseAuth.getSelection() );
-    wAuthPass.setEnabled( wUseAuth.getSelection() );
-    wUseSecAuth.setEnabled( wUseAuth.getSelection() );
-    wlUseSecAuth.setEnabled( wUseAuth.getSelection() );
-    if ( !wUseAuth.getSelection() ) {
-      wSecureConnectionType.setEnabled( false );
-      wlSecureConnectionType.setEnabled( false );
-    } else {
-      setSecureConnectiontype();
-    }
-
+      // SKOFRA
+      boolean useConfig = Utils.isNotEmpty(wConfigFile.getText());
+      if (useConfig) {
+          wAuthUser.setEnabled(false);
+          wAuthPass.setEnabled(false);
+          wUseSecAuth.setEnabled(false);
+          wlUseSecAuth.setEnabled(false);
+          wSecureConnectionType.setEnabled(false);
+          wlSecureConnectionType.setEnabled(false);
+      } else {
+          wAuthUser.setEnabled(wUseAuth.getSelection());
+          wAuthPass.setEnabled(wUseAuth.getSelection());
+          wUseSecAuth.setEnabled(wUseAuth.getSelection());
+          wlUseSecAuth.setEnabled(wUseAuth.getSelection());
+          if (!wUseAuth.getSelection()) {
+              wSecureConnectionType.setEnabled(false);
+              wlSecureConnectionType.setEnabled(false);
+          } else {
+              setSecureConnectiontype();
+          }
+      }
+      // SKOFRA
+      wServer.setEnabled(!useConfig);
+      wPort.setEnabled(!useConfig);
+      wUseAuth.setEnabled(!useConfig);
+      wlUseAuth.setEnabled(!useConfig);
   }
 
   public void dispose() {
@@ -1414,6 +1499,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     wDestination.setText( Const.nullToEmpty( jobEntry.getDestination() ) );
     wDestinationCc.setText( Const.nullToEmpty( jobEntry.getDestinationCc() ) );
     wDestinationBCc.setText( Const.nullToEmpty( jobEntry.getDestinationBCc() ) );
+    wConfigFile.setText(Const.nullToEmpty(jobEntry.getConfigFile())); // SKOFRA
     wServer.setText( Const.nullToEmpty( jobEntry.getServer() ) );
     wPort.setText( Const.nullToEmpty( jobEntry.getPort() ) );
     wReply.setText( Const.nullToEmpty( jobEntry.getReplyAddress() ) );
@@ -1547,6 +1633,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
     jobEntry.setDestinationCc( wDestinationCc.getText() );
     jobEntry.setDestinationBCc( wDestinationBCc.getText() );
     jobEntry.setServer( wServer.getText() );
+    jobEntry.setConfigFile(wConfigFile.getText()); // SKOFRA
     jobEntry.setPort( wPort.getText() );
     jobEntry.setReplyAddress( wReply.getText() );
     jobEntry.setReplyName( wReplyName.getText() );

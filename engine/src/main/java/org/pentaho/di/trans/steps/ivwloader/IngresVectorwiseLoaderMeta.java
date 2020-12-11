@@ -37,6 +37,7 @@ import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
@@ -313,7 +314,7 @@ public class IngresVectorwiseLoaderMeta extends BaseStepMeta implements StepMeta
   @Override
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", databaseMeta );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this) ); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "table", tablename );
       rep.saveStepAttribute( id_transformation, id_step, "fifo_file_name", fifoFileName );
       rep.saveStepAttribute( id_transformation, id_step, "sql_path", sqlPath );

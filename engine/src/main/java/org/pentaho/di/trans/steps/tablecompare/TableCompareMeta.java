@@ -39,6 +39,7 @@ import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.shared.SharedObjectInterface;
 import org.pentaho.di.trans.Trans;
@@ -545,8 +546,7 @@ public class TableCompareMeta extends BaseStepMeta implements StepMetaInterface 
   @Override
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
-      rep.saveDatabaseMetaStepAttribute(
-        id_transformation, id_step, "reference_connection_id", referenceConnection );
+      rep.saveDatabaseMetaStepAttribute( id_transformation, id_step, "reference_connection_id", RepoReconnectFix.fixDatabaseMissingIdStepMeta(referenceConnection, this)); // SKOFRA
       rep.saveStepAttribute( id_transformation, id_step, "reference_schema_field", referenceSchemaField );
       rep.saveStepAttribute( id_transformation, id_step, "reference_table_field", referenceTableField );
 

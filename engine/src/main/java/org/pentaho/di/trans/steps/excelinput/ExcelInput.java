@@ -543,7 +543,9 @@ public class ExcelInput extends BaseStep implements StepInterface {
             + data.filenr + " : " + data.filename ) );
         }
 
-        data.workbook = WorkbookFactory.getWorkbook( meta.getSpreadSheetType(), data.filename, meta.getEncoding(), meta.getPassword() );
+        // SKOFRA [MRA10-218] ExcelIput - problem with UNC path
+        // data.workbook = WorkbookFactory.getWorkbook( meta.getSpreadSheetType(), data.filename, meta.getEncoding(), meta.getPassword() );
+        data.workbook = WorkbookFactory.getWorkbook( meta.getSpreadSheetType(),  KettleVFS.getInputStream( data.filename), meta.getEncoding() );
 
         data.errorHandler.handleFile( data.file );
         // Start at the first sheet again...

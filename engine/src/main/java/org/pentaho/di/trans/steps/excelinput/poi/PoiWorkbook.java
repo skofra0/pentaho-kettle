@@ -90,7 +90,7 @@ public class PoiWorkbook implements KWorkbook {
     }
   }
 
-  public PoiWorkbook( InputStream inputStream, String encoding ) throws KettleException {
+  public PoiWorkbook( InputStream inputStream, String encoding, String password ) throws KettleException {
     this.encoding = encoding;
 
     try {

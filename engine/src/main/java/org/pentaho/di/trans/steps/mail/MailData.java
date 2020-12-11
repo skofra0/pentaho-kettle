@@ -85,6 +85,16 @@ public class MailData extends BaseStepData implements StepDataInterface {
 
   public int indexOfAttachedContent;
   public int IndexOfAttachedFilename;
+  
+  // SKOFRA
+  boolean usingAuthentication = false;
+  boolean usingConfig = false;
+  String server = "";
+  int port = -1;
+  String protocol = "smtp";
+  String authenticationUser = "";
+  String authenticationPassword = "";
+  // SKOFRA END
 
   public MailData() {
     super();

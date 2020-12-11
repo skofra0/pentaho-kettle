@@ -49,6 +49,11 @@
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
     </dependency>
+	<dependency>
+		<groupId>no.deem.etl</groupId>
+		<artifactId>deem-etl-core</artifactId>
+		<version>${deem-etl.version}</version>
+	</dependency>
 
     <!-- Third-party dependencies -->
     <dependency>

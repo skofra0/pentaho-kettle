@@ -83,18 +83,19 @@ import org.w3c.dom.Node;
 
 public class ValueMetaBase implements ValueMetaInterface {
 
+    
+    
   // region Default Numeric Types Parse Format
-  public static final String DEFAULT_INTEGER_PARSE_MASK = Const.NVL(
-    EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_INTEGER_FORMAT ), "####0" );
-  public static final String DEFAULT_NUMBER_PARSE_MASK = Const.NVL(
-    EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_NUMBER_FORMAT ), "####0.0#########" );
-  public static final String DEFAULT_BIGNUMBER_PARSE_MASK = Const.NVL(
-    EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_BIGNUMBER_FORMAT ), "######0.0###################" );
+  public static final String DEFAULT_INTEGER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_INTEGER_FORMAT), "####0");
+  public static final String DEFAULT_NUMBER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_NUMBER_FORMAT), "####0.0#########");
+  public static final String DEFAULT_BIGNUMBER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_BIGNUMBER_FORMAT), "######0.0###################");
 
-  public static final String DEFAULT_DATE_PARSE_MASK = Const.NVL( EnvUtil
-    .getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSS" );
-  public static final String DEFAULT_TIMESTAMP_PARSE_MASK = Const.NVL( EnvUtil
-    .getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
+  
+  public static final String DATE_FORMAT_MSSQL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+  public static final String DATE_FORMAT_MYSQL = "yyyy/MM/dd HH:mm:ss.SSS";
+
+  public static final String DEFAULT_DATE_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_DATE_FORMAT), DATE_FORMAT_MYSQL);
+  public static final String DEFAULT_TIMESTAMP_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_DATE_FORMAT), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS");
   // endregion
 
   // region Default Types Format

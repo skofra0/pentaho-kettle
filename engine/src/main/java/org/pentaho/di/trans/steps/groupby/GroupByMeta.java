@@ -530,6 +530,35 @@ public class GroupByMeta extends BaseStepMeta implements StepMetaInterface {
           precision = -1;
           length = -1;
         }
+        // SKOFRA 
+        switch(aggregateType[i])
+        {
+          case TYPE_GROUP_AVERAGE            : 
+              if (valueType!=ValueMetaInterface.TYPE_INTEGER) {
+                  length = subj.getLength();
+                  precision=subj.getPrecision();
+              }
+              break;
+          case TYPE_GROUP_SUM                : 
+          case TYPE_GROUP_CUMULATIVE_SUM     : 
+          case TYPE_GROUP_CUMULATIVE_AVERAGE : 
+          case TYPE_GROUP_FIRST              : 
+          case TYPE_GROUP_LAST               : 
+          case TYPE_GROUP_FIRST_INCL_NULL    : 
+          case TYPE_GROUP_LAST_INCL_NULL     : 
+          case TYPE_GROUP_MIN                : 
+          case TYPE_GROUP_MAX                : 
+              length = subj.getLength();
+              precision=subj.getPrecision();
+              break;
+          case TYPE_GROUP_COUNT_DISTINCT     :
+          case TYPE_GROUP_COUNT_ALL          :
+          case TYPE_GROUP_CONCAT_COMMA       : 
+          case TYPE_GROUP_STANDARD_DEVIATION :
+          case TYPE_GROUP_CONCAT_STRING      :
+          default: break;
+        }
+        // SKOFRA END 
 
         if ( valueType != ValueMetaInterface.TYPE_NONE ) {
           ValueMetaInterface v;

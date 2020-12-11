@@ -54,21 +54,24 @@ public class WorkbookFactory {
 
   }
 
-  // Not Dead Code:  Used by pdi-google-docs-plugin
-  public static KWorkbook getWorkbook( SpreadSheetType type, InputStream inputStream, String encoding )
-    throws KettleException {
-    switch ( type ) {
-      case JXL:
-        return new XLSWorkbook( inputStream, encoding );
-      case POI:
-        return new PoiWorkbook( inputStream, encoding ); // encoding is not used, perhaps detected automatically?
-      case SAX_POI:
-        return new StaxPoiWorkbook( inputStream, encoding );
-      case ODS:
-        return new OdfWorkbook( inputStream, encoding ); // encoding is not used, perhaps detected automatically?
-      default:
-        throw new KettleException( "Sorry, spreadsheet type " + type.getDescription() + " is not yet supported" );
-    }
+  // Not Dead Code: Used by pdi-google-docs-plugin
+  public static KWorkbook getWorkbook(SpreadSheetType type, InputStream inputStream, String encoding, String password) throws KettleException {
+      switch (type) {
+          case JXL:
+              return new XLSWorkbook(inputStream, encoding);
+          case POI:
+              return new PoiWorkbook(inputStream, encoding, password); // encoding is not used, perhaps detected automatically?
+          case SAX_POI:
+              return new StaxPoiWorkbook(inputStream, encoding);
+          case ODS:
+              return new OdfWorkbook(inputStream, encoding); // encoding is not used, perhaps detected automatically?
+          default:
+              throw new KettleException("Sorry, spreadsheet type " + type.getDescription() + " is not yet supported");
+      }
 
+  }
+  
+  public static KWorkbook getWorkbook(SpreadSheetType type, InputStream inputStream, String encoding) throws KettleException {
+      return getWorkbook(type, inputStream, encoding, null);
   }
 }

@@ -409,8 +409,7 @@ public class LibFormulaEditor extends Dialog implements KeyListener {
       //
       if ( before.equals( "[" ) ) {
         for ( String fieldName : inputFields ) {
-          proposals.add( new CompletionProposal( "[" + fieldName + "] (input field)", fieldName + "]", fieldName
-            .length() + 1 ) );
+            proposals.add(new CompletionProposal("[" + fieldName + "] (input field)", fieldName + "]", fieldName.length() + 1));
         }
       } else if ( Utils.isEmpty( before ) ) {
         for ( String fieldName : inputFields ) {
@@ -423,9 +422,8 @@ public class LibFormulaEditor extends Dialog implements KeyListener {
         for ( String fieldName : inputFields ) {
           String key = "[" + fieldName;
           if ( key.startsWith( before ) && !key.equalsIgnoreCase( before ) ) {
-            proposals.add( new CompletionProposal( "[" + fieldName + "] (keyword)", fieldName.substring( before
-              .length() )
-              + "]", fieldName.length() - before.length() + 1 ) );
+           // proposals.add(new CompletionProposal("[" + fieldName + "] (keyword)", fieldName.substring(before.length()) + "]", fieldName.length() - before.length() + 1)); // SKOFRA
+              proposals.add(new CompletionProposal("[" + fieldName + "] (keyword)", fieldName.substring(before.length() - 1) + "]", fieldName.length() - before.length() + 1)); // SKOFRA artf42323 : LibFormulaEditor - code complete fix
           }
         }
         for ( String function : functions ) {

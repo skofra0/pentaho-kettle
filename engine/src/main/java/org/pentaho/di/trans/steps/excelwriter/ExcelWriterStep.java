@@ -25,6 +25,7 @@ package org.pentaho.di.trans.steps.excelwriter;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.commons.vfs2.FileObject;
 import org.apache.poi.common.usermodel.HyperlinkType;
@@ -654,7 +655,11 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
 
       // file is guaranteed to be in place now
       if ( meta.getExtension().equalsIgnoreCase( "xlsx" ) ) {
-        data.xssfWorkbook = new XSSFWorkbook( KettleVFS.getInputStream( data.file ) );
+        // SKOFRA START (Close input, problem with file looking)  
+        InputStream is = KettleVFS.getInputStream(data.file);
+        data.xssfWorkbook = new XSSFWorkbook( is );
+        is.close();
+        // SKOFRA END
         if ( meta.isStreamingData() ) {
           data.wb = new SXSSFWorkbook( data.xssfWorkbook, 100 );
         } else {

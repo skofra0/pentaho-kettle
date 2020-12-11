@@ -139,6 +139,15 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
   private FormData fdDestinationCc;
 
   private FormData fdDestinationBCc;
+  
+  // SKOFRA
+  private Label wlConfigFile;
+  private TextVar wConfigFile;
+  private FormData fdlConfigFile, fdConfigFile;
+  private Button wbConfigFile;
+  private Button wbDefaultConfigFile;
+  private FormData fdbConfigFile;
+  private FormData fdbDefaultConfigFile;
 
   private CCombo wServer;
 
@@ -714,13 +723,73 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     servergroupLayout.marginHeight = 10;
     wServerGroup.setLayout( servergroupLayout );
 
+    // Config file (SKOFRA)
+    wlConfigFile = new Label(wServerGroup, SWT.RIGHT);
+    wlConfigFile.setText(BaseMessages.getString(PKG, "Mail.ConfigFile.Label"));
+    props.setLook(wlConfigFile);
+    fdlConfigFile = new FormData();
+    fdlConfigFile.left = new FormAttachment(0, 0);
+    fdlConfigFile.top = new FormAttachment(0, margin + 5);
+    fdlConfigFile.right = new FormAttachment(middle, -margin);
+    wlConfigFile.setLayoutData(fdlConfigFile);
+    
+    wbDefaultConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+    props.setLook(wbDefaultConfigFile);
+    wbDefaultConfigFile.setText(BaseMessages.getString(PKG, "Mail.Default.Button"));
+    fdbDefaultConfigFile = new FormData();
+    fdbDefaultConfigFile.right = new FormAttachment(100, 0);
+    fdbDefaultConfigFile.top = new FormAttachment(0, margin + 5);
+    wbDefaultConfigFile.setLayoutData(fdbDefaultConfigFile);
+
+    wbConfigFile = new Button(wServerGroup, SWT.PUSH | SWT.CENTER);
+    props.setLook(wbConfigFile);
+    wbConfigFile.setText(BaseMessages.getString(PKG, "Mail.Browse.Button"));
+    fdbConfigFile = new FormData();
+    //fdbConfigFile.right = new FormAttachment(100, 0);
+    fdbConfigFile.right = new FormAttachment(wbDefaultConfigFile, -margin);
+    fdbConfigFile.top = new FormAttachment(0, margin + 5);
+    wbConfigFile.setLayoutData(fdbConfigFile);
+
+    wConfigFile = new TextVar(transMeta, wServerGroup, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    wConfigFile.setToolTipText(BaseMessages.getString(PKG, "Mail.ConfigFile.Tooltip"));
+    props.setLook(wConfigFile);
+    wConfigFile.addModifyListener(lsMod);
+    fdConfigFile = new FormData();
+    fdConfigFile.left = new FormAttachment(middle, 0);
+    fdConfigFile.top = new FormAttachment(0, margin + 8);
+    fdConfigFile.right = new FormAttachment(wbConfigFile, -margin);
+    wConfigFile.setLayoutData(fdConfigFile);
+
+    wbConfigFile.addSelectionListener(new SelectionAdapter() {
+        @Override
+        public void widgetSelected(final SelectionEvent e) {
+            final FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+            dialog.setFilterExtensions(new String[] {"*.properties", "*"});
+            if (wConfigFile.getText() != null) {
+                dialog.setFileName(wConfigFile.getText());
+            }
+            if (dialog.open() != null) {
+                wConfigFile.setText(dialog.getFilterPath() + System.getProperty("file.separator") + dialog.getFileName());
+            }
+            setUseAuth();
+        }
+    });
+    
+    wbDefaultConfigFile.addSelectionListener(new SelectionAdapter() {
+        @Override
+        public void widgetSelected(final SelectionEvent e) {
+           wConfigFile.setText(MailMeta.DEFAULT_CONFIGFILE);
+       }
+    });
+    // Config file end
+
     // Server
     wlServer = new Label( wServerGroup, SWT.RIGHT );
     wlServer.setText( BaseMessages.getString( PKG, "Mail.SMTPServer.Label" ) );
     props.setLook( wlServer );
     fdlServer = new FormData();
     fdlServer.left = new FormAttachment( 0, -margin );
-    fdlServer.top = new FormAttachment( 0, margin );
+    fdlServer.top = new FormAttachment( wConfigFile, margin ); // SKOFRA
     fdlServer.right = new FormAttachment( middle, -2 * margin );
     wlServer.setLayoutData( fdlServer );
 
@@ -730,7 +799,7 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     wServer.addModifyListener( lsMod );
     fdServer = new FormData();
     fdServer.left = new FormAttachment( middle, -margin );
-    fdServer.top = new FormAttachment( 0, margin );
+    fdServer.top = new FormAttachment( wConfigFile, margin ); // SKOFRA
     fdServer.right = new FormAttachment( 100, -margin );
     wServer.setLayoutData( fdServer );
     wServer.addFocusListener( new FocusListener() {
@@ -2366,19 +2435,37 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
   }
 
   protected void setUseAuth() {
-    wlAuthUser.setEnabled( wUseAuth.getSelection() );
-    wAuthUser.setEnabled( wUseAuth.getSelection() );
-    wlAuthPass.setEnabled( wUseAuth.getSelection() );
-    wAuthPass.setEnabled( wUseAuth.getSelection() );
-    wUseSecAuth.setEnabled( wUseAuth.getSelection() );
-    wlUseSecAuth.setEnabled( wUseAuth.getSelection() );
-    if ( !wUseAuth.getSelection() ) {
-      wSecureConnectionType.setEnabled( false );
-      wlSecureConnectionType.setEnabled( false );
-    } else {
-      setSecureConnectiontype();
-    }
+      boolean useConfig = Utils.isNotEmpty(wConfigFile.getText());
+      if (useConfig) { // SKOFRA
+          wlAuthUser.setEnabled(false);
+          wAuthUser.setEnabled(false);
+          wlAuthPass.setEnabled(false);
+          wAuthPass.setEnabled(false);
+          wUseSecAuth.setEnabled(false);
+          wlUseSecAuth.setEnabled(false);
+          wSecureConnectionType.setEnabled(false);
+          wlSecureConnectionType.setEnabled(false);
+      } else {
+          wlAuthUser.setEnabled(wUseAuth.getSelection());
+          wAuthUser.setEnabled(wUseAuth.getSelection());
+          wlAuthPass.setEnabled(wUseAuth.getSelection());
+          wAuthPass.setEnabled(wUseAuth.getSelection());
+          wUseSecAuth.setEnabled(wUseAuth.getSelection());
+          wlUseSecAuth.setEnabled(wUseAuth.getSelection());
+          if (!wUseAuth.getSelection()) {
+              wSecureConnectionType.setEnabled(false);
+              wlSecureConnectionType.setEnabled(false);
+          } else {
+              setSecureConnectiontype();
+          }
+      }
 
+      // SKOFRA
+      wlServer.setEnabled(!useConfig);
+      wServer.setEnabled(!useConfig);
+      wlPort.setEnabled(!useConfig);
+      wPort.setEnabled(!useConfig);
+      wUseAuth.setEnabled(!useConfig);
   }
 
   /**
@@ -2400,6 +2487,9 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     }
     if ( input.getDestinationBCc() != null ) {
       wDestinationBCc.setText( input.getDestinationBCc() );
+    }
+    if (input.getConfigFile() != null) { // SKOFRA
+        wConfigFile.setText(input.getConfigFile());
     }
     if ( input.getServer() != null ) {
       wServer.setText( input.getServer() );
@@ -2571,6 +2661,7 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     input.setDestination( wDestination.getText() );
     input.setDestinationCc( wDestinationCc.getText() );
     input.setDestinationBCc( wDestinationBCc.getText() );
+    input.setConfigFile(wConfigFile.getText()); // SKOFRA
     input.setServer( wServer.getText() );
     input.setPort( wPort.getText() );
     input.setReplyAddress( wReply.getText() );

@@ -1,0 +1,8 @@
+SELECT * FROM r_step_attribute  WHERE  CODE='separator' AND  VALUE_STR='${MI_SEPARATOR}';
+SELECT * FROM r_step_attribute  WHERE  CODE='enclosure' AND  VALUE_STR='${MI_ENCLOSURE}';
+SELECT VALUE_STR,  REPLACE(VALUE_STR,'${MI_TEMP}','${BI_TEMP}')  FROM r_step_attribute  WHERE  CODE='file_name' AND  VALUE_STR LIKE'%${MI_TEMP}%';
+
+
+UPDATE r_step_attribute SET VALUE_STR='${BI_SEPARATOR}' WHERE CODE='separator' AND  VALUE_STR='${MI_SEPARATOR}';
+UPDATE r_step_attribute SET VALUE_STR='${BI_ENCLOSURE}' WHERE CODE='enclosure' AND  VALUE_STR='${MI_ENCLOSURE}';
+UPDATE r_step_attribute SET VALUE_STR=REPLACE(VALUE_STR,'${MI_TEMP}','${BI_TEMP}') WHERE  CODE='file_name' AND  VALUE_STR LIKE'%${MI_TEMP}%';

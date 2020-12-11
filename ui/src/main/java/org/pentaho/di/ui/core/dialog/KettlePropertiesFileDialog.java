@@ -73,6 +73,8 @@ import java.util.Set;
 public class KettlePropertiesFileDialog extends Dialog {
   private static Class<?> PKG = KettlePropertiesFileDialog.class; // for i18n purposes, needed by Translator2!!
 
+  public static final boolean okToSave = false; // SKOFRA
+
   private Label wlFields;
   private TableView wFields;
   private FormData fdlFields, fdFields;
@@ -165,6 +167,7 @@ public class KettlePropertiesFileDialog extends Dialog {
 
     wOK = new Button( shell, SWT.PUSH );
     wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) );
+    wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) + " - disabled (use editor)" ); // SKOFRA
 
     wCancel = new Button( shell, SWT.PUSH );
     wCancel.setText( BaseMessages.getString( PKG, "System.Button.Cancel" ) );
@@ -301,6 +304,9 @@ public class KettlePropertiesFileDialog extends Dialog {
 
     // Save the properties file...
     //
+    //SKOFRA
+    if (okToSave) {
+
     FileOutputStream out = null;
     try {
       out = new FileOutputStream( getKettlePropertiesFilename() );
@@ -325,6 +331,7 @@ public class KettlePropertiesFileDialog extends Dialog {
           EnvUtil.clearSystemProperty( originalKey );
         }
       }
+    }
     }
 
     dispose();

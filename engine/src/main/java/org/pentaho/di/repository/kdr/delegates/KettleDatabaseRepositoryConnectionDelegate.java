@@ -33,6 +33,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -55,6 +56,7 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
+import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.repository.LongObjectId;
@@ -147,7 +149,16 @@ public class KettleDatabaseRepositoryConnectionDelegate extends KettleDatabaseRe
       throw new KettleException( "Repository is already connected!" );
     }
     try {
-      database.initializeVariablesFrom( null );
+        // SKOFRA REP_kettle.properties , artf42347 : Add kettle.properties with repo prefix
+        try {
+            String file = repository.getName() + "_" + Const.KETTLE_PROPERTIES;
+            Properties kettleProperties = EnvUtil.readProperties(file);
+            System.getProperties().putAll(kettleProperties);
+        }
+        catch (KettleException e){}
+        // SKOFRA
+
+        database.initializeVariablesFrom( null );
       database.connect();
       if ( !ignoreVersion ) {
         verifyVersion();

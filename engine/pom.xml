@@ -415,6 +415,7 @@
 			<groupId>org.odftoolkit</groupId>
 			<artifactId>odfdom-java</artifactId>
 			<version>${odfdom-java.version}</version>
+			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>*</groupId>
@@ -981,9 +982,9 @@
             </exclusions>
         </dependency>
 		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
+			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
-			<version>12.2.0.1</version>
+			<version>19.8.0.0</version>
 		</dependency>
 	</dependencies>
 

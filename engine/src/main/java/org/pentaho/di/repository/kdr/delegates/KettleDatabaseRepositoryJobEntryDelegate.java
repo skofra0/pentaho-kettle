@@ -22,6 +22,7 @@
 
 package org.pentaho.di.repository.kdr.delegates;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ import org.pentaho.di.job.entries.missing.MissingEntry;
 import org.pentaho.di.job.entry.JobEntryBase;
 import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.Repository;
@@ -217,7 +219,16 @@ public class KettleDatabaseRepositoryJobEntryDelegate extends KettleDatabaseRepo
 
         // THIS IS THE PLUGIN/JOB-ENTRY BEING SAVED!
         //
-        entry.saveRep( repository, metaStore, id_job );
+        // SKOFRA - REPO RECONNECT DATABASE FIX
+        if (entry instanceof JobEntryInterfaceWithDatabase) {
+            List<DatabaseMeta> databases = Collections.emptyList();
+            if (copy.getParentJobMeta()!=null) {
+                databases = copy.getParentJobMeta().getDatabases();
+            } 
+            ((JobEntryInterfaceWithDatabase)entry).saveRep( repository, metaStore, id_job , databases);
+        } else {
+            entry.saveRep( repository, metaStore, id_job );
+        }
         compatibleEntrySaveRep( entry, repository, id_job );
 
         // Save the attribute groups map

@@ -118,6 +118,10 @@ public class Utils {
     return val == null || val.length() == 0;
   }
 
+  public static boolean isNotEmpty( CharSequence val ) {
+      return !isEmpty(val);
+  }
+
   /**
    * Check if the CharSequence array supplied is empty. A CharSequence array is empty when it is null or when the number of elements
    * is 0
@@ -306,6 +310,11 @@ public class Utils {
       }
     }
     return rtn;
+  }
+
+  // SKOFRA
+  public static String toStringNullToEmpty(final Object obj) { // SKOFRA
+      return (obj == null) ? "" : String.valueOf(obj);
   }
 
 }

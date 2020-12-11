@@ -40,12 +40,13 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryBase;
-import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.job.entry.JobEntryInterfaceWithDatabase;
 import org.pentaho.di.job.entry.validator.AbstractFileValidator;
 import org.pentaho.di.job.entry.validator.AndValidator;
 import org.pentaho.di.job.entry.validator.JobEntryValidatorUtils;
 import org.pentaho.di.job.entry.validator.ValidatorContext;
 import org.pentaho.di.repository.ObjectId;
+import org.pentaho.di.repository.RepoReconnectFix;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.resource.ResourceEntry;
 import org.pentaho.di.resource.ResourceEntry.ResourceType;
@@ -60,7 +61,7 @@ import org.w3c.dom.Node;
  * @since 22-07-2008
  *
  */
-public class JobEntryTruncateTables extends JobEntryBase implements Cloneable, JobEntryInterface {
+public class JobEntryTruncateTables extends JobEntryBase implements Cloneable, JobEntryInterfaceWithDatabase {
   private static Class<?> PKG = JobEntryTruncateTables.class; // for i18n purposes, needed by Translator2!!
 
   public boolean argFromPrevious;
@@ -169,6 +170,13 @@ public class JobEntryTruncateTables extends JobEntryBase implements Cloneable, J
       throw new KettleException( BaseMessages.getString( PKG, "JobEntryTruncateTables.UnableLoadRep", ""
         + id_jobentry ), dbe );
     }
+  }
+
+  // SKOFRA
+  @Override
+  public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_job, List<DatabaseMeta> databases) throws KettleException {
+      RepoReconnectFix.fixDatabaseMissingIdJobEntryBase(connection, databases);
+      saveRep(rep, metaStore, id_job);
   }
 
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_job ) throws KettleException {
