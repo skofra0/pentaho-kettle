@@ -111,8 +111,8 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
     private Label wlPosition;
     private FormData fdlPosition;
 
-    private Button wEditVariables;
-    private Listener lsEditVariables;
+    private Button wEditVariables; // SKOFRA
+    private Listener lsEditVariables; // SKOFRA
 
     public TableInputDialog(Shell parent, Object in, TransMeta transMeta, String sname) {
         super(parent, (BaseStepMeta) in, transMeta, sname);
@@ -182,7 +182,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
 
         wEditVariables = new Button(shell, SWT.PUSH);
         wEditVariables.setText("Variables");
-
         setButtonPositions(new Button[] {wOK, wPreview, wEditVariables, wCancel}, margin, null);
 
         // Limit input ...
@@ -212,8 +211,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         fdlEachRow.right = new FormAttachment(middle, -margin);
         fdlEachRow.bottom = new FormAttachment(wLimit, -margin);
         wlEachRow.setLayoutData(fdlEachRow);
-
-
         wEachRow = new CCombo(shell, SWT.BORDER | SWT.READ_ONLY);
         wEachRow.add(TableInputMeta.EXECUTE_METHOD_PREPARED);
         wEachRow.add(TableInputMeta.EXECUTE_METHOD_VARIABLE);
@@ -404,7 +401,7 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
                 setFlags();
             }
         };
-        lsEditVariables = new Listener() {
+        lsEditVariables = new Listener() { // SKOFRA
             public void handleEvent(Event e) {
                 editVaribles();
             }
@@ -413,7 +410,7 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         wCancel.addListener(SWT.Selection, lsCancel);
         wPreview.addListener(SWT.Selection, lsPreview);
         wOK.addListener(SWT.Selection, lsOK);
-        wEditVariables.addListener(SWT.Selection, lsEditVariables);
+        wEditVariables.addListener(SWT.Selection, lsEditVariables); // SKOFRA
         wbTable.addListener(SWT.Selection, lsbTable);
         wDatefrom.addListener(SWT.Selection, lsDatefrom);
         wDatefrom.addListener(SWT.FocusOut, lsDatefrom);
@@ -693,7 +690,6 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
         }
         return temp;
     }
-
 
     private void setFlags() {
         if (!Const.isEmpty(wDatefrom.getText())) {

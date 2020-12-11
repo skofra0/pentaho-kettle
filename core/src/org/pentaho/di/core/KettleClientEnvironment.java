@@ -157,7 +157,7 @@ public class KettleClientEnvironment {
       try {
         out = new FileOutputStream( file );
         out.write( Const.getKettlePropertiesFileHeader().getBytes() );
-        out.write( Const.getKettlePropertiesFileDeemVariables(directory).getBytes() );
+        out.write( Const.getKettlePropertiesFileDeemVariables(directory).getBytes() ); // SKOFRA
       } catch ( IOException e ) {
         System.err
           .println( BaseMessages.getString(

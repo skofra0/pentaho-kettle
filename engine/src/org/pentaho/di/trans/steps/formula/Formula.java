@@ -114,9 +114,7 @@ public class Formula extends BaseStep implements StepInterface {
 	}
 
 	private Object[] calcFields(RowMetaInterface rowMeta, Object[] r) throws KettleValueException {
-		FormulaMetaFunction currentFormula = null; // SKOFRA artf48472 : Formula
-													// - Integer/BigDecimal Type
-													// support
+		FormulaMetaFunction currentFormula = null; // SKOFRA artf48472 : Formula - Integer/BigDecimal Type support
 		try {
 			Object[] outputRowData = RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
 			int tempIndex = rowMeta.size();

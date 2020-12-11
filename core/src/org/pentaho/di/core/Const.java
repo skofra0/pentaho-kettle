@@ -28,6 +28,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaBase;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.laf.BasePropertyHandler;
@@ -2916,14 +2917,14 @@ public class Const {
         return counter;
     }
 
-    public static String[] GetAvailableFontNames() {
+    public static String[] getAvailableFontNames() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Font[] fonts = ge.getAllFonts();
-        String[] FontName = new String[fonts.length];
+        String[] fontName = new String[fonts.length];
         for (int i = 0; i < fonts.length; i++) {
-            FontName[i] = fonts[i].getFontName();
+            fontName[i] = fonts[i].getFontName();
         }
-        return FontName;
+        return fontName;
     }
 
     public static String getKettlePropertiesFileHeader() {
@@ -2943,6 +2944,7 @@ public class Const {
         return out.toString();
     }
 
+    // SKOFRA
     public static String getKettlePropertiesFileDeemVariables(String kettleHomeDir) {
         StringBuilder out = new StringBuilder();
 
@@ -2950,6 +2952,7 @@ public class Const {
 
         out.append(CR);
         out.append("KETTLE_SYSTEM_HOSTNAME=" + Const.getHostnameReal() + CR);
+        out.append("## KETTLE_DEFAULT_DATE_FORMAT=" + ValueMetaBase.DATE_FORMAT_MSSQL + CR);
         out.append(CR);
         out.append("BI_ENCLOSURE=^" + CR);
         out.append("BI_SEPARATOR=|" + CR);
@@ -2971,6 +2974,7 @@ public class Const {
         return out.toString();
     }
 
+    // SKOFRA
     public static String getDeemDesignerHomeFolder(String kettleHomeDir) {
         String diHomeDir = StringUtils.trimToEmpty(kettleHomeDir);
         if (diHomeDir.endsWith(".kettle")) {

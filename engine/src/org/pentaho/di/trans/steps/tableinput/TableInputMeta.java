@@ -66,15 +66,15 @@ import java.util.List;
 public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     private static Class<?> PKG = TableInputMeta.class; // for i18n purposes, needed by Translator2!!
 
-    public static final String EXECUTE_METHOD_PREPARED = "Prepared - ?";
-    public static final String EXECUTE_METHOD_VARIABLE = "Variable - ${VAR}";
+    public static final String EXECUTE_METHOD_PREPARED = "Prepared - ?"; // SKOFRA
+    public static final String EXECUTE_METHOD_VARIABLE = "Variable - ${VAR}"; // SKOFRA
 
     private DatabaseMeta databaseMeta;
     private String sql;
     private String rowLimit;
 
     /** Should I execute once per row? */
-    private boolean executeEachInputRowAsPreparedStatment;
+    private boolean executeEachInputRowAsPreparedStatment; // SKOFRA
 
     private boolean variableReplacementActive;
 
@@ -158,7 +158,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
 
     public Object clone() {
         TableInputMeta retval = (TableInputMeta) super.clone();
-
+        // SKOFRA
         int count = fieldName.length;
         retval.allocate(count);
         for (int i = 0; i < count; i++) {

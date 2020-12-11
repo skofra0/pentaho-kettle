@@ -743,7 +743,7 @@ public class ExcelWriterStep extends BaseStep implements StepInterface {
 
       // file is guaranteed to be in place now
       if ( meta.getExtension().equalsIgnoreCase( "xlsx" ) ) {
-        // SKOFRA START (CLose input, problem with file looking)  
+        // SKOFRA START (Close input, problem with file looking)  
         InputStream is = KettleVFS.getInputStream(data.file);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
         is.close();

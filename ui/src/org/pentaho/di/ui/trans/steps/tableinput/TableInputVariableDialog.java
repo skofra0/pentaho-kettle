@@ -58,6 +58,7 @@ import org.pentaho.di.ui.core.widget.TableView;
 import org.pentaho.di.ui.trans.step.BaseStepDialog;
 import org.pentaho.di.ui.trans.step.TableItemInsertListener;
 
+// SKOFRA
 public class TableInputVariableDialog extends BaseStepDialog implements StepDialogInterface {
     private static Class<?> PKG = SetVariableMeta.class; // for i18n purposes, needed by Translator2!!
 

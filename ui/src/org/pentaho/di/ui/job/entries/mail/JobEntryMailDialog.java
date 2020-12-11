@@ -1451,7 +1451,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
         wDestination.setText(Const.nullToEmpty(jobEntry.getDestination()));
         wDestinationCc.setText(Const.nullToEmpty(jobEntry.getDestinationCc()));
         wDestinationBCc.setText(Const.nullToEmpty(jobEntry.getDestinationBCc()));
-        wConfigFile.setText(Const.nullToEmpty(jobEntry.getConfigFile()));
+        wConfigFile.setText(Const.nullToEmpty(jobEntry.getConfigFile())); // SKOFRA
         wServer.setText(Const.nullToEmpty(jobEntry.getServer()));
         wPort.setText(Const.nullToEmpty(jobEntry.getPort()));
         wReply.setText(Const.nullToEmpty(jobEntry.getReplyAddress()));
@@ -1585,7 +1585,7 @@ public class JobEntryMailDialog extends JobEntryDialog implements JobEntryDialog
         jobEntry.setDestinationCc(wDestinationCc.getText());
         jobEntry.setDestinationBCc(wDestinationBCc.getText());
         jobEntry.setServer(wServer.getText());
-        jobEntry.setConfigFile(wConfigFile.getText());
+        jobEntry.setConfigFile(wConfigFile.getText()); // SKOFRA
         jobEntry.setPort(wPort.getText());
         jobEntry.setReplyAddress(wReply.getText());
         jobEntry.setReplyName(wReplyName.getText());

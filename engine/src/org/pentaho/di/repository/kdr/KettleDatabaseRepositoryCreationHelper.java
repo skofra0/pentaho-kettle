@@ -114,21 +114,11 @@ public class KettleDatabaseRepositoryCreationHelper {
     if ( monitor != null ) {
       monitor.subTask( "Checking table " + schemaTable );
     }
-    table
-      .addValueMeta( new ValueMeta(
-        KettleDatabaseRepository.FIELD_REPOSITORY_LOG_ID_REPOSITORY_LOG, ValueMetaInterface.TYPE_INTEGER, KEY,
-        0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_REPOSITORY_LOG_REP_VERSION, ValueMetaInterface.TYPE_STRING,
-      KettleDatabaseRepository.REP_STRING_CODE_LENGTH, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_REPOSITORY_LOG_LOG_DATE, ValueMetaInterface.TYPE_DATE ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_REPOSITORY_LOG_LOG_USER, ValueMetaInterface.TYPE_STRING,
-      KettleDatabaseRepository.REP_STRING_CODE_LENGTH, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_REPOSITORY_LOG_OPERATION_DESC, ValueMetaInterface.TYPE_STRING,
-      KettleDatabaseRepository.REP_STRING_LENGTH, 0 ) );
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_REPOSITORY_LOG_ID_REPOSITORY_LOG, ValueMetaInterface.TYPE_INTEGER, KEY, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_REPOSITORY_LOG_REP_VERSION, ValueMetaInterface.TYPE_STRING, KettleDatabaseRepository.REP_STRING_CODE_LENGTH, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_REPOSITORY_LOG_LOG_DATE, ValueMetaInterface.TYPE_DATE));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_REPOSITORY_LOG_LOG_USER, ValueMetaInterface.TYPE_STRING, KettleDatabaseRepository.REP_STRING_CODE_LENGTH, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_REPOSITORY_LOG_OPERATION_DESC, ValueMetaInterface.TYPE_STRING, KettleDatabaseRepository.REP_STRING_LENGTH, 0));
     sql =
       database.getDDL(
         schemaTable, table, null, false, KettleDatabaseRepository.FIELD_REPOSITORY_LOG_ID_REPOSITORY_LOG,
@@ -170,16 +160,11 @@ public class KettleDatabaseRepositoryCreationHelper {
     if ( monitor != null ) {
       monitor.subTask( "Checking table " + schemaTable );
     }
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_VERSION_ID_VERSION, ValueMetaInterface.TYPE_INTEGER, KEY, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_VERSION_MAJOR_VERSION, ValueMetaInterface.TYPE_INTEGER, 3, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_VERSION_MINOR_VERSION, ValueMetaInterface.TYPE_INTEGER, 3, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_VERSION_UPGRADE_DATE, ValueMetaInterface.TYPE_DATE, 0, 0 ) );
-    table.addValueMeta( new ValueMeta(
-      KettleDatabaseRepository.FIELD_VERSION_IS_UPGRADE, ValueMetaInterface.TYPE_BOOLEAN, 1, 0 ) );
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_VERSION_ID_VERSION, ValueMetaInterface.TYPE_INTEGER, KEY, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_VERSION_MAJOR_VERSION, ValueMetaInterface.TYPE_INTEGER, 3, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_VERSION_MINOR_VERSION, ValueMetaInterface.TYPE_INTEGER, 3, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_VERSION_UPGRADE_DATE, ValueMetaInterface.TYPE_DATE, 0, 0));
+    table.addValueMeta(new ValueMeta(KettleDatabaseRepository.FIELD_VERSION_IS_UPGRADE, ValueMetaInterface.TYPE_BOOLEAN, 1, 0));
     sql =
       database
         .getDDL( schemaTable, table, null, false, KettleDatabaseRepository.FIELD_VERSION_ID_VERSION, false );

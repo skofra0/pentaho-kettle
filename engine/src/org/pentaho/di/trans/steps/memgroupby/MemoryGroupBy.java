@@ -312,7 +312,7 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
                 if (value == null) {
                     aggregate.agg[ i ] =  Long.valueOf( 0 );
                 }
-            // SKOFRAR END    
+            // SKOFRA END    
           }
           break;
         case MemoryGroupByMeta.TYPE_GROUP_COUNT_ALL:

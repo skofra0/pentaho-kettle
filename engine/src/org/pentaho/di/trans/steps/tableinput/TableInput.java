@@ -328,7 +328,7 @@ public class TableInput extends BaseStep implements StepInterface {
         return true;
     }
 
-    private void setValue(RowSet rowSet, Object[] row, int i, boolean usedefault) throws KettleException {
+    private void setValue(RowSet rowSet, Object[] row, int i, boolean usedefault) throws KettleException { // SKOFRA
         String value = null;
         if (usedefault) {
             value = environmentSubstitute(meta.getDefaultValue()[i]);

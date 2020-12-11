@@ -2404,7 +2404,6 @@ public class MailDialog extends BaseStepDialog implements StepDialogInterface {
     }
 
     protected void setUseAuth() {
-
         boolean useConfig = Const.isNotEmpty(wConfigFile.getText());
         if (useConfig) { // SKOFRA
             wlAuthUser.setEnabled(false);

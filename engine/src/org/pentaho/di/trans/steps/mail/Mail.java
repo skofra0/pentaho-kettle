@@ -700,13 +700,13 @@ public class Mail extends BaseStep implements StepInterface {
 
         Transport transport = null;
         try {
-            transport = session.getTransport(data.protocol);
+            transport = session.getTransport(data.protocol); // SKOFRA
             String authPass = getPassword(data.authenticationPassword); // SKOFRA
             if (data.usingAuthentication) {
                 if (data.port != -1) {
-                    transport.connect(Const.NVL(data.server, ""), data.port, Const.NVL(data.authenticationUser, ""), authPass);
+                    transport.connect(Const.NVL(data.server, ""), data.port, Const.NVL(data.authenticationUser, ""), authPass); // SKOFRA
                 } else {
-                    transport.connect(Const.NVL(data.server, ""), Const.NVL(data.authenticationUser, ""), authPass);
+                    transport.connect(Const.NVL(data.server, ""), Const.NVL(data.authenticationUser, ""), authPass); // SKOFRA
                 }
             } else {
                 transport.connect();

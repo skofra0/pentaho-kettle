@@ -81,17 +81,19 @@ import org.w3c.dom.Node;
  */
 public class ValueMetaBase implements ValueMetaInterface {
   protected static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2
+  
+  public static final String DATE_FORMAT_MSSQL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+  public static final String DATE_FORMAT_MYSQL = "yyyy/MM/dd HH:mm:ss.SSS";
 
-  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL( EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ); // SKOFRA "yyyy/MM/dd HH:mm:ss.SSS" 
+  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL( EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), DATE_FORMAT_MSSQL ); // SKOFRA "yyyy/MM/dd HH:mm:ss.SSS" 
 
   public static final String DEFAULT_TIMESTAMP_FORMAT_MASK = Const.NVL( EnvUtil .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
 
   public static final String XML_META_TAG = "value-meta";
   public static final String XML_DATA_TAG = "value-data";
 
-  public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
-		     // .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) ); // SKOFRA
-	        .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) ); // SKOFRA
+  // .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) ); // SKOFRA
+  public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean(Const.NVL(System.getProperty(Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y"), "Y")); // SKOFRA
 
   protected String name;
   protected int length;

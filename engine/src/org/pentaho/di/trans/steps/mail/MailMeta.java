@@ -312,7 +312,7 @@ public class MailMeta extends BaseStepMeta implements StepMetaInterface {
         return this.configFile;
     }
 
-    boolean isUsingConfigFile() {
+    boolean isUsingConfigFile() { // SKOFRA
        return Const.isNotEmpty(this.configFile); 
     }
 
@@ -914,7 +914,7 @@ public class MailMeta extends BaseStepMeta implements StepMetaInterface {
         remarks.add(cr);
 
         // Servername
-        if (Const.isEmpty(server) && !isUsingConfigFile()) {
+        if (Const.isEmpty(server) && !isUsingConfigFile()) { // SKOFRA
             cr = new CheckResult(CheckResult.TYPE_RESULT_ERROR, BaseMessages.getString(PKG, "MailMeta.CheckResult.ServerEmpty"), stepMeta);
             remarks.add(cr);
         } else {
@@ -928,7 +928,7 @@ public class MailMeta extends BaseStepMeta implements StepMetaInterface {
         }
 
         // port number
-        if (Const.isEmpty(port) && !isUsingConfigFile()) {
+        if (Const.isEmpty(port) && !isUsingConfigFile()) { // SKOFRA
             cr = new CheckResult(CheckResult.TYPE_RESULT_WARNING, BaseMessages.getString(PKG, "MailMeta.CheckResult.PortEmpty"), stepMeta);
         } else {
             cr = new CheckResult(CheckResult.TYPE_RESULT_OK, BaseMessages.getString(PKG, "MailMeta.CheckResult.PortOk"), stepMeta);

@@ -67,10 +67,10 @@ import org.pentaho.di.ui.trans.step.BaseStepDialog;
  *
  */
 public class KettlePropertiesFileDialog extends Dialog {
+
+  private static Class<?> PKG = KettlePropertiesFileDialog.class; // for i18n purposes, needed by Translator2!!
     
   public static final boolean okToSave = false; // SKOFRA
-
-private static Class<?> PKG = KettlePropertiesFileDialog.class; // for i18n purposes, needed by Translator2!!
 
   private Label wlFields;
   private TableView wFields;

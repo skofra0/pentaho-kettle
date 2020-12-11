@@ -94,6 +94,7 @@ public class MailData extends BaseStepData implements StepDataInterface {
     String protocol = "smtp";
     String authenticationUser = "";
     String authenticationPassword = "";
+    // SKOFRA END
 
     public MailData() {
         super();

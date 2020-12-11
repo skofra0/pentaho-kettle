@@ -1124,9 +1124,9 @@ public class JobEntryMail extends JobEntryBase implements Cloneable, JobEntryInt
 
                 if (dataUsingAuthentication) { // SKOFRA
                     if (!Const.isEmpty(dataPort)) {
-                        transport.connect(environmentSubstitute(Const.NVL(dataServer, "")), Integer.parseInt(environmentSubstitute(Const.NVL(dataPort, ""))), environmentSubstitute(Const.NVL(dataAuthenticationUser, "")), authPass);
+                        transport.connect(environmentSubstitute(Const.NVL(dataServer, "")), Integer.parseInt(environmentSubstitute(Const.NVL(dataPort, ""))), environmentSubstitute(Const.NVL(dataAuthenticationUser, "")), authPass); // SKOFRA
                     } else {
-                        transport.connect(environmentSubstitute(Const.NVL(dataServer, "")), environmentSubstitute(Const.NVL(dataAuthenticationUser, "")), authPass);
+                        transport.connect(environmentSubstitute(Const.NVL(dataServer, "")), environmentSubstitute(Const.NVL(dataAuthenticationUser, "")), authPass); // SKOFRA
                     }
                 } else {
                     transport.connect();

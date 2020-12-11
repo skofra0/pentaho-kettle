@@ -484,7 +484,7 @@ public class GroupBy extends BaseStep implements StepInterface {
               if (value == null) {
                   data.agg[ i ] =  Long.valueOf( 0 );
               }
-          // SKOFRAR END    
+          // SKOFRA END    
           }
           break;
         case GroupByMeta.TYPE_GROUP_COUNT_ALL:
