@@ -245,8 +245,7 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
                     if (precision == 0) {
                         if (length > 9) {
                             if (length < 19) {
-                                // can hold signed values between -9223372036854775808 and
-                                // 9223372036854775807
+                                // can hold signed values between -9223372036854775808 and 9223372036854775807
                                 // 18 significant digits
                                 retval += "BIGINT";
                             } else {
@@ -264,8 +263,7 @@ public class MySQLDatabaseMeta extends BaseDatabaseMeta implements DatabaseInter
                             }
                             retval += ")";
                         } else {
-                            // A double-precision floating-point number is accurate to approximately
-                            // 15 decimal places.
+                            // A double-precision floating-point number is accurate to approximately 15 decimal places.
                             // http://mysql.mirrors-r-us.net/doc/refman/5.1/en/numeric-type-overview.html
                             retval += "DOUBLE";
                         }
