@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.xmlbeans.impl.piccolo.util.DuplicateKeyException;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobConfiguration;
 

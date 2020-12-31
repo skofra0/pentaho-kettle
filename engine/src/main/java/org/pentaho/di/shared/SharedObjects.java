@@ -99,7 +99,7 @@ public class SharedObjects {
   public SharedObjects( String sharedObjectsFile ) throws KettleXMLException {
     try {
       this.filename = createFilename( sharedObjectsFile );
-      this.objectsMap = new Hashtable<SharedEntry, SharedObjectInterface>();
+      this.objectsMap = new Hashtable<>();
 
       LogChannel log = new LogChannel( this );
 

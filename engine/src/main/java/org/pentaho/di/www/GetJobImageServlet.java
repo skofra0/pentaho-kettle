@@ -34,7 +34,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.xmlbeans.impl.piccolo.util.DuplicateKeyException;
 import org.owasp.encoder.Encode;
 import org.pentaho.di.core.gui.AreaOwner;
 import org.pentaho.di.core.gui.Point;

@@ -52,28 +52,32 @@ public class RepositoryOpenSaveExtensionPoint implements ExtensionPointInterface
     public void callExtensionPoint(LogChannelInterface logChannelInterface, Object o) throws KettleException {
         FileDialogOperation fileDialogOperation = (FileDialogOperation) o;
 
-        PropsUI propsUI = propsUISupplier.get();
-
         String startingDir = null;
-        if (fileDialogOperation.getRepository() == null) {
+        if (fileDialogOperation.getRepository() != null) {
             String username = getRepository().getUserInfo() != null ? getRepository().getUserInfo().getLogin() : "";
             String repoAndUser = getRepository().getName() + ":" + username;
-            List<LastUsedFile> lastUsedFileList = propsUI.getLastUsedRepoFiles().getOrDefault(repoAndUser, Collections.emptyList());
+            List<LastUsedFile> lastUsedFileList = Collections.emptyList();
+            if (PropsUI.isInitialized()) {
+                PropsUI propsUI = propsUISupplier.get();
+                lastUsedFileList = propsUI.getLastUsedRepoFiles().getOrDefault(repoAndUser, Collections.emptyList());
+            }
             startingDir = getStartingDir(fileDialogOperation, lastUsedFileList);
         } else {
             startingDir = fileDialogOperation.getStartDir();
         }
 
-        RepositoryOpenSaveDialog repositoryOpenSaveDialog = new RepositoryOpenSaveDialog(spoonSupplier.get().getShell(), WIDTH, HEIGHT);
-        repositoryOpenSaveDialog.open(fileDialogOperation.getRepository(), startingDir, fileDialogOperation.getCommand(), fileDialogOperation.getTitle(), fileDialogOperation.getFilter(), fileDialogOperation.getOrigin(), fileDialogOperation.getFilename(), fileDialogOperation.getFileType());
+        if (spoonSupplier.get() != null) {
+            RepositoryOpenSaveDialog repositoryOpenSaveDialog = new RepositoryOpenSaveDialog(spoonSupplier.get().getShell(), WIDTH, HEIGHT);
+            repositoryOpenSaveDialog.open(fileDialogOperation.getRepository(), startingDir, fileDialogOperation.getCommand(), fileDialogOperation.getTitle(), fileDialogOperation.getFilter(), fileDialogOperation.getOrigin(), fileDialogOperation.getFilename(), fileDialogOperation.getFileType());
 
-        if (!Utils.isEmpty(repositoryOpenSaveDialog.getObjectName())) {
-            RepositoryObject repositoryObject = new RepositoryObject();
-            repositoryObject.setObjectId(repositoryOpenSaveDialog::getObjectId);
-            repositoryObject.setName(repositoryOpenSaveDialog.getObjectName());
-            repositoryObject.setRepositoryDirectory(getRepository().findDirectory(repositoryOpenSaveDialog.getObjectDirectory()));
-            repositoryObject.setObjectType(repositoryOpenSaveDialog.getObjectType().equals(TRANSFORMATION) ? RepositoryObjectType.TRANSFORMATION : RepositoryObjectType.JOB);
-            fileDialogOperation.setRepositoryObject(repositoryObject);
+            if (!Utils.isEmpty(repositoryOpenSaveDialog.getObjectName())) {
+                RepositoryObject repositoryObject = new RepositoryObject();
+                repositoryObject.setObjectId(repositoryOpenSaveDialog::getObjectId);
+                repositoryObject.setName(repositoryOpenSaveDialog.getObjectName());
+                repositoryObject.setRepositoryDirectory(getRepository().findDirectory(repositoryOpenSaveDialog.getObjectDirectory()));
+                repositoryObject.setObjectType(repositoryOpenSaveDialog.getObjectType().equals(TRANSFORMATION) ? RepositoryObjectType.TRANSFORMATION : RepositoryObjectType.JOB);
+                fileDialogOperation.setRepositoryObject(repositoryObject);
+            }
         }
     }
 
@@ -95,6 +99,13 @@ public class RepositoryOpenSaveExtensionPoint implements ExtensionPointInterface
     }
 
     private Repository getRepository() {
-        return RepositoryBrowserController.repository != null ? RepositoryBrowserController.repository : spoonSupplier.get().getRepository();
+        if (RepositoryBrowserController.repository != null) {
+            return RepositoryBrowserController.repository;
+        }
+        Spoon spoon = spoonSupplier.get();
+        if (spoon != null) {
+            return spoon.getRepository();
+        }
+        return null;
     }
 }

@@ -29,6 +29,7 @@ import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.repository.RepositoryObject;
 import org.pentaho.di.ui.core.FileDialogOperation;
+import org.pentaho.di.ui.spoon.Spoon;
 
 /**
  * Created by bmorrise on 8/17/17.
@@ -42,6 +43,9 @@ public class DialogHelper {
       if ( !Utils.isEmpty( filter ) ) {
         fileDialogOperation.setFilter( filter );
       }
+      
+      fileDialogOperation.setRepository(Spoon.getInstance().rep);
+      
       ExtensionPointHandler.callExtensionPoint( log, KettleExtensionPoint.SpoonOpenSaveRepository.id,
         fileDialogOperation );
       return (RepositoryObject) fileDialogOperation.getRepositoryObject();

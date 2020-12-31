@@ -106,7 +106,7 @@ public class TransDialog extends Dialog {
 
   private static Class<?> PKG = TransDialog.class; // for i18n purposes, needed by Translator2!!
 
-  public static enum Tabs {
+  public enum Tabs {
     TRANS_TAB, PARAM_TAB, LOG_TAB, DATE_TAB, DEP_TAB, MISC_TAB, MONITOR_TAB, EXTRA_TAB,
   }
 
@@ -437,9 +437,8 @@ public class TransDialog extends Dialog {
     fdlTransname.right = new FormAttachment( middle, -margin );
     fdlTransname.top = new FormAttachment( 0, margin );
     wlTransname.setLayoutData( fdlTransname );
-    wTransname = new Text( wTransComp, rep == null ? SWT.SINGLE | SWT.LEFT | SWT.BORDER
-      : SWT.SINGLE | SWT.LEFT | SWT.BORDER | SWT.READ_ONLY );
-    wTransname.setEnabled( rep == null );
+    wTransname = new Text(wTransComp, rep == null || Const.USE_DEPRECATED_REPOSITORY_DIALOG ? SWT.SINGLE | SWT.LEFT | SWT.BORDER : SWT.SINGLE | SWT.LEFT | SWT.BORDER | SWT.READ_ONLY);
+    wTransname.setEnabled( rep == null || Const.USE_DEPRECATED_REPOSITORY_DIALOG);
     props.setLook( wTransname );
     wTransname.addModifyListener( lsMod );
     FormData fdTransname = new FormData();
@@ -2198,7 +2197,7 @@ public class TransDialog extends Dialog {
     wStepPerfInterval.setText( Long.toString( transMeta.getStepPerformanceCapturingDelay() ) );
     wStepPerfMaxSize.setText( Const.NVL( transMeta.getStepPerformanceCapturingSizeLimit(), "" ) );
 
-    if ( rep == null ) {
+    if ( rep == null || Const.USE_DEPRECATED_REPOSITORY_DIALOG ) {
       wTransname.selectAll();
       wTransname.setFocus();
     }
@@ -2215,9 +2214,15 @@ public class TransDialog extends Dialog {
   }
 
   public void setFlags() {
-    wbDirectory.setEnabled( false );
-    // wDirectory.setEnabled(rep!=null);
-    wlDirectory.setEnabled( false );
+    if (Const.USE_DEPRECATED_REPOSITORY_DIALOG) {
+       wbDirectory.setEnabled( rep != null );
+       wlDirectory.setEnabled( rep != null );
+    } else {
+       wbDirectory.setEnabled( false );
+       wlDirectory.setEnabled( false );
+    }
+      
+    // wDirectory.setEnabled(rep != null);
 
     // wlStepLogtable.setEnabled(wEnableStepPerfMonitor.getSelection());
     // wStepLogtable.setEnabled(wEnableStepPerfMonitor.getSelection());

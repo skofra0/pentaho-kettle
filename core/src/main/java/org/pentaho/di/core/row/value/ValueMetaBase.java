@@ -4036,7 +4036,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     boolean isStringValue = outValueType == Value.VALUE_TYPE_STRING;
     Object emptyValue = isStringValue ? Const.NULL_STRING : null;
 
-    Boolean isEmptyAndNullDiffer = EMPTY_STRING_AND_NULL_ARE_DIFFERENT;
+    Boolean isEmptyAndNullDiffer = emptyStringAndNullAreDifferent;
 
     Boolean normalizeNullStringToEmpty = !convertStringToBoolean(
       Const.NVL( System.getProperty( Const.KETTLE_DO_NOT_NORMALIZE_NULL_STRING_TO_EMPTY, "N" ), "N" ) );
@@ -5554,4 +5554,11 @@ public class ValueMetaBase implements ValueMetaInterface {
     // Not implemented for base class
     throw new KettleValueException( getTypeDesc() + " does not implement this method" );
   }
+
+  // SKOFRA TEST Problem
+  public void setEmptyStringAndNullAreDifferent(boolean emptyStringAndNullAreDifferent) {
+      this.emptyStringAndNullAreDifferent = emptyStringAndNullAreDifferent;
+    }
+
+
 }

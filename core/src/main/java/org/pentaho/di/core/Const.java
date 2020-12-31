@@ -78,6 +78,9 @@ import org.pentaho.di.version.BuildVersion;
  */
 public class Const {
   private static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2!!
+  
+  public static final boolean USE_DEPRECATED_REPOSITORY_DIALOG = true; // SKOFRA
+
 
   /**
    * Version number

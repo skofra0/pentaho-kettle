@@ -5281,7 +5281,9 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
 
   @VisibleForTesting
   FileDialogOperation getFileDialogOperation( String command, String origin ) {
-    return new FileDialogOperation( command, origin );
+      FileDialogOperation fileDialogOperation = new FileDialogOperation( command, origin );
+      fileDialogOperation.setRepository(rep); // SKOFRA
+      return fileDialogOperation;
   }
 
   public boolean saveToRepository( EngineMetaInterface meta, boolean ask_name ) throws KettleException {

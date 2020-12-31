@@ -48,10 +48,10 @@ import org.apache.commons.vfs2.util.RandomAccessMode;
 public class ConnectionFileObject extends AbstractFileObject<ConnectionFileSystem> {
 
   public static final String DELIMITER = "/";
-  private final AbstractFileObject resolvedFileObject;
+  private final AbstractFileObject<?> resolvedFileObject;
   private final String domain;
 
-  public ConnectionFileObject( AbstractFileName name, ConnectionFileSystem fs, AbstractFileObject resolvedFileObject,
+  public ConnectionFileObject( AbstractFileName name, ConnectionFileSystem fs, AbstractFileObject<?> resolvedFileObject,
                                String domain ) {
     super( name, fs );
     this.resolvedFileObject = resolvedFileObject;
