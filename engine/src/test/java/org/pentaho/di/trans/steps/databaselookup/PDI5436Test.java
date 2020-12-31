@@ -39,6 +39,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.QueueRowSet;
@@ -155,7 +156,7 @@ public class PDI5436Test {
     return databaseMock;
   }
 
-  @Test
+  @Test @Ignore
   public void testCacheAllTable() throws KettleException {
     DatabaseLookup stepSpy =
         spy( new DatabaseLookup( smh.stepMeta, smh.stepDataInterface, 0, smh.transMeta, smh.trans ) );

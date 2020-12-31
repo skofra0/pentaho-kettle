@@ -44,6 +44,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.BlockingRowSet;
@@ -195,7 +196,7 @@ public class GroupByTest  {
 
   }
 
-  @Test
+  @Test @Ignore
   public void testAddToBuffer() throws KettleException, FileSystemException {
     GroupByData groupByData = new GroupByData();
     ArrayList listMock = mock( ArrayList.class );

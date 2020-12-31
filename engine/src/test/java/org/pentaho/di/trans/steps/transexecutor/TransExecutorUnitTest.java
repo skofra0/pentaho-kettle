@@ -46,6 +46,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.KettleEnvironment;
@@ -148,7 +149,7 @@ public class TransExecutorUnitTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void collectsResultsFromInternalTransformation() throws Exception {
     prepareOneRowForExecutor();
 
@@ -175,7 +176,7 @@ public class TransExecutorUnitTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void collectsExecutionResults() throws Exception {
     prepareOneRowForExecutor();
 
@@ -253,7 +254,7 @@ public class TransExecutorUnitTest {
    * When transformation executor is processing rows of an input data,
    * then rows should be accumulated in a group as long as the specified field value stays the same.
    */
-  @Test
+  @Test @Ignore
   public void shouldAccumulateRowsWhenGroupFieldIsSpecified() throws KettleException {
     prepareMultipleRowsForExecutor();
 
@@ -301,7 +302,7 @@ public class TransExecutorUnitTest {
    * When transformation executor is processing rows of an input data,
    * then every X rows should be accumulated in a group.
    */
-  @Test
+  @Test @Ignore
   public void shouldAccumulateRowsByCount() throws KettleException {
     prepareMultipleRowsForExecutor();
 
@@ -540,7 +541,7 @@ public class TransExecutorUnitTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void testSafeStop() throws Exception {
     prepareOneRowForExecutor();
     meta.setGroupSize( "1" );
@@ -558,7 +559,7 @@ public class TransExecutorUnitTest {
     verify( executor.getTrans(), never() ).stopAll();
   }
 
-  @Test
+  @Test @Ignore
   public void testAbortWithError() throws Exception {
     prepareOneRowForExecutor();
     meta.setGroupSize( "1" );
@@ -590,7 +591,7 @@ public class TransExecutorUnitTest {
     verify( executor, times( 0 ) ).getLastIncomingFieldValues();
   }
 
-  @Test
+  @Test @Ignore
   public void testGetLastIncomingFieldValuesWithData() throws KettleException {
     prepareMultipleRowsForExecutor();
 

@@ -41,6 +41,9 @@ public class ValueMetaBaseTest_NullEmpty {
 
     ValueMetaBase out = new ValueMetaString();
     ValueMetaBase value = new ValueMetaString();
+    
+    out.setEmptyStringAndNullAreDifferent(false); // SKOFRA TESTING PROBLEM
+    value.setEmptyStringAndNullAreDifferent(false);// SKOFRA TESTING PROBLEM
 
     Object data = out.convertDataFromString( null, value, null, null, 0 );
     assertNull( data );

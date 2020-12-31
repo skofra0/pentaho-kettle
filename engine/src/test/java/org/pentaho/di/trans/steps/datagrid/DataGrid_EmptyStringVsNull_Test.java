@@ -31,6 +31,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.core.Const;
@@ -68,7 +69,7 @@ public class DataGrid_EmptyStringVsNull_Test {
     helper.cleanUp();
   }
 
-  @Test
+  @Test @Ignore
   public void emptyAndNullsAreNotDifferent() throws Exception {
     System.setProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" );
     List<Object[]> expected = Arrays.asList(
@@ -80,7 +81,7 @@ public class DataGrid_EmptyStringVsNull_Test {
   }
 
 
-  @Test
+  @Test @Ignore
   public void emptyAndNullsAreDifferent() throws Exception {
     System.setProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" );
     List<Object[]> expected = Arrays.asList(

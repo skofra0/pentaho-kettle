@@ -95,24 +95,18 @@ public class ValueMetaTimestampTest {
 
   @Test
   public void testConvertStringToTimestamp() throws Exception {
-    ValueMetaTimestamp valueMetaTimestamp = new ValueMetaTimestamp();
-    assertEquals( Timestamp.valueOf( "2012-04-05 04:03:02.123456" ), valueMetaTimestamp
-        .convertStringToTimestamp( "2012/4/5 04:03:02.123456" ) );
-    assertEquals( Timestamp.valueOf( "2012-04-05 04:03:02.123" ), valueMetaTimestamp
-        .convertStringToTimestamp( "2012/4/5 04:03:02.123" ) );
-    assertEquals( Timestamp.valueOf( "2012-04-05 04:03:02.123456789" ), valueMetaTimestamp
-        .convertStringToTimestamp( "2012/4/5 04:03:02.123456789" ) );
+      ValueMetaTimestamp valueMetaTimestamp = new ValueMetaTimestamp();
+      assertEquals(Timestamp.valueOf("2012-04-05 04:03:02.123456"), valueMetaTimestamp.convertStringToTimestamp("2012/4/5 04:03:02.123456"));
+      assertEquals(Timestamp.valueOf("2012-04-05 04:03:02.123"), valueMetaTimestamp.convertStringToTimestamp("2012/4/5 04:03:02.123"));
+      assertEquals(Timestamp.valueOf("2012-04-05 04:03:02.123456789"), valueMetaTimestamp.convertStringToTimestamp("2012/4/5 04:03:02.123456789"));
   }
 
   @Test
   public void testConvertTimestampToString() throws Exception {
-    ValueMetaTimestamp valueMetaTimestamp = new ValueMetaTimestamp();
-    assertEquals( "2012/04/05 04:03:02.123456000", valueMetaTimestamp.convertTimestampToString( Timestamp
-        .valueOf( "2012-04-05 04:03:02.123456" ) ) );
-    assertEquals( "2012/04/05 04:03:02.123000000", valueMetaTimestamp.convertTimestampToString( Timestamp
-        .valueOf( "2012-04-05 04:03:02.123" ) ) );
-    assertEquals( "2012/04/05 04:03:02.123456789", valueMetaTimestamp.convertTimestampToString( Timestamp
-        .valueOf( "2012-04-05 04:03:02.123456789" ) ) );
+      ValueMetaTimestamp valueMetaTimestamp = new ValueMetaTimestamp();
+      assertEquals("2012/04/05 04:03:02.123456000", valueMetaTimestamp.convertTimestampToString(Timestamp.valueOf("2012-04-05 04:03:02.123456")));
+      assertEquals("2012/04/05 04:03:02.123000000", valueMetaTimestamp.convertTimestampToString(Timestamp.valueOf("2012-04-05 04:03:02.123")));
+      assertEquals("2012/04/05 04:03:02.123456789", valueMetaTimestamp.convertTimestampToString(Timestamp.valueOf("2012-04-05 04:03:02.123456789")));
   }
 
   @Test

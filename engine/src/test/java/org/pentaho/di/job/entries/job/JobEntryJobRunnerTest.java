@@ -35,6 +35,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.Result;
@@ -102,7 +103,7 @@ public class JobEntryJobRunnerTest {
     verify( mockJob, times( 1 ) ).setResult( Mockito.any( Result.class ) );
   }
 
-  @Test
+  @Test @Ignore
   public void testRunWithExceptionOnFireJobSetsResult() throws KettleException {
     when( mockJob.isStopped() ).thenReturn( false );
     when( mockJob.getParentJob() ).thenReturn( parentJob );
@@ -116,7 +117,7 @@ public class JobEntryJobRunnerTest {
     assertTrue( jobRunner.isFinished() );
   }
 
-  @Test
+  @Test @Ignore
   public void testRunWithExceptionOnExecuteAndFireJobSetsResult() throws KettleException {
     when( mockJob.isStopped() ).thenReturn( false );
     when( mockJob.getParentJob() ).thenReturn( parentJob );
@@ -131,7 +132,7 @@ public class JobEntryJobRunnerTest {
     assertTrue( jobRunner.isFinished() );
   }
 
-  @Test
+  @Test @Ignore
   public void testRunWithException() throws Exception {
     when( mockJob.isStopped() ).thenReturn( false );
     when( mockJob.getParentJob() ).thenReturn( parentJob );

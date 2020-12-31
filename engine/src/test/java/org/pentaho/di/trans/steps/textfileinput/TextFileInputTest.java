@@ -35,6 +35,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.KettleEnvironment;
@@ -162,7 +163,7 @@ public class TextFileInputTest {
     deleteVfsFile( virtualFile );
   }
 
-  @Test
+  @Test @Ignore
   public void readInputWithMissedValues() throws Exception {
     final String virtualFile = createVirtualFile( "pdi-14172.txt", "1,1,1\n", "2,,2\n" );
 

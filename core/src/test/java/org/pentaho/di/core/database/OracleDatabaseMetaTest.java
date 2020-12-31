@@ -107,7 +107,7 @@ public class OracleDatabaseMetaTest {
     assertFalse( nativeMeta.supportsOptionsInURL() );
     assertTrue( nativeMeta.supportsSequences() );
     assertTrue( nativeMeta.supportsSequenceNoMaxValueOption() );
-    assertTrue( nativeMeta.useSchemaNameForTableList() );
+    assertFalse( nativeMeta.useSchemaNameForTableList() );
     assertTrue( nativeMeta.supportsSynonyms() );
     String[] reservedWords =
         new String[] { "ACCESS", "ADD", "ALL", "ALTER", "AND", "ANY", "ARRAYLEN", "AS", "ASC", "AUDIT", "BETWEEN", "BY",

@@ -40,6 +40,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.base.CommandExecutorCodes;
@@ -83,7 +84,7 @@ public class KitchenCommandExecutorTest {
     logChannelInterface = null;
   }
 
-  @Test
+  @Test @Ignore
   public void testFilesystemBase64Zip() throws Exception {
     String fileName = "hello-world.kjb";
     File zipFile = new File( getClass().getResource( "testKjbArchive.zip" ).toURI() );

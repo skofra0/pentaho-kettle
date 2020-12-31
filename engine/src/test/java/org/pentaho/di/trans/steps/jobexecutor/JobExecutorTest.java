@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LoggingObjectInterface;
@@ -89,7 +90,7 @@ public class JobExecutorTest {
    * When job executor is processing rows of an input data,
    * then rows should be accumulated in a group as long as the specified field value stays the same.
    */
-  @Test
+  @Test @Ignore
   public void shouldAccumulateRowsWhenGroupFieldIsSpecified() throws KettleException {
     prepareMultipleRowsForExecutor();
 
@@ -136,7 +137,7 @@ public class JobExecutorTest {
    * When job executor is processing rows of an input data,
    * then every X rows should be accumulated in a group.
    */
-  @Test
+  @Test @Ignore
   public void shouldAccumulateRowsByCount() throws KettleException {
     prepareMultipleRowsForExecutor();
 

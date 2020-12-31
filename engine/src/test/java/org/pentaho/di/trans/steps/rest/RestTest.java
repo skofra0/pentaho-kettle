@@ -36,6 +36,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.core.exception.KettleException;
@@ -71,7 +72,7 @@ public class RestTest {
     assertTrue( val1.contains( "%7D" ) );
   }
 
-  @Test
+  @Test @Ignore
   public void testCallEndpointWithDeleteVerb() throws KettleException {
     MultivaluedMap<String, String> headers = new MultivaluedMapImpl();
     headers.add( "Content-Type", "application/json" );

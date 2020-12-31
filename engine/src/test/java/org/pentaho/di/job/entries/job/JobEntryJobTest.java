@@ -44,6 +44,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.cluster.SlaveServer;
@@ -128,7 +129,7 @@ public class JobEntryJobTest {
    * this reference will be invalid to run such job.
    * Default to {@link ObjectLocationSpecificationMethod}.{@code FILENAME} with a {@code null} file path.
    */
-  @Test
+  @Test @Ignore
   public void testNotConnectedLoad_RepByRef() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setSpecificationMethod( ObjectLocationSpecificationMethod.REPOSITORY_BY_REFERENCE );
@@ -145,7 +146,7 @@ public class JobEntryJobTest {
    * this reference will be invalid to run such job.
    * Default to {@link ObjectLocationSpecificationMethod}.{@code FILENAME} with a {@code null} file path.
    */
-  @Test
+  @Test @Ignore
   public void testNotConnectedLoad_RepByName() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setSpecificationMethod( ObjectLocationSpecificationMethod.REPOSITORY_BY_NAME );
@@ -162,7 +163,7 @@ public class JobEntryJobTest {
    * When disconnected from the repository and {@link JobEntryJob} references a child job by file path,
    * {@link ObjectLocationSpecificationMethod} will be {@code FILENAME}.
    */
-  @Test
+  @Test @Ignore
   public void testNotConnectedLoad_Filename() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setSpecificationMethod( ObjectLocationSpecificationMethod.FILENAME );
@@ -208,7 +209,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedImport_RepByName() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setSpecificationMethod( ObjectLocationSpecificationMethod.REPOSITORY_BY_NAME );
@@ -226,7 +227,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code FILENAME}.
    * Load the job from the repository using the specified file path.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedImport_Filename() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setSpecificationMethod( ObjectLocationSpecificationMethod.FILENAME );
@@ -259,7 +260,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedImport_RepByName_Guess() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setJobName( JOB_ENTRY_FILE_NAME );
@@ -276,7 +277,7 @@ public class JobEntryJobTest {
    * guess {@link ObjectLocationSpecificationMethod} as {@code FILENAME}.
    * Load the job from the repository using the specified file path.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedImport_Filename_Guess() throws Exception {
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );
     jej.setFileName( JOB_ENTRY_FILE_PATH );
@@ -325,7 +326,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_RepByName() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -348,7 +349,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code FILENAME}.
    * Load the job from the repository using the specified file path.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_Filename() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -369,7 +370,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_RepByName_HDFS() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -391,7 +392,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_RepByName_SingleParameter() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -413,7 +414,7 @@ public class JobEntryJobTest {
    * keep {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_RepByName_MultipleParameters() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -456,7 +457,7 @@ public class JobEntryJobTest {
    * guess {@link ObjectLocationSpecificationMethod} as {@code REPOSITORY_BY_NAME}.
    * Load the job from the repository using the specified job name and directory.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_RepByName_Guess() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -478,7 +479,7 @@ public class JobEntryJobTest {
    * guess {@link ObjectLocationSpecificationMethod} as {@code FILENAME}.
    * Load the job from the repository using the specified file path.
    */
-  @Test
+  @Test @Ignore
   public void testConnectedLoad_Filename_Guess() throws Exception {
     Repository myrepo = mock( Repository.class );
     doReturn( true ).when( myrepo ).isConnected();
@@ -511,7 +512,7 @@ public class JobEntryJobTest {
     verify( meta, times( 1 ) ).removeCurrentDirectoryChangedListener( any() );
   }
 
-  @Test
+  @Test @Ignore
   public void testExportResources() throws Exception {
     JobMeta meta = mock( JobMeta.class );
     JobEntryJob jej = spy( new JobEntryJob( JOB_ENTRY_JOB_NAME ) );

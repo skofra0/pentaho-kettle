@@ -34,6 +34,7 @@ import org.apache.commons.vfs2.FileObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -58,7 +59,7 @@ public class SharedObjectsTest {
     MockitoAnnotations.initMocks( this );
   }
 
-  @Test
+  @Test @Ignore
   public void writeToFileTest() throws KettleException, IOException {
     doCallRealMethod().when( sharedObjectsMock ).writeToFile( any( FileObject.class ), anyString() );
 

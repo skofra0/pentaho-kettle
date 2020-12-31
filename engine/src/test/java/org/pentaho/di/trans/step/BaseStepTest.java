@@ -235,39 +235,39 @@ public class BaseStepTest {
 
   @Test
   public void resultFilesMapIsSafeForConcurrentModification() throws Exception {
-    final BaseStep step =
-      new BaseStep( mockHelper.stepMeta, mockHelper.stepDataInterface, 0, mockHelper.transMeta, mockHelper.trans );
+      final BaseStep step = new BaseStep(mockHelper.stepMeta, mockHelper.stepDataInterface, 0, mockHelper.transMeta, mockHelper.trans);
 
-    final AtomicBoolean complete = new AtomicBoolean( false );
+      final AtomicBoolean complete = new AtomicBoolean(false);
 
-    final int FILES_AMOUNT = 10 * 1000;
-    Thread filesProducer = new Thread( new Runnable() {
-      @Override public void run() {
-        try {
-          for ( int i = 0; i < FILES_AMOUNT; i++ ) {
-            step.addResultFile( new ResultFile( 0, new NonAccessibleFileObject( Integer.toString( i ) ), null, null ) );
-            try {
-              Thread.sleep( 1 );
-            } catch ( Exception e ) {
-              fail( e.getMessage() );
-            }
+      final int FILES_AMOUNT = 10 * 1000;
+      Thread filesProducer = new Thread(new Runnable() {
+          @Override
+          public void run() {
+              try {
+                  for (int i = 0; i < FILES_AMOUNT; i++) {
+                      step.addResultFile(new ResultFile(0, new NonAccessibleFileObject(Integer.toString(i)), null, null));
+                      try {
+                          Thread.sleep(1);
+                      } catch (Exception e) {
+                          fail(e.getMessage());
+                      }
+                  }
+              } finally {
+                  complete.set(true);
+              }
           }
-        } finally {
-          complete.set( true );
-        }
-      }
-    } );
+      });
 
-    filesProducer.start();
-    try {
-      while ( !complete.get() ) {
-        for ( Map.Entry<String, ResultFile> entry : step.getResultFiles().entrySet() ) {
-          entry.getKey();
-        }
+      filesProducer.start();
+      try {
+          while (!complete.get()) {
+              for (Map.Entry<String, ResultFile> entry : step.getResultFiles().entrySet()) {
+                  entry.getKey();
+              }
+          }
+      } finally {
+          filesProducer.join();
       }
-    } finally {
-      filesProducer.join();
-    }
   }
 
   @Test

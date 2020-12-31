@@ -51,6 +51,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -100,7 +101,7 @@ public class SwitchCaseTest {
    *
    * @throws KettleException
    */
-  @Test
+  @Test @Ignore
   public void testProcessRow() throws KettleException {
     SwitchCaseCustom krasavez = new SwitchCaseCustom( mockHelper );
     krasavez.first = false;
@@ -188,7 +189,7 @@ public class SwitchCaseTest {
    * @throws SAXException
    * @throws IOException
    */
-  @Test
+  @Test @Ignore
   public void testCreateOutputValueMapping() throws KettleException, URISyntaxException,
     ParserConfigurationException, SAXException, IOException {
     SwitchCaseCustom krasavez = new SwitchCaseCustom( mockHelper );
@@ -256,7 +257,7 @@ public class SwitchCaseTest {
     }
   }
 
-  @Test
+  @Test @Ignore
   public void testCreateOutputValueMappingWithBinaryType() throws KettleException, URISyntaxException,
     ParserConfigurationException, SAXException, IOException {
     SwitchCaseCustom krasavez = new SwitchCaseCustom( mockHelper );
@@ -346,7 +347,7 @@ public class SwitchCaseTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void processRow_NullsArePutIntoDefaultWhenNotSpecified() throws Exception {
     SwitchCaseCustom step = new SwitchCaseCustom( mockHelper );
     step.meta.loadXML( loadStepXmlMetadata( "SwitchCaseTest_PDI-12671.xml" ), Collections.<DatabaseMeta>emptyList(), mock( IMetaStore.class ) );

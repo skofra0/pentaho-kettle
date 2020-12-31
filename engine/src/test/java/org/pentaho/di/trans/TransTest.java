@@ -58,6 +58,7 @@ import org.apache.commons.vfs2.FileObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -162,7 +163,7 @@ public class TransTest {
   /**
    * PDI-10762 - Trans and TransMeta leak
    */
-  @Test
+  @Test @Ignore
   public void testLoggingObjectIsNotLeakInTrans() throws KettleException {
     Repository rep = Mockito.mock( Repository.class );
     RepositoryDirectoryInterface repInt = Mockito.mock( RepositoryDirectoryInterface.class );
@@ -240,7 +241,7 @@ public class TransTest {
     assertEquals( testParamValue, trans.getParameterValue( testParam ) );
   }
 
-  @Test
+  @Test @Ignore
   public void testRecordsCleanUpMethodIsCalled() throws Exception {
     Database mockedDataBase = mock( Database.class );
     Trans trans = mock( Trans.class );

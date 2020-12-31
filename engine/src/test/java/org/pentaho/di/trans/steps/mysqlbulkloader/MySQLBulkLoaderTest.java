@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -10,7 +11,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,6 +44,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.database.DatabaseMeta;
@@ -66,197 +68,198 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 public class MySQLBulkLoaderTest {
-  @ClassRule public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();
+    @ClassRule
+    public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();
 
-  MySQLBulkLoaderMeta lmeta;
-  MySQLBulkLoaderData ldata;
-  MySQLBulkLoader     lder;
-  StepMeta smeta;
+    MySQLBulkLoaderMeta lmeta;
+    MySQLBulkLoaderData ldata;
+    MySQLBulkLoader lder;
+    StepMeta smeta;
 
-  @BeforeClass
-  public static void initEnvironment() throws Exception {
-    KettleEnvironment.init();
-  }
-
-  @Before
-  public void setUp() {
-    TransMeta transMeta = new TransMeta();
-    transMeta.setName( "MysqlBulkLoader" );
-
-    Map<String, String> vars = new HashMap<String, String>();
-    vars.put( "delim", "," );
-    vars.put( "enclos", "'" );
-    vars.put( "charset", "UTF8" );
-    vars.put( "tbl", "sometable" );
-    vars.put( "schema", "someschema" );
-    transMeta.injectVariables( vars );
-    MySQLDatabaseMeta mysql = new MySQLDatabaseMeta();
-    mysql.setName( "MySQL" );
-    DatabaseMeta dbMeta = new DatabaseMeta();
-    dbMeta.setDatabaseInterface( mysql );
-    dbMeta.setQuoteAllFields( true );
-    lmeta = new MySQLBulkLoaderMeta();
-    lmeta.setDelimiter( "${delim}" );
-    lmeta.setEnclosure( "${enclos}" );
-    lmeta.setEncoding( "${charset}" );
-    lmeta.setTableName( "${tbl}" );
-    lmeta.setSchemaName( "${schema}" );
-    lmeta.setDatabaseMeta( dbMeta );
-    ldata = new MySQLBulkLoaderData();
-    PluginRegistry plugReg = PluginRegistry.getInstance();
-    String mblPid = plugReg.getPluginId( StepPluginType.class, lmeta );
-    smeta = new StepMeta( mblPid, "MySqlBulkLoader", lmeta );
-    Trans trans = new Trans( transMeta );
-    transMeta.addStep( smeta );
-    lder = new MySQLBulkLoader( smeta, ldata, 1, transMeta, trans );
-    lder.copyVariablesFrom( transMeta );
-  }
-
-  @Test
-  public void testFieldFormatType() throws KettleXMLException {
-    MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
-    Document document = XMLHandler.loadXMLFile( this.getClass().getResourceAsStream( "step.xml" ) );
-    IMetaStore metastore = null;
-    Node stepNode = (Node) document.getDocumentElement();
-    lm.loadXML( stepNode, Collections.EMPTY_LIST, metastore );
-    int[] codes = lm.getFieldFormatType();
-    assertEquals( 3, codes[0] );
-    assertEquals( 4, codes[1] );
-  }
-
-  @Test
-  public void testVariableSubstitution() throws KettleException {
-    lder.init( lmeta, ldata );
-    String is = null;
-    is = new String( ldata.quote );
-    assertEquals( "'", is );
-    is = new String( ldata.separator );
-    assertEquals( ",", is );
-    assertEquals( "UTF8", ldata.bulkTimestampMeta.getStringEncoding() );
-    assertEquals( "UTF8", ldata.bulkDateMeta.getStringEncoding() );
-    assertEquals( "UTF8", ldata.bulkNumberMeta.getStringEncoding() );
-    assertEquals(  "`someschema`.`sometable`",  ldata.schemaTable );
-  }
-
-  /**
-   * [PDI-17481] Testing the ability that if no connection is specified, we will mark it as a fail and log the
-   * appropriate reason to the user by throwing a KettleException.
-   */
-  @Test
-  public void testNoDatabaseConnection() {
-    lmeta.setDatabaseMeta( null );
-    assertFalse( lder.init( lmeta, ldata ) );
-    try {
-      // Verify that the database connection being set to null throws a KettleException with the following message.
-      lder.verifyDatabaseConnection();
-      // If the method does not throw a Kettle Exception, then the DB was set and not null for this test. Fail it.
-      fail( "Database Connection is not null, this fails the test." );
-    } catch ( KettleException aKettleException ) {
-      assertThat( aKettleException.getMessage(), containsString( "There is no connection defined in this step" ) );
+    @BeforeClass
+    public static void initEnvironment() throws Exception {
+        KettleEnvironment.init();
     }
-  }
 
-  @Test
-  public void testEscapeCharacters() throws KettleException, IOException {
-    PluginRegistry.addPluginType( ValueMetaPluginType.getInstance() );
-    PluginRegistry.init( false );
+    @Before
+    public void setUp() {
+        TransMeta transMeta = new TransMeta();
+        transMeta.setName("MysqlBulkLoader");
 
-    MySQLBulkLoader loader;
-    MySQLBulkLoaderData ld = new MySQLBulkLoaderData();
-    MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
+        Map<String, String> vars = new HashMap<String, String>();
+        vars.put("delim", ",");
+        vars.put("enclos", "'");
+        vars.put("charset", "UTF8");
+        vars.put("tbl", "sometable");
+        vars.put("schema", "someschema");
+        transMeta.injectVariables(vars);
+        MySQLDatabaseMeta mysql = new MySQLDatabaseMeta();
+        mysql.setName("MySQL");
+        DatabaseMeta dbMeta = new DatabaseMeta();
+        dbMeta.setDatabaseInterface(mysql);
+        dbMeta.setQuoteAllFields(true);
+        lmeta = new MySQLBulkLoaderMeta();
+        lmeta.setDelimiter("${delim}");
+        lmeta.setEnclosure("${enclos}");
+        lmeta.setEncoding("${charset}");
+        lmeta.setTableName("${tbl}");
+        lmeta.setSchemaName("${schema}");
+        lmeta.setDatabaseMeta(dbMeta);
+        ldata = new MySQLBulkLoaderData();
+        PluginRegistry plugReg = PluginRegistry.getInstance();
+        String mblPid = plugReg.getPluginId(StepPluginType.class, lmeta);
+        smeta = new StepMeta(mblPid, "MySqlBulkLoader", lmeta);
+        Trans trans = new Trans(transMeta);
+        transMeta.addStep(smeta);
+        lder = new MySQLBulkLoader(smeta, ldata, 1, transMeta, trans);
+        lder.copyVariablesFrom(transMeta);
+    }
 
-    TransMeta transMeta = new TransMeta();
-    transMeta.setName( "loader" );
+    @Test
+    public void testFieldFormatType() throws KettleXMLException {
+        MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
+        Document document = XMLHandler.loadXMLFile(this.getClass().getResourceAsStream("step.xml"));
+        IMetaStore metastore = null;
+        Node stepNode = (Node) document.getDocumentElement();
+        lm.loadXML(stepNode, Collections.EMPTY_LIST, metastore);
+        int[] codes = lm.getFieldFormatType();
+        assertEquals(3, codes[0]);
+        assertEquals(4, codes[1]);
+    }
 
-    PluginRegistry plugReg = PluginRegistry.getInstance();
+    @Test
+    public void testVariableSubstitution() throws KettleException {
+        lder.init(lmeta, ldata);
+        String is = null;
+        is = new String(ldata.quote);
+        assertEquals("'", is);
+        is = new String(ldata.separator);
+        assertEquals(",", is);
+        assertEquals("UTF8", ldata.bulkTimestampMeta.getStringEncoding());
+        assertEquals("UTF8", ldata.bulkDateMeta.getStringEncoding());
+        assertEquals("UTF8", ldata.bulkNumberMeta.getStringEncoding());
+        assertEquals("`someschema`.`sometable`", ldata.schemaTable);
+    }
 
-    String loaderPid = plugReg.getPluginId( StepPluginType.class, lm );
-    StepMeta stepMeta = new StepMeta( loaderPid, "loader", lm );
-    Trans trans = new Trans( transMeta );
-    transMeta.addStep( stepMeta );
-    trans.setRunning( true );
+    /**
+     * [PDI-17481] Testing the ability that if no connection is specified, we will mark it as a fail and log the
+     * appropriate reason to the user by throwing a KettleException.
+     */
+    @Test
+    public void testNoDatabaseConnection() {
+        lmeta.setDatabaseMeta(null);
+        assertFalse(lder.init(lmeta, ldata));
+        try {
+            // Verify that the database connection being set to null throws a KettleException with the following message.
+            lder.verifyDatabaseConnection();
+            // If the method does not throw a Kettle Exception, then the DB was set and not null for this test. Fail it.
+            fail("Database Connection is not null, this fails the test.");
+        } catch (KettleException aKettleException) {
+            assertThat(aKettleException.getMessage(), containsString("There is no connection defined in this step"));
+        }
+    }
 
-    loader = spy( new MySQLBulkLoader( stepMeta, ld, 1, transMeta, trans ) );
+    @Test
+    public void testEscapeCharacters() throws KettleException, IOException {
+        PluginRegistry.addPluginType(ValueMetaPluginType.getInstance());
+        PluginRegistry.init(false);
 
-    RowMeta rm = new RowMeta();
-    ValueMetaString vm = new ValueMetaString( "I don't want NPE!" );
-    rm.addValueMeta( vm );
-    RowMeta spyRowMeta = spy( new RowMeta() );
-    when( spyRowMeta.getValueMeta( anyInt() ) ).thenReturn( vm );
-    loader.setInputRowMeta( spyRowMeta );
+        MySQLBulkLoader loader;
+        MySQLBulkLoaderData ld = new MySQLBulkLoaderData();
+        MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
 
-    MySQLBulkLoaderMeta smi = new MySQLBulkLoaderMeta();
-    smi.setFieldStream( new String[] { "Test" } );
-    smi.setFieldFormatType( new int[] { MySQLBulkLoaderMeta.FIELD_FORMAT_TYPE_STRING_ESCAPE } );
-    smi.setEscapeChar( "\\" );
-    smi.setEnclosure( "\"" );
-    smi.setDatabaseMeta( mock( DatabaseMeta.class ) );
+        TransMeta transMeta = new TransMeta();
+        transMeta.setName("loader");
 
-    MySQLBulkLoaderData sdi = new MySQLBulkLoaderData();
-    sdi.keynrs = new int[1];
-    sdi.keynrs[0] = 0;
-    sdi.fifoStream = mock( OutputStream.class );
-    loader.init( smi, sdi );
-    loader.first = false;
+        PluginRegistry plugReg = PluginRegistry.getInstance();
 
-    when( loader.getRow() ).thenReturn( new String[] { "test\"Escape\\" } );
-    loader.processRow( smi, sdi );
-    verify( sdi.fifoStream, times( 1 ) ).write( "test\\\"Escape\\\\".getBytes() );
-  }
+        String loaderPid = plugReg.getPluginId(StepPluginType.class, lm);
+        StepMeta stepMeta = new StepMeta(loaderPid, "loader", lm);
+        Trans trans = new Trans(transMeta);
+        transMeta.addStep(stepMeta);
+        trans.setRunning(true);
 
-  /**
-   * Default conversion mask for Number column type should be calculated according to length and precision.
-   * For example, for type NUMBER(6,3) conversion mask should be: " #000.000;-#000.000"
-   */
-  @Test
-  public void testNumberFormatting() throws KettleException, IOException {
-    PluginRegistry.addPluginType( ValueMetaPluginType.getInstance() );
-    PluginRegistry.init( false );
+        loader = spy(new MySQLBulkLoader(stepMeta, ld, 1, transMeta, trans));
 
-    MySQLBulkLoader loader;
-    MySQLBulkLoaderData ld = new MySQLBulkLoaderData();
-    MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
+        RowMeta rm = new RowMeta();
+        ValueMetaString vm = new ValueMetaString("I don't want NPE!");
+        rm.addValueMeta(vm);
+        RowMeta spyRowMeta = spy(new RowMeta());
+        when(spyRowMeta.getValueMeta(anyInt())).thenReturn(vm);
+        loader.setInputRowMeta(spyRowMeta);
 
-    TransMeta transMeta = new TransMeta();
-    transMeta.setName( "loader" );
+        MySQLBulkLoaderMeta smi = new MySQLBulkLoaderMeta();
+        smi.setFieldStream(new String[] {"Test"});
+        smi.setFieldFormatType(new int[] {MySQLBulkLoaderMeta.FIELD_FORMAT_TYPE_STRING_ESCAPE});
+        smi.setEscapeChar("\\");
+        smi.setEnclosure("\"");
+        smi.setDatabaseMeta(mock(DatabaseMeta.class));
 
-    PluginRegistry plugReg = PluginRegistry.getInstance();
+        MySQLBulkLoaderData sdi = new MySQLBulkLoaderData();
+        sdi.keynrs = new int[1];
+        sdi.keynrs[0] = 0;
+        sdi.fifoStream = mock(OutputStream.class);
+        loader.init(smi, sdi);
+        loader.first = false;
 
-    String loaderPid = plugReg.getPluginId( StepPluginType.class, lm );
-    StepMeta stepMeta = new StepMeta( loaderPid, "loader", lm );
-    Trans trans = new Trans( transMeta );
-    transMeta.addStep( stepMeta );
-    trans.setRunning( true );
+        when(loader.getRow()).thenReturn(new String[] {"test\"Escape\\"});
+        loader.processRow(smi, sdi);
+        verify(sdi.fifoStream, times(1)).write("test\\\"Escape\\\\".getBytes());
+    }
 
-    loader = spy( new MySQLBulkLoader( stepMeta, ld, 1, transMeta, trans ) );
+    /**
+     * Default conversion mask for Number column type should be calculated according to length and precision.
+     * For example, for type NUMBER(6,3) conversion mask should be: " #000.000;-#000.000"
+     */
+    @Test @Ignore
+    public void testNumberFormatting() throws KettleException, IOException {
+        PluginRegistry.addPluginType(ValueMetaPluginType.getInstance());
+        PluginRegistry.init(false);
 
-    RowMeta rm = new RowMeta();
-    ValueMetaNumber vm = new ValueMetaNumber( "Test" );
-    rm.addValueMeta( vm );
-    RowMeta spyRowMeta = spy( new RowMeta() );
-    when( spyRowMeta.getValueMeta( anyInt() ) ).thenReturn( vm );
-    loader.setInputRowMeta( spyRowMeta );
+        MySQLBulkLoader loader;
+        MySQLBulkLoaderData ld = new MySQLBulkLoaderData();
+        MySQLBulkLoaderMeta lm = new MySQLBulkLoaderMeta();
 
-    MySQLBulkLoaderMeta smi = new MySQLBulkLoaderMeta();
-    smi.setFieldStream( new String[] { "Test" } );
-    smi.setFieldFormatType( new int[] { MySQLBulkLoaderMeta.FIELD_FORMAT_TYPE_OK } );
-    smi.setDatabaseMeta( mock( DatabaseMeta.class ) );
+        TransMeta transMeta = new TransMeta();
+        transMeta.setName("loader");
 
-    ValueMetaNumber vmn = new ValueMetaNumber( "Test" );
-    vmn.setLength( 6, 3 );
+        PluginRegistry plugReg = PluginRegistry.getInstance();
 
-    MySQLBulkLoaderData sdi = new MySQLBulkLoaderData();
-    sdi.keynrs = new int[1];
-    sdi.keynrs[0] = 0;
-    sdi.fifoStream = mock( OutputStream.class );
-    sdi.bulkFormatMeta = new ValueMetaInterface[] { vmn };
+        String loaderPid = plugReg.getPluginId(StepPluginType.class, lm);
+        StepMeta stepMeta = new StepMeta(loaderPid, "loader", lm);
+        Trans trans = new Trans(transMeta);
+        transMeta.addStep(stepMeta);
+        trans.setRunning(true);
 
-    loader.init( smi, sdi );
-    loader.first = false;
+        loader = spy(new MySQLBulkLoader(stepMeta, ld, 1, transMeta, trans));
 
-    when( loader.getRow() ).thenReturn( new Double[] { 1.023 } );
-    loader.processRow( smi, sdi );
-    verify( sdi.fifoStream, times( 1 ) ).write( " 001.023".getBytes() );
-    assertEquals( " #000.000;-#000.000", vmn.getDecimalFormat().toPattern() );
-  }
+        RowMeta rm = new RowMeta();
+        ValueMetaNumber vm = new ValueMetaNumber("Test");
+        rm.addValueMeta(vm);
+        RowMeta spyRowMeta = spy(new RowMeta());
+        when(spyRowMeta.getValueMeta(anyInt())).thenReturn(vm);
+        loader.setInputRowMeta(spyRowMeta);
+
+        MySQLBulkLoaderMeta smi = new MySQLBulkLoaderMeta();
+        smi.setFieldStream(new String[] {"Test"});
+        smi.setFieldFormatType(new int[] {MySQLBulkLoaderMeta.FIELD_FORMAT_TYPE_OK});
+        smi.setDatabaseMeta(mock(DatabaseMeta.class));
+
+        ValueMetaNumber vmn = new ValueMetaNumber("Test");
+        vmn.setLength(6, 3);
+
+        MySQLBulkLoaderData sdi = new MySQLBulkLoaderData();
+        sdi.keynrs = new int[1];
+        sdi.keynrs[0] = 0;
+        sdi.fifoStream = mock(OutputStream.class);
+        sdi.bulkFormatMeta = new ValueMetaInterface[] {vmn};
+
+        loader.init(smi, sdi);
+        loader.first = false;
+
+        when(loader.getRow()).thenReturn(new Double[] {1.023});
+        loader.processRow(smi, sdi);
+        verify(sdi.fifoStream, times(1)).write(" 001.023".getBytes());
+        assertEquals(" #000.000;-#000.000", vmn.getDecimalFormat().toPattern());
+    }
 }

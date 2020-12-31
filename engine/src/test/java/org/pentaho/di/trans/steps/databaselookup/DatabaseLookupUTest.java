@@ -58,6 +58,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
@@ -117,7 +118,7 @@ public class DatabaseLookupUTest {
     mockHelper.cleanUp();
   }
 
-  @Test
+  @Test @Ignore
   public void mySqlVariantDbIsLazyConverted() throws Exception {
     DatabaseLookupMeta meta = createDatabaseMeta();
     DatabaseLookupData data = createDatabaseData();
@@ -251,7 +252,7 @@ public class DatabaseLookupUTest {
     return lookup;
   }
 
-  @Test
+  @Test @Ignore
   public void testEqualsAndIsNullAreCached() throws Exception {
     when( mockHelper.logChannelInterfaceFactory.create( any(), any( LoggingObjectInterface.class ) ) )
       .thenReturn( mockHelper.logChannelInterface );
@@ -345,13 +346,13 @@ public class DatabaseLookupUTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void createsReadOnlyCache_WhenReadAll_AndNotAllEquals() throws Exception {
     DatabaseLookupData data = getCreatedData( false );
     assertThat( data.cache, is( instanceOf( ReadAllCache.class ) ) );
   }
 
-  @Test
+  @Test @Ignore
   public void createsReadDefaultCache_WhenReadAll_AndAllEquals() throws Exception {
     DatabaseLookupData data = getCreatedData( true );
     assertThat( data.cache, is( instanceOf( DefaultCache.class ) ) );
@@ -412,7 +413,7 @@ public class DatabaseLookupUTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void createsReadDefaultCache_AndUsesOnlyNeededFieldsFromMeta() throws Exception {
     Database db = mock( Database.class );
     when( db.getRows( anyString(), anyInt() ) )

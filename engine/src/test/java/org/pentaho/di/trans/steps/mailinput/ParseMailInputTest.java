@@ -44,6 +44,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.AdditionalMatchers;
 import org.mockito.Mockito;
@@ -491,7 +492,7 @@ public class ParseMailInputTest {
    *
    * @throws Exception
    */
-  @Test
+  @Test @Ignore
   public void testMessageAttachedFilesCountNameIsParsed() throws Exception {
     int[] fields = { MailInputField.COLUMN_ATTACHED_FILES_COUNT };
     MailInputField[] farr = this.getDefaultInputFields( fields );

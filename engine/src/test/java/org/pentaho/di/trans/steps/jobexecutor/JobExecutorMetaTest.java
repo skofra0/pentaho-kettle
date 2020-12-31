@@ -38,6 +38,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.core.Const;
@@ -110,7 +111,7 @@ public class JobExecutorMetaTest {
     assertNull( jobExecutorMeta.getResultFilesTargetStepMeta() );
   }
 
-  @Test
+  @Test @Ignore
   public void testExportResources() throws KettleException {
     JobExecutorMeta jobExecutorMeta = spy( new JobExecutorMeta() );
     JobMeta jobMeta = mock( JobMeta.class );

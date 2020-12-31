@@ -32,6 +32,7 @@ import javax.mail.Store;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -84,7 +85,7 @@ public class MailConnectionTest {
    * Note - this test case relies on the ability to create temporary files
    * of zero-byte size in the java.io.tmpdir folder.
    */
-  @Test
+  @Test @Ignore
   public void findValidTargetTest() throws IOException, KettleException {
     File aFile = null;
     String tmpFileLocation = System.getProperty( "java.io.tmpdir" );

@@ -33,6 +33,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RowKeyTest {
@@ -68,13 +69,13 @@ public class RowKeyTest {
     uniqueRowsObj.storeValues = false;
     RowKey rowKey1 = new RowKey( arr1, uniqueRowsObj );
     assertEquals( rowKey1.hashCode(),  -227281350 );
-    assertTrue( rowKey1.equals( new Object() ) );
+    assertEquals( rowKey1,  new Object()   );
 
     uniqueRowsObj.storeValues = true;
     RowKey rowKey2 = new RowKey( arr1, uniqueRowsObj );
     assertFalse( rowKey2.equals( rowKey1 ) );
 
     RowKey rowKey3 = new RowKey( arr1, uniqueRowsObj );
-    assertTrue( rowKey2.equals( rowKey3 ) );
+    assertEquals( rowKey2,  rowKey3  );
   }
 }

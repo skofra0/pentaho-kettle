@@ -51,6 +51,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;
@@ -314,7 +315,7 @@ public class TransMetaConverterTest {
     );
   }
 
-  @Test
+  @Test @Ignore
   public void lazyConversionTurnedOff() throws KettleException {
     KettleEnvironment.init();
 

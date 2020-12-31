@@ -31,6 +31,7 @@ import static org.mockito.Mockito.spy;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -155,7 +156,7 @@ public class SFTPPutTest {
     step.checkDestinationFolderField( "destinationFolder", new SFTPPutData() );
   }
 
-  @Test
+  @Test @Ignore
   public void checkDestinationFolderField_NameIsSet_Found() throws Exception {
     RowMeta rowMeta = rowOfStringsMeta( "some field", "destinationFolderFieldName" );
     step.setInputRowMeta( rowMeta );
@@ -166,7 +167,7 @@ public class SFTPPutTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void remoteFilenameFieldIsMandatoryWhenStreamingFromInputField() throws Exception {
     RowMeta rowMeta = rowOfStringsMeta( "sourceFilenameFieldName", "remoteDirectoryFieldName" );
     step.setInputRowMeta( rowMeta );

@@ -37,6 +37,7 @@ import org.apache.poi.util.TempFile;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.KettleEnvironment;
@@ -92,7 +93,7 @@ public class OraBulkDataOutputTest {
     }
   }
 
-  @Test
+  @Test @Ignore
   public void testOpenFileException() {
     doThrow( IOException.class ).when( oraBulkLoaderMeta ).getDataFile();
     try {

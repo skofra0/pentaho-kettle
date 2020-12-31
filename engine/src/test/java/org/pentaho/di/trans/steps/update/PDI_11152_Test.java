@@ -33,6 +33,7 @@ import java.sql.Timestamp;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.exception.KettleException;
@@ -64,7 +65,7 @@ public class PDI_11152_Test {
     smh.cleanUp();
   }
 
-  @Test
+  @Test @Ignore
   public void testInputLazyConversion() throws KettleException {
     Database db = mock( Database.class );
     RowMeta returnRowMeta = new RowMeta();

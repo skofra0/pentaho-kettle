@@ -135,7 +135,7 @@ public class MSSQLServerDatabaseMetaTest {
     assertTrue( nativeMeta.supportsSequenceNoMaxValueOption() );
     assertFalse( nativeMeta.useSafePoints() );
     assertTrue( nativeMeta.supportsErrorHandlingOnBatchUpdates() );
-    assertEquals( 8000, nativeMeta.getMaxVARCHARLength() );
+    assertEquals( 4000, nativeMeta.getMaxVARCHARLength() );
   }
 
 
@@ -155,10 +155,10 @@ public class MSSQLServerDatabaseMetaTest {
     assertEquals( "ALTER TABLE FOO DROP COLUMN BAR" + lineSep,
         nativeMeta.getDropColumnStatement( "FOO", new ValueMetaString( "BAR", 15, 0 ), "", false, "", true ) );
 
-    assertEquals( "ALTER TABLE FOO ALTER COLUMN BAR VARCHAR(15)",
+    assertEquals( "ALTER TABLE FOO ALTER COLUMN BAR NVARCHAR(15)",
         nativeMeta.getModifyColumnStatement( "FOO", new ValueMetaString( "BAR", 15, 0 ), "", false, "", true ) );
 
-    assertEquals( "ALTER TABLE FOO ALTER COLUMN BAR VARCHAR(100)",
+    assertEquals( "ALTER TABLE FOO ALTER COLUMN BAR NVARCHAR(100)",
         nativeMeta.getModifyColumnStatement( "FOO", new ValueMetaString( "BAR" ), "", false, "", true ) );
 
     odbcMeta.setSupportsBooleanDataType( true ); // some subclass of the MSSQL meta probably ...
@@ -206,10 +206,10 @@ public class MSSQLServerDatabaseMetaTest {
     assertEquals( "DECIMAL(21,4)",
         nativeMeta.getFieldDefinition( new ValueMetaBigNumber( "BAR", 21, 4 ), "", "", false, false, false ) );
 
-    assertEquals( "TEXT",
+    assertEquals( "NVARCHAR(MAX)",
         nativeMeta.getFieldDefinition( new ValueMetaString( "BAR", nativeMeta.getMaxVARCHARLength() + 2, 0 ), "", "", false, false, false ) );
 
-    assertEquals( "VARCHAR(15)",
+    assertEquals( "NVARCHAR(15)",
         nativeMeta.getFieldDefinition( new ValueMetaString( "BAR", 15, 0 ), "", "", false, false, false ) );
 
     assertEquals( "FLOAT(53)",

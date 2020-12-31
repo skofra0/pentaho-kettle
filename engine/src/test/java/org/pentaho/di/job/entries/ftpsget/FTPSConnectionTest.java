@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -10,7 +11,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -55,76 +56,66 @@ import org.pentaho.di.job.entries.ftpsget.ftp4che.SecureDataFTPConnection;
 
 public class FTPSConnectionTest {
 
-  @Test
-  public void testEnforceProtP() throws Exception {
-    FTPSTestConnection connection = spy(
-        new FTPSTestConnection(
-          FTPSConnection.CONNECTION_TYPE_FTP_IMPLICIT_TLS_WITH_CRYPTED,
-          "the.perfect.host", 2010, "warwickw", "julia", null ) );
-    connection.replies.put( "PWD", new Reply( Arrays.asList( "257 \"/la\" is current directory" ) ) );
-    connection.connect();
-    connection.getFileNames();
-    assertEquals( "buffer not set", "PBSZ 0\r\n", connection.commands.get( 1 ).toString() );
-    assertEquals( "data privacy not set", "PROT P\r\n", connection.commands.get( 2 ).toString() );
-  }
-
-  @Test
-  public void testEnforceProtPOnPut() throws Exception {
-    FileObject file = KettleVFS.createTempFile( "FTPSConnectionTest_testEnforceProtPOnPut", KettleVFS.Suffix.TMP);
-    file.createFile();
-    try {
-      FTPSTestConnection connection = spy(
-        new FTPSTestConnection(
-          FTPSConnection.CONNECTION_TYPE_FTP_IMPLICIT_TLS_WITH_CRYPTED,
-          "the.perfect.host", 2010, "warwickw", "julia", null ) );
-      connection.replies.put( "PWD", new Reply( Arrays.asList( "257 \"/la\" is current directory" ) ) );
-      connection.connect();
-      connection.uploadFile( file.getPublicURIString(), "uploaded-file" );
-      assertEquals( "buffer not set", "PBSZ 0\r\n", connection.commands.get( 0 ).toString() );
-      assertEquals( "data privacy not set", "PROT P\r\n", connection.commands.get( 1 ).toString() );
-    } finally {
-      file.delete();
-    }
-  }
-
-  static class FTPSTestConnection extends FTPSConnection {
-    public List<Command> commands = new ArrayList<>();
-    public SocketProvider connectionSocketProvider;
-    public Map<String, Reply> replies = new HashMap<>();
-
-    public FTPSTestConnection( int connectionType, String hostname, int port, String username, String password,
-        VariableSpace nameSpace ) {
-      super( connectionType, hostname, port, username, password, nameSpace );
+    @Test
+    public void testEnforceProtP() throws Exception {
+        FTPSTestConnection connection = spy(new FTPSTestConnection(FTPSConnection.CONNECTION_TYPE_FTP_IMPLICIT_TLS_WITH_CRYPTED, "the.perfect.host", 2010, "warwickw", "julia", null));
+        connection.replies.put("PWD", new Reply(Arrays.asList("257 \"/la\" is current directory")));
+        connection.connect();
+        connection.getFileNames();
+        assertEquals("buffer not set", "PBSZ 0\r\n", connection.commands.get(1).toString());
+        assertEquals("data privacy not set", "PROT P\r\n", connection.commands.get(2).toString());
     }
 
-    @Override
-    protected FTPConnection getSecureDataFTPConnection( FTPConnection connection, String password, int timeout )
-      throws ConfigurationException {
-      return new SecureDataFTPConnection( connection, password, timeout ) {
-        private Reply dummyReply = new Reply();
+    @Test
+    public void testEnforceProtPOnPut() throws Exception {
+        FileObject file = KettleVFS.createTempFile("FTPSConnectionTest_testEnforceProtPOnPut", KettleVFS.Suffix.TMP);
+        file.createFile();
+        try {
+            FTPSTestConnection connection = spy(new FTPSTestConnection(FTPSConnection.CONNECTION_TYPE_FTP_IMPLICIT_TLS_WITH_CRYPTED, "the.perfect.host", 2010, "warwickw", "julia", null));
+            connection.replies.put("PWD", new Reply(Arrays.asList("257 \"/la\" is current directory")));
+            connection.connect();
+            connection.uploadFile(file.getPublicURIString(), "uploaded-file");
+            assertEquals("buffer not set", "PBSZ 0\r\n", connection.commands.get(0).toString());
+            assertEquals("data privacy not set", "PROT P\r\n", connection.commands.get(1).toString());
+        } finally {
+            file.delete();
+        }
+    }
 
-        @Override
-        public void connect() throws NotConnectedException, IOException, AuthenticationNotSupportedException,
-          FtpIOException, FtpWorkflowException {
-          socketProvider = mock( SocketProvider.class );
-          when( socketProvider.socket() ).thenReturn( mock( Socket.class ) );
-          when( socketProvider.read( any() ) ).thenReturn( -1 );
-          connectionSocketProvider = socketProvider;
-          factory = new FTPFileFactory( "UNIX" );
+    static class FTPSTestConnection extends FTPSConnection {
+        public List<Command> commands = new ArrayList<>();
+        public SocketProvider connectionSocketProvider;
+        public Map<String, Reply> replies = new HashMap<>();
+
+        public FTPSTestConnection(int connectionType, String hostname, int port, String username, String password, VariableSpace nameSpace) {
+            super(connectionType, hostname, port, username, password, nameSpace);
         }
 
         @Override
-        public SocketProvider sendPortCommand( Command command, Reply commandReply )
-          throws IOException, FtpWorkflowException, FtpIOException {
-          return socketProvider;
-        }
+        protected FTPConnection getSecureDataFTPConnection(FTPConnection connection, String password, int timeout) throws ConfigurationException {
+            return new SecureDataFTPConnection(connection, password, timeout) {
+                private Reply dummyReply = new Reply();
 
-        @Override
-        public Reply sendCommand( Command cmd ) throws IOException {
-          commands.add( cmd );
-          return Optional.ofNullable( replies.get( cmd.getCommand() ) ).orElse( dummyReply );
+                @Override
+                public void connect() throws NotConnectedException, IOException, AuthenticationNotSupportedException, FtpIOException, FtpWorkflowException {
+                    socketProvider = mock(SocketProvider.class);
+                    when(socketProvider.socket()).thenReturn(mock(Socket.class));
+                    when(socketProvider.read(any())).thenReturn(-1);
+                    connectionSocketProvider = socketProvider;
+                    factory = new FTPFileFactory("UNIX");
+                }
+
+                @Override
+                public SocketProvider sendPortCommand(Command command, Reply commandReply) throws IOException, FtpWorkflowException, FtpIOException {
+                    return socketProvider;
+                }
+
+                @Override
+                public Reply sendCommand(Command cmd) throws IOException {
+                    commands.add(cmd);
+                    return Optional.ofNullable(replies.get(cmd.getCommand())).orElse(dummyReply);
+                }
+            };
         }
-      };
     }
-  }
 }

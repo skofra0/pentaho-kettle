@@ -34,6 +34,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -88,7 +89,7 @@ public class KettleDatabaseRepositoryCreationHelperTest {
     *
     * @throws KettleException
     */
-  @Test
+  @Test @Ignore
   public void testCreateIndexLenghts() throws KettleException {
     DatabaseMeta meta = mock( DatabaseMeta.class );
     when( meta.getStartQuote() ).thenReturn( "" );

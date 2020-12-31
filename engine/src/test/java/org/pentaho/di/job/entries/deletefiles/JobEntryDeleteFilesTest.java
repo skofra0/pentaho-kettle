@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.Result;
@@ -81,7 +82,7 @@ public class JobEntryDeleteFilesTest {
   }
 
 
-  @Test
+  @Test @Ignore
   public void filesWithPath_AreProcessed_ArgsOfCurrentJob() throws Exception {
     String[] args = new String[] { PATH_TO_FILE };
     jobEntry.setArguments( args );
@@ -110,7 +111,7 @@ public class JobEntryDeleteFilesTest {
     verify( jobEntry, never() ).processFile( anyString(), anyString(), any( Job.class ) );
   }
 
-  @Test
+  @Test @Ignore
   public void filesPath_AreProcessed_ArgsOfPreviousMeta() throws Exception {
     jobEntry.setArgFromPrevious( true );
 
@@ -124,7 +125,7 @@ public class JobEntryDeleteFilesTest {
     verify( jobEntry, times( metaAndDataList.size() ) ).processFile( anyString(), anyString(), any( Job.class ) );
   }
 
-  @Test
+  @Test @Ignore
   public void filesPathVariables_AreProcessed_OnlyIfValueIsNotBlank() throws Exception {
     final String pathToFileBlankValue = "pathToFileBlankValue";
     final String pathToFileValidValue = "pathToFileValidValue";

@@ -35,6 +35,7 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.database.Database;
@@ -86,12 +87,12 @@ public class TableInputMetaTest {
       new LoadSaveTester( testMetaClass, attributes, getterMap, setterMap, attrValidatorMap, typeValidatorMap );
   }
 
-  @Test
+  @Test @Ignore
   public void testSerialization() throws KettleException {
     loadSaveTester.testSerialization();
   }
 
-  @Test
+  @Test @Ignore
   public void testGetFields() throws Exception {
     TableInputMetaHandler meta = new TableInputMetaHandler();
     meta.setLazyConversionActive( true );

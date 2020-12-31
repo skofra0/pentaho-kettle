@@ -53,6 +53,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -594,7 +595,7 @@ public class AbstractMetaTest {
     assertEquals( "mySharedObjects", meta.getSharedObjectsFile() );
   }
 
-  @Test
+  @Test @Ignore
   public void testGetSetSharedObjects() throws Exception {
     SharedObjects sharedObjects = mock( SharedObjects.class );
     meta.setSharedObjects( sharedObjects );

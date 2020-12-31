@@ -41,8 +41,8 @@ public class MSSQLServerDatabaseMeta_FieldDefinitionTest {
   private static final String STRING_BIGINT = "BIGINT";
   private static final String STRING_DECIMAL = "DECIMAL";
   private static final String STRING_FLOAT = "FLOAT";
-  private static final String STRING_VARCHAR = "VARCHAR";
-  private static final String STRING_TEXT = "TEXT";
+  private static final String STRING_VARCHAR = "NVARCHAR";
+  private static final String STRING_TEXT = "NVARCHAR(MAX)";
 
 
   @Before

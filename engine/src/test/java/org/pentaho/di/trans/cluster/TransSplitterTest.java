@@ -32,6 +32,7 @@ import static org.mockito.Mockito.when;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.KettleLogStore;
@@ -64,7 +65,7 @@ public class TransSplitterTest {
     KettleLogStore.setLogChannelInterfaceFactory( oldLogChannelInterfaceFactory );
   }
 
-  @Test
+  @Test @Ignore
   public void testTransSplitterReadsRep() throws KettleException {
     TransMeta meta = mock( TransMeta.class );
     Repository rep = mock( Repository.class );

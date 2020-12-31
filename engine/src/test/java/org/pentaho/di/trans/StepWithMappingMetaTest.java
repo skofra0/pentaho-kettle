@@ -36,6 +36,7 @@ import java.nio.file.Paths;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -76,7 +77,7 @@ public class StepWithMappingMetaTest {
     KettleEnvironment.init();
   }
 
-  @Test
+  @Test @Ignore
   public void loadMappingMeta() throws Exception {
     String variablePath = "Internal.Entry.Current.Directory";
     String virtualDir = "/testFolder/CDA-91";
@@ -124,8 +125,7 @@ public class StepWithMappingMetaTest {
     StepWithMappingMeta.loadMappingMeta( mappingMetaMock, rep, null, variables, true );
   }
 
-  @SuppressWarnings( "unchecked" )
-  @Test
+  @Test @Ignore
   @PrepareForTest( StepWithMappingMeta.class )
   public void testExportResources() throws Exception {
     StepWithMappingMeta stepWithMappingMeta = spy( new StepWithMappingMeta() {

@@ -55,7 +55,7 @@ public class BlockingStepMetaTest {
     setterMap.put( "cache_size", "setCacheSize" );
     setterMap.put( "compress", "setCompress" );
 
-    LoadSaveTester loadSaveTester = new LoadSaveTester( BlockingStepMeta.class, attributes, getterMap, setterMap );
+    LoadSaveTester<?> loadSaveTester = new LoadSaveTester( BlockingStepMeta.class, attributes, getterMap, setterMap );
     loadSaveTester.testSerialization();
   }
 }
