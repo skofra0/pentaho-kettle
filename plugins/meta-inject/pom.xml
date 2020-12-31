@@ -32,7 +32,7 @@
     <batik-js.version>1.8</batik-js.version>
     <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
     <maven-bundle-plugin.version>2.3.7</maven-bundle-plugin.version>
-    <powermock.version>2.0.7</powermock.version>
+    <powermock.version>2.0.9</powermock.version>
     <commons-configuration.revision>1.9</commons-configuration.revision>
   </properties>
 

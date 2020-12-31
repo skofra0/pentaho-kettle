@@ -84,7 +84,7 @@
 
 		<!-- SKOFRA  -->
         <deem-etl.version>6.1.0.120</deem-etl.version>
-        <deem.version>5.1.66</deem.version>
+        <deem.version>5.1.67</deem.version>
 	    <fasterxml-jackson.version>2.11.0</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.11.0</fasterxml-jackson-databind.version>
 		<commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -109,9 +109,11 @@
         
 	    
 		<!-- Test dependencies -->
-		<mockito.version>2.28.2</mockito.version>
-		<powermock.version>2.0.7</powermock.version>
+<!-- 		<mockito.version>2.28.2</mockito.version> -->
+		<mockito.version>3.6.28</mockito.version>
+		<powermock.version>2.0.9</powermock.version>
 		<hamcrest.version>2.2</hamcrest.version>
+		
 	</properties>
 
 	<dependencyManagement>
@@ -280,6 +282,11 @@
 				<artifactId>powermock-api-mockito2</artifactId>
 				<version>${powermock.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.2.3</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
