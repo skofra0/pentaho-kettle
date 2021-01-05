@@ -56,7 +56,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.pentaho.di.core.KettleClientEnvironment;
 import org.pentaho.di.core.KettleEnvironment;
@@ -101,7 +101,7 @@ public class TransMetaConverterTest {
 
   @Before
   public void before() throws KettleException {
-    when( stepMetaInterface.getXML() ).thenReturn( XML );
+    // @Ignore when( stepMetaInterface.getXML() ).thenReturn( XML );
   }
 
   @BeforeClass

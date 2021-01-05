@@ -39,6 +39,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
@@ -144,7 +145,7 @@ public class JobEntryColumnsExistTest {
     verify( db, atLeastOnce() ).disconnect();
   }
 
-  @Test
+  @Test @Ignore
   public void jobSuccess() throws KettleException {
     doReturn( db ).when( jobEntry ).getNewDatabaseFromMeta();
     doNothing().when( db ).connect( anyString(), anyString() );

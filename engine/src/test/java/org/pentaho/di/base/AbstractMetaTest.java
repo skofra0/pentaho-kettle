@@ -27,7 +27,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -57,7 +56,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.NotePadMeta;
 import org.pentaho.di.core.Props;
@@ -235,7 +234,7 @@ public class AbstractMetaTest {
     assertEquals( db3, meta.getDatabase( 2 ) );
     assertEquals( 2, meta.indexOfDatabase( db3 ) );
     DatabaseMeta db4 = mock( DatabaseMeta.class );
-    when( db4.getName() ).thenReturn( "db4" );
+//    when( db4.getName() ).thenReturn( "db4" );
     meta.addDatabase( 3, db4 );
     assertEquals( 4, meta.nrDatabases() );
     assertEquals( db4, meta.getDatabase( 3 ) );
@@ -318,14 +317,14 @@ public class AbstractMetaTest {
     meta.addContentChangedListener( listener );
     assertFalse( meta.getContentChangedListeners().isEmpty() );
     meta.fireContentChangedListeners();
-    verify( listener, times( 1 ) ).contentChanged( anyObject() );
-    verify( listener, never() ).contentSafe( anyObject() );
+    verify( listener, times( 1 ) ).contentChanged( any() );
+    verify( listener, never() ).contentSafe( any() );
     meta.fireContentChangedListeners( true );
-    verify( listener, times( 2 ) ).contentChanged( anyObject() );
-    verify( listener, never() ).contentSafe( anyObject() );
+    verify( listener, times( 2 ) ).contentChanged( any() );
+    verify( listener, never() ).contentSafe( any() );
     meta.fireContentChangedListeners( false );
-    verify( listener, times( 2 ) ).contentChanged( anyObject() );
-    verify( listener, times( 1 ) ).contentSafe( anyObject() );
+    verify( listener, times( 2 ) ).contentChanged( any() );
+    verify( listener, times( 1 ) ).contentSafe( any() );
     meta.removeContentChangedListener( listener );
     assertTrue( meta.getContentChangedListeners().isEmpty() );
   }
@@ -646,7 +645,7 @@ public class AbstractMetaTest {
     verify( observer, never() ).update( meta, event );
     meta.setChanged( true );
     meta.notifyObservers( event );
-    verify( observer, times( 1 ) ).update( any( ChangedFlagInterface.class ), anyObject() );
+    verify( observer, times( 1 ) ).update( any( ChangedFlagInterface.class ), any() );
   }
 
   @Test
@@ -713,7 +712,7 @@ public class AbstractMetaTest {
     assertNotNull( meta.listVariables() );
     VariableSpace newVars = mock( VariableSpace.class );
     when( newVars.getVariable( "var2" ) ).thenReturn( "y" );
-    when( newVars.listVariables() ).thenReturn( new String[]{ "var2" } );
+  //  when( newVars.listVariables() ).thenReturn( new String[]{ "var2" } );
     meta.shareVariablesWith( newVars );
     assertEquals( "y", meta.getVariable( "var2" ) );
     Map<String, String> props = new HashMap<>();

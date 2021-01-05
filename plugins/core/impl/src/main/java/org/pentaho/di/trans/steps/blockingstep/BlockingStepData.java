@@ -49,11 +49,11 @@ public class BlockingStepData extends BaseStepData implements StepDataInterface 
   public BlockingStepData() {
     super();
 
-    buffer = new ArrayList<Object[]>( BlockingStepMeta.CACHE_SIZE );
-    files = new ArrayList<FileObject>();
-    fis = new ArrayList<InputStream>();
-    dis = new ArrayList<DataInputStream>();
-    gzis = new ArrayList<GZIPInputStream>();
-    rowbuffer = new ArrayList<Object[]>();
+    buffer = new ArrayList<>( BlockingStepMeta.CACHE_SIZE );
+    files = new ArrayList<>();
+    fis = new ArrayList<>();
+    dis = new ArrayList<>();
+    gzis = new ArrayList<>();
+    rowbuffer = new ArrayList<>();
   }
 }

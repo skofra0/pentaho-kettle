@@ -37,7 +37,6 @@ import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.junit.rules.RestorePDIEngineEnvironment;
-import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.loadsave.LoadSaveTester;
 import org.pentaho.di.trans.steps.loadsave.initializer.InitializerInterface;
 import org.pentaho.di.trans.steps.loadsave.validator.ArrayLoadSaveValidator;
@@ -48,8 +47,8 @@ import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveBooleanArrayLoadSa
 import org.pentaho.di.trans.steps.loadsave.validator.PrimitiveIntArrayLoadSaveValidator;
 import org.pentaho.di.trans.steps.loadsave.validator.StringLoadSaveValidator;
 
-public class ScriptMetaTest implements InitializerInterface<StepMetaInterface> {
-    LoadSaveTester loadSaveTester;
+public class ScriptMetaTest implements InitializerInterface<ScriptMeta> {
+    LoadSaveTester<ScriptMeta> loadSaveTester;
     Class<ScriptMeta> testMetaClass = ScriptMeta.class;
     @ClassRule
     public static RestorePDIEngineEnvironment env = new RestorePDIEngineEnvironment();
@@ -97,11 +96,11 @@ public class ScriptMetaTest implements InitializerInterface<StepMetaInterface> {
 
         Map<String, FieldLoadSaveValidator<?>> typeValidatorMap = new HashMap<String, FieldLoadSaveValidator<?>>();
 
-        loadSaveTester = new LoadSaveTester(testMetaClass, attributes, new ArrayList<String>(), new ArrayList<String>(), getterMap, setterMap, attrValidatorMap, typeValidatorMap, this);
+        loadSaveTester = new LoadSaveTester<>(testMetaClass, attributes, new ArrayList<>(), new ArrayList<>(), getterMap, setterMap, attrValidatorMap, typeValidatorMap, this);
     }
 
     // Call the allocate method on the LoadSaveTester meta class
-    public void modify(StepMetaInterface someMeta) {
+    public void modify(ScriptMeta someMeta) {
         if (someMeta instanceof ScriptMeta) {
             ((ScriptMeta) someMeta).allocate(5);
         }
@@ -134,4 +133,5 @@ public class ScriptMetaTest implements InitializerInterface<StepMetaInterface> {
         }
     }
 
+   
 }

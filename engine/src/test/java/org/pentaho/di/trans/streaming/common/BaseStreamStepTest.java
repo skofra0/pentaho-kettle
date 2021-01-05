@@ -44,7 +44,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.ObjectLocationSpecificationMethod;
 import org.pentaho.di.core.Result;
@@ -129,13 +129,13 @@ public class BaseStreamStepTest {
     }
 
     when( meta.getParentStepMeta() ).thenReturn( parentStepMeta );
-    when( metaWithVariables.getFileName() ).thenReturn( "noSuchFilename.ktr" );
+//    when( metaWithVariables.getFileName() ).thenReturn( "noSuchFilename.ktr" );
     when( meta.withVariables( baseStreamStep ) ).thenReturn( metaWithVariables );
     baseStreamStep.getParentVariableSpace()
       .setVariable( "Internal.Entry.Current.Directory",
         testFile.getParentFile().getAbsolutePath() );
 
-    when( metaWithVariables.getSpecificationMethod() ).thenReturn( ObjectLocationSpecificationMethod.FILENAME );
+//    when( metaWithVariables.getSpecificationMethod() ).thenReturn( ObjectLocationSpecificationMethod.FILENAME );
     when( meta.getSpecificationMethod() ).thenReturn( ObjectLocationSpecificationMethod.FILENAME );
     when( meta.getFileName() ).thenReturn( "${Internal.Entry.Current.Directory}/" + testFile.getName() );
 
