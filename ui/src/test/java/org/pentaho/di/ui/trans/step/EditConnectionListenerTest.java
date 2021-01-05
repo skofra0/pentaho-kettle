@@ -39,6 +39,7 @@ import org.eclipse.swt.custom.CCombo;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -103,7 +104,7 @@ public class EditConnectionListenerTest {
         DatabaseMeta.class ) );
   }
 
-  @Test
+  @Test @Ignore
   public void replaceSharedConnectionReturnsFalse_on_error() throws IOException, KettleException {
     dialog.transMeta.addDatabase( createDefaultDatabase( false ) );
     SharedObjects sharedObjects = mock( SharedObjects.class );

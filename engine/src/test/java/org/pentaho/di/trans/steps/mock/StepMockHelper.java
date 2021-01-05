@@ -98,7 +98,7 @@ public class StepMockHelper<Meta extends StepMetaInterface, Data extends StepDat
                 return i < rows.size() ? rows.get(i) : null;
             }
         };
-        when(rowSet.getRowWait(anyLong(), any(TimeUnit.class))).thenAnswer(answer);
+        Mockito.lenient().when(rowSet.getRowWait(anyLong(), any(TimeUnit.class))).thenAnswer(answer);
         when(rowSet.getRow()).thenAnswer(answer);
         when(rowSet.isDone()).thenAnswer(new Answer<Boolean>() {
 

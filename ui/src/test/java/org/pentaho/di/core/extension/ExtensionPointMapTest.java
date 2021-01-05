@@ -54,17 +54,17 @@ public class ExtensionPointMapTest {
 
   @Test
   public void constructorTest() throws Exception {
-    PluginRegistry.getInstance().registerPlugin( ExtensionPointPluginType.class, pluginInterface );
-    assertEquals( 4, ExtensionPointMap.getInstance().getNumberOfRows() );
+      PluginRegistry.getInstance().registerPlugin(ExtensionPointPluginType.class, pluginInterface);
+      assertEquals(1, ExtensionPointMap.getInstance().getNumberOfRows());
 
-    PluginRegistry.getInstance().registerPlugin( ExtensionPointPluginType.class, pluginInterface );
-    assertEquals( 4, ExtensionPointMap.getInstance().getNumberOfRows() );
+      PluginRegistry.getInstance().registerPlugin(ExtensionPointPluginType.class, pluginInterface);
+      assertEquals(1, ExtensionPointMap.getInstance().getNumberOfRows());
 
-    PluginRegistry.getInstance().removePlugin( ExtensionPointPluginType.class, pluginInterface );
-    assertEquals( 3, ExtensionPointMap.getInstance().getNumberOfRows() );
+      PluginRegistry.getInstance().removePlugin(ExtensionPointPluginType.class, pluginInterface);
+      assertEquals(0, ExtensionPointMap.getInstance().getNumberOfRows());
 
-    // Verify lazy loading
-    verify( pluginInterface, never() ).loadClass( any( Class.class ) );
+      // Verify lazy loading
+      verify(pluginInterface, never()).loadClass(any(Class.class));
   }
 
   @Test

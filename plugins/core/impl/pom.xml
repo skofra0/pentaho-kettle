@@ -13,7 +13,9 @@
   <name>PDI Core Plugins Impl</name>
 
   <properties>
-    <mockito.version>2.28.2</mockito.version>
+		<!--  <mockito.version>2.28.2</mockito.version> -->
+		<mockito.version>3.6.28</mockito.version>
+    
   </properties>
 
   <dependencies>

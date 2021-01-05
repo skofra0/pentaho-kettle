@@ -17,10 +17,6 @@
 
 	<name>PDI Engine Configuration Plugin Implementation</name>
 
-	<properties>
-		<dependency.mockito.version>1.9.5</dependency.mockito.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>pentaho-kettle</groupId>

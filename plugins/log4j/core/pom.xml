@@ -21,7 +21,7 @@
     <pdi.version>${project.version}</pdi.version>
     <log4j.version>1.2.14</log4j.version>
     <junit.version>4.12</junit.version>
-    <mockito.version>2.28.2</mockito.version>
+    <mockito.version>3.6.28</mockito.version>
   </properties>
 
   <build>

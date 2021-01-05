@@ -28,6 +28,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.pentaho.di.ui.spoon.delegates.SpoonDelegates;
@@ -56,7 +57,7 @@ public class SpoonActiveJobGraphTest {
     assertNull( actualJobGraph );
   }
 
-  @Test
+  @Test @Ignore
   public void returnActiveJobGraphIfJobTabExists() {
     TabMapEntry tabMapEntry = mock( TabMapEntry.class );
     JobGraph jobGraph = mock( JobGraph.class );

@@ -86,14 +86,14 @@ public class JsonOutputAnalyzerTest {
 
     mockFactory = new MetaverseObjectFactory();
     when( mockBuilder.getMetaverseObjectFactory() ).thenReturn( mockFactory );
-    when( mockNamespace.getParentNamespace() ).thenReturn( mockNamespace );
+//    when( mockNamespace.getParentNamespace() ).thenReturn( mockNamespace );
 
     analyzer = new JsonOutputAnalyzer() {};
     analyzer.setMetaverseBuilder( mockBuilder );
 
-    when( mockJsonOutput.getStepMetaInterface() ).thenReturn( meta );
-    when( mockJsonOutput.getStepMeta() ).thenReturn( mockStepMeta );
-    when( mockStepMeta.getStepMetaInterface() ).thenReturn( meta );
+//    when( mockJsonOutput.getStepMetaInterface() ).thenReturn( meta );
+//    when( mockJsonOutput.getStepMeta() ).thenReturn( mockStepMeta );
+//    when( mockStepMeta.getStepMetaInterface() ).thenReturn( meta );
 
     Whitebox.setInternalState( ExternalResourceCache.getInstance(), "transMap", new ConcurrentHashMap() );
     Whitebox.setInternalState( ExternalResourceCache.getInstance(), "resourceMap", new ConcurrentHashMap() );
@@ -138,9 +138,9 @@ public class JsonOutputAnalyzerTest {
 
     when( meta.getParentStepMeta() ).thenReturn( spyMeta );
     when( spyMeta.getParentTransMeta() ).thenReturn( transMeta );
-    when( meta.getFileName() ).thenReturn( null );
+//    when( meta.getFileName() ).thenReturn( null );
     String[] outputFilePaths = new String[]{ "/path/to/file1", "/another/path/to/file2"};
-    when( meta.getFilePaths( true ) ).thenReturn( outputFilePaths );
+//    when( meta.getFilePaths( true ) ).thenReturn( outputFilePaths );
     when( meta.getFilePaths( false ) ).thenReturn( outputFilePaths );
     when( meta.writesToFile() ).thenReturn( false );
 

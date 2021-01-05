@@ -87,14 +87,14 @@ public class XMLOutputStepAnalyzerTest {
     analyzer.setDescriptor( descriptor );
     analyzer.setObjectFactory( metaverseObjectFactory );
 
-    when( mockXMLOutput.getStepDataInterface() ).thenReturn( data );
-    when( mockXMLOutput.getStepMeta() ).thenReturn( parentStepMeta );
+//    when( mockXMLOutput.getStepDataInterface() ).thenReturn( data );
+//    when( mockXMLOutput.getStepMeta() ).thenReturn( parentStepMeta );
 
     when( meta.getParentStepMeta() ).thenReturn( parentStepMeta );
-    when( parentStepMeta.getStepMetaInterface() ).thenReturn( meta );
-    when( parentStepMeta.getParentTransMeta() ).thenReturn( mockTransMeta );
-    when( parentStepMeta.getName() ).thenReturn( "test" );
-    when( parentStepMeta.getStepID() ).thenReturn( "XmlOutputStep" );
+//    when( parentStepMeta.getStepMetaInterface() ).thenReturn( meta );
+//    when( parentStepMeta.getParentTransMeta() ).thenReturn( mockTransMeta );
+//    when( parentStepMeta.getName() ).thenReturn( "test" );
+//    when( parentStepMeta.getStepID() ).thenReturn( "XmlOutputStep" );
   }
 
   @Test
@@ -147,7 +147,7 @@ public class XMLOutputStepAnalyzerTest {
 
     when( this.meta.getParentStepMeta() ).thenReturn( spyMeta );
     when( spyMeta.getParentTransMeta() ).thenReturn( mockTransMeta );
-    when( this.meta.getFileName() ).thenReturn( null );
+//    when( this.meta.getFileName() ).thenReturn( null );
     String[] filePaths = { "/path/to/file1", "/another/path/to/file2" };
     when( this.meta.getFiles( Mockito.any( VariableSpace.class ) ) ).thenReturn( filePaths );
 
@@ -156,7 +156,7 @@ public class XMLOutputStepAnalyzerTest {
     assertFalse( resources.isEmpty() );
     assertEquals( 2, resources.size() );
 
-    when( this.meta.getExtension() ).thenReturn( "txt" );
+//    when( this.meta.getExtension() ).thenReturn( "txt" );
 
     assertEquals( XMLOutputMeta.class, consumer.getMetaClass() );
   }

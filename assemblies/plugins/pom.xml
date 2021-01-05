@@ -44,42 +44,42 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.pentaho.di.plugins</groupId>
-      <artifactId>kettle-version-checker</artifactId>
-      <version>${kettle-version-checker.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.di.plugins</groupId>
-      <artifactId>kettle-dummy-plugin</artifactId>
-      <version>${kettle-dummy-plugin.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.di.plugins</groupId>
-      <artifactId>kettle-s3csvinput-plugin</artifactId>
-      <version>${kettle-s3csvinput-plugin.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.di.plugins</groupId> -->
+<!--       <artifactId>kettle-version-checker</artifactId> -->
+<!--       <version>${kettle-version-checker.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.di.plugins</groupId> -->
+<!--       <artifactId>kettle-dummy-plugin</artifactId> -->
+<!--       <version>${kettle-dummy-plugin.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.di.plugins</groupId> -->
+<!--       <artifactId>kettle-s3csvinput-plugin</artifactId> -->
+<!--       <version>${kettle-s3csvinput-plugin.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>org.pentaho.di.plugins</groupId>
       <artifactId>pdi-google-analytics-plugin</artifactId>
@@ -104,18 +104,18 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.pentaho.di.plugins</groupId>
-      <artifactId>pentaho-googledrive-vfs-plugin</artifactId>
-      <version>${pentaho-googledrive-vfs-plugin.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.di.plugins</groupId> -->
+<!--       <artifactId>pentaho-googledrive-vfs-plugin</artifactId> -->
+<!--       <version>${pentaho-googledrive-vfs-plugin.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>org.pentaho.di.plugins</groupId>
       <artifactId>pdi-xml-plugin</artifactId>
@@ -164,29 +164,29 @@
 <!--         </exclusion> -->
 <!--       </exclusions> -->
 <!--     </dependency> -->
-    <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>pdi-platform-utils-plugin</artifactId>
-      <version>${pdi-platform-utils-plugin.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.pentaho.di.plugins</groupId>
-      <artifactId>pdi-pur-plugin</artifactId>
-      <version>${pdi-pur-plugin.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>pentaho</groupId> -->
+<!--       <artifactId>pdi-platform-utils-plugin</artifactId> -->
+<!--       <version>${pdi-platform-utils-plugin.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.pentaho.di.plugins</groupId> -->
+<!--       <artifactId>pdi-pur-plugin</artifactId> -->
+<!--       <version>${pdi-pur-plugin.version}</version> -->
+<!--       <type>zip</type> -->
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <groupId>*</groupId> -->
+<!--           <artifactId>*</artifactId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
+<!--     </dependency> -->
   </dependencies>
 </project>

@@ -70,6 +70,7 @@ import org.pentaho.di.core.logging.LoggingObjectInterface;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaBase;
 import org.pentaho.di.core.row.value.ValueMetaInteger;
 import org.pentaho.di.core.row.value.ValueMetaNumber;
 import org.pentaho.di.core.row.value.ValueMetaString;
@@ -158,6 +159,7 @@ public class JsonInputTest {
   @BeforeClass
   public static void init() throws KettleException {
     KettleClientEnvironment.init();
+    ValueMetaBase.EMPTY_STRING_AND_NULL_ARE_DIFFERENT = false;
   }
 
   @Before
@@ -1166,19 +1168,17 @@ public class JsonInputTest {
     return meta;
   }
 
-  protected void testSimpleJsonPath( String jsonPath,
-                                     ValueMetaInterface outputMeta,
-                                     Object[][] inputRows, Object[][] outputRows ) throws Exception {
-    final String inCol = "in";
+  protected void testSimpleJsonPath(String jsonPath, ValueMetaInterface outputMeta, Object[][] inputRows, Object[][] outputRows) throws Exception {
+      final String inCol = "in";
 
-    JsonInput jsonInput = createBasicTestJsonInput( jsonPath, outputMeta, inCol, inputRows );
+      JsonInput jsonInput = createBasicTestJsonInput(jsonPath, outputMeta, inCol, inputRows);
 
-    RowComparatorListener rowComparator = new RowComparatorListener( outputRows );
+      RowComparatorListener rowComparator = new RowComparatorListener(outputRows);
 
-    jsonInput.addRowListener( rowComparator );
-    processRows( jsonInput, outputRows.length + 1 );
-    Assert.assertEquals( "rows written", outputRows.length, jsonInput.getLinesWritten() );
-    Assert.assertEquals( "errors", 0, jsonInput.getErrors() );
+      jsonInput.addRowListener(rowComparator);
+      processRows(jsonInput, outputRows.length + 1);
+      Assert.assertEquals("rows written", outputRows.length, jsonInput.getLinesWritten());
+      Assert.assertEquals("errors", 0, jsonInput.getErrors());
   }
 
   protected void processRows( StepInterface step, final int maxCalls ) throws Exception {

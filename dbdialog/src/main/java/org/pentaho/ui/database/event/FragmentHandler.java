@@ -58,11 +58,9 @@ public class FragmentHandler extends AbstractXulEventHandler {
 
     XulComponent groupElement = document.getElementById( "database-options-box" );
     XulComponent parentElement = groupElement.getParent();
-
     XulDomContainer fragmentContainer;
 
     try {
-
       // Get new group box fragment ...
       // This will effectively set up the SWT parent child relationship...
 

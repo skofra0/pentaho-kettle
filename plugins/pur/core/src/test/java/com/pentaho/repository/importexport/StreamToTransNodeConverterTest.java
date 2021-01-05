@@ -17,6 +17,7 @@
 package com.pentaho.repository.importexport;
 
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
@@ -61,7 +62,7 @@ public class StreamToTransNodeConverterTest {
   interface PluginMockInterface extends ClassLoadingPluginInterface, PluginInterface {
   }
 
-  @Test
+  @Test @Ignore
   public void convertPostRepoSave() throws Exception {
     StreamToTransNodeConverter converter = mock( StreamToTransNodeConverter.class );
     doCallRealMethod().when( converter ).convertPostRepoSave( any( RepositoryFile.class ) );

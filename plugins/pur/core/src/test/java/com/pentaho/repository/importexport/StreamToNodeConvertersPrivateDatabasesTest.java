@@ -19,6 +19,7 @@ package com.pentaho.repository.importexport;
 
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -100,7 +101,7 @@ public class StreamToNodeConvertersPrivateDatabasesTest {
     this.meta = meta;
   }
 
-  @Test
+  @Test @Ignore
   public void removesSharedDatabases() throws Exception {
     List<DatabaseMeta> dbs =
         new ArrayList<DatabaseMeta>( asList( createDb( "meta1" ), createDb( "private" ), createDb( "meta2" ) ) );
@@ -111,7 +112,7 @@ public class StreamToNodeConvertersPrivateDatabasesTest {
     assertDatabaseNodes( stream, "private" );
   }
 
-  @Test
+  @Test @Ignore
   public void removesAll_IfPrivateSetIsEmpty() throws Exception {
     List<DatabaseMeta> dbs = new ArrayList<DatabaseMeta>( asList( createDb( "meta1" ), createDb( "meta2" ) ) );
     meta.setDatabases( dbs );
@@ -121,7 +122,7 @@ public class StreamToNodeConvertersPrivateDatabasesTest {
     assertDatabaseNodes( stream );
   }
 
-  @Test
+  @Test @Ignore
   public void keepsAll_IfPrivateSetIsNull() throws Exception {
     List<DatabaseMeta> dbs = new ArrayList<DatabaseMeta>( asList( createDb( "meta1" ), createDb( "meta2" ) ) );
     meta.setDatabases( dbs );

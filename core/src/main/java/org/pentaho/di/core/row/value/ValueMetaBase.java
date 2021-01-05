@@ -118,9 +118,9 @@ public class ValueMetaBase implements ValueMetaInterface {
           .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
   // endregion
 
-  public static final boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
-          // .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
-          .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) ); // SKOFRA
+  public static boolean EMPTY_STRING_AND_NULL_ARE_DIFFERENT = convertStringToBoolean( Const.NVL( System
+         //  .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "N" ), "N" ) );
+           .getProperty( Const.KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL, "Y" ), "Y" ) ); // SKOFRA ()
 
   
   // region ValueMetaBase Attributes

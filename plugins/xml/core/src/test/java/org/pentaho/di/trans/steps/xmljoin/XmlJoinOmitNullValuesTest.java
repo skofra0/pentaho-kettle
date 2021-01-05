@@ -27,9 +27,14 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoRule;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.quality.Strictness;
+
 import org.pentaho.di.core.RowSet;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -46,7 +51,10 @@ import org.pentaho.di.trans.steps.mock.StepMockHelper;
  */
 @RunWith( MockitoJUnitRunner.class )
 public class XmlJoinOmitNullValuesTest {
-  StepMockHelper<XMLJoinMeta, XMLJoinData> smh;
+
+    @Rule public MockitoRule mockito = MockitoJUnit.rule().strictness(Strictness.LENIENT);
+
+    StepMockHelper<XMLJoinMeta, XMLJoinData> smh;
 
   @Before
   public void init() {
@@ -74,9 +82,9 @@ public class XmlJoinOmitNullValuesTest {
     XMLJoinMeta stepMeta = smh.initStepMetaInterface;
     when( stepMeta.getSourceXMLstep() ).thenReturn( "source" );
     when( stepMeta.getTargetXMLstep() ).thenReturn( "target" );
-    when( stepMeta.getSourceXMLfield() ).thenReturn( "sourceField" );
+//    when( stepMeta.getSourceXMLfield() ).thenReturn( "sourceField" );
     when( stepMeta.getTargetXMLfield() ).thenReturn( "targetField" );
-    when( stepMeta.getValueXMLfield() ).thenReturn( "resultField" );
+//    when( stepMeta.getValueXMLfield() ).thenReturn( "resultField" );
     when( stepMeta.getTargetXPath() ).thenReturn( "//root" );
     when( stepMeta.isOmitNullValues() ).thenReturn( true );
 
@@ -96,7 +104,7 @@ public class XmlJoinOmitNullValuesTest {
   private RowSet createSourceRowSet( String sourceXml ) {
     RowSet sourceRowSet = smh.getMockInputRowSet( new String[] { sourceXml } );
     RowMetaInterface sourceRowMeta = mock( RowMetaInterface.class );
-    when( sourceRowMeta.getFieldNames() ).thenReturn( new String[] { "sourceField" } );
+//    when( sourceRowMeta.getFieldNames() ).thenReturn( new String[] { "sourceField" } );
     when( sourceRowSet.getRowMeta() ).thenReturn( sourceRowMeta );
 
     return sourceRowSet;

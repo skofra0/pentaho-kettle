@@ -18,8 +18,8 @@
 		<project.http.version>1.22.0</project.http.version>
 		<project.oauth.version>1.22.0</project.oauth.version>
 		<!--project.build.sourceEncoding>UTF-8</project.build.sourceEncoding -->
-		<project.junit.version>4.11</project.junit.version>
-		<mockito.version>2.28.2</mockito.version>
+		<project.junit.version>4.12</project.junit.version>
+		<mockito.version>3.6.28</mockito.version>
 		<pdi.version>${project.version}</pdi.version>
 	</properties>
 
@@ -81,7 +81,7 @@
 		<dependency>
 		    <groupId>net.bytebuddy</groupId>
 		    <artifactId>byte-buddy</artifactId>
-		    <version>1.9.16</version>
+		    <version>1.10.18</version>
 		</dependency>
 		<dependency>
 			<groupId>pentaho-kettle</groupId>

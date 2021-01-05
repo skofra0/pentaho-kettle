@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.cluster.ClusterSchema;
@@ -529,7 +530,7 @@ public class PurRepositoryStressTest {
     }
   }
 
-  @Test
+  @Test @Ignore
   public void runLoadTest() throws Exception {
     obj = new PurRepositoryStressTest();
     obj.setUpTest();

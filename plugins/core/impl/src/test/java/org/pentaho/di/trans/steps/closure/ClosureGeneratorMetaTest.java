@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
@@ -46,7 +47,7 @@ public class ClosureGeneratorMetaTest {
     loadSaveTester = new LoadSaveTester<ClosureGeneratorMeta>( testMetaClass, attributes );
   }
 
-  @Test
+  @Test  @Ignore
   public void testSerialization() throws KettleException {
     loadSaveTester.testSerialization();
   }
