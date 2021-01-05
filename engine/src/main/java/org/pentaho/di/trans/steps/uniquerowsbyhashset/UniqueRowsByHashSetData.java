@@ -23,6 +23,7 @@
 package org.pentaho.di.trans.steps.uniquerowsbyhashset;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.trans.step.BaseStepData;
@@ -37,7 +38,7 @@ public class UniqueRowsByHashSetData extends BaseStepData implements StepDataInt
   public String realErrorDescription;
   boolean sendDuplicateRows;
 
-  public HashSet<RowKey> seen = new HashSet<RowKey>();
+  public Set<RowKey> seen = new HashSet<>();
 
   public UniqueRowsByHashSetData() {
     super();

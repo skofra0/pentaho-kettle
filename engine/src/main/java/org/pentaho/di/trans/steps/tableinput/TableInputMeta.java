@@ -432,6 +432,12 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             lazyConversionActive = rep.getStepAttributeBoolean(id_step, "lazy_conversion_active");
             cachedRowMetaActive = rep.getStepAttributeBoolean(id_step, "cached_row_meta_active");
 
+            String sRowMeta = rep.getStepAttributeString(id_step, RowMeta.XML_META_TAG);
+            if (sRowMeta != null) {
+                Node node = XmlParserFactoryProducer.createSecureDocBuilderFactory().newDocumentBuilder().parse(new ByteArrayInputStream(sRowMeta.getBytes())).getDocumentElement();
+                cachedRowMeta = new RowMeta(node);
+            }
+
             // SKOFRA variables
             int nrfields = rep.countNrStepAttributes(id_step, "field_name");
             allocate(nrfields);
@@ -441,12 +447,6 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
                 defaultValue[i] = rep.getStepAttributeString(id_step, i, "default_value");
             }
             // SKOFRA variables
-
-            String sRowMeta = rep.getStepAttributeString(id_step, RowMeta.XML_META_TAG);
-            if (sRowMeta != null) {
-                Node node = XmlParserFactoryProducer.createSecureDocBuilderFactory().newDocumentBuilder().parse(new ByteArrayInputStream(sRowMeta.getBytes())).getDocumentElement();
-                cachedRowMeta = new RowMeta(node);
-            }
 
         } catch (Exception e) {
             throw new KettleException("Unexpected error reading step information from the repository", e);
