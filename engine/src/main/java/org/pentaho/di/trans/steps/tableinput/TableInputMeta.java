@@ -126,7 +126,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     public boolean isExecuteEachInputRowAsPreparedStatment() {
         return executeEachInputRowAsPreparedStatment;
     }
-    
+
     public String getExecuteEachInputRowAsString() {
         return executeEachInputRowAsPreparedStatment ? EXECUTE_METHOD_PREPARED : EXECUTE_METHOD_VARIABLE;
     }
@@ -220,7 +220,12 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             variableReplacementActive = "Y".equals(XMLHandler.getTagValue(stepnode, "variables_active"));
             lazyConversionActive = "Y".equals(XMLHandler.getTagValue(stepnode, "lazy_conversion_active"));
             cachedRowMetaActive = "Y".equals(XMLHandler.getTagValue(stepnode, "cached_row_meta_active"));
-            cachedRowMeta = new RowMeta(XMLHandler.getSubNode(stepnode, RowMeta.XML_META_TAG));
+
+            if (cachedRowMetaActive) { // SKOFRA
+                cachedRowMeta = new RowMeta(XMLHandler.getSubNode(stepnode, RowMeta.XML_META_TAG));
+            } else {
+                cachedRowMeta = null; // SKOFRA
+            }
 
             // SKOFRA
             Node fields = XMLHandler.getSubNode(stepnode, "fields");
@@ -244,7 +249,8 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         databaseMeta = null;
         sql = "SELECT <values> FROM <table name> WHERE <conditions>";
         rowLimit = "0";
-        
+        cachedRowMetaActive = false; // SKOFRA
+
         // SKOFRA variables
         int count = 0;
         allocate(count);
@@ -365,7 +371,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         retval.append("    " + XMLHandler.addTagValue("variables_active", variableReplacementActive));
         retval.append("    " + XMLHandler.addTagValue("lazy_conversion_active", lazyConversionActive));
         retval.append("    " + XMLHandler.addTagValue("cached_row_meta_active", cachedRowMetaActive));
-        
+
         // SKOFRA variables
         retval.append("    <fields>").append(Const.CR);
         for (int i = 0; i < fieldName.length; i++) {
@@ -384,7 +390,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
 
     private void storeCachedRowMeta(StringBuilder retval) {
         try {
-            if (cachedRowMeta != null) {
+            if (cachedRowMeta != null && cachedRowMetaActive) { // SKOFRA
                 retval.append("    " + cachedRowMeta.getMetaXML());
             }
         } catch (IOException e) {
@@ -433,9 +439,10 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             cachedRowMetaActive = rep.getStepAttributeBoolean(id_step, "cached_row_meta_active");
 
             String sRowMeta = rep.getStepAttributeString(id_step, RowMeta.XML_META_TAG);
-            if (sRowMeta != null) {
-                Node node = XmlParserFactoryProducer.createSecureDocBuilderFactory().newDocumentBuilder().parse(new ByteArrayInputStream(sRowMeta.getBytes())).getDocumentElement();
-                cachedRowMeta = new RowMeta(node);
+            if (sRowMeta != null && cachedRowMetaActive) { // SKOFRA
+                parseCachedRowMeta(sRowMeta);
+            } else {
+                cachedRowMeta = null; // SKOFRA
             }
 
             // SKOFRA variables
@@ -453,6 +460,17 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
         }
     }
 
+    // SKOFRA
+    private RowMetaInterface parseCachedRowMeta(String sRowMeta) {
+        try {
+            Node node = XmlParserFactoryProducer.createSecureDocBuilderFactory().newDocumentBuilder().parse(new ByteArrayInputStream(sRowMeta.getBytes())).getDocumentElement();
+            return new RowMeta(node);
+        } catch (Exception e) {
+            logBasic("Error parsing cached RowMeta", e);
+        }
+        return null;
+    }
+
     public void saveRep(Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step) throws KettleException {
         try {
             rep.saveDatabaseMetaStepAttribute(id_transformation, id_step, "id_connection", RepoReconnectFix.fixDatabaseMissingIdStepMeta(databaseMeta, this)); // SKOFRA
@@ -464,8 +482,10 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             rep.saveStepAttribute(id_transformation, id_step, "variables_active", variableReplacementActive);
             rep.saveStepAttribute(id_transformation, id_step, "lazy_conversion_active", lazyConversionActive);
             rep.saveStepAttribute(id_transformation, id_step, "cached_row_meta_active", cachedRowMetaActive);
-            if (cachedRowMeta != null) {
+            if (cachedRowMeta != null && cachedRowMetaActive) {// SKOFRA
                 rep.saveStepAttribute(id_transformation, id_step, RowMeta.XML_META_TAG, cachedRowMeta.getMetaXML());
+            } else {
+                rep.saveStepAttribute(id_transformation, id_step, RowMeta.XML_META_TAG, null);
             }
 
             // Also, save the step-database relationship!
@@ -721,7 +741,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     public StepMeta getLookupFromStep() {
         return getStepIOMeta().getInfoStreams().get(0).getStepMeta();
     }
-    
+
     /**
      * @return Returns the fieldName.
      */
@@ -782,6 +802,5 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             }
         }
     }
-
 
 }

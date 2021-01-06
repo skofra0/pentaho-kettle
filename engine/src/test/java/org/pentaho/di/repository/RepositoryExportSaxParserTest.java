@@ -145,28 +145,19 @@ public class RepositoryExportSaxParserTest {
     System.out.println( "Copied: " + sourceFile + "-->" + destFile );
   }
 
-  private static void copyFile( File sourceFile, File destFile ) throws IOException {
-    if ( !destFile.exists() ) {
-      destFile.createNewFile();
-    }
-
-    FileChannel source = null;
-    FileChannel destination = null;
-
-    try {
-      source = new FileInputStream( sourceFile ).getChannel();
-      destination = new FileOutputStream( destFile ).getChannel();
-      destination.transferFrom( source, 0, source.size() );
-    } catch ( Exception e ) {
-      e.printStackTrace();
-    } finally {
-      if ( source != null ) {
-        source.close();
+  private static void copyFile(File sourceFile, File destFile) throws IOException {
+      if (!destFile.exists()) {
+          destFile.createNewFile();
       }
-      if ( destination != null ) {
-        destination.close();
+
+      try (FileInputStream fis = new FileInputStream(sourceFile);
+              FileChannel source = fis.getChannel(); //
+              FileOutputStream fos = new FileOutputStream(destFile); //
+              FileChannel destination = fos.getChannel()) {
+          destination.transferFrom(source, 0, source.size());
+      } catch (Exception e) {
+          e.printStackTrace();
       }
-    }
   }
 
   private static void cleanTempDir() throws IOException {

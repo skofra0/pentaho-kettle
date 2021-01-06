@@ -109,11 +109,13 @@
         
 	    
 		<!-- Test dependencies -->
-<!-- 		<mockito.version>2.28.2</mockito.version> -->
+        <!--  <mockito.version>2.28.2</mockito.version> -->
 		<mockito.version>3.6.28</mockito.version>
 		<powermock.version>2.0.9</powermock.version>
 		<hamcrest.version>2.2</hamcrest.version>
-		
+    	<junit.version>4.12</junit.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+
 	</properties>
 
 	<dependencyManagement>
@@ -294,7 +296,12 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>8</release>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
