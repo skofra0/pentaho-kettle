@@ -168,6 +168,7 @@ public class KettlePropertiesFileDialog extends Dialog {
     wOK = new Button( shell, SWT.PUSH );
     wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) );
     wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) + " - disabled (use editor)" ); // SKOFRA
+    wOK.setEnabled(false);
 
     wCancel = new Button( shell, SWT.PUSH );
     wCancel.setText( BaseMessages.getString( PKG, "System.Button.Cancel" ) );
