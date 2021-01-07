@@ -32,7 +32,7 @@
     <derbyclient.version>10.2.1.6</derbyclient.version>
     <hsqldb.version>2.3.2</hsqldb.version>
     <jaybird.version>2.1.6</jaybird.version>
-    <jt400.version>10.2</jt400.version>
+    <jt400.version>10.4</jt400.version>
     <LucidDbClient-minimal.version>0.9.4</LucidDbClient-minimal.version>
     <sapdbc.version>7.4.4</sapdbc.version>
     <sqlite-jdbc.version>3.27.2.1</sqlite-jdbc.version>

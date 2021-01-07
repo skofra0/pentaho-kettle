@@ -897,7 +897,8 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
 
       SpoonPerspectiveManager.getInstance().setStartupPerspective( startupPerspective );
       SpoonPerspectiveManager.getInstance().addPerspective( mainPerspective );
-      
+
+      // SKOFRA
       XulToolbar toolbar = (XulToolbar) mainSpoonContainer.getDocumentRoot().getElementById("main-toolbar");
       RepositoryConnectMenu repoConnectMenu = new RepositoryConnectMenu(Spoon.getInstance(), (ToolBar) toolbar.getManagedObject(), new RepositoryConnectController());
       repoConnectMenu.render();
@@ -9346,12 +9347,12 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
       splash.hide();
     }
   }
-  
+
   private void showSplash() {
-      if ( splash != null ) {
-        splash.show();
+      if (splash != null) {
+          splash.show();
       }
-    }
+  }
 
   private void checkEnvironment() {
     if ( EnvironmentUtils.getInstance().isBrowserEnvironmentCheckDisabled() ) {

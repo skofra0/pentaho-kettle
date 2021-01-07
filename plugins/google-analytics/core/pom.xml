@@ -18,7 +18,7 @@
 
   <properties>
     <pdi.version>${project.version}</pdi.version>
-    <commons-codec.version>1.9</commons-codec.version>
+    <commons-codec.version>1.15</commons-codec.version>
     <commons-lang.version>2.6</commons-lang.version>
     <encoder.version>1.2</encoder.version>
     <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
