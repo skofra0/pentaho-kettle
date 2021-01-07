@@ -25,7 +25,7 @@ package org.pentaho.di.ui.repository.dialog;
 import org.pentaho.di.repository.RepositoryMeta;
 
 public interface RepositoryDialogInterface {
-  public static enum MODE {
+  public enum MODE {
     ADD, EDIT
   }
 

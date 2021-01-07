@@ -69,8 +69,8 @@ public class RepositoriesMeta {
 
   public void clear() {
     errorMessage = null;
-    databases = new ArrayList<DatabaseMeta>();
-    repositories = new ArrayList<RepositoryMeta>();
+    databases = new ArrayList<>();
+    repositories = new ArrayList<>();
     LogLevel level = null;
     if ( log != null ) {
       level = log.getLogLevel();

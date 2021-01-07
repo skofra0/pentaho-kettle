@@ -12,6 +12,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-mvxapi-m3-client"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-xledger"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-plugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/deem-etl-core"/>
 	<classpathentry kind="lib" path="dist/lib/SassyReader-0.5.jar"/>
 	<classpathentry kind="lib" path="dist/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/batik-anim-1.11.jar"/>

@@ -222,7 +222,7 @@ public class EnvUtil {
     addInternalVariables( sysprops );
 
     String[] envp = new String[sysprops.size()];
-    List<Object> list = new ArrayList<Object>( sysprops.keySet() );
+    List<Object> list = new ArrayList<>( sysprops.keySet() );
     for ( int i = 0; i < list.size(); i++ ) {
       String var = (String) list.get( i );
       String val = sysprops.getProperty( var );

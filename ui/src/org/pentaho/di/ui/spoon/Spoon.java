@@ -628,7 +628,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
       // before the PluginRegistry is inited.
       splash = new Splash( display );
 
-      List<String> args = new ArrayList<String>( Arrays.asList( a ) );
+      List<String> args = new ArrayList<>( Arrays.asList( a ) );
 
       CommandLineOption[] commandLineOptions = getCommandLineArgs( args );
 

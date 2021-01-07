@@ -1463,7 +1463,7 @@ public class JobDialog extends Dialog {
 
   public void setFlags() {
     wbDirectory.setEnabled( rep != null );
-    // wDirectory.setEnabled(rep!=null);
+    // wDirectory.setEnabled(rep != null);
     wlDirectory.setEnabled( rep != null );
 
     // DatabaseMeta dbMeta = jobMeta.findDatabase(wLogconnection.getText());

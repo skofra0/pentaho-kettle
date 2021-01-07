@@ -2211,7 +2211,7 @@ public class TransDialog extends Dialog {
 
   public void setFlags() {
     wbDirectory.setEnabled( rep != null );
-    // wDirectory.setEnabled(rep!=null);
+    // wDirectory.setEnabled(rep != null);
     wlDirectory.setEnabled( rep != null );
 
     // wlStepLogtable.setEnabled(wEnableStepPerfMonitor.getSelection());

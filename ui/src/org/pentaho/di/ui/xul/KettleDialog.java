@@ -24,7 +24,9 @@ package org.pentaho.di.ui.xul;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
@@ -187,4 +189,30 @@ public class KettleDialog extends SwtDialog {
     InputStream in = ( (KettleXulLoader) domContainer.getXulLoader() ).getOriginalResourceAsStream( resource );
     return in;
   }
+
+  @Override // SKOFRA (JAVA 11 PROBLEM)
+  public void setButtons( String buttonList ) {
+      if ( buttonList.equals( "" ) ) { //$NON-NLS-1$
+        buttons = null;
+      } else {
+        List<String> newButtons = Arrays.asList( buttonList.split( "," ) ); //$NON-NLS-1$
+
+        // Cleanup new buttons
+        for ( int i = 0; i < newButtons.size(); i++ ) {
+          newButtons.set( i, newButtons.get( i ).trim().toUpperCase() );
+        }
+        String[] existingButtons = buttons;
+        buttons = newButtons.toArray(new String[newButtons.size()]); // SKOFRA
+
+        for ( String existingButton : existingButtons ) {
+          if ( !newButtons.contains( existingButton.trim().toUpperCase() ) ) {
+            removeButton( existingButton );
+          }
+        }
+      }
+      if ( buttonsCreated ) {
+        setButtons( dialog );
+      }
+    }
+
 }
