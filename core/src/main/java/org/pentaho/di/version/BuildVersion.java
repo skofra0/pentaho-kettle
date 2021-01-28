@@ -105,7 +105,7 @@ public class BuildVersion {
       version = semanticVersion.toString();
       revision = semanticVersion.toString();
       buildDate = semanticVersion.getTimestamp();
-      buildUser = "Deem";
+      buildUser = "Nexus";
   }
 
   private BuildVersion() {

@@ -25,8 +25,8 @@ package org.pentaho.di.ui.spoon;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import plugin.deem.swt.repo.controller.RepositoryConnectController;
-import plugin.deem.swt.repo.menu.RepositoryConnectMenu;
+import plugin.nexus.swt.repo.controller.RepositoryConnectController;
+import plugin.nexus.swt.repo.menu.RepositoryConnectMenu;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.TeeOutputStream;
