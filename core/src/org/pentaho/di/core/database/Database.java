@@ -25,6 +25,8 @@ package org.pentaho.di.core.database;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.BatchUpdateException;
@@ -115,13 +117,13 @@ import org.pentaho.di.repository.RepositoryDirectory;
  * @author Matt
  * @since 05-04-2003
  */
-public class Database implements VariableSpace, LoggingObjectInterface {
+public class Database implements VariableSpace, LoggingObjectInterface, Closeable {
   /**
    * for i18n purposes, needed by Translator2!!
    */
   private static final Class<?> PKG = Database.class;
 
-  private static final Map<String, Set<String>> registeredDrivers = new HashMap<String, Set<String>>();
+  private static final Map<String, Set<String>> registeredDrivers = new HashMap<>();
 
   private DatabaseMeta databaseMeta;
 
@@ -4680,4 +4682,10 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       log.setForcingSeparateLogging( forcingSeparateLogging );
     }
   }
+
+    // PDI9 compatibility SKOFRA implements Closeable
+    @Override
+    public void close() throws IOException {
+        disconnect();
+    }
 }
