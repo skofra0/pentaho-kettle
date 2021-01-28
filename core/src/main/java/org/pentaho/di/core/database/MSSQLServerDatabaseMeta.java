@@ -228,7 +228,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
                 if (length >= 8 && length <= 10) { // SKOFRA
                     retval += "DATE"; // SKOFA
                 } else {
-                    retval += "DATETIME";
+                    retval += "DATETIME2"; // SKOFRA
                 }
                 break;
             case ValueMetaInterface.TYPE_BOOLEAN:
