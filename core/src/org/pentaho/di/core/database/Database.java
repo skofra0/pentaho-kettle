@@ -2757,30 +2757,28 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
     return dbmd;
   }
 
-  public String getDDL( String tablename, RowMetaInterface fields ) throws KettleDatabaseException {
-    return getDDL( tablename, fields, null, false, null, true );
+  public String getDDL(String tablename, RowMetaInterface fields) throws KettleDatabaseException {
+      return getDDL(tablename, fields, null, false, null, true);
   }
 
-  public String getDDL( String tablename, RowMetaInterface fields, String tk, boolean use_autoinc, String pk )
-    throws KettleDatabaseException {
-    return getDDL( tablename, fields, tk, use_autoinc, pk, true );
+  public String getDDL(String tablename, RowMetaInterface fields, String tk, boolean useAutoinc, String pk) throws KettleDatabaseException {
+      return getDDL(tablename, fields, tk, useAutoinc, pk, true);
   }
 
-  public String getDDL( String tableName, RowMetaInterface fields, String tk, boolean use_autoinc, String pk,
-                        boolean semicolon ) throws KettleDatabaseException {
-    String retval;
+  public String getDDL(String tableName, RowMetaInterface fields, String tk, boolean useAutoinc, String pk, boolean semicolon) throws KettleDatabaseException {
+      String retval;
 
-    // First, check for reserved SQL in the input row r...
-    databaseMeta.quoteReservedWords( fields );
-    String quotedTk = tk != null ? databaseMeta.quoteField( tk ) : null;
+      // First, check for reserved SQL in the input row r...
+      databaseMeta.quoteReservedWords(fields);
+      String quotedTk = tk != null ? databaseMeta.quoteField(tk) : null;
 
-    if ( checkTableExists( tableName ) ) {
-      retval = getAlterTableStatement( tableName, fields, quotedTk, use_autoinc, pk, semicolon );
-    } else {
-      retval = getCreateTableStatement( tableName, fields, quotedTk, use_autoinc, pk, semicolon );
-    }
+      if (checkTableExists(tableName)) {
+          retval = getAlterTableStatement(tableName, fields, quotedTk, useAutoinc, pk, semicolon);
+      } else {
+          retval = getCreateTableStatement(tableName, fields, quotedTk, useAutoinc, pk, semicolon);
+      }
 
-    return retval;
+      return retval;
   }
 
   /**
@@ -2789,131 +2787,129 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
    * @param tableName   the table name or schema/table combination: this needs to be quoted properly in advance.
    * @param fields      the fields
    * @param tk          the name of the technical key field
-   * @param use_autoinc true if we need to use auto-increment fields for a primary key
+   * @param useAutoinc true if we need to use auto-increment fields for a primary key
    * @param pk          the name of the primary/technical key field
    * @param semicolon   append semicolon to the statement
    * @return the SQL needed to create the specified table and fields.
    */
-  public String getCreateTableStatement( String tableName, RowMetaInterface fields, String tk,
-                                         boolean use_autoinc, String pk, boolean semicolon ) {
-    StringBuilder retval = new StringBuilder();
-    DatabaseInterface databaseInterface = databaseMeta.getDatabaseInterface();
-    retval.append( databaseInterface.getCreateTableStatement() );
+  public String getCreateTableStatement(String tableName, RowMetaInterface fields, String tk, boolean useAutoinc, String pk, boolean semicolon) {
+      StringBuilder retval = new StringBuilder();
+      DatabaseInterface databaseInterface = databaseMeta.getDatabaseInterface();
+      retval.append(databaseInterface.getCreateTableStatement());
 
-    retval.append( tableName + Const.CR );
-    retval.append( "(" ).append( Const.CR );
-    for ( int i = 0; i < fields.size(); i++ ) {
-      if ( i > 0 ) {
-        retval.append( ", " );
-      } else {
-        retval.append( "  " );
+      retval.append(tableName + Const.CR);
+      retval.append("(").append(Const.CR);
+      for (int i = 0; i < fields.size(); i++) {
+          if (i > 0) {
+              retval.append(", ");
+          } else {
+              retval.append("  ");
+          }
+
+          ValueMetaInterface v = fields.getValueMeta(i);
+          retval.append(databaseMeta.getFieldDefinition(v, tk, pk, useAutoinc));
+      }
+      // At the end, before the closing of the statement, we might need to add
+      // some constraints...
+      // Technical keys
+      if (tk != null) {
+          if (databaseMeta.requiresCreateTablePrimaryKeyAppend()) {
+              retval.append(", PRIMARY KEY (").append(tk).append(")").append(Const.CR);
+          }
       }
 
-      ValueMetaInterface v = fields.getValueMeta( i );
-      retval.append( databaseMeta.getFieldDefinition( v, tk, pk, use_autoinc ) );
-    }
-    // At the end, before the closing of the statement, we might need to add
-    // some constraints...
-    // Technical keys
-    if ( tk != null ) {
-      if ( databaseMeta.requiresCreateTablePrimaryKeyAppend() ) {
-        retval.append( ", PRIMARY KEY (" ).append( tk ).append( ")" ).append( Const.CR );
+      // Primary keys
+      if (pk != null) {
+          if (databaseMeta.requiresCreateTablePrimaryKeyAppend()) {
+              retval.append(", PRIMARY KEY (").append(pk).append(")").append(Const.CR);
+          }
       }
-    }
+      retval.append(")").append(Const.CR);
 
-    // Primary keys
-    if ( pk != null ) {
-      if ( databaseMeta.requiresCreateTablePrimaryKeyAppend() ) {
-        retval.append( ", PRIMARY KEY (" ).append( pk ).append( ")" ).append( Const.CR );
+      retval.append(databaseMeta.getDatabaseInterface().getDataTablespaceDDL(variables, databaseMeta));
+
+      if (pk == null && tk == null && databaseMeta.getDatabaseInterface() instanceof NeoviewDatabaseMeta) {
+          retval.append("NO PARTITION"); // use this as a default when no pk/tk is
+          // there, otherwise you get an error
       }
-    }
-    retval.append( ")" ).append( Const.CR );
 
-    retval.append( databaseMeta.getDatabaseInterface().getDataTablespaceDDL( variables, databaseMeta ) );
+      if (semicolon) {
+          retval.append(";");
+      }
 
-    if ( pk == null && tk == null && databaseMeta.getDatabaseInterface() instanceof NeoviewDatabaseMeta ) {
-      retval.append( "NO PARTITION" ); // use this as a default when no pk/tk is
-      // there, otherwise you get an error
-    }
-
-    if ( semicolon ) {
-      retval.append( ";" );
-    }
-
-    return retval.toString();
+      return retval.toString();
   }
 
-  public String getAlterTableStatement( String tableName, RowMetaInterface fields, String tk, boolean use_autoinc,
-                                        String pk, boolean semicolon ) throws KettleDatabaseException {
-    String retval = "";
+  public String getAlterTableStatement(String tableName, RowMetaInterface fields, String tk, boolean use_autoinc, String pk, boolean semicolon) throws KettleDatabaseException {
+      String retval = "";
 
-    // Get the fields that are in the table now:
-    RowMetaInterface tabFields = getTableFields( tableName );
+      // Get the fields that are in the table now:
+      RowMetaInterface tabFields = getTableFields(tableName);
 
-    // Don't forget to quote these as well...
-    databaseMeta.quoteReservedWords( tabFields );
+      // Don't forget to quote these as well...
+      databaseMeta.quoteReservedWords(tabFields);
 
-    // Find the missing fields
-    RowMetaInterface missing = new RowMeta();
-    for ( int i = 0; i < fields.size(); i++ ) {
-      ValueMetaInterface v = fields.getValueMeta( i );
-      // Not found?
-      if ( tabFields.searchValueMeta( v.getName() ) == null ) {
-        missing.addValueMeta( v ); // nope --> Missing!
+      // Find the missing fields
+      RowMetaInterface missing = new RowMeta();
+      for (int i = 0; i < fields.size(); i++) {
+          ValueMetaInterface v = fields.getValueMeta(i);
+          // Not found?
+          if (tabFields.searchValueMeta(v.getName()) == null) {
+              missing.addValueMeta(v); // nope --> Missing!
+          }
       }
-    }
 
-    if ( missing.size() != 0 ) {
-      for ( int i = 0; i < missing.size(); i++ ) {
-        ValueMetaInterface v = missing.getValueMeta( i );
-        retval += databaseMeta.getAddColumnStatement( tableName, v, tk, use_autoinc, pk, true );
+      if (missing.size() != 0) {
+          for (int i = 0; i < missing.size(); i++) {
+              ValueMetaInterface v = missing.getValueMeta(i);
+              retval += databaseMeta.getAddColumnStatement(tableName, v, tk, use_autoinc, pk, true);
+          }
       }
-    }
 
-    // Find the surplus fields
-    RowMetaInterface surplus = new RowMeta();
-    for ( int i = 0; i < tabFields.size(); i++ ) {
-      ValueMetaInterface v = tabFields.getValueMeta( i );
-      // Found in table, not in input ?
-      if ( fields.searchValueMeta( v.getName() ) == null ) {
-        surplus.addValueMeta( v ); // yes --> surplus!
+      // Find the surplus fields
+      RowMetaInterface surplus = new RowMeta();
+      for (int i = 0; i < tabFields.size(); i++) {
+          ValueMetaInterface v = tabFields.getValueMeta(i);
+          // Found in table, not in input ?
+          if (fields.searchValueMeta(v.getName()) == null) {
+              surplus.addValueMeta(v); // yes --> surplus!
+          }
       }
-    }
 
-    if ( surplus.size() != 0 ) {
-      for ( int i = 0; i < surplus.size(); i++ ) {
-        ValueMetaInterface v = surplus.getValueMeta( i );
-        retval += databaseMeta.getDropColumnStatement( tableName, v, tk, use_autoinc, pk, true );
+      if (surplus.size() != 0) {
+          for (int i = 0; i < surplus.size(); i++) {
+              ValueMetaInterface v = surplus.getValueMeta(i);
+              retval += databaseMeta.getDropColumnStatement(tableName, v, tk, use_autoinc, pk, true);
+          }
       }
-    }
 
-    //
-    // OK, see if there are fields for which we need to modify the type...
-    // (length, precision)
-    //
-    RowMetaInterface modify = new RowMeta();
-    for ( int i = 0; i < fields.size(); i++ ) {
-      ValueMetaInterface desiredField = fields.getValueMeta( i );
-      ValueMetaInterface currentField = tabFields.searchValueMeta( desiredField.getName() );
-      if ( desiredField != null && currentField != null ) {
-        String desiredDDL = databaseMeta.getFieldDefinition( desiredField, tk, pk, use_autoinc );
-        String currentDDL = databaseMeta.getFieldDefinition( currentField, tk, pk, use_autoinc );
+      //
+      // OK, see if there are fields for which we need to modify the type...
+      // (length, precision)
+      //
+      RowMetaInterface modify = new RowMeta();
+      for (int i = 0; i < fields.size(); i++) {
+          ValueMetaInterface desiredField = fields.getValueMeta(i);
+          ValueMetaInterface currentField = tabFields.searchValueMeta(desiredField.getName());
+          if (desiredField != null && currentField != null) {
+              String desiredDDL = databaseMeta.getFieldDefinition(desiredField, tk, pk, use_autoinc);
+              String currentDDL = databaseMeta.getFieldDefinition(currentField, tk, pk, use_autoinc);
 
-        boolean mod = !desiredDDL.equalsIgnoreCase( currentDDL );
-        if ( mod ) {
-          modify.addValueMeta( desiredField );
-        }
+              boolean mod = !desiredDDL.equalsIgnoreCase(currentDDL);
+              if (mod) {
+                  modify.addValueMeta(desiredField);
+              }
+          }
       }
-    }
 
-    if ( modify.size() > 0 ) {
-      for ( int i = 0; i < modify.size(); i++ ) {
-        ValueMetaInterface v = modify.getValueMeta( i );
-        retval += databaseMeta.getModifyColumnStatement( tableName, v, tk, use_autoinc, pk, true );
+      if (modify.size() > 0) {
+          for (int i = 0; i < modify.size(); i++) {
+              ValueMetaInterface v = modify.getValueMeta(i);
+              retval += databaseMeta.getModifyColumnStatement(tableName, v, tk, use_autoinc, pk, true);
+          }
       }
-    }
 
-    return retval;
+      return retval;
   }
 
   public void truncateTable( String tablename ) throws KettleDatabaseException {

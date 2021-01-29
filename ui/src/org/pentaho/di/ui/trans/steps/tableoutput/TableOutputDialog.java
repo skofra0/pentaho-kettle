@@ -169,6 +169,10 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
   private TextVar wReturnField;
   private FormData fdlReturnField, fdReturnField;
 
+  private Label wlUseColumnStorage;
+  private Button wUseColumnStorage;
+  private FormData fdlUseColumnStorage, fdUseColumnStorage;
+
   private Label wlFields;
   private TableView wFields;
 
@@ -682,6 +686,25 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     fdReturnField.top = new FormAttachment( wReturnKeys, margin );
     fdReturnField.right = new FormAttachment( 100, 0 );
     wReturnField.setLayoutData( fdReturnField );
+    
+    
+    // Use column storage?
+    wlUseColumnStorage = new Label( wMainComp, SWT.RIGHT );
+    wlUseColumnStorage.setText( "Use column storage" );
+    props.setLook( wlUseColumnStorage );
+    fdlUseColumnStorage = new FormData();
+    fdlUseColumnStorage.left = new FormAttachment( 0, 0 );
+    fdlUseColumnStorage.top = new FormAttachment( wReturnField, margin * 5 );
+    fdlUseColumnStorage.right = new FormAttachment( middle, -margin );
+    wlUseColumnStorage.setLayoutData( fdlUseColumnStorage );
+    wUseColumnStorage = new Button( wMainComp, SWT.CHECK );
+    props.setLook( wUseColumnStorage );
+    fdUseColumnStorage = new FormData();
+    fdUseColumnStorage.left = new FormAttachment( middle, 0 );
+    fdUseColumnStorage.top = new FormAttachment( wReturnField, margin * 5 );
+    fdUseColumnStorage.right = new FormAttachment( 100, 0 );
+    wUseColumnStorage.setLayoutData( fdUseColumnStorage );
+    wUseColumnStorage.addSelectionListener( lsSelMod );
 
     fdMainComp = new FormData();
     fdMainComp.left = new FormAttachment( 0, 0 );
@@ -1263,6 +1286,7 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
 
     wSpecifyFields.setSelection( input.specifyFields() );
 
+    
     for ( int i = 0; i < input.getFieldDatabase().length; i++ ) {
       TableItem item = wFields.table.getItem( i );
       if ( input.getFieldDatabase()[i] != null ) {
@@ -1273,6 +1297,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
       }
     }
 
+    wUseColumnStorage.setSelection( input.isColumnStoreageEnabled() );
+    
     setFlags();
 
     wStepname.selectAll();
@@ -1303,6 +1329,7 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     info.setReturningGeneratedKeys( wReturnKeys.getSelection() );
     info.setGeneratedKeyField( wReturnField.getText() );
     info.setSpecifyFields( wSpecifyFields.getSelection() );
+    info.setColumnStoreageEnabled( wUseColumnStorage.getSelection() );
 
     int nrRows = wFields.nrNonEmpty();
     info.allocate( nrRows );

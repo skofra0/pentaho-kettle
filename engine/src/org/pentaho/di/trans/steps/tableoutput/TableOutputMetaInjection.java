@@ -61,6 +61,8 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
       RETURN_AUTO_GENERATED_KEY( ValueMetaInterface.TYPE_STRING, "Return auto-generated key? (Y/N)" ),
       AUTO_GENERATED_KEY_FIELD( ValueMetaInterface.TYPE_STRING, "Name of auto-generated key field" ),
 
+      COLUMN_STORAGE( ValueMetaInterface.TYPE_STRING, "Use column storage? (Y/N)" ),
+      
       DATABASE_FIELDS( ValueMetaInterface.TYPE_NONE, "The database fields" ),
       DATABASE_FIELD( ValueMetaInterface.TYPE_NONE, "One database field" ),
       DATABASE_FIELDNAME( ValueMetaInterface.TYPE_STRING, "Table field" ),
@@ -101,7 +103,7 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
 
   @Override
   public List<StepInjectionMetaEntry> getStepInjectionMetadataEntries() throws KettleException {
-    List<StepInjectionMetaEntry> all = new ArrayList<StepInjectionMetaEntry>();
+    List<StepInjectionMetaEntry> all = new ArrayList<>();
 
     Entry[] topEntries =
       new Entry[] {
@@ -138,8 +140,8 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
   @Override
   public void injectStepMetadataEntries( List<StepInjectionMetaEntry> all ) throws KettleException {
 
-    List<String> databaseFields = new ArrayList<String>();
-    List<String> streamFields = new ArrayList<String>();
+    List<String> databaseFields = new ArrayList<>();
+    List<String> streamFields = new ArrayList<>();
 
     // Parse the fields, inject into the meta class..
     //
@@ -242,7 +244,7 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
   }
 
   public List<StepInjectionMetaEntry> extractStepMetadataEntries() throws KettleException {
-    List<StepInjectionMetaEntry> list = new ArrayList<StepInjectionMetaEntry>();
+    List<StepInjectionMetaEntry> list = new ArrayList<>();
 
     list.add( StepInjectionUtil.getEntry( Entry.TARGET_SCHEMA, meta.getSchemaName() ) );
     list.add( StepInjectionUtil.getEntry( Entry.TARGET_TABLE, meta.getTableName() ) );
@@ -265,6 +267,9 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
     list.add( StepInjectionUtil.getEntry( Entry.RETURN_AUTO_GENERATED_KEY, meta.isReturningGeneratedKeys() ) );
     list.add( StepInjectionUtil.getEntry( Entry.AUTO_GENERATED_KEY_FIELD, meta.getGeneratedKeyField() ) );
 
+    list.add( StepInjectionUtil.getEntry( Entry.COLUMN_STORAGE, meta.isColumnStoreageEnabled() ) );
+
+    
     StepInjectionMetaEntry fieldsEntry = StepInjectionUtil.getEntry( Entry.DATABASE_FIELDS );
     list.add( fieldsEntry );
     for ( int i = 0; i < meta.getFieldDatabase().length; i++ ) {
