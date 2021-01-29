@@ -60,9 +60,7 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
 
       RETURN_AUTO_GENERATED_KEY( ValueMetaInterface.TYPE_STRING, "Return auto-generated key? (Y/N)" ),
       AUTO_GENERATED_KEY_FIELD( ValueMetaInterface.TYPE_STRING, "Name of auto-generated key field" ),
-
-      COLUMN_STORAGE( ValueMetaInterface.TYPE_STRING, "Use column storage? (Y/N)" ),
-      
+      COLUMN_STORAGE( ValueMetaInterface.TYPE_STRING, "Use column storage? (Y/N)" ), // SKOFRA
       DATABASE_FIELDS( ValueMetaInterface.TYPE_NONE, "The database fields" ),
       DATABASE_FIELD( ValueMetaInterface.TYPE_NONE, "One database field" ),
       DATABASE_FIELDNAME( ValueMetaInterface.TYPE_STRING, "Table field" ),
@@ -267,9 +265,8 @@ public class TableOutputMetaInjection implements StepMetaInjectionInterface {
     list.add( StepInjectionUtil.getEntry( Entry.RETURN_AUTO_GENERATED_KEY, meta.isReturningGeneratedKeys() ) );
     list.add( StepInjectionUtil.getEntry( Entry.AUTO_GENERATED_KEY_FIELD, meta.getGeneratedKeyField() ) );
 
-    list.add( StepInjectionUtil.getEntry( Entry.COLUMN_STORAGE, meta.isColumnStoreageEnabled() ) );
+    list.add( StepInjectionUtil.getEntry( Entry.COLUMN_STORAGE, meta.isColumnStoreageEnabled() ) ); // SKOFRA
 
-    
     StepInjectionMetaEntry fieldsEntry = StepInjectionUtil.getEntry( Entry.DATABASE_FIELDS );
     list.add( fieldsEntry );
     for ( int i = 0; i < meta.getFieldDatabase().length; i++ ) {

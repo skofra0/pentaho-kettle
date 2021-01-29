@@ -169,9 +169,9 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
   private TextVar wReturnField;
   private FormData fdlReturnField, fdReturnField;
 
-  private Label wlUseColumnStorage;
-  private Button wUseColumnStorage;
-  private FormData fdlUseColumnStorage, fdUseColumnStorage;
+  private Label wlUseColumnStorage; // SKOFRA
+  private Button wUseColumnStorage; // SKOFRA
+  private FormData fdlUseColumnStorage, fdUseColumnStorage; // SKOFRA
 
   private Label wlFields;
   private TableView wFields;
@@ -686,9 +686,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     fdReturnField.top = new FormAttachment( wReturnKeys, margin );
     fdReturnField.right = new FormAttachment( 100, 0 );
     wReturnField.setLayoutData( fdReturnField );
-    
-    
-    // Use column storage?
+
+    // Use column storage? SKOFRA START
     wlUseColumnStorage = new Label( wMainComp, SWT.RIGHT );
     wlUseColumnStorage.setText( "Use column storage" );
     props.setLook( wlUseColumnStorage );
@@ -705,7 +704,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     fdUseColumnStorage.right = new FormAttachment( 100, 0 );
     wUseColumnStorage.setLayoutData( fdUseColumnStorage );
     wUseColumnStorage.addSelectionListener( lsSelMod );
-
+    // SKOFRA END
+    
     fdMainComp = new FormData();
     fdMainComp.left = new FormAttachment( 0, 0 );
     fdMainComp.top = new FormAttachment( 0, 0 );
@@ -1286,7 +1286,6 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
 
     wSpecifyFields.setSelection( input.specifyFields() );
 
-    
     for ( int i = 0; i < input.getFieldDatabase().length; i++ ) {
       TableItem item = wFields.table.getItem( i );
       if ( input.getFieldDatabase()[i] != null ) {
@@ -1296,9 +1295,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
         item.setText( 2, input.getFieldStream()[i] );
       }
     }
+    wUseColumnStorage.setSelection( input.isColumnStoreageEnabled() ); // SKOFRA
 
-    wUseColumnStorage.setSelection( input.isColumnStoreageEnabled() );
-    
     setFlags();
 
     wStepname.selectAll();
@@ -1329,7 +1327,7 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     info.setReturningGeneratedKeys( wReturnKeys.getSelection() );
     info.setGeneratedKeyField( wReturnField.getText() );
     info.setSpecifyFields( wSpecifyFields.getSelection() );
-    info.setColumnStoreageEnabled( wUseColumnStorage.getSelection() );
+    info.setColumnStoreageEnabled( wUseColumnStorage.getSelection() ); // SKOFRA
 
     int nrRows = wFields.nrNonEmpty();
     info.allocate( nrRows );

@@ -70,8 +70,7 @@ import org.w3c.dom.Node;
  * @since 2-jun-2003
  */
 public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, ProvidesModelerMeta {
-    private static final String COLUMN_STORAGE_ENABLED = "column_storage_enabled";
-
+    private static final String COLUMN_STORAGE_ENABLED = "column_storage_enabled"; // SKOFRA
     private static Class<?> PKG = TableOutputMeta.class; // for i18n purposes, needed by Translator2!!
 
     private DatabaseMeta databaseMeta;
@@ -449,7 +448,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
             returningGeneratedKeys = "Y".equalsIgnoreCase(XMLHandler.getTagValue(stepnode, "return_keys"));
             generatedKeyField = XMLHandler.getTagValue(stepnode, "return_field");
 
-            columnStoreageEnabled = "Y".equalsIgnoreCase(XMLHandler.getTagValue(stepnode, COLUMN_STORAGE_ENABLED));
+            columnStoreageEnabled = "Y".equalsIgnoreCase(XMLHandler.getTagValue(stepnode, COLUMN_STORAGE_ENABLED)); // SKOFRA
 
             Node fields = XMLHandler.getSubNode(stepnode, "fields");
             int nrRows = XMLHandler.countNodes(fields, "field");
@@ -480,7 +479,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
         // To be compatible with pre-v3.2 (SB)
         specifyFields = false;
-        columnStoreageEnabled = false;
+        columnStoreageEnabled = false; // SKOFRA
     }
 
     public String getXML() {
@@ -507,7 +506,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
         retval.append("    " + XMLHandler.addTagValue("return_keys", returningGeneratedKeys));
         retval.append("    " + XMLHandler.addTagValue("return_field", generatedKeyField));
 
-        retval.append("    " + XMLHandler.addTagValue(COLUMN_STORAGE_ENABLED, columnStoreageEnabled));
+        retval.append("    " + XMLHandler.addTagValue(COLUMN_STORAGE_ENABLED, columnStoreageEnabled)); // SKOFRA
 
         retval.append("    <fields>").append(Const.CR);
 
@@ -545,7 +544,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
             returningGeneratedKeys = rep.getStepAttributeBoolean(id_step, "return_keys");
             generatedKeyField = rep.getStepAttributeString(id_step, "return_field");
 
-            columnStoreageEnabled = rep.getStepAttributeBoolean(id_step, COLUMN_STORAGE_ENABLED);
+            columnStoreageEnabled = rep.getStepAttributeBoolean(id_step, COLUMN_STORAGE_ENABLED); // SKOFRA
 
             int nrCols = rep.countNrStepAttributes(id_step, "column_name");
             int nrStreams = rep.countNrStepAttributes(id_step, "stream_name");
@@ -585,7 +584,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
             rep.saveStepAttribute(id_transformation, id_step, "return_keys", returningGeneratedKeys);
             rep.saveStepAttribute(id_transformation, id_step, "return_field", generatedKeyField);
 
-            rep.saveStepAttribute(id_transformation, id_step, COLUMN_STORAGE_ENABLED, columnStoreageEnabled);
+            rep.saveStepAttribute(id_transformation, id_step, COLUMN_STORAGE_ENABLED, columnStoreageEnabled); // SKOFRA
 
             int nrRows = (fieldDatabase.length < fieldStream.length ? fieldStream.length : fieldDatabase.length);
             for (int idx = 0; idx < nrRows; idx++) {
@@ -795,13 +794,14 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
         if (databaseMeta != null) {
             if (prev != null && prev.size() > 0) {
                 if (!Const.isEmpty(tableName)) {
-                    try (Database db = new Database(loggingObject, databaseMeta)) {
+                    try (Database db = new Database(loggingObject, databaseMeta)) { // SKOFRA
                         db.shareVariablesWith(transMeta);
                         db.connect();
 
                         String schemaTable = databaseMeta.getQuotedSchemaTableCombination(schemaName, tableName);
                         String createtable = db.getCreateTableStatement(schemaTable, prev, tk, useAutoinc, pk, true);
 
+                        // SKOFRA START
                         if (isColumnStoreageEnabled() && db.getDatabaseMeta().getDatabaseInterface() instanceof MSSQLServerNativeDatabaseMeta) {
                             createtable = db.getDDL(schemaTable, prev, tk, useAutoinc, pk);
                             if (createtable.contains("CREATE TABLE")) {
@@ -810,6 +810,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
                                 createtable = Const.CR + "DROP TABLE IF EXISTS " + schemaTable + ";" + Const.CR + createtable;
                             }
                         }
+                        // SKOFRA END
 
                         // Empty string means: nothing to do: set it to null...
                         if (StringUtils.isEmpty(createtable)) {
