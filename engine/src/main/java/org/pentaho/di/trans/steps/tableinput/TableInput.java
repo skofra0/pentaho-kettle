@@ -1,5 +1,4 @@
-/*
- * ! ******************************************************************************
+/*! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -222,7 +221,7 @@ public class TableInput extends BaseStep implements StepInterface {
 
     public void setAllRowVariables(Object[] row) throws KettleException { // SKOFRA
         for (int i = 0; i < meta.getFieldName().length; i++) {
-            if (!Const.isEmpty(meta.getFieldName()[i])) {
+            if (!Utils.isEmpty(meta.getFieldName()[i])) {
                 setValue(data.rowSet, row, i, false);
             }
         }

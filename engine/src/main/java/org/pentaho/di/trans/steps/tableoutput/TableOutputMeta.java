@@ -73,6 +73,7 @@ import com.google.common.base.Preconditions;
  */
 @InjectionSupported( localizationPrefix = "TableOutputMeta.Injection.", groups = { "DATABASE_FIELDS" } )
 public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, ProvidesModelerMeta {
+  private static final String COLUMN_STORAGE_ENABLED = "column_storage_enabled"; // SKOFRA
   private static Class<?> PKG = TableOutputMeta.class; // for i18n purposes, needed by Translator2!!
 
   private DatabaseMeta databaseMeta;
@@ -151,6 +152,10 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
   @Injection( name = "AUTO_GENERATED_KEY_FIELD" )
   private String generatedKeyField;
 
+  @Injection( name = "COLUMN_STORAGE_ENABLED" )
+  private boolean columnStoreageEnabled; // SKOFRA
+
+  
   // This follows the naming convention on TableInputMeta see
   // @See https://github.com/pentaho/pentaho-kettle/blob/285c5962c8bc73c5bec30933fe0b8fee00426043/engine/src/main/java/org/pentaho/di/trans/steps/tableinput/TableInputMeta.java#L100
   @Injection( name = "CONNECTIONNAME" )
@@ -295,6 +300,14 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
    */
   public void setPartitioningField( String partitioningField ) {
     this.partitioningField = partitioningField;
+  }
+
+  public boolean isColumnStoreageEnabled() { // SKOFRA
+    return columnStoreageEnabled;
+  }
+
+  public void setColumnStoreageEnabled(boolean columnStoreageEnabled) { // SKOFRA
+    this.columnStoreageEnabled = columnStoreageEnabled;
   }
 
   public TableOutputMeta() {
@@ -478,6 +491,8 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
       returningGeneratedKeys = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "return_keys" ) );
       generatedKeyField = XMLHandler.getTagValue( stepnode, "return_field" );
 
+      columnStoreageEnabled = "Y".equalsIgnoreCase(XMLHandler.getTagValue(stepnode, COLUMN_STORAGE_ENABLED)); // SKOFRA
+
       Node fields = XMLHandler.getSubNode( stepnode, "fields" );
       int nrRows = XMLHandler.countNodes( fields, "field" );
 
@@ -507,6 +522,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
     // To be compatible with pre-v3.2 (SB)
     specifyFields = false;
+    columnStoreageEnabled = false; // SKOFRA
   }
 
   public String getXML() {
@@ -533,6 +549,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
     retval.append( "    " + XMLHandler.addTagValue( "return_keys", returningGeneratedKeys ) );
     retval.append( "    " + XMLHandler.addTagValue( "return_field", generatedKeyField ) );
+    retval.append("     " + XMLHandler.addTagValue(COLUMN_STORAGE_ENABLED, columnStoreageEnabled)); // SKOFRA
 
     retval.append( "    <fields>" ).append( Const.CR );
 
@@ -570,6 +587,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
       returningGeneratedKeys = rep.getStepAttributeBoolean( id_step, "return_keys" );
       generatedKeyField = rep.getStepAttributeString( id_step, "return_field" );
+      columnStoreageEnabled = rep.getStepAttributeBoolean(id_step, COLUMN_STORAGE_ENABLED); // SKOFRA
 
       int nrCols = rep.countNrStepAttributes( id_step, "column_name" );
       int nrStreams = rep.countNrStepAttributes( id_step, "stream_name" );
@@ -609,6 +627,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
       rep.saveStepAttribute( id_transformation, id_step, "return_keys", returningGeneratedKeys );
       rep.saveStepAttribute( id_transformation, id_step, "return_field", generatedKeyField );
+      rep.saveStepAttribute( id_transformation, id_step, COLUMN_STORAGE_ENABLED, columnStoreageEnabled); // SKOFRA
 
       int nrRows = ( fieldDatabase.length < fieldStream.length ? fieldStream.length : fieldDatabase.length );
       for ( int idx = 0; idx < nrRows; idx++ ) {
@@ -867,49 +886,43 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
     }
   }
 
-  public SQLStatement getSQLStatements( TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev,
-                                        Repository repository, IMetaStore metaStore ) {
-    return getSQLStatements( transMeta, stepMeta, prev, null, false, null );
+  public SQLStatement getSQLStatements(TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, Repository repository, IMetaStore metaStore) {
+      return getSQLStatements(transMeta, stepMeta, prev, null, false, null);
   }
 
-  public SQLStatement getSQLStatements( TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, String tk,
-                                        boolean use_autoinc, String pk ) {
-    SQLStatement retval = new SQLStatement( stepMeta.getName(), databaseMeta, null ); // default: nothing to do!
+  public SQLStatement getSQLStatements(TransMeta transMeta, StepMeta stepMeta, RowMetaInterface prev, String tk, boolean use_autoinc, String pk) {
+      SQLStatement retval = new SQLStatement(stepMeta.getName(), databaseMeta, null); // default: nothing to do!
 
-    if ( databaseMeta != null ) {
-      if ( prev != null && prev.size() > 0 ) {
-        if ( !Utils.isEmpty( tableName ) ) {
-          Database db = new Database( loggingObject, databaseMeta );
-          db.shareVariablesWith( transMeta );
-          try {
-            db.connect();
+      if (databaseMeta != null) {
+          if (prev != null && prev.size() > 0) {
+              if (!Utils.isEmpty(tableName)) {
+                  try (Database db = new Database(loggingObject, databaseMeta)) { // SKOFRA
+                      db.shareVariablesWith(transMeta);
+                      db.connect();
 
-            String schemaTable = databaseMeta.getQuotedSchemaTableCombination( schemaName, tableName );
-            String cr_table = db.getDDL( schemaTable, prev, tk, use_autoinc, pk );
+                      String schemaTable = databaseMeta.getQuotedSchemaTableCombination(schemaName, tableName);
+                      String crTable = db.getDDL(schemaTable, prev, tk, use_autoinc, pk);
 
-            // Empty string means: nothing to do: set it to null...
-            if ( cr_table == null || cr_table.length() == 0 ) {
-              cr_table = null;
-            }
+                      // Empty string means: nothing to do: set it to null...
+                      if (Utils.isEmpty(crTable)) {
+                          crTable = null;
+                      }
 
-            retval.setSQL( cr_table );
-          } catch ( KettleDatabaseException dbe ) {
-            retval.setError( BaseMessages.getString( PKG, "TableOutputMeta.Error.ErrorConnecting", dbe
-              .getMessage() ) );
-          } finally {
-            db.disconnect();
+                      retval.setSQL(crTable);
+                  } catch (KettleDatabaseException dbe) {
+                      retval.setError(BaseMessages.getString(PKG, "TableOutputMeta.Error.ErrorConnecting", dbe.getMessage()));
+                  }
+              } else {
+                  retval.setError(BaseMessages.getString(PKG, "TableOutputMeta.Error.NoTable"));
+              }
+          } else {
+              retval.setError(BaseMessages.getString(PKG, "TableOutputMeta.Error.NoInput"));
           }
-        } else {
-          retval.setError( BaseMessages.getString( PKG, "TableOutputMeta.Error.NoTable" ) );
-        }
       } else {
-        retval.setError( BaseMessages.getString( PKG, "TableOutputMeta.Error.NoInput" ) );
+          retval.setError(BaseMessages.getString(PKG, "TableOutputMeta.Error.NoConnection"));
       }
-    } else {
-      retval.setError( BaseMessages.getString( PKG, "TableOutputMeta.Error.NoConnection" ) );
-    }
 
-    return retval;
+      return retval;
   }
 
   public RowMetaInterface getRequiredFields( VariableSpace space ) throws KettleException {

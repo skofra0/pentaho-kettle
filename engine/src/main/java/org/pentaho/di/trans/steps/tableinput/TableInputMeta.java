@@ -216,7 +216,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             StreamInterface infoStream = getStepIOMeta().getInfoStreams().get(0);
             infoStream.setSubject(lookupFromStepname);
 
-            executeEachInputRowAsPreparedStatment = "Y".equals(XMLHandler.getTagValue(stepnode, "execute_each_row"));
+            executeEachInputRowAsPreparedStatment = "Y".equals(XMLHandler.getTagValue(stepnode, "execute_each_row")); // SKOFRA
             variableReplacementActive = "Y".equals(XMLHandler.getTagValue(stepnode, "variables_active"));
             lazyConversionActive = "Y".equals(XMLHandler.getTagValue(stepnode, "lazy_conversion_active"));
             cachedRowMetaActive = "Y".equals(XMLHandler.getTagValue(stepnode, "cached_row_meta_active"));
@@ -269,7 +269,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
 
     public void getFields(RowMetaInterface row, String origin, RowMetaInterface[] info, StepMeta nextStep, VariableSpace space, Repository repository, IMetaStore metaStore) throws KettleStepException {
         if (databaseMeta == null) {
-            return; // TODO: throw an exception here
+            return;
         }
 
         if (cachedRowMetaActive) {
@@ -434,6 +434,9 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             infoStream.setSubject(lookupFromStepname);
 
             executeEachInputRowAsPreparedStatment = rep.getStepAttributeBoolean(id_step, "execute_each_row");
+            if (Utils.isEmpty(lookupFromStepname)) {
+                executeEachInputRowAsPreparedStatment = false;
+            }
             variableReplacementActive = rep.getStepAttributeBoolean(id_step, "variables_active");
             lazyConversionActive = rep.getStepAttributeBoolean(id_step, "lazy_conversion_active");
             cachedRowMetaActive = rep.getStepAttributeBoolean(id_step, "cached_row_meta_active");

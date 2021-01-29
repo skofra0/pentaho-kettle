@@ -4802,11 +4802,6 @@ public class ValueMetaBase implements ValueMetaInterface {
           length = rm.getPrecision( index );
           precision = rm.getScale( index );
           
-          // SKOFRA START
-          if (length > 2 && type == Types.DECIMAL && databaseMeta.getDatabaseInterface().isMySQLVariant()) {
-              length = length - 2;
-          }
-          // SKOFRA END
 
           if ( length >= 126 ) {
             length = -1;
