@@ -27,7 +27,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -242,11 +241,11 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
         this.partitioningField = partitioningField;
     }
 
-    public boolean isColumnStoreageEnabled() {
+    public boolean isColumnStoreageEnabled() { // SKOFRA
         return columnStoreageEnabled;
     }
 
-    public void setColumnStoreageEnabled(boolean columnStoreageEnabled) {
+    public void setColumnStoreageEnabled(boolean columnStoreageEnabled) { // SKOFRA
         this.columnStoreageEnabled = columnStoreageEnabled;
     }
 
@@ -799,25 +798,25 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
                         db.connect();
 
                         String schemaTable = databaseMeta.getQuotedSchemaTableCombination(schemaName, tableName);
-                        String createtable = db.getCreateTableStatement(schemaTable, prev, tk, useAutoinc, pk, true);
+                        String crTable = db.getCreateTableStatement(schemaTable, prev, tk, useAutoinc, pk, true);
 
                         // SKOFRA START
                         if (isColumnStoreageEnabled() && db.getDatabaseMeta().getDatabaseInterface() instanceof MSSQLServerNativeDatabaseMeta) {
-                            createtable = db.getDDL(schemaTable, prev, tk, useAutoinc, pk);
-                            if (createtable.contains("CREATE TABLE")) {
-                                createtable = createtable.substring(0, createtable.lastIndexOf(')'));
-                                createtable = createtable + ",  INDEX " + tableName + "_cci CLUSTERED COLUMNSTORE " + Const.CR + ")";
-                                createtable = Const.CR + "DROP TABLE IF EXISTS " + schemaTable + ";" + Const.CR + createtable;
+                            crTable = db.getDDL(schemaTable, prev, tk, useAutoinc, pk);
+                            if (crTable.contains("CREATE TABLE")) {
+                                crTable = crTable.substring(0, crTable.lastIndexOf(')'));
+                                crTable = crTable + ",  INDEX " + tableName + "_cci CLUSTERED COLUMNSTORE " + Const.CR + ")";
+                                crTable = Const.CR + "DROP TABLE IF EXISTS " + schemaTable + ";" + Const.CR + crTable;
                             }
                         }
                         // SKOFRA END
 
                         // Empty string means: nothing to do: set it to null...
-                        if (StringUtils.isEmpty(createtable)) {
-                            createtable = null;
+                        if (Const.isEmpty(crTable)) {
+                            crTable = null;
                         }
 
-                        retval.setSQL(createtable);
+                        retval.setSQL(crTable);
                     } catch (KettleDatabaseException | IOException dbe) {
                         retval.setError(BaseMessages.getString(PKG, "TableOutputMeta.Error.ErrorConnecting", dbe.getMessage()));
                     }
