@@ -91,11 +91,11 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     /**
      * @return Returns true if the step should be run per row
      */
-    public boolean isExecuteEachInputRowAsPreparedStatment() {
+    public boolean isExecuteEachInputRowAsPreparedStatment() { // SKOFRA
         return executeEachInputRowAsPreparedStatment;
     }
 
-    public String getExecuteEachInputRowAsString() {
+    public String getExecuteEachInputRowAsString() { // SKOFRA
         return executeEachInputRowAsPreparedStatment ? EXECUTE_METHOD_PREPARED : EXECUTE_METHOD_VARIABLE;
     }
 
@@ -132,7 +132,8 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     }
 
     /**
-     * @param rowLimit The rowLimit to set.
+   * @param rowLimit
+   *          The rowLimit to set.
      */
     public void setRowLimit(String rowLimit) {
         this.rowLimit = rowLimit;
@@ -146,7 +147,8 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     }
 
     /**
-     * @param sql The sql to set.
+   * @param sql
+   *          The sql to set.
      */
     public void setSQL(String sql) {
         this.sql = sql;
@@ -179,7 +181,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
             StreamInterface infoStream = getStepIOMeta().getInfoStreams().get(0);
             infoStream.setSubject(lookupFromStepname);
 
-            executeEachInputRowAsPreparedStatment = "Y".equals(XMLHandler.getTagValue(stepnode, "execute_each_row"));
+            executeEachInputRowAsPreparedStatment = "Y".equals(XMLHandler.getTagValue(stepnode, "execute_each_row")); // SKOFRA
             variableReplacementActive = "Y".equals(XMLHandler.getTagValue(stepnode, "variables_active"));
             lazyConversionActive = "Y".equals(XMLHandler.getTagValue(stepnode, "lazy_conversion_active"));
 
@@ -224,7 +226,7 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
 
     public void getFields(RowMetaInterface row, String origin, RowMetaInterface[] info, StepMeta nextStep, VariableSpace space, Repository repository, IMetaStore metaStore) throws KettleStepException {
         if (databaseMeta == null) {
-            return; // TODO: throw an exception here
+            return;
         }
 
         boolean param = false;

@@ -1647,8 +1647,7 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
     return openQuery( sql, params, data, fetch_mode, false );
   }
 
-  public ResultSet openQuery( String sql, RowMetaInterface params, Object[] data, int fetch_mode,
-                              boolean lazyConversion ) throws KettleDatabaseException {
+  public ResultSet openQuery( String sql, RowMetaInterface params, Object[] data, int fetch_mode, boolean lazyConversion ) throws KettleDatabaseException {
     ResultSet res;
 
     // Create a Statement

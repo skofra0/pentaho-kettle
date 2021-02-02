@@ -222,7 +222,7 @@
     <dependency org="net.sf.jasperreports"         		name="jasperreports-fonts"      rev="6.9.0" 	transitive="false"/>  
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                      rev="4.6.1"     transitive="false"/>
     <dependency org="commons-digester" 					name="commons-digester" 		rev="2.1"  		transitive="false" />
-    <dependency org="org.codehaus.groovy"               name="groovy-all"               rev="2.4.20"    transitive="false"/>
+    <dependency org="org.codehaus.groovy"               name="groovy-all"               rev="2.4.21"    transitive="false"/>
     <dependency org="barbecue"                          name="barbecue"                 rev="1.5-beta1" transitive="false"/>
     <dependency org="net.sf.barcode4j"                  name="barcode4j"                rev="2.0"       transitive="true"/>
   -->

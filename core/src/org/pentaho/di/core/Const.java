@@ -73,7 +73,7 @@ import java.util.regex.Pattern;
  *
  */
 public class Const {
-    private static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2!!
+    private static final Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2!!
 
     /**
      * Version number

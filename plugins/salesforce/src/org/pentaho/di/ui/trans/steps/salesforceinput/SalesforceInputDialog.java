@@ -641,7 +641,7 @@ public class SalesforceInputDialog extends BaseStepDialog implements StepDialogI
         dialog.setLayout( new GridLayout( 3, false ) );
 
         final DateTime calendar = new DateTime( dialog, SWT.CALENDAR );
-        final DateTime time = new DateTime( dialog, SWT.TIME | SWT.TIME );
+        final DateTime time = new DateTime( dialog, SWT.TIME );
         new Label( dialog, SWT.NONE );
         new Label( dialog, SWT.NONE );
 
@@ -701,7 +701,7 @@ public class SalesforceInputDialog extends BaseStepDialog implements StepDialogI
         dialogto.setLayout( new GridLayout( 3, false ) );
 
         final DateTime calendarto = new DateTime( dialogto, SWT.CALENDAR | SWT.BORDER );
-        final DateTime timeto = new DateTime( dialogto, SWT.TIME | SWT.TIME );
+        final DateTime timeto = new DateTime( dialogto, SWT.TIME );
         new Label( dialogto, SWT.NONE );
         new Label( dialogto, SWT.NONE );
         Button okto = new Button( dialogto, SWT.PUSH );
