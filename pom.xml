@@ -117,6 +117,7 @@
 		<hamcrest.version>2.2</hamcrest.version>
     	<junit.version>4.12</junit.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../assemblies/core/lib/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
 	</properties>
 
@@ -319,7 +320,40 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>com/orientechnologies/orient/core/sql/parser/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.6</version>
+					<configuration>
+						<destFile>${sonar.jacoco.reportPath}</destFile>
+						<excludes>
+							<exclude>com/orientechnologies/orient/core/sql/parser/*</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<profiles>
@@ -366,7 +400,7 @@
 	<repositories>
 		<repository>
 			<id>bdo-nexus</id>
-			<url>http://10.241.62.16:8081/nexus/content/groups/public/</url>
+			<url>http://10.240.65.148:8081/nexus/content/groups/public/</url>
 		</repository>
 
 <!-- 		<repository> -->
@@ -388,11 +422,11 @@
 	<distributionManagement>
 		<repository>
 			<id>bdo-nexus</id>
-			<url>http://10.241.62.16:8081/nexus/content/repositories/releases/</url>
+			<url>http://10.240.65.148:8081/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>bdo-nexus</id>
-			<url>http://10.241.62.16:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://10.240.65.148:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -400,7 +434,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>bdo-nexus</id>
-			<url>http://10.241.62.16:8081/nexus/content/groups/public/</url>
+			<url>http://10.240.65.148:8081/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories> 
 </project>

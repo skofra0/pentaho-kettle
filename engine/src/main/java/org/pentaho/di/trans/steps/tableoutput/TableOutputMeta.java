@@ -549,7 +549,7 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
 
     retval.append( "    " + XMLHandler.addTagValue( "return_keys", returningGeneratedKeys ) );
     retval.append( "    " + XMLHandler.addTagValue( "return_field", generatedKeyField ) );
-    retval.append("     " + XMLHandler.addTagValue(COLUMN_STORAGE_ENABLED, columnStoreageEnabled)); // SKOFRA
+    retval.append( "    " + XMLHandler.addTagValue(COLUMN_STORAGE_ENABLED, columnStoreageEnabled)); // SKOFRA
 
     retval.append( "    <fields>" ).append( Const.CR );
 

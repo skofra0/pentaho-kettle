@@ -147,9 +147,9 @@ public class MSSQLServerDatabaseMetaTest {
       + lineSep + "SELECT top 0 * FROM BAR WITH (UPDLOCK, HOLDLOCK);" + lineSep,
       nativeMeta.getSQLLockTables(  new String[] { "FOO", "BAR" } ) );
 
-    assertEquals( "ALTER TABLE FOO ADD BAR DATETIME",
+    assertEquals( "ALTER TABLE FOO ADD BAR DATETIME2",
         nativeMeta.getAddColumnStatement( "FOO", new ValueMetaDate( "BAR" ), "", false, "", false ) );
-    assertEquals( "ALTER TABLE FOO ADD BAR DATETIME",
+    assertEquals( "ALTER TABLE FOO ADD BAR DATETIME2",
         nativeMeta.getAddColumnStatement( "FOO", new ValueMetaTimestamp( "BAR" ), "", false, "", false ) );
 
     assertEquals( "ALTER TABLE FOO DROP COLUMN BAR" + lineSep,

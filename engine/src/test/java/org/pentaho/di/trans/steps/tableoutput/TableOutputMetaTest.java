@@ -175,6 +175,7 @@ public class TableOutputMetaTest {
       + "    <tablename_in_table>Y</tablename_in_table>\n"
       + "    <return_keys>N</return_keys>\n"
       + "    <return_field/>\n"
+      + "    <column_storage_enabled>N</column_storage_enabled>\n"
       + "    <fields>\n"
       + "        <field>\n"
       + "          <column_name>ORDERNUMBER</column_name>\n"
@@ -220,6 +221,8 @@ public class TableOutputMetaTest {
     verify( rep ).saveStepAttribute( id_transformation, id_step, "tablename_in_table", true );
 
     verify( rep ).saveStepAttribute( id_transformation, id_step, "return_keys", false );
+    verify( rep ).saveStepAttribute( id_transformation, id_step, "column_storage_enabled", false );
+
     verify( rep ).saveStepAttribute( id_transformation, id_step, "return_field", null );
 
     verify( rep ).saveStepAttribute( id_transformation, id_step, 0, "column_name", "ORDERNUMBER" );
