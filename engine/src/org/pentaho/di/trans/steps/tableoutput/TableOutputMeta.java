@@ -798,11 +798,11 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
                         db.connect();
 
                         String schemaTable = databaseMeta.getQuotedSchemaTableCombination(schemaName, tableName);
-                        String crTable = db.getCreateTableStatement(schemaTable, prev, tk, useAutoinc, pk, true);
+                        String crTable = db.getDDL(schemaTable, prev, tk, useAutoinc, pk);
 
                         // SKOFRA START
                         if (isColumnStoreageEnabled() && db.getDatabaseMeta().getDatabaseInterface() instanceof MSSQLServerNativeDatabaseMeta) {
-                            crTable = db.getDDL(schemaTable, prev, tk, useAutoinc, pk);
+                            crTable = db.getCreateTableStatement(schemaTable, prev, tk, useAutoinc, pk, true);
                             if (crTable.contains("CREATE TABLE")) {
                                 crTable = crTable.substring(0, crTable.lastIndexOf(')'));
                                 crTable = crTable + ",  INDEX " + tableName + "_cci CLUSTERED COLUMNSTORE " + Const.CR + ")";

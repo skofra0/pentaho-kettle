@@ -1,4 +1,5 @@
-/*! ******************************************************************************
+/*
+ * ! ******************************************************************************
  *
  * Pentaho Data Integration
  *
@@ -10,7 +11,7 @@
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +20,6 @@
  * limitations under the License.
  *
  ******************************************************************************/
-
 
 package org.pentaho.di.core.database;
 
@@ -45,8 +45,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
 
     @Override
     public int[] getAccessTypeList() {
-        return new int[] {
-                DatabaseMeta.TYPE_ACCESS_NATIVE, DatabaseMeta.TYPE_ACCESS_ODBC, DatabaseMeta.TYPE_ACCESS_JNDI };
+        return new int[] {DatabaseMeta.TYPE_ACCESS_NATIVE, DatabaseMeta.TYPE_ACCESS_ODBC, DatabaseMeta.TYPE_ACCESS_JNDI};
     }
 
     @Override
@@ -139,8 +138,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
     public String getSQLLockTables(String[] tableNames) {
         StringBuffer sql = new StringBuffer(128);
         for (int i = 0; i < tableNames.length; i++) {
-            sql.append( "SELECT top 0 * FROM " ).append( tableNames[i] ).append( " WITH (UPDLOCK, HOLDLOCK);" ).append(
-                    Const.CR );
+            sql.append("SELECT top 0 * FROM ").append(tableNames[i]).append(" WITH (UPDLOCK, HOLDLOCK);").append(Const.CR);
         }
         return sql.toString();
     }
@@ -163,8 +161,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
      * @return the SQL statement to add a column to the specified table
      */
     @Override
-    public String getAddColumnStatement( String tablename, ValueMetaInterface v, String tk, boolean use_autoinc,
-            String pk, boolean semicolon ) {
+    public String getAddColumnStatement(String tablename, ValueMetaInterface v, String tk, boolean use_autoinc, String pk, boolean semicolon) {
         return "ALTER TABLE " + tablename + " ADD " + getFieldDefinition(v, tk, pk, use_autoinc, true, false);
     }
 
@@ -186,10 +183,8 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
      * @return the SQL statement to modify a column in the specified table
      */
     @Override
-    public String getModifyColumnStatement( String tablename, ValueMetaInterface v, String tk, boolean use_autoinc,
-            String pk, boolean semicolon ) {
-            return "ALTER TABLE "
-              + tablename + " ALTER COLUMN " + getFieldDefinition( v, tk, pk, use_autoinc, true, false );
+    public String getModifyColumnStatement(String tablename, ValueMetaInterface v, String tk, boolean use_autoinc, String pk, boolean semicolon) {
+        return "ALTER TABLE " + tablename + " ALTER COLUMN " + getFieldDefinition(v, tk, pk, use_autoinc, true, false);
     }
 
     /**
@@ -210,8 +205,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
      * @return the SQL statement to drop a column from the specified table
      */
     @Override
-    public String getDropColumnStatement( String tablename, ValueMetaInterface v, String tk, boolean use_autoinc,
-            String pk, boolean semicolon ) {
+    public String getDropColumnStatement(String tablename, ValueMetaInterface v, String tk, boolean use_autoinc, String pk, boolean semicolon) {
         return "ALTER TABLE " + tablename + " DROP COLUMN " + v.getName() + Const.CR;
     }
 
@@ -257,15 +251,13 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
                     }
                 } else {
                     if (precision == 0) {
-                        if (length > 18) {
-                            if (length == 20 && "bigint".equalsIgnoreCase(v.getOriginalColumnTypeName())) {  // SKOFRA
-                                retval += "BIGINT";
-                            } else {
-                                retval += "DECIMAL(" + length + ",0)";
-                            }
+                       // if (length > 18) { // SKOFRA
+                       // if (length == 20 && "bigint".equalsIgnoreCase(v.getOriginalColumnTypeName())) { // SKOFRA
+                        if (length > 20) {
+                            retval += "DECIMAL(" + length + ",0)";
                         } else {
                             if (length > 9) {
-                                if (length == 11 && "int".equalsIgnoreCase(v.getOriginalColumnTypeName())) {  // SKOFRA
+                                if (length == 11 && "int".equalsIgnoreCase(v.getOriginalColumnTypeName())) { // SKOFRA
                                     retval += "INT";
                                 } else {
                                     retval += "BIGINT";
@@ -302,11 +294,13 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
                 break;
         }
 
-        if (add_cr) {
-            retval += Const.CR;
-        }
+    if(add_cr)
 
-        return retval;
+    {
+        retval += Const.CR;
+    }
+
+    return retval;
     }
 
     /**
@@ -428,7 +422,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
                 return true;
             }
 
-            StringBuilder sql = new StringBuilder(128); 
+            StringBuilder sql = new StringBuilder(128);
             // SKOFRA (Rewrite index sql)
             // sql.append( "select i.name table_name, c.name column_name " );
             // sql.append( "from sysindexes i, sysindexkeys k, syscolumns c " );
@@ -543,8 +537,7 @@ public class MSSQLServerDatabaseMeta extends BaseDatabaseMeta implements Databas
     }
 
     @Override
-    public Long getNextBatchIdUsingLockTables( DatabaseMeta dbm, Database ldb, String schemaName, String tableName,
-            String fieldName ) throws KettleDatabaseException {
+    public Long getNextBatchIdUsingLockTables(DatabaseMeta dbm, Database ldb, String schemaName, String tableName, String fieldName) throws KettleDatabaseException {
         Long rtn = null;
         // Make sure we lock that table to avoid concurrency issues
         ldb.lockTables(new String[] {dbm.getQuotedSchemaTableCombination(schemaName, tableName),});
