@@ -61,7 +61,7 @@ public class RowMeta implements RowMetaInterface {
   private List<ValueMetaInterface> valueMetaList;
 
   public RowMeta() {
-    this( new ArrayList<ValueMetaInterface>(), new RowMetaCache() );
+    this( new ArrayList<>(), new RowMetaCache() );
   }
 
   /**
@@ -71,10 +71,9 @@ public class RowMeta implements RowMetaInterface {
    * @throws KettlePluginException
    */
   private RowMeta( RowMeta rowMeta, Integer targetType ) throws KettlePluginException {
-    this( new ArrayList<ValueMetaInterface>( rowMeta.valueMetaList.size() ), new RowMetaCache( rowMeta.cache ) );
+    this( new ArrayList<>( rowMeta.valueMetaList.size() ), new RowMetaCache( rowMeta.cache ) );
     for ( ValueMetaInterface valueMetaInterface : rowMeta.valueMetaList ) {
-      valueMetaList.add( ValueMetaFactory
-        .cloneValueMeta( valueMetaInterface, targetType == null ? valueMetaInterface.getType() : targetType ) );
+      valueMetaList.add( ValueMetaFactory.cloneValueMeta( valueMetaInterface, targetType == null ? valueMetaInterface.getType() : targetType ) );
     }
   }
 
