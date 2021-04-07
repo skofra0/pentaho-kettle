@@ -98,7 +98,7 @@
 
 	    <dom4j.version>2.1.3</dom4j.version>
 	    <jaxen.version>1.2.0</jaxen.version>
-		<poi.version>4.0.1</poi.version>
+		<poi.version>4.1.2</poi.version>
         <httpclient.version>4.5.13</httpclient.version>
         <httpcore.version>4.4.14</httpcore.version>
         <jt400.version>10.5</jt400.version>
@@ -302,9 +302,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-<!-- 					<release>8</release> -->
+ 					<release>11</release>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
@@ -337,6 +335,28 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.6.3</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 
 		<pluginManagement>
@@ -352,7 +372,14 @@
 						</excludes>
 					</configuration>
 				</plugin>
+			    <plugin>
+			        <groupId>org.apache.felix</groupId>
+			        <artifactId>maven-bundle-plugin</artifactId>
+					<version>5.1.2</version>
+				</plugin>
+
 			</plugins>
+
 		</pluginManagement>
 	</build>
 
@@ -400,7 +427,7 @@
 	<repositories>
 		<repository>
 			<id>bdo-nexus</id>
-			<url>http://10.240.65.148:8081/nexus/content/groups/public/</url>
+			<url>http://10.241.62.17:8081/nexus/content/groups/public/</url>
 		</repository>
 
 <!-- 		<repository> -->
@@ -422,11 +449,11 @@
 	<distributionManagement>
 		<repository>
 			<id>bdo-nexus</id>
-			<url>http://10.240.65.148:8081/nexus/content/repositories/releases/</url>
+			<url>http://10.241.62.17:8081/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>bdo-nexus</id>
-			<url>http://10.240.65.148:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://10.241.62.17:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -434,7 +461,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>bdo-nexus</id>
-			<url>http://10.240.65.148:8081/nexus/content/groups/public/</url>
+			<url>http://10.241.62.17:8081/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories> 
 </project>
