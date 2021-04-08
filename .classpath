@@ -4,7 +4,11 @@
 	<classpathentry kind="src" path="ui/src"/>
 	<classpathentry kind="src" path="dbdialog/src"/>
 	<classpathentry kind="src" path="engine/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-common"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/deem-cloudapi-client-jsonrpc2"/>
@@ -139,9 +143,9 @@
 	<classpathentry kind="lib" path="dist/lib/pentaho-vfs-browser-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="dist/lib/pentaho-xul-core-6.1.0.0-188.jar"/>
 	<classpathentry kind="lib" path="dist/lib/pentaho-xul-swt-6.1.0.0-188.jar"/>
-	<classpathentry kind="lib" path="dist/lib/poi-4.0.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/poi-ooxml-4.0.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/poi-ooxml-schemas-4.0.1.jar"/>
+	<classpathentry kind="lib" path="dist/lib/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/postgresql-42.2.18.jar"/>
 	<classpathentry kind="lib" path="dist/lib/rhino-1.7.12.jar"/>
 	<classpathentry kind="lib" path="dist/lib/rome-1.0.jar"/>
