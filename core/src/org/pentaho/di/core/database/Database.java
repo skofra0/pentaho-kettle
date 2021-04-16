@@ -1806,41 +1806,29 @@ public class Database implements VariableSpace, LoggingObjectInterface, Closeabl
   /**
    * See if the table specified exists by reading
    *
-   * @param tablename The name of the table to check.<br> This is supposed to be the properly quoted name of the table
-   *                  or the complete schema-table name combination.
+   * @param tablename The name of the table to check.<br>
+   *        This is supposed to be the properly quoted name of the table
+   *        or the complete schema-table name combination.
    * @return true if the table exists, false if it doesn't.
    */
-  public boolean checkTableExists( String tablename ) throws KettleDatabaseException {
-    try {
-      if ( log.isDebug() ) {
-        log.logDebug( "Checking if table [" + tablename + "] exists!" );
-      }
-
-      // Just try to read from the table.
-      String sql = databaseMeta.getSQLTableExists( tablename );
+  public boolean checkTableExists(String tablename) throws KettleDatabaseException {
       try {
-        getOneRow( sql );
-        return true;
-      } catch ( KettleDatabaseException e ) {
-        return false;
-      }
+          if (log.isDebug()) {
+              log.logDebug("Checking if table [" + tablename + "] exists!");
+          }
 
-      /*
-       * if (getDatabaseMetaData()!=null) { ResultSet alltables = getDatabaseMetaData().getTables(null, null, "%" , new
-       * String[] { "TABLE", "VIEW", "SYNONYM" } ); boolean found = false; if (alltables!=null) { while
-       * (alltables.next() && !found) { String schemaName = alltables.getString("TABLE_SCHEM"); String name =
-       * alltables.getString("TABLE_NAME"); if ( tablename.equalsIgnoreCase(name) || ( schemaName!=null &&
-       * tablename.equalsIgnoreCase( databaseMeta.getSchemaTableCombination(schemaName, name)) ) ) {
-       * log.logDebug("table ["+tablename+"] was found!"); found=true; } } alltables.close();
-       *
-       * return found; } else { throw new KettleDatabaseException(
-       * "Unable to read table-names from the database meta-data."); } } else { throw new KettleDatabaseException(
-       * "Unable to get database meta-data from the database."); }
-       */
-    } catch ( Exception e ) {
-      throw new KettleDatabaseException( "Unable to check if table ["
-        + tablename + "] exists on connection [" + databaseMeta.getName() + "]", e );
-    }
+          // Just try to read from the table.
+          String sql = databaseMeta.getSQLTableExists(tablename);
+          try {
+              getOneRow(sql);
+              return true;
+          } catch (KettleDatabaseException e) {
+              return false;
+          }
+
+      } catch (Exception e) {
+          throw new KettleDatabaseException("Unable to check if table [" + tablename + "] exists on connection [" + databaseMeta.getName() + "]", e);
+      }
   }
 
   /**
