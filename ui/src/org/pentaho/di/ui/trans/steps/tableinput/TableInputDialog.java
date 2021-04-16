@@ -683,8 +683,8 @@ public class TableInputDialog extends BaseStepDialog implements StepDialogInterf
             temp = description.toLowerCase();
         }
         temp = temp.replaceAll("\\W", "_");
-        temp = temp.replaceAll("__", "_");
-        temp = temp.replaceAll("__", "_");
+        temp = temp.replace("__", "_");
+        temp = temp.replace("__", "_");
         if (temp.endsWith("_")) {
             temp = temp.substring(0, temp.length() - 1);
         }

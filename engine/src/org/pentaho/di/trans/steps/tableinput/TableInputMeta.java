@@ -570,11 +570,9 @@ public class TableInputMeta extends BaseStepMeta implements StepMetaInterface {
     public StepIOMetaInterface getStepIOMeta() {
         if (ioMeta == null) {
             ioMeta = new StepIOMeta(true, true, false, false, false, false);
-
             StreamInterface stream = new Stream(StreamType.INFO, null, BaseMessages.getString(PKG, "TableInputMeta.InfoStream.Description"), StreamIcon.INFO, null);
             ioMeta.addStream(stream);
         }
-
         return ioMeta;
     }
 

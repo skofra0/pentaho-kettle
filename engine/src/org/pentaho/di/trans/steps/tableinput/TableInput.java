@@ -104,7 +104,6 @@ public class TableInput extends BaseStep implements StepInterface {
             }
         } else {
             if (data.thisrow != null) { // We can expect more rows
-
                 data.nextrow = data.db.getRow(data.rs, meta.isLazyConversionActive());
                 if (data.nextrow != null) {
                     incrementLinesInput();
@@ -113,10 +112,8 @@ public class TableInput extends BaseStep implements StepInterface {
         }
 
         if (data.thisrow == null) { // Finished reading?
-
             boolean done = false;
-            if (data.infoStream.getStepMeta() != null) // Try to get another row from the input stream
-            {
+            if (data.infoStream.getStepMeta() != null) { // Try to get another row from the input stream
                 Object[] nextRow = getRowFrom(data.rowSet);
                 if (nextRow == null) { // Nothing more to get!
                     done = true;
@@ -151,7 +148,6 @@ public class TableInput extends BaseStep implements StepInterface {
             } else {
                 done = true;
             }
-
             if (done) {
                 setOutputDone(); // signal end to receiver(s)
                 return false; // end of data or error.
