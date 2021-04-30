@@ -117,12 +117,11 @@
 	<classpathentry kind="lib" path="dist/lib/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jsch-0.1.55.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jsendnsca-2.0.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-simple-1.1.jar" sourcepath="C:/Users/cn4490/.m2/repository/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1-sources.jar"/>
 	<classpathentry kind="lib" path="dist/lib/json-smart-2.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jsonpath-1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jsonrpc2-base-1.38.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jsonrpc2-client-1.16.5.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jt400-jdk9-10.5.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jtds-1.3.1.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jug-lgpl-2.0.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jxl-2.6.12.jar"/>
@@ -187,5 +186,6 @@
 	<classpathentry kind="lib" path="dist/lib/jakarta.activation-api-1.2.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jakarta.xml.bind-api-2.3.3.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jaxb-impl-2.3.3.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jt400-jdk8-10.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

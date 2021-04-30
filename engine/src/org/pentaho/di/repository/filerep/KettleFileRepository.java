@@ -948,7 +948,7 @@ public class KettleFileRepository extends AbstractRepository {
     boolean includeDeleted ) throws KettleException {
 
     try {
-      List<RepositoryElementMetaInterface> list = new ArrayList<RepositoryElementMetaInterface>();
+      List<RepositoryElementMetaInterface> list = new ArrayList<>();
 
       RepositoryDirectoryInterface tree = loadRepositoryDirectoryTree();
       RepositoryDirectoryInterface directory = tree.findDirectory( idDirectory );
@@ -984,7 +984,7 @@ public class KettleFileRepository extends AbstractRepository {
   public List<RepositoryElementMetaInterface> getJobObjects( ObjectId id_directory, boolean includeDeleted ) throws KettleException {
 
     try {
-      List<RepositoryElementMetaInterface> list = new ArrayList<RepositoryElementMetaInterface>();
+      List<RepositoryElementMetaInterface> list = new ArrayList<>();
 
       RepositoryDirectoryInterface tree = loadRepositoryDirectoryTree();
       RepositoryDirectoryInterface directory = tree.findDirectory( id_directory );
