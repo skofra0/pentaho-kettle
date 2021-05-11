@@ -120,7 +120,7 @@
 	<dependency org="org.eclipse.jetty" name="jetty-xml" rev="8.1.15.v20140411" transitive="false"  conf="default->default"/>
 	<dependency org="org.eclipse.jetty" name="jetty-webapp" rev="8.1.15.v20140411" transitive="false"  conf="default->default"/>
 	
-	<!-- Deem 
+	<!-- Nexus 
 	-->
     <dependency org="net.sf.jt400"         			   name="jt400-jdk8"                rev="10.6"      transitive="false"/>  
     <dependency org="net.sourceforge.jtds"             name="jtds"                       rev="1.3.1"     transitive="false"/>
@@ -128,7 +128,7 @@
     <dependency org="com.force.api"   name="force-wsc" rev="47.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="47.0.0" transitive="false"/>
 
-	<!-- Deem JasperReport
+	<!-- Nexus JasperReport
     <dependency org="net.sf.jasperreports"         		name="jasperreports"             rev="6.16.0" 	transitive="false"/>  
     <dependency org="net.sf.jasperreports"         		name="jasperreports-fonts"       rev="6.16.0" 	transitive="false"/>  
     <dependency org="org.eclipse.jdt.core.compiler"     name="ecj"                       rev="4.6.1"    transitive="false"/>

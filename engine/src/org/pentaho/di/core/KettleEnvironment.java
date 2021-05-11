@@ -24,7 +24,7 @@ package org.pentaho.di.core;
 
 import com.google.common.util.concurrent.SettableFuture;
 
-import no.deem.plugin.RegistrerPluginService;
+import no.nexus.plugin.RegistrerPluginService;
 
 import org.pentaho.di.core.auth.AuthenticationConsumerPluginType;
 import org.pentaho.di.core.auth.AuthenticationProviderPluginType;

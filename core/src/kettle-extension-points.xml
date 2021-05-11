@@ -1,6 +1,6 @@
 <extension-points>
 	<extension-point id="FileOpenSaveNewExtensionPoint">
 		<description>Open the new file browser </description>
-		<classname>plugin.deem.swt.fileopensave.extension.FileOpenSaveExtensionPoint</classname>
+		<classname>plugin.nexus.swt.fileopensave.extension.FileOpenSaveExtensionPoint</classname>
 	</extension-point>
 </extension-points>

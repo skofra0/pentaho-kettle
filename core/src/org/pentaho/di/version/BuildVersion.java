@@ -32,9 +32,9 @@ import org.pentaho.di.core.exception.KettleVersionException;
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.xml.XMLHandler;
 
-import no.deem.core.utils.Strings;
-import no.deem.core.version.SemanticVersion;
-import no.deem.core.version.Versions;
+import no.nexus.core.utils.Strings;
+import no.nexus.core.version.SemanticVersion;
+import no.nexus.core.version.Versions;
 
 /**
  * Singleton class to allow us to see on which date & time the kettle3.jar was built.
@@ -44,7 +44,7 @@ import no.deem.core.version.Versions;
  */
 public class BuildVersion {
   //public static final String REFERENCE_FILE = "/kettle-steps.xml"; SKOFRA
-  public static final String REFERENCE_FILE = "/plugin/deem/common/ZTools.class";
+  public static final String REFERENCE_FILE = "/plugin/nexus/common/ZTools.class";
 
   public static final String JAR_BUILD_DATE_FORMAT = "yyyy-MM-dd HH.mm.ss";
 
