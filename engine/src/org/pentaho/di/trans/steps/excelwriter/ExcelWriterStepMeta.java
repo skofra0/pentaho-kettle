@@ -2,7 +2,7 @@
  *
  * Pentaho Data Integration
  *
- * Copyright (C) 2002-2013 by Pentaho : http://www.pentaho.com
+ * Copyright (C) 2002-2021 by Hitachi Vantara : http://www.pentaho.com
  *
  *******************************************************************************
  *
@@ -22,15 +22,23 @@
 
 package org.pentaho.di.trans.steps.excelwriter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.injection.Injection;
+import org.pentaho.di.core.injection.InjectionDeep;
+import org.pentaho.di.core.injection.InjectionSupported;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleXMLException;
-import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.vfs.KettleVFS;
@@ -46,16 +54,11 @@ import org.pentaho.di.trans.step.BaseStepMeta;
 import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.step.StepMetaInjectionInterface;
 import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+@InjectionSupported( localizationPrefix = "ExcelWriter.Injection.", groups = "FIELDS" )
 public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterface {
   private static Class<?> PKG = ExcelWriterStepMeta.class; // for i18n purposes, needed by Translator2!!
 
@@ -68,89 +71,154 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
   public static final String ROW_WRITE_OVERWRITE = "overwrite";
   public static final String ROW_WRITE_PUSH_DOWN = "push";
 
+  // FILE GROUP START
+
   /** The base name of the output file */
+  @Injection( name = "FILENAME" )
   private String fileName;
-  /** what to do if file exists **/
-  private String ifFileExists;
-  private String ifSheetExists;
-
-  private boolean makeSheetActive;
-  private boolean forceFormulaRecalculation = false;
-  private boolean leaveExistingStylesUnchanged = false;
-
-  /** advanced line append options **/
-  private int appendOffset = 0;
-  private int appendEmpty = 0;
-  private boolean appendOmitHeader = false;
-
-  /** how to write rows **/
-  private String rowWritingMethod;
-
-  /** where to start writing **/
-  private String startingCell;
 
   /** The file extension in case of a generated filename */
+  @Injection( name = "EXTENSION" )
   private String extension;
 
-  /** The password to protect the sheet */
-  private String password;
-  private String protectedBy;
-
-  /** Add a header at the top of the file? */
-  private boolean headerEnabled;
-
-  /** Add a footer at the bottom of the file? */
-  private boolean footerEnabled;
+  /** Do we need to stream data to handle very large files? */
+  @Injection( name = "STREAM_XSLX_DATA" )
+  private boolean streamingData;
 
   /** if this value is larger then 0, the text file is split up into parts of this number of lines */
+  @Injection( name = "SPLIT_EVERY_DATA_ROWS" )
   private int splitEvery;
 
   /** Flag: add the stepnr in the filename */
+  @Injection( name = "INCLUDE_STEPNR_IN_FILENAME" )
   private boolean stepNrInFilename;
 
   /** Flag: add the date in the filename */
+  @Injection( name = "INCLUDE_DATE_IN_FILENAME" )
   private boolean dateInFilename;
 
-  /** Flag: add the filenames to result filenames */
-  private boolean addToResultFilenames;
-
-  /** Flag: protect the sheet */
-  private boolean protectsheet;
-
   /** Flag: add the time in the filename */
+  @Injection( name = "INCLUDE_TIME_IN_FILENAME" )
   private boolean timeInFilename;
 
-  /** Flag: use a template */
-  private boolean templateEnabled;
-  private boolean templateSheetEnabled;
+  @Injection( name = "SPECIFY_DATE_TIME_FORMAT" )
+  private boolean SpecifyFormat;
 
-  /** the excel template */
-  private String templateFileName;
-  private String templateSheetName;
+  @Injection( name = "DATE_TIME_FORMAT" )
+  private String date_time_format;
+
+  /** what to do if file exists **/
+  @Injection( name = "IF_OUTPUT_FILE_EXISTS" )
+  private String ifFileExists;
+
+  /** Flag : Do not open new file when transformation start */
+  @Injection( name = "WAIT_FOR_FIRST_ROW" )
+  private boolean doNotOpenNewFileInit;
+
+  /** Flag: add the filenames to result filenames */
+  @Injection( name = "ADD_FILENAMES_TO_RESULT" )
+  private boolean addToResultFilenames;
+
+  // FILE GROUP END
+
+  // SHEET GROUP START
 
   /** the excel sheet name */
+  @Injection( name = "SHEET_NAME" )
   private String sheetname;
+
+  @Injection( name = "MAKE_SHEET_ACTIVE" )
+  private boolean makeSheetActive;
+
+  @Injection( name = "IF_SHEET_EXISTS_IN_OUTPUT" )
+  private String ifSheetExists;
+
+  /** Flag: protect the sheet */
+  @Injection( name = "PROTECT_SHEET" )
+  private boolean protectsheet;
+
+  /** The user/password to protect the sheet */
+  @Injection( name = "PROTECTED_BY_USER" )
+  private String protectedBy;
+  @Injection( name = "PASSWORD" )
+  private String password;
+
+  // SHEET GROUP END
+
+  // TEMPLATE GROUP START
+
+  /** Flag: use a template */
+  @Injection( name = "USE_TEMPLATE_FOR_NEW_FILES" )
+  private boolean templateEnabled;
+
+  /** the excel template */
+  @Injection( name = "TEMPLATE_FILE" )
+  private String templateFileName;
+
+  @Injection( name = "USE_TEMPLATE_FOR_NEW_SHEETS" )
+  private boolean templateSheetEnabled;
+
+  @Injection( name = "TEMPLATE_SHEET" )
+  private String templateSheetName;
+
+  @Injection( name = "HIDE_TEMPLATE_SHEET" )
+  private boolean templateSheetHidden;
+
+  // TEMPLATE GROUP END
+
+  // CONTENT OPTIONS GROUP START
+
+  /** where to start writing **/
+  @Injection( name = "START_WRITING_AT_CELL" )
+  private String startingCell;
+
+  /** how to write rows **/
+  @Injection( name = "WHEN_WRITING_ROWS" )
+  private String rowWritingMethod;
+
+  /** Add a header at the top of the file? */
+  @Injection( name = "WRITE_HEADER" )
+  private boolean headerEnabled;
+
+  /** Add a footer at the bottom of the file? */
+  @Injection( name = "WRITE_FOOTER" )
+  private boolean footerEnabled;
+
+  /** Flag : auto size columns? */
+  @Injection( name = "AUTO_SIZE_COLUMNS" )
+  private boolean autosizecolums;
+
+  @Injection( name = "FORCE_FORMULA_RECALC" )
+  private boolean forceFormulaRecalculation = false;
+
+  @Injection( name = "LEAVE_STYLES_UNCHANGED" )
+  private boolean leaveExistingStylesUnchanged = false;
+
+  // CONTENT OPTIONS GROUP END
+
+  // WHEN WRITING TO EXISTING SHEET GROUP START
+
+  /** Flag : appendLines lines? */
+  @Injection( name = "START_WRITING_AT_SHEET_END" )
+  private boolean appendLines;
+
+  /** advanced line append options **/
+  @Injection( name = "OFFSET_BY_ROWS" )
+  private int appendOffset = 0;
+
+  @Injection( name = "BEGIN_BY_WRITING_EMPTY_LINES" )
+  private int appendEmpty = 0;
+
+  @Injection( name = "OMIT_HEADER" )
+  private boolean appendOmitHeader = false;
+
+  // WHEN WRITING TO EXISTING SHEET GROUP END
 
   /* THE FIELD SPECIFICATIONS ... */
 
   /** The output fields */
+  @InjectionDeep
   private ExcelWriterStepField[] outputFields;
-
-  /** Flag : appendLines lines? */
-  private boolean appendLines;
-
-  /** Flag : Do not open new file when transformation start */
-  private boolean doNotOpenNewFileInit;
-
-  private boolean SpecifyFormat;
-
-  private String date_time_format;
-
-  /** Flag : auto size columns? */
-  private boolean autosizecolums;
-
-  /** Do we need to stream data to handle very large files? */
-  private boolean streamingData;
 
   public ExcelWriterStepMeta() {
     super();
@@ -546,6 +614,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     this.leaveExistingStylesUnchanged = leaveExistingStylesUnchanged;
   }
 
+  @Override
   public void loadXML( Node stepnode, List<DatabaseMeta> databases, IMetaStore metaStore ) throws KettleXMLException {
     readData( stepnode );
   }
@@ -554,6 +623,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     outputFields = new ExcelWriterStepField[nrfields];
   }
 
+  @Override
   public Object clone() {
     ExcelWriterStepMeta retval = (ExcelWriterStepMeta) super.clone();
     int nrfields = outputFields.length;
@@ -586,7 +656,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
         "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "leaveExistingStylesUnchanged" ) );
 
       String addToResult = XMLHandler.getTagValue( stepnode, "add_to_result_filenames" );
-      if ( Const.isEmpty( addToResult ) ) {
+      if ( Utils.isEmpty( addToResult ) ) {
         addToResultFilenames = true;
       } else {
         addToResultFilenames = "Y".equalsIgnoreCase( addToResult );
@@ -613,6 +683,8 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
       templateEnabled = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "template", "enabled" ) );
       templateSheetEnabled =
         "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "template", "sheet_enabled" ) );
+      templateSheetHidden =
+        "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "template", "hidden" ) );
       templateFileName = XMLHandler.getTagValue( stepnode, "template", "filename" );
       templateSheetName = XMLHandler.getTagValue( stepnode, "template", "sheetname" );
       sheetname = XMLHandler.getTagValue( stepnode, "file", "sheetname" );
@@ -660,6 +732,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     return nl;
   }
 
+  @Override
   public void setDefault() {
 
     autosizecolums = false;
@@ -667,7 +740,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     headerEnabled = true;
     footerEnabled = false;
     fileName = "file";
-    extension = "xlsx"; // SKOFRA (xls)
+    extension = "xls";
     doNotOpenNewFileInit = false;
     stepNrInFilename = false;
     dateInFilename = false;
@@ -678,7 +751,8 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     protectsheet = false;
     splitEvery = 0;
     templateEnabled = false;
-    templateFileName = "template.xlsx";
+    templateFileName = "template.xls";
+    templateSheetHidden = false;
     sheetname = "Sheet1";
     appendLines = false;
     ifFileExists = IF_FILE_EXISTS_CREATE_NEW;
@@ -737,7 +811,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
 
     Date now = new Date();
 
-    if ( SpecifyFormat && !Const.isEmpty( date_time_format ) ) {
+    if ( SpecifyFormat && !Utils.isEmpty( date_time_format ) ) {
       daf.applyPattern( date_time_format );
       String dt = daf.format( now );
       retval += dt;
@@ -761,30 +835,26 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     }
 
     if ( realextension != null && realextension.length() != 0 ) {
-      if (!retval.toLowerCase().endsWith("." + realextension.toLowerCase()))  { // SKOFRA
-          retval += "." + realextension;
-      }
+      retval += "." + realextension;
     }
 
     return retval;
   }
 
+  @Override
   public void getFields( RowMetaInterface r, String name, RowMetaInterface[] info, StepMeta nextStep,
     VariableSpace space, Repository repository, IMetaStore metaStore ) {
-    if ( r == null ) {
-      r = new RowMeta(); // give back values
-    }
 
     // No values are added to the row in this type of step
   }
 
+  @Override
   public String getXML() {
-    StringBuffer retval = new StringBuffer( 800 );
+    StringBuilder retval = new StringBuilder( 800 );
 
     retval.append( "    " ).append( XMLHandler.addTagValue( "header", headerEnabled ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "footer", footerEnabled ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "makeSheetActive", makeSheetActive ) );
-    retval.append( "    " ).append( XMLHandler.addTagValue( "rowWritingMethod", rowWritingMethod ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "startingCell", startingCell ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "appendOmitHeader", appendOmitHeader ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "appendOffset", appendOffset ) );
@@ -824,6 +894,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     retval.append( "      " ).append( XMLHandler.addTagValue( "sheet_enabled", templateSheetEnabled ) );
     retval.append( "      " ).append( XMLHandler.addTagValue( "filename", templateFileName ) );
     retval.append( "      " ).append( XMLHandler.addTagValue( "sheetname", templateSheetName ) );
+    retval.append( "      " ).append( XMLHandler.addTagValue( "hidden", templateSheetHidden ) );
     retval.append( "    </template>" ).append( Const.CR );
 
     retval.append( "    <fields>" ).append( Const.CR );
@@ -851,6 +922,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     return retval.toString();
   }
 
+  @Override
   public void readRep( Repository rep, IMetaStore metaStore, ObjectId id_step, List<DatabaseMeta> databases ) throws KettleException {
     try {
       headerEnabled = rep.getStepAttributeBoolean( id_step, "header" );
@@ -866,7 +938,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
       leaveExistingStylesUnchanged = rep.getStepAttributeBoolean( id_step, "leaveExistingStylesUnchanged" );
 
       String addToResult = rep.getStepAttributeString( id_step, "add_to_result_filenames" );
-      if ( Const.isEmpty( addToResult ) ) {
+      if ( Utils.isEmpty( addToResult ) ) {
         addToResultFilenames = true;
       } else {
         addToResultFilenames = rep.getStepAttributeBoolean( id_step, "add_to_result_filenames" );
@@ -893,6 +965,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
       templateEnabled = rep.getStepAttributeBoolean( id_step, "template_enabled" );
       templateFileName = rep.getStepAttributeString( id_step, "template_filename" );
       templateSheetEnabled = rep.getStepAttributeBoolean( id_step, "template_sheet_enabled" );
+      templateSheetHidden = rep.getStepAttributeBoolean( id_step, "template_sheet_hidden" );
       templateSheetName = rep.getStepAttributeString( id_step, "template_sheetname" );
       sheetname = rep.getStepAttributeString( id_step, "sheetname" );
       ifFileExists = rep.getStepAttributeString( id_step, "if_file_exists" );
@@ -924,6 +997,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     }
   }
 
+  @Override
   public void saveRep( Repository rep, IMetaStore metaStore, ObjectId id_transformation, ObjectId id_step ) throws KettleException {
     try {
       rep.saveStepAttribute( id_transformation, id_step, "header", headerEnabled );
@@ -959,6 +1033,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
       rep.saveStepAttribute( id_transformation, id_step, "template_enabled", templateEnabled );
       rep.saveStepAttribute( id_transformation, id_step, "template_filename", templateFileName );
       rep.saveStepAttribute( id_transformation, id_step, "template_sheet_enabled", templateSheetEnabled );
+      rep.saveStepAttribute( id_transformation, id_step, "template_sheet_hidden", templateSheetHidden );
       rep.saveStepAttribute( id_transformation, id_step, "template_sheetname", templateSheetName );
       rep.saveStepAttribute( id_transformation, id_step, "sheetname", sheetname );
       rep.saveStepAttribute( id_transformation, id_step, "if_file_exists", ifFileExists );
@@ -985,6 +1060,7 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     }
   }
 
+  @Override
   public void check( List<CheckResultInterface> remarks, TransMeta transMeta, StepMeta stepMeta,
     RowMetaInterface prev, String[] input, String[] output, RowMetaInterface info, VariableSpace space,
     Repository repository, IMetaStore metaStore ) {
@@ -1052,17 +1128,18 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
    *
    * @return the filename of the exported resource
    */
+  @Override
   public String exportResources( VariableSpace space, Map<String, ResourceDefinition> definitions,
     ResourceNamingInterface resourceNamingInterface, Repository repository, IMetaStore metaStore ) throws KettleException {
     try {
       // The object that we're modifying here is a copy of the original!
       // So let's change the filename from relative to absolute by grabbing the file object...
       //
-      if ( !Const.isEmpty( fileName ) ) {
+      if ( !Utils.isEmpty( fileName ) ) {
         FileObject fileObject = KettleVFS.getFileObject( space.environmentSubstitute( fileName ), space );
         fileName = resourceNamingInterface.nameResource( fileObject, space, true );
       }
-      if ( !Const.isEmpty( templateFileName ) ) {
+      if ( !Utils.isEmpty( templateFileName ) ) {
         FileObject fileObject = KettleVFS.getFileObject( space.environmentSubstitute( templateFileName ), space );
         templateFileName = resourceNamingInterface.nameResource( fileObject, space, true );
       }
@@ -1074,19 +1151,17 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
   }
 
   @Override
-  public StepMetaInjectionInterface getStepMetaInjectionInterface() {
-    return new ExcelWriterMetaInjection( this );
-  }
-
   public StepInterface getStep( StepMeta stepMeta, StepDataInterface stepDataInterface, int cnr,
     TransMeta transMeta, Trans trans ) {
     return new ExcelWriterStep( stepMeta, stepDataInterface, cnr, transMeta, trans );
   }
 
+  @Override
   public StepDataInterface getStepData() {
     return new ExcelWriterStepData();
   }
 
+  @Override
   public String[] getUsedLibraries() {
     return new String[0];
   }
@@ -1106,5 +1181,12 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     this.streamingData = streamingData;
   }
 
+  public boolean isTemplateSheetHidden() {
+    return templateSheetHidden;
+  }
+
+  public void setTemplateSheetHidden( boolean hide ) {
+    this.templateSheetHidden = hide;
+  }
 
 }

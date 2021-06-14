@@ -343,6 +343,7 @@ public class ExcelOutput extends BaseStep implements StepInterface {
         }
       } else {
         switch ( vMeta.getType() ) {
+          case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
           case ValueMetaInterface.TYPE_DATE: {
             if ( v != null && vMeta.getDate( v ) != null ) {
               if ( cellFormat == null ) {
