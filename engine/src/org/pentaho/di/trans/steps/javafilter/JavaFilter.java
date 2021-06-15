@@ -160,6 +160,7 @@ public class JavaFilter extends BaseStep implements StepInterface {
               case ValueMetaInterface.TYPE_INTEGER:
                 parameterType = Long.class;
                 break;
+              case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
               case ValueMetaInterface.TYPE_DATE:
                 parameterType = Date.class;
                 break;

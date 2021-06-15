@@ -53,6 +53,7 @@ public class JavaScriptUtils {
         return jsToString( value, classType );
 
       case ValueMetaInterface.TYPE_DATE:
+      case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
         return jsToDate( value, classType );
 
       case ValueMetaInterface.TYPE_BOOLEAN:

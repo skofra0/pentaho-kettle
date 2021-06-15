@@ -1369,8 +1369,7 @@ public class ScriptAddedFunctions {
   }
 
   // Converts the given String to a JScript Numeric
-  public static Object str2num( ScriptEngine actualContext, Bindings actualObject, Object[] ArgList,
-    Object FunctionContext ) {
+  public static Object str2num( ScriptEngine actualContext, Bindings actualObject, Object[] ArgList, Object FunctionContext ) {
     double dRC = 0.00;
     switch ( ArgList.length ) {
       case 0:

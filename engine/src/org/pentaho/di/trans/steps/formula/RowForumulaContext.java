@@ -153,6 +153,7 @@ public class RowForumulaContext implements FormulaContext {
         return valueMeta.getBinary( valueData );
       case ValueMetaInterface.TYPE_BOOLEAN:
         return valueMeta.getBoolean( valueData );
+      case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
       case ValueMetaInterface.TYPE_DATE:
         return valueMeta.getDate( valueData );
       case ValueMetaInterface.TYPE_INTEGER:

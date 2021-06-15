@@ -75,6 +75,15 @@ import java.util.regex.Pattern;
 public class Const {
     private static final Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2!!
 
+    public static final DecimalFormatSymbols ISO31_0; // SKOFRA
+    public static final Locale ISO31_0_LOCALE = Locale.ENGLISH; // SKOFRA
+    public static final String ISO31_0_PATTERN = "#.###"; // SKOFRA
+    static {
+        ISO31_0 = new DecimalFormatSymbols(ISO31_0_LOCALE);
+        ISO31_0.setGroupingSeparator(' ');
+        ISO31_0.setDecimalSeparator('.');
+    }
+
     /**
      * Version number
      *

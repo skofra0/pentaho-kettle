@@ -1084,6 +1084,7 @@ public class ScriptDialog extends BaseStepDialog implements StepDialogInterface 
 
             String string = null;
             switch ( valueMeta.getType() ) {
+              case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
               case ValueMetaInterface.TYPE_DATE:
                 genMeta.getFieldFormat()[i] = "yyyy/MM/dd HH:mm:ss";
                 valueMeta.setConversionMask( genMeta.getFieldFormat()[i] );

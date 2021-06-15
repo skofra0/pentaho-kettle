@@ -85,6 +85,7 @@ public class StreamLookup extends BaseStep implements StepInterface {
           }
           break;
         case ValueMetaInterface.TYPE_DATE:
+        case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
           try {
             data.nullIf[i] = DateFormat.getInstance().parse( meta.getValueDefault()[i] );
           } catch ( Exception e ) {

@@ -413,6 +413,7 @@ public class StringUtil {
     }
     try {
       df.setDecimalFormatSymbols( dfs );
+      df.setNegativePrefix("-"); // SKOFRA
       return df.parse( value ).doubleValue();
     } catch ( Exception e ) {
       String message = "Couldn't convert string to number " + e.toString();

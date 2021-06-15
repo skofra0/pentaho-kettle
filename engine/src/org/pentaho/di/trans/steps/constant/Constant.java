@@ -124,6 +124,7 @@ public class Constant extends BaseStep implements StepInterface {
                     }
 
                     data.df.setDecimalFormatSymbols( data.dfs );
+                    data.df.setNegativePrefix("-"); // SKOFRA
                   }
 
                   rowData[i] = Double.valueOf( data.nf.parse( stringValue ).doubleValue() );

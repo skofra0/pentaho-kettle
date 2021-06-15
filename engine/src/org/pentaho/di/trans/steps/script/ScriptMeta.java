@@ -738,6 +738,7 @@ public class ScriptMeta extends BaseStepMeta implements StepMetaInterface {
                 res.setValue( ( (String) result ) );
               }
               break;
+            case ValueMetaInterface.TYPE_TIMESTAMP: // SKOFRA
             case ValueMetaInterface.TYPE_DATE:
               double dbl = 0;
               if ( classname.equalsIgnoreCase( "org.mozilla.javascript.Undefined" ) ) {

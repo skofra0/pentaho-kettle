@@ -439,6 +439,7 @@ public class FixedFileInputField implements Cloneable, XMLInterface {
                 // Try the double
 
                 df.setDecimalFormatSymbols( dfs );
+                df.setNegativePrefix("-"); // SKOFRA
                 df.applyPattern( number_formats[x] );
 
                 double d = df.parse( field ).doubleValue();

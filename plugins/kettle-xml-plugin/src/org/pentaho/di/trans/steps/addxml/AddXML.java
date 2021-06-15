@@ -209,6 +209,7 @@ public class AddXML extends BaseStep implements StepInterface {
         data.dfs.setCurrencySymbol( data.defaultDecimalFormatSymbols.getCurrencySymbol() );
       }
 
+      data.df.setNegativePrefix("-"); // SKOFRA
       data.df.setDecimalFormatSymbols( data.dfs );
 
       if ( valueMeta.isBigNumber() ) {

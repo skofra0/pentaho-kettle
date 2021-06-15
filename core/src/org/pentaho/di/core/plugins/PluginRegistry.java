@@ -107,7 +107,7 @@ public class PluginRegistry {
     lock.writeLock().lock();
     try {
     if ( pluginMap.get( pluginType ) == null ) {
-      pluginMap.put( pluginType, new ArrayList<PluginInterface>() );
+      pluginMap.put( pluginType, new ArrayList<>() );
     }
 
     // Keep track of the categories separately for performance reasons...
@@ -274,7 +274,7 @@ public class PluginRegistry {
    */
   @SuppressWarnings( "unchecked" )
   public <T extends PluginInterface, K extends PluginTypeInterface> List<T> getPlugins( Class<K> type ) {
-    Set<T> set = new HashSet<T>();
+    Set<T> set = new HashSet<>();
 
     lock.readLock().lock();
     try {

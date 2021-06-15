@@ -877,7 +877,7 @@ public class ValueMetaBase implements ValueMetaInterface {
     // hungry.
     //
     if ( decimalFormat == null || decimalFormatChanged ) {
-      decimalFormat = (DecimalFormat) NumberFormat.getInstance();
+      decimalFormat = (DecimalFormat) NumberFormat.getInstance(Const.ISO31_0_LOCALE);
       decimalFormat.setParseBigDecimal( useBigDecimal );
       DecimalFormatSymbols decimalFormatSymbols = decimalFormat.getDecimalFormatSymbols();
 
@@ -891,6 +891,7 @@ public class ValueMetaBase implements ValueMetaInterface {
         decimalFormatSymbols.setDecimalSeparator( decimalSymbol.charAt( 0 ) );
       }
       decimalFormat.setDecimalFormatSymbols( decimalFormatSymbols );
+      decimalFormat.setNegativePrefix("-"); // SKOFRA
 
       // Apply the conversion mask if we have one...
       if ( !Const.isEmpty( conversionMask ) ) {
@@ -905,7 +906,7 @@ public class ValueMetaBase implements ValueMetaInterface {
               // version
               // 3.0
             } else {
-              StringBuffer integerPattern = new StringBuffer();
+              StringBuilder integerPattern = new StringBuilder();
 
               // First the format for positive integers...
               //
@@ -929,7 +930,7 @@ public class ValueMetaBase implements ValueMetaInterface {
             if ( length < 1 ) {
               decimalFormat.applyPattern( " ##########0.0########;-#########0.0########" );
             } else {
-              StringBuffer numberPattern = new StringBuffer();
+                StringBuilder numberPattern = new StringBuilder();
 
               // First do the format for positive numbers...
               //
@@ -966,6 +967,7 @@ public class ValueMetaBase implements ValueMetaInterface {
             }
             break;
           default:
+              decimalFormat.applyPattern( "0.0##;-0.0##" ); // SKOFRA
             break;
         }
 

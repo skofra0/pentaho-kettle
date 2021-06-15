@@ -3046,6 +3046,7 @@ public class Value implements Cloneable, XMLInterface, Serializable {
           dfs.setDecimalSeparator( decimalSymbol.charAt( 0 ) );
         }
         df.setDecimalFormatSymbols( dfs ); // in case of 4, 3 or 2
+        df.setNegativePrefix("-"); // SKOFRA
         if ( format != null && format.length() > 0 ) {
           df.applyPattern( format );
         }
@@ -3198,6 +3199,7 @@ public class Value implements Cloneable, XMLInterface, Serializable {
           }
           try {
             df.setDecimalFormatSymbols( dfs );
+            df.setNegativePrefix("-"); // SKOFRA
             setValue( df.parse( getString() ).doubleValue() );
           } catch ( Exception e ) {
             String message = "Couldn't convert string to number " + e.toString();

@@ -417,6 +417,7 @@ public class TextFileCSVImportProgressDialog {
               try {
                 df2.applyPattern( mask );
                 df2.setDecimalFormatSymbols( dfs2 );
+                df2.setNegativePrefix("-"); // SKOFRA
                 double mn = df2.parse( seResult.getMin().toString() ).doubleValue();
                 message.append( BaseMessages.getString(
                   PKG, "TextFileCSVImportProgressDialog.Info.NumberExample", mask, seResult.getMin(), Double
