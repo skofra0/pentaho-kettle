@@ -403,7 +403,7 @@ public class JsonInput extends BaseFileInputStep<JsonInputMeta, JsonInputData> i
     }
     // See if we need to add the row number to the row...
     if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-      outputRowData[ rowIndex++ ] = new Long( data.rownr );
+      outputRowData[ rowIndex++ ] = Long.valueOf( data.rownr );
     }
     // Possibly add short filename...
     if ( meta.getShortFileNameField() != null && meta.getShortFileNameField().length() > 0 ) {
@@ -419,7 +419,7 @@ public class JsonInput extends BaseFileInputStep<JsonInputMeta, JsonInputData> i
     }
     // Add Size
     if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-      outputRowData[ rowIndex++ ] = new Long( data.size );
+      outputRowData[ rowIndex++ ] = Long.valueOf( data.size );
     }
     // add Hidden
     if ( meta.isHiddenField() != null && meta.isHiddenField().length() > 0 ) {

@@ -143,7 +143,7 @@ public class ClosureGenerator extends BaseStep implements StepInterface {
 
       data.topLevel = null;
       if ( meta.isRootIdZero() ) {
-        data.topLevel = new Long( 0 );
+        data.topLevel = Long.valueOf( 0 );
       }
 
       return true;

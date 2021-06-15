@@ -104,7 +104,7 @@ public class GroupByTest  {
 
     List<RowSet> outputRowSets = new ArrayList<RowSet>();
     BlockingRowSet rowSet = new BlockingRowSet( 1 );
-    rowSet.putRow( rowMeta, new Object[] { new Long( 0 ) } );
+    rowSet.putRow( rowMeta, new Object[] { Long.valueOf( 0 ) } );
     outputRowSets.add( rowSet );
     groupBySpy.setOutputRowSets( outputRowSets );
 

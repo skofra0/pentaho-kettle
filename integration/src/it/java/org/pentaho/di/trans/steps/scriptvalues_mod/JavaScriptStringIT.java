@@ -321,12 +321,12 @@ public class JavaScriptStringIT extends TestCase {
 
     RowMetaInterface rm = createRowMetaInterface2();
 
-    Object[] r1 = new Object[] { "abcdefgh", "ef", new Long( 3 ), new Long( 10 ) };
-    Object[] r2 = new Object[] { "abcdefgh", "h", new Long( 0 ), new Long( 7 ) };
-    Object[] r3 = new Object[] { "abcdefgh", "h", new Long( 1 ), new Long( 6 ) };
-    Object[] r4 = new Object[] { "abcdefgh", null, new Long( 1 ), new Long( 2 ) };
-    Object[] r5 = new Object[] { "abcdefgh", "invalid", new Long( 1 ), new Long( 1 ) };
-    Object[] r6 = new Object[] { "abcdefgh", "invalidlonger", new Long( 1 ), new Long( 1 ) };
+    Object[] r1 = new Object[] { "abcdefgh", "ef", Long.valueOf( 3 ), Long.valueOf( 10 ) };
+    Object[] r2 = new Object[] { "abcdefgh", "h", Long.valueOf( 0 ), Long.valueOf( 7 ) };
+    Object[] r3 = new Object[] { "abcdefgh", "h", Long.valueOf( 1 ), Long.valueOf( 6 ) };
+    Object[] r4 = new Object[] { "abcdefgh", null, Long.valueOf( 1 ), Long.valueOf( 2 ) };
+    Object[] r5 = new Object[] { "abcdefgh", "invalid", Long.valueOf( 1 ), Long.valueOf( 1 ) };
+    Object[] r6 = new Object[] { "abcdefgh", "invalidlonger", Long.valueOf( 1 ), Long.valueOf( 1 ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -368,21 +368,21 @@ public class JavaScriptStringIT extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "abcdefgh", "ef", new Long( 3 ), new Long( 10 ), new Long( 4 ), new Long( 4 ), new Long( -1 ) };
+        "abcdefgh", "ef", Long.valueOf( 3 ), Long.valueOf( 10 ), Long.valueOf( 4 ), Long.valueOf( 4 ), Long.valueOf( -1 ) };
     Object[] r2 =
-      new Object[] { "abcdefgh", "h", new Long( 0 ), new Long( 7 ), new Long( 7 ), new Long( 7 ), new Long( 7 ) };
+      new Object[] { "abcdefgh", "h", Long.valueOf( 0 ), Long.valueOf( 7 ), Long.valueOf( 7 ), Long.valueOf( 7 ), Long.valueOf( 7 ) };
     Object[] r3 =
-      new Object[] { "abcdefgh", "h", new Long( 1 ), new Long( 6 ), new Long( 7 ), new Long( 7 ), new Long( 7 ) };
+      new Object[] { "abcdefgh", "h", Long.valueOf( 1 ), Long.valueOf( 6 ), Long.valueOf( 7 ), Long.valueOf( 7 ), Long.valueOf( 7 ) };
     Object[] r4 =
       new Object[] {
-        "abcdefgh", null, new Long( 1 ), new Long( 2 ), new Long( -1 ), new Long( -1 ), new Long( -1 ) };
+        "abcdefgh", null, Long.valueOf( 1 ), Long.valueOf( 2 ), Long.valueOf( -1 ), Long.valueOf( -1 ), Long.valueOf( -1 ) };
     Object[] r5 =
       new Object[] {
-        "abcdefgh", "invalid", new Long( 1 ), new Long( 1 ), new Long( -1 ), new Long( -1 ), new Long( -1 ) };
+        "abcdefgh", "invalid", Long.valueOf( 1 ), Long.valueOf( 1 ), Long.valueOf( -1 ), Long.valueOf( -1 ), Long.valueOf( -1 ) };
     Object[] r6 =
       new Object[] {
-        "abcdefgh", "invalidlonger", new Long( 1 ), new Long( 1 ), new Long( -1 ), new Long( -1 ),
-        new Long( -1 ) };
+        "abcdefgh", "invalidlonger", Long.valueOf( 1 ), Long.valueOf( 1 ), Long.valueOf( -1 ), Long.valueOf( -1 ),
+        Long.valueOf( -1 ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

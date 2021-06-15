@@ -265,7 +265,7 @@ public class PropertyInput extends BaseStep implements StepInterface {
 
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-        r[data.totalpreviousfields + rowIndex++] = new Long( data.rownr );
+        r[data.totalpreviousfields + rowIndex++] = Long.valueOf( data.rownr );
       }
 
       // See if we need to add the section for INI files ...
@@ -286,7 +286,7 @@ public class PropertyInput extends BaseStep implements StepInterface {
       }
       // Add Size
       if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-        r[data.totalpreviousfields + rowIndex++] = new Long( data.size );
+        r[data.totalpreviousfields + rowIndex++] = Long.valueOf( data.size );
       }
       // add Hidden
       if ( meta.isHiddenField() != null && meta.isHiddenField().length() > 0 ) {
@@ -414,7 +414,7 @@ public class PropertyInput extends BaseStep implements StepInterface {
         data.rootUriName = data.file.getName().getRootURI();
       }
       if ( meta.getSizeField() != null && meta.getSizeField().length() > 0 ) {
-        data.size = new Long( data.file.getContent().getSize() );
+        data.size = Long.valueOf( data.file.getContent().getSize() );
       }
 
       if ( meta.resetRowNumber() ) {

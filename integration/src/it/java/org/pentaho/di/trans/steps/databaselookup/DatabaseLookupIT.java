@@ -174,9 +174,9 @@ public class DatabaseLookupIT {
 
     RowMetaInterface rm = createRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 5L ), "5" };
-    Object[] r2 = new Object[] { new Long( 9L ), "9" };
-    Object[] r3 = new Object[] { new Long( 20L ), "20" }; // non-existing one.
+    Object[] r1 = new Object[] { Long.valueOf( 5L ), "5" };
+    Object[] r2 = new Object[] { Long.valueOf( 9L ), "9" };
+    Object[] r3 = new Object[] { Long.valueOf( 20L ), "20" }; // non-existing one.
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );
@@ -210,9 +210,9 @@ public class DatabaseLookupIT {
 
     RowMetaInterface rm = createResultRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 5L ), "5", new Long( 101L ), "5" };
-    Object[] r2 = new Object[] { new Long( 9L ), "9", new Long( 102L ), "9" };
-    Object[] r3 = new Object[] { new Long( 20L ), "20", new Long( -1L ), "UNDEF" };
+    Object[] r1 = new Object[] { Long.valueOf( 5L ), "5", Long.valueOf( 101L ), "5" };
+    Object[] r2 = new Object[] { Long.valueOf( 9L ), "9", Long.valueOf( 102L ), "9" };
+    Object[] r3 = new Object[] { Long.valueOf( 20L ), "20", Long.valueOf( -1L ), "UNDEF" };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

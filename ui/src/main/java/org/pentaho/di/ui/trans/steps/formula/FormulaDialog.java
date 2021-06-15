@@ -190,7 +190,7 @@ public class FormulaDialog extends BaseStepDialog implements StepDialogInterface
 
             // Remember these fields...
             for ( int i = 0; i < row.size(); i++ ) {
-              inputFields.put( row.getValueMeta( i ).getName(), new Integer( i ) );
+              inputFields.put( row.getValueMeta( i ).getName(), Integer.valueOf( i ) );
             }
 
             setComboBoxes();
@@ -316,7 +316,7 @@ public class FormulaDialog extends BaseStepDialog implements StepDialogInterface
         //
         /*
          * int nrNonEmptyFields = wFields.nrNonEmpty(); for (int i=0;i<nrNonEmptyFields;i++) { TableItem item =
-         * wFields.getNonEmpty(i); fields.put(item.getText(1), new Integer(1000000+i)); // The number is just to debug
+         * wFields.getNonEmpty(i); fields.put(item.getText(1), Integer.valueOf(1000000+i)); // The number is just to debug
          * the origin of the fieldname }
          */
 

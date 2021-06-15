@@ -422,7 +422,7 @@ public class NeoviewDatabaseMeta extends BaseDatabaseMeta implements DatabaseInt
           data = Boolean.valueOf( rs.getBoolean( i + 1 ) );
           break;
         case ValueMetaInterface.TYPE_NUMBER:
-          data = new Double( rs.getDouble( i + 1 ) );
+          data = Double.valueOf( rs.getDouble( i + 1 ) );
           break;
         case ValueMetaInterface.TYPE_BIGNUMBER:
           data = rs.getBigDecimal( i + 1 );

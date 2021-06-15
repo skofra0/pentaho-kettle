@@ -282,7 +282,7 @@ public class CheckSum extends BaseStep implements StepInterface {
     @Override
     public Long getResult() {
       try {
-        return new Long( checksum.getValue() );
+        return Long.valueOf( checksum.getValue() );
       } finally {
         checksum.reset();
       }

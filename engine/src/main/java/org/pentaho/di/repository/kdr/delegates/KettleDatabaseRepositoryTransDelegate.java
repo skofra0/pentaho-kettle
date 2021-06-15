@@ -1298,7 +1298,7 @@ public class KettleDatabaseRepositoryTransDelegate extends KettleDatabaseReposit
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_DESCRIPTION ), transMeta.getDescription() );
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_EXTENDED_DESCRIPTION ), transMeta.getExtendedDescription() );
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_VERSION ), transMeta.getTransversion() );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_STATUS ), new Long( transMeta.getTransstatus() < 0 ? -1L : transMeta.getTransstatus() ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_TRANS_STATUS ), Long.valueOf( transMeta.getTransstatus() < 0 ? -1L : transMeta.getTransstatus() ) );
     TransLogTable logTable = transMeta.getTransLogTable();
     StepMeta step = (StepMeta) logTable.getSubject( TransLogTable.ID.LINES_READ );
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_STEP_READ ), step == null ? null : step.getObjectId() );
@@ -1318,15 +1318,15 @@ public class KettleDatabaseRepositoryTransDelegate extends KettleDatabaseReposit
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_DATABASE_MAXDATE ), transMeta.getMaxDateConnection() == null ? new LongObjectId( -1L ).longValue() : new LongObjectId( transMeta.getMaxDateConnection().getObjectId() ).longValue() );
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_TABLE_NAME_MAXDATE ), transMeta.getMaxDateTable() );
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_FIELD_NAME_MAXDATE ), transMeta.getMaxDateField() );
-    table.addValue( new ValueMetaNumber( KettleDatabaseRepository.FIELD_TRANSFORMATION_OFFSET_MAXDATE ), new Double( transMeta.getMaxDateOffset() ) );
-    table.addValue( new ValueMetaNumber( KettleDatabaseRepository.FIELD_TRANSFORMATION_DIFF_MAXDATE ), new Double( transMeta.getMaxDateDifference() ) );
+    table.addValue( new ValueMetaNumber( KettleDatabaseRepository.FIELD_TRANSFORMATION_OFFSET_MAXDATE ), Double.valueOf( transMeta.getMaxDateOffset() ) );
+    table.addValue( new ValueMetaNumber( KettleDatabaseRepository.FIELD_TRANSFORMATION_DIFF_MAXDATE ), Double.valueOf( transMeta.getMaxDateDifference() ) );
 
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_CREATED_USER ), transMeta.getCreatedUser() );
     table.addValue( new ValueMetaDate( KettleDatabaseRepository.FIELD_TRANSFORMATION_CREATED_DATE ), transMeta.getCreatedDate() );
 
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_TRANSFORMATION_MODIFIED_USER ), transMeta.getModifiedUser() );
     table.addValue( new ValueMetaDate( KettleDatabaseRepository.FIELD_TRANSFORMATION_MODIFIED_DATE ), transMeta.getModifiedDate() );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_SIZE_ROWSET ), new Long( transMeta.getSizeRowset() ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_SIZE_ROWSET ), Long.valueOf( transMeta.getSizeRowset() ) );
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_TRANSFORMATION_ID_DIRECTORY ), transMeta.getRepositoryDirectory().getObjectId() );
 
     repository.connectionDelegate.getDatabase().prepareInsert( table.getRowMeta(), KettleDatabaseRepository.TABLE_R_TRANSFORMATION );

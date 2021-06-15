@@ -97,7 +97,7 @@ public class ConstantIT extends TestCase {
       new Object[] {
         Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, null,
         "AAAAAAAAAAAAAA", "   ", null, Long.valueOf( -100L ), Long.valueOf( 0L ), Long.valueOf( 212L ), null,
-        new Double( -100.2 ), new Double( 0.0 ), new Double( 212.23 ), null,
+        Double.valueOf( -100.2 ), Double.valueOf( 0.0 ), Double.valueOf( 212.23 ), null,
         Timestamp.valueOf( "1970-01-01 00:00:00.000" ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );

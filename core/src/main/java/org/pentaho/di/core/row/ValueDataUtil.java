@@ -178,7 +178,7 @@ public class ValueDataUtil {
     if ( dataA == null || dataB == null ) {
       return null;
     }
-    return new Long( StringUtils.getLevenshteinDistance( dataA.toString(), dataB.toString() ) );
+    return Long.valueOf( StringUtils.getLevenshteinDistance( dataA.toString(), dataB.toString() ) );
   }
 
   /**
@@ -191,7 +191,7 @@ public class ValueDataUtil {
     if ( dataA == null || dataB == null ) {
       return null;
     }
-    return new Long( Utils.getDamerauLevenshteinDistance( dataA.toString(), dataB.toString() ) );
+    return Long.valueOf( Utils.getDamerauLevenshteinDistance( dataA.toString(), dataB.toString() ) );
   }
 
   /**
@@ -204,7 +204,7 @@ public class ValueDataUtil {
     if ( dataA == null || dataB == null ) {
       return null;
     }
-    return new Long( (int) new NeedlemanWunsch().score( dataA.toString(), dataB.toString() ) );
+    return Long.valueOf( (int) new NeedlemanWunsch().score( dataA.toString(), dataB.toString() ) );
   }
 
   /**
@@ -587,7 +587,7 @@ public class ValueDataUtil {
         } else if ( valueA == null ) {
           return valueB;
         } else {
-          return new Double( valueA.doubleValue() + valueB.doubleValue() );
+          return Double.valueOf( valueA.doubleValue() + valueB.doubleValue() );
         }
       }
       case ValueMetaInterface.TYPE_INTEGER: {
@@ -598,7 +598,7 @@ public class ValueDataUtil {
         } else if ( valueA == null ) {
           return valueB;
         } else {
-          return new Long( valueA.longValue() + valueB.longValue() );
+          return Long.valueOf( valueA.longValue() + valueB.longValue() );
         }
       }
       case ValueMetaInterface.TYPE_BOOLEAN: {
@@ -638,10 +638,10 @@ public class ValueDataUtil {
       case ValueMetaInterface.TYPE_STRING:
         return metaA.getString( dataA ) + metaB.getString( dataB ) + metaC.getString( dataC );
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           + metaB.getNumber( dataB ).doubleValue() + metaC.getNumber( dataC ).doubleValue() );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           + metaB.getInteger( dataB ).longValue() + metaC.getInteger( dataC ).longValue() );
       case ValueMetaInterface.TYPE_BOOLEAN:
         return Boolean.valueOf( metaA.getBoolean( dataA ).booleanValue()
@@ -734,13 +734,13 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue() - metaB.getNumber( dataB ).doubleValue() );
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue() - metaB.getNumber( dataB ).doubleValue() );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue() - metaB.getInteger( dataB ).longValue() );
+        return Long.valueOf( metaA.getInteger( dataA ).longValue() - metaB.getInteger( dataB ).longValue() );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).subtract( metaB.getBigNumber( dataB ) );
       default:
-        return new Long( metaA.getInteger( dataA ).longValue() - metaB.getInteger( dataB ).longValue() );
+        return Long.valueOf( metaA.getInteger( dataA ).longValue() - metaB.getInteger( dataB ).longValue() );
     }
   }
 
@@ -773,11 +773,11 @@ public class ValueDataUtil {
   }
 
   public static Double multiplyDoubles( Double a, Double b ) {
-    return new Double( a.doubleValue() * b.doubleValue() );
+    return Double.valueOf( a.doubleValue() * b.doubleValue() );
   }
 
   public static Long multiplyLongs( Long a, Long b ) {
-    return new Long( a.longValue() * b.longValue() );
+    return Long.valueOf( a.longValue() * b.longValue() );
   }
 
   // Get BigNumber size to be considered in mathematical operations
@@ -870,11 +870,11 @@ public class ValueDataUtil {
   }
 
   public static Double divideDoubles( Double a, Double b ) {
-    return new Double( a.doubleValue() / b.doubleValue() );
+    return Double.valueOf( a.doubleValue() / b.doubleValue() );
   }
 
   public static Long divideLongs( Long a, Long b ) {
-    return new Long( a.longValue() / b.longValue() );
+    return Long.valueOf( a.longValue() / b.longValue() );
   }
 
   @Deprecated
@@ -930,9 +930,9 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.sqrt( metaA.getNumber( dataA ).doubleValue() ) );
+        return Double.valueOf( Math.sqrt( metaA.getNumber( dataA ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( Math.round( Math.sqrt( metaA.getNumber( dataA ).doubleValue() ) ) );
+        return Long.valueOf( Math.round( Math.sqrt( metaA.getNumber( dataA ).doubleValue() ) ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return BigDecimal.valueOf( Math.sqrt( metaA.getNumber( dataA ).doubleValue() ) );
 
@@ -1010,10 +1010,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           - divideDoubles( multiplyDoubles( metaA.getNumber( dataA ), metaB.getNumber( dataB ) ), 100.0D ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           - divideLongs( multiplyLongs( metaA.getInteger( dataA ), metaB.getInteger( dataB ) ), 100L ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).subtract(
@@ -1032,10 +1032,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           - divideDoubles( multiplyDoubles( metaA.getNumber( dataA ), metaB.getNumber( dataB ) ), 100.0D ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           - divideLongs( multiplyLongs( metaA.getInteger( dataA ), metaB.getInteger( dataB ) ), 100L ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).subtract(
@@ -1064,10 +1064,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           + divideDoubles( multiplyDoubles( metaA.getNumber( dataA ), metaB.getNumber( dataB ) ), 100.0D ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           + divideLongs( multiplyLongs( metaA.getInteger( dataA ), metaB.getInteger( dataB ) ), 100L ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).add(
@@ -1086,10 +1086,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           + divideDoubles( multiplyDoubles( metaA.getNumber( dataA ), metaB.getNumber( dataB ) ), 100.0D ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           + divideLongs( multiplyLongs( metaA.getInteger( dataA ), metaB.getInteger( dataB ) ), 100L ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).add(
@@ -1118,10 +1118,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue()
           + ( metaB.getNumber( dataB ).doubleValue() * metaC.getNumber( dataC ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( metaA.getInteger( dataA ).longValue()
           + ( metaB.getInteger( dataB ).longValue() * metaC.getInteger( dataC ).longValue() ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return metaA.getBigNumber( dataA ).add(
@@ -1149,12 +1149,12 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.sqrt( metaA.getNumber( dataA ).doubleValue()
+        return Double.valueOf( Math.sqrt( metaA.getNumber( dataA ).doubleValue()
           * metaA.getNumber( dataA ).doubleValue() + metaB.getNumber( dataB ).doubleValue()
           * metaB.getNumber( dataB ).doubleValue() ) );
 
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( Math.round( Math.sqrt( metaA.getInteger( dataA ).longValue()
+        return Long.valueOf( Math.round( Math.sqrt( metaA.getInteger( dataA ).longValue()
           * metaA.getInteger( dataA ).longValue() + metaB.getInteger( dataB ).longValue()
           / metaB.getInteger( dataB ).longValue() ) ) );
 
@@ -1185,7 +1185,7 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.round( metaA.getNumber( dataA ).doubleValue() ) );
+        return Double.valueOf( Math.round( metaA.getNumber( dataA ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
         return metaA.getInteger( dataA );
       case ValueMetaInterface.TYPE_BIGNUMBER:
@@ -1216,9 +1216,9 @@ public class ValueDataUtil {
     switch ( metaA.getType() ) {
     // Use overloaded Const.round(value, precision, mode)
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Const.round( metaA.getNumber( dataA ), 0, roundingMode ) );
+        return Double.valueOf( Const.round( metaA.getNumber( dataA ), 0, roundingMode ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( Const.round( metaA.getInteger( dataA ), 0, roundingMode ) );
+        return Long.valueOf( Const.round( metaA.getInteger( dataA ), 0, roundingMode ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return Const.round( metaA.getBigNumber( dataA ), 0, roundingMode );
       default:
@@ -1270,10 +1270,10 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Const.round( metaA.getNumber( dataA ).doubleValue(), metaB.getInteger( dataB ).intValue(),
+        return Double.valueOf( Const.round( metaA.getNumber( dataA ).doubleValue(), metaB.getInteger( dataB ).intValue(),
             roundingMode ) );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( Const.round( metaA.getInteger( dataA ).longValue(), metaB.getInteger( dataB ).intValue(),
+        return Long.valueOf( Const.round( metaA.getInteger( dataA ).longValue(), metaB.getInteger( dataB ).intValue(),
             roundingMode ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         return Const.round( metaA.getBigNumber( dataA ), metaB.getInteger( dataB ).intValue(), roundingMode );
@@ -1319,7 +1319,7 @@ public class ValueDataUtil {
     }
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.ceil( metaA.getNumber( dataA ).doubleValue() ) );
+        return Double.valueOf( Math.ceil( metaA.getNumber( dataA ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
         return metaA.getInteger( dataA );
       case ValueMetaInterface.TYPE_BIGNUMBER:
@@ -1336,7 +1336,7 @@ public class ValueDataUtil {
     }
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.floor( metaA.getNumber( dataA ).doubleValue() ) );
+        return Double.valueOf( Math.floor( metaA.getNumber( dataA ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
         return metaA.getInteger( dataA );
       case ValueMetaInterface.TYPE_BIGNUMBER:
@@ -1354,7 +1354,7 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( Math.abs( metaA.getNumber( dataA ).doubleValue() ) );
+        return Double.valueOf( Math.abs( metaA.getNumber( dataA ).doubleValue() ) );
       case ValueMetaInterface.TYPE_INTEGER:
         return metaA.getInteger( Math.abs( metaA.getNumber( dataA ).longValue() ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
@@ -1384,9 +1384,9 @@ public class ValueDataUtil {
 
     switch ( metaA.getType() ) {
       case ValueMetaInterface.TYPE_NUMBER:
-        return new Double( metaA.getNumber( dataA ).doubleValue() % metaB.getNumber( dataB ).doubleValue() );
+        return Double.valueOf( metaA.getNumber( dataA ).doubleValue() % metaB.getNumber( dataB ).doubleValue() );
       case ValueMetaInterface.TYPE_INTEGER:
-        return new Long( metaA.getInteger( dataA ) % metaB.getInteger( dataB ) );
+        return Long.valueOf( metaA.getInteger( dataA ) % metaB.getInteger( dataB ) );
       case ValueMetaInterface.TYPE_BIGNUMBER:
         BigDecimal aValue = metaA.getBigNumber( dataA );
         BigDecimal bValue = metaA.getBigNumber( dataB );
@@ -1582,17 +1582,17 @@ public class ValueDataUtil {
       long diff = endL - startL;
 
       if ( Utils.isEmpty( resultType ) ) {
-        return new Long( diff / 86400000 );
+        return Long.valueOf( diff / 86400000 );
       } else if ( resultType.equals( "ms" ) ) {
-        return new Long( diff );
+        return Long.valueOf( diff );
       } else if ( resultType.equals( "s" ) ) {
-        return new Long( diff / 1000 ); // second
+        return Long.valueOf( diff / 1000 ); // second
       } else if ( resultType.equals( "mn" ) ) {
-        return new Long( diff / 60000 ); // minute
+        return Long.valueOf( diff / 60000 ); // minute
       } else if ( resultType.equals( "h" ) ) {
-        return new Long( diff / 3600000 ); // hour
+        return Long.valueOf( diff / 3600000 ); // hour
       } else if ( resultType.equals( "d" ) ) {
-        return new Long( diff / 86400000 );
+        return Long.valueOf( diff / 86400000 );
       } else {
         throw new KettleValueException( "Unknown result type option '" + resultType + "'" );
       }
@@ -1626,7 +1626,7 @@ public class ValueDataUtil {
         }
         calFrom.add( Calendar.DATE, 1 );
       } while ( calFrom.getTimeInMillis() <= calTo.getTimeInMillis() );
-      return new Long( singminus ? -iNoOfWorkingDays : iNoOfWorkingDays );
+      return Long.valueOf( singminus ? -iNoOfWorkingDays : iNoOfWorkingDays );
     } else {
       return null;
     }
@@ -1639,7 +1639,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.YEAR ) );
+    return Long.valueOf( calendar.get( Calendar.YEAR ) );
 
   }
 
@@ -1650,7 +1650,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.MONTH ) + 1 );
+    return Long.valueOf( calendar.get( Calendar.MONTH ) + 1 );
 
   }
 
@@ -1661,7 +1661,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( ( calendar.get( Calendar.MONTH ) + 3 ) / 3 );
+    return Long.valueOf( ( calendar.get( Calendar.MONTH ) + 3 ) / 3 );
   }
 
   public static Object dayOfYear( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1671,7 +1671,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.DAY_OF_YEAR ) );
+    return Long.valueOf( calendar.get( Calendar.DAY_OF_YEAR ) );
   }
 
   public static Object dayOfMonth( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1681,7 +1681,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.DAY_OF_MONTH ) );
+    return Long.valueOf( calendar.get( Calendar.DAY_OF_MONTH ) );
   }
 
   public static Object hourOfDay( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1698,7 +1698,7 @@ public class ValueDataUtil {
       calendar.setTimeZone( metaA.getDateFormatTimeZone() );
     }
 
-    return new Long( calendar.get( Calendar.HOUR_OF_DAY ) );
+    return Long.valueOf( calendar.get( Calendar.HOUR_OF_DAY ) );
   }
 
   public static Object minuteOfHour( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1708,7 +1708,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.MINUTE ) );
+    return Long.valueOf( calendar.get( Calendar.MINUTE ) );
   }
 
   public static Object secondOfMinute( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1718,7 +1718,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.SECOND ) );
+    return Long.valueOf( calendar.get( Calendar.SECOND ) );
   }
 
   public static Object dayOfWeek( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1728,7 +1728,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.DAY_OF_WEEK ) );
+    return Long.valueOf( calendar.get( Calendar.DAY_OF_WEEK ) );
   }
 
   public static Object weekOfYear( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1738,7 +1738,7 @@ public class ValueDataUtil {
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.WEEK_OF_YEAR ) );
+    return Long.valueOf( calendar.get( Calendar.WEEK_OF_YEAR ) );
   }
 
   public static Object weekOfYearISO8601( ValueMetaInterface metaA, Object dataA ) throws KettleValueException {
@@ -1750,7 +1750,7 @@ public class ValueDataUtil {
     calendar.setMinimalDaysInFirstWeek( 4 );
     calendar.setFirstDayOfWeek( Calendar.MONDAY );
     calendar.setTime( metaA.getDate( dataA ) );
-    return new Long( calendar.get( Calendar.WEEK_OF_YEAR ) );
+    return Long.valueOf( calendar.get( Calendar.WEEK_OF_YEAR ) );
 
   }
 
@@ -1776,7 +1776,7 @@ public class ValueDataUtil {
       year++;
     }
 
-    return new Long( year );
+    return Long.valueOf( year );
   }
 
   /**
@@ -2239,10 +2239,10 @@ public class ValueDataUtil {
 
     switch ( type.getType() ) {
       case ( ValueMetaInterface.TYPE_INTEGER ) : {
-        return new Long( 0 );
+        return Long.valueOf( 0 );
       }
       case ( ValueMetaInterface.TYPE_NUMBER ) : {
-        return new Double( 0 );
+        return Double.valueOf( 0 );
       }
       case ( ValueMetaInterface.TYPE_BIGNUMBER ) : {
         return new BigDecimal( 0 );

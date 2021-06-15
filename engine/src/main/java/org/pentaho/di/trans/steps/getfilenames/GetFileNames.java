@@ -226,7 +226,7 @@ public class GetFileNames extends BaseStep implements StepInterface {
           // size
           Long size = null;
           if ( data.file.getType().equals( FileType.FILE ) ) {
-            size = new Long( data.file.getContent().getSize() );
+            size = Long.valueOf( data.file.getContent().getSize() );
           }
 
           extraData[outputIndex++] = size;
@@ -246,7 +246,7 @@ public class GetFileNames extends BaseStep implements StepInterface {
 
         // See if we need to add the row number to the row...
         if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-          extraData[outputIndex++] = new Long( data.rownr );
+          extraData[outputIndex++] = Long.valueOf( data.rownr );
         }
 
         data.rownr++;

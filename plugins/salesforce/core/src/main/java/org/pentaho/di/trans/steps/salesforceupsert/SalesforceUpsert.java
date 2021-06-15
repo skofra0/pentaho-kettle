@@ -262,7 +262,7 @@ public class SalesforceUpsert extends SalesforceStep {
             //
             com.sforce.soap.partner.Error err = data.upsertResult[j].getErrors()[0];
             throw new KettleException( BaseMessages
-              .getString( PKG, "SalesforceUpsert.Error.FlushBuffer", new Integer( j ), err.getStatusCode(), err
+              .getString( PKG, "SalesforceUpsert.Error.FlushBuffer", Integer.valueOf( j ), err.getStatusCode(), err
                 .getMessage() ) );
           }
 
@@ -271,7 +271,7 @@ public class SalesforceUpsert extends SalesforceStep {
             // get the next error
             com.sforce.soap.partner.Error err = data.upsertResult[j].getErrors()[i];
             errorMessage +=
-              BaseMessages.getString( PKG, "SalesforceUpsert.Error.FlushBuffer", new Integer( j ), err
+              BaseMessages.getString( PKG, "SalesforceUpsert.Error.FlushBuffer", Integer.valueOf( j ), err
                 .getStatusCode(), err.getMessage() );
           }
 

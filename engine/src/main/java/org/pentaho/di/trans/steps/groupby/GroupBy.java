@@ -237,7 +237,7 @@ public class GroupBy extends BaseStep implements StepInterface {
           lineNr++;
 
           if ( meta.isAddingLineNrInGroup() && !Utils.isEmpty( meta.getLineNrInGroupField() ) ) {
-            Object lineNrValue = new Long( lineNr );
+            Object lineNrValue = Long.valueOf( lineNr );
             // ValueMetaInterface lineNrValueMeta = new ValueMeta(meta.getLineNrInGroupField(),
             // ValueMetaInterface.TYPE_INTEGER);
             // lineNrValueMeta.setLength(9);
@@ -292,7 +292,7 @@ public class GroupBy extends BaseStep implements StepInterface {
         lineNr++;
 
         if ( meta.isAddingLineNrInGroup() && !Utils.isEmpty( meta.getLineNrInGroupField() ) ) {
-          Object lineNrValue = new Long( lineNr );
+          Object lineNrValue = Long.valueOf( lineNr );
           // ValueMetaInterface lineNrValueMeta = new ValueMeta(meta.getLineNrInGroupField(),
           // ValueMetaInterface.TYPE_INTEGER);
           // lineNrValueMeta.setLength(9);
@@ -398,7 +398,7 @@ public class GroupBy extends BaseStep implements StepInterface {
         if ( sum == null ) {
           row[ targetIndex ] = null;
         } else {
-          row[ targetIndex ] = new Double( ( (Long) sum ).doubleValue() / data.previousAvgCount[ i ] );
+          row[ targetIndex ] = Double.valueOf( ( (Long) sum ).doubleValue() / data.previousAvgCount[ i ] );
         }
       } else {
         row[ targetIndex ] = ValueDataUtil.divide( targetMeta, sum, data.valueMetaInteger, data.previousAvgCount[ i ] );
@@ -449,7 +449,7 @@ public class GroupBy extends BaseStep implements StepInterface {
             double n = data.counts[ i ];
             double x = subjMeta.getNumber( subj );
             // for standard deviation null is exact 0
-            double sum = value == null ? new Double( 0 ) : (Double) value;
+            double sum = value == null ? Double.valueOf( 0 ) : (Double) value;
             double mean = data.mean[ i ];
 
             double delta = x - mean;
@@ -472,7 +472,7 @@ public class GroupBy extends BaseStep implements StepInterface {
             if ( !data.distinctObjs[ i ].contains( obj ) ) {
               data.distinctObjs[ i ].add( obj );
               // null is exact 0, or we will not be able to ++.
-              value = value == null ? new Long( 0 ) : value;
+              value = value == null ? Long.valueOf( 0 ) : value;
               data.agg[ i ] = (Long) value + 1;
             }
             // SKOFRA COUNT DISTINCT SHOULD NOT RETURN null
@@ -714,7 +714,7 @@ public class GroupBy extends BaseStep implements StepInterface {
         case GroupByMeta.TYPE_GROUP_AVERAGE:
           ag =
               ValueDataUtil.divide( data.aggMeta.getValueMeta( i ), ag,
-                  new ValueMetaInteger( "c" ), new Long( data.counts[ i ] ) );
+                  new ValueMetaInteger( "c" ), Long.valueOf( data.counts[ i ] ) );
           break;
         case GroupByMeta.TYPE_GROUP_MEDIAN:
         case GroupByMeta.TYPE_GROUP_PERCENTILE:
@@ -745,7 +745,7 @@ public class GroupBy extends BaseStep implements StepInterface {
           break;
         case GroupByMeta.TYPE_GROUP_COUNT_ANY:
         case GroupByMeta.TYPE_GROUP_COUNT_ALL:
-          ag = new Long( data.counts[ i ] );
+          ag = Long.valueOf( data.counts[ i ] );
           break;
         case GroupByMeta.TYPE_GROUP_COUNT_DISTINCT:
           break;

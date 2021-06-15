@@ -530,7 +530,7 @@ public class ScriptMeta extends BaseStepMeta implements StepMetaInterface {
             valueData = Long.valueOf( 0L );
           }
           if ( valueMeta.isNumber() ) {
-            valueData = new Double( 0.0 );
+            valueData = Double.valueOf( 0.0 );
           }
           if ( valueMeta.isBigNumber() ) {
             valueData = BigDecimal.ZERO;

@@ -305,7 +305,7 @@ public class JobLogTable extends BaseLogTable implements Cloneable, LogTableInte
 
             switch ( ID.valueOf( field.getId() ) ) {
               case ID_JOB:
-                value = new Long( job.getBatchId() );
+                value = Long.valueOf( job.getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = job.getLogChannelId();
@@ -317,25 +317,25 @@ public class JobLogTable extends BaseLogTable implements Cloneable, LogTableInte
                 value = status.getStatus();
                 break;
               case LINES_READ:
-                value = result == null ? null : new Long( result.getNrLinesRead() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesRead() );
                 break;
               case LINES_WRITTEN:
-                value = result == null ? null : new Long( result.getNrLinesWritten() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesWritten() );
                 break;
               case LINES_INPUT:
-                value = result == null ? null : new Long( result.getNrLinesInput() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesInput() );
                 break;
               case LINES_OUTPUT:
-                value = result == null ? null : new Long( result.getNrLinesOutput() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesOutput() );
                 break;
               case LINES_UPDATED:
-                value = result == null ? null : new Long( result.getNrLinesUpdated() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesUpdated() );
                 break;
               case LINES_REJECTED:
-                value = result == null ? null : new Long( result.getNrLinesRejected() );
+                value = result == null ? null : Long.valueOf( result.getNrLinesRejected() );
                 break;
               case ERRORS:
-                value = result == null ? null : new Long( result.getNrErrors() );
+                value = result == null ? null : Long.valueOf( result.getNrErrors() );
                 break;
               case STARTDATE:
                 value = job.getStartDate();

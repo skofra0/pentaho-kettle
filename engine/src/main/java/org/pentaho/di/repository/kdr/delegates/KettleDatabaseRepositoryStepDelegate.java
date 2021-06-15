@@ -374,9 +374,9 @@ public class KettleDatabaseRepositoryStepDelegate extends KettleDatabaseReposito
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_STEP_DESCRIPTION ), description );
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_ID_STEP_TYPE ), id_step_type );
     table.addValue( new ValueMetaBoolean( KettleDatabaseRepository.FIELD_STEP_DISTRIBUTE ), Boolean.valueOf( distribute ) );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_COPIES ), new Long( copies ) );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_X ), new Long( gui_location_x ) );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_Y ), new Long( gui_location_y ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_COPIES ), Long.valueOf( copies ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_X ), Long.valueOf( gui_location_x ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_STEP_GUI_LOCATION_Y ), Long.valueOf( gui_location_y ) );
     table.addValue( new ValueMetaBoolean( KettleDatabaseRepository.FIELD_STEP_GUI_DRAW ), Boolean.valueOf( gui_draw ) );
     table.addValue( new ValueMetaString( KettleDatabaseRepository.FIELD_STEP_COPIES_STRING ), copiesString );
 

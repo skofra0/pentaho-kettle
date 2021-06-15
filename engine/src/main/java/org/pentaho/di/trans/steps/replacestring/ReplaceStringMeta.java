@@ -463,7 +463,7 @@ public class ReplaceStringMeta extends BaseStepMeta implements StepMetaInterface
             cr =
               new CheckResult(
                 CheckResult.TYPE_RESULT_ERROR, BaseMessages.getString(
-                  PKG, "ReplaceStringMeta.CheckResult.InStreamFieldMissing", new Integer( idx + 1 )
+                  PKG, "ReplaceStringMeta.CheckResult.InStreamFieldMissing", Integer.valueOf( idx + 1 )
                     .toString() ), stepinfo );
             remarks.add( cr );
 

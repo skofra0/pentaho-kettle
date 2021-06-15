@@ -79,9 +79,9 @@
     </dependency>
 
 	<dependency>
-		<groupId>no.deem.etl</groupId>
-		<artifactId>deem-etl-plugins</artifactId>
-		<version>${deem-etl.version}</version>
+		<groupId>no.bdo.etl</groupId>
+		<artifactId>nexus-etl-plugins</artifactId>
+		<version>${nexus-etl.version}</version>
 	</dependency>
 
 
@@ -144,9 +144,13 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>rhino</groupId>
-      <artifactId>js</artifactId>
+        <groupId>org.mozilla</groupId>
+        <artifactId>rhino</artifactId>
     </dependency>
+<!--     <dependency> -->
+<!--       <groupId>rhino</groupId> -->
+<!--       <artifactId>js</artifactId> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>

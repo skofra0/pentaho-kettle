@@ -251,7 +251,7 @@ public class SalesforceInput extends SalesforceStep {
 
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-        outputRowData[rowIndex++] = new Long( data.rownr );
+        outputRowData[rowIndex++] = Long.valueOf( data.rownr );
       }
 
       if ( meta.includeDeletionDate() && !Utils.isEmpty( meta.getDeletionDateField() ) ) {

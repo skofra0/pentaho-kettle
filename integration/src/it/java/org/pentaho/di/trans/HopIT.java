@@ -66,13 +66,13 @@ public class HopIT extends TestCase {
 
     RowMetaInterface rm = createRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 1L ) };
-    Object[] r2 = new Object[] { new Long( 2L ) };
-    Object[] r3 = new Object[] { new Long( 3L ) };
-    Object[] r4 = new Object[] { new Long( 4L ) };
-    Object[] r5 = new Object[] { new Long( 5L ) };
-    Object[] r6 = new Object[] { new Long( 6L ) };
-    Object[] r7 = new Object[] { new Long( 7L ) };
+    Object[] r1 = new Object[] { Long.valueOf( 1L ) };
+    Object[] r2 = new Object[] { Long.valueOf( 2L ) };
+    Object[] r3 = new Object[] { Long.valueOf( 3L ) };
+    Object[] r4 = new Object[] { Long.valueOf( 4L ) };
+    Object[] r5 = new Object[] { Long.valueOf( 5L ) };
+    Object[] r6 = new Object[] { Long.valueOf( 6L ) };
+    Object[] r7 = new Object[] { Long.valueOf( 7L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

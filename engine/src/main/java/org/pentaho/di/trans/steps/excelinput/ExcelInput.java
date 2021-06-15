@@ -255,13 +255,13 @@ public class ExcelInput extends BaseStep implements StepInterface {
 
     // Do we need to include the sheet rownumber?
     if ( !Utils.isEmpty( meta.getSheetRowNumberField() ) ) {
-      r[rowIndex] = new Long( data.rownr );
+      r[rowIndex] = Long.valueOf( data.rownr );
       rowIndex++;
     }
 
     // Do we need to include the rownumber?
     if ( !Utils.isEmpty( meta.getRowNumberField() ) ) {
-      r[rowIndex] = new Long( getLinesWritten() + 1 );
+      r[rowIndex] = Long.valueOf( getLinesWritten() + 1 );
       rowIndex++;
     }
     // Possibly add short filename...
@@ -281,7 +281,7 @@ public class ExcelInput extends BaseStep implements StepInterface {
     }
     // Add Size
     if ( !Utils.isEmpty( meta.getSizeField() ) ) {
-      r[rowIndex] = new Long( data.size );
+      r[rowIndex] = Long.valueOf( data.size );
       rowIndex++;
     }
     // add Hidden

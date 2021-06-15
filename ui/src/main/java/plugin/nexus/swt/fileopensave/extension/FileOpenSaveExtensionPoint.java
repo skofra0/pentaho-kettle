@@ -33,7 +33,7 @@ import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.ui.core.FileDialogOperation;
 import org.pentaho.di.ui.spoon.Spoon;
 
-import no.deem.core.utils.Lists;
+import no.nexus.core.utils.Lists;
 import plugin.nexus.swt.fileopensave.api.providers.FileProvider;
 import plugin.nexus.swt.fileopensave.api.providers.exception.InvalidFileProviderException;
 import plugin.nexus.swt.fileopensave.dialog.FileOpenSaveDialog;

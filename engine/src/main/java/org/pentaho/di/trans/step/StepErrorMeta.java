@@ -331,7 +331,7 @@ public class StepErrorMeta extends ChangedFlag implements XMLInterface, Cloneabl
 
     String nrErr = variables.environmentSubstitute( getNrErrorsValuename() );
     if ( !Utils.isEmpty( nrErr ) ) {
-      row[index] = new Long( nrErrors );
+      row[index] = Long.valueOf( nrErrors );
       index++;
     }
     String errDesc = variables.environmentSubstitute( getErrorDescriptionsValuename() );

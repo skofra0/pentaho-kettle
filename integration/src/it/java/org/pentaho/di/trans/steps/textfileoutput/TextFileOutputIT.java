@@ -132,16 +132,16 @@ public class TextFileOutputIT extends TestCase {
 
     RowMetaInterface rowMetaInterface = createResultRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r2 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r3 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r4 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r5 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r6 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r7 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r8 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r9 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
-    Object[] r10 = new Object[] { new Long( 1L ), "Orlando", "Florida" };
+    Object[] r1 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r2 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r3 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r4 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r5 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r6 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r7 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r8 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r9 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
+    Object[] r10 = new Object[] { Long.valueOf( 1L ), "Orlando", "Florida" };
 
     list.add( new RowMetaAndData( rowMetaInterface, r1 ) );
     list.add( new RowMetaAndData( rowMetaInterface, r2 ) );

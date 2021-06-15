@@ -137,7 +137,7 @@ public class XMLInputStreamMeta extends BaseStepMeta implements StepMetaInterfac
   public void getFields( RowMetaInterface r, String name, RowMetaInterface[] info, StepMeta nextStep,
       VariableSpace space, Repository repository, IMetaStore metaStore ) {
     int defaultStringLenNameValueElements =
-        Const.toInt( space.environmentSubstitute( defaultStringLen ), new Integer( DEFAULT_STRING_LEN ) );
+        Const.toInt( space.environmentSubstitute( defaultStringLen ), Integer.valueOf( DEFAULT_STRING_LEN ) );
 
     if ( includeFilenameField ) {
       ValueMetaInterface v = new ValueMetaString( space.environmentSubstitute( filenameField ) );

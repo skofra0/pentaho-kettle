@@ -32,9 +32,9 @@ import org.pentaho.di.core.exception.KettleVersionException;
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.xml.XMLHandler;
 
-import no.deem.core.utils.Strings;
-import no.deem.core.version.SemanticVersion;
-import no.deem.core.version.Versions;
+import no.nexus.core.utils.Strings;
+import no.nexus.core.version.SemanticVersion;
+import no.nexus.core.version.Versions;
 
 /**
  * Singleton class to allow us to see on which date & time the kettle3.jar was built.

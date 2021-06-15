@@ -219,7 +219,7 @@ public class NormalExecutionIT extends TestCase {
 
       assertEquals( "Incorrect number of read rows received", ROWS, countingListener.getRead() );
       assertEquals( "Incorrect number of written rows received", ROWS, countingListener.getWritten() );
-      assertEquals( "Incorrect number of error rows received", new Long( 0 ), countingListener.getError() );
+      assertEquals( "Incorrect number of error rows received", Long.valueOf( 0 ), countingListener.getError() );
     }
   }
 

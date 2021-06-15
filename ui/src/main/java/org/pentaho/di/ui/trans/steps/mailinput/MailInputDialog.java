@@ -1875,7 +1875,7 @@ public class MailInputDialog extends BaseStepDialog implements StepDialogInterfa
     }
 
     try {
-      return new Integer( toParse );
+      return Integer.valueOf( toParse );
     } catch ( NumberFormatException e ) {
       return null;
     }

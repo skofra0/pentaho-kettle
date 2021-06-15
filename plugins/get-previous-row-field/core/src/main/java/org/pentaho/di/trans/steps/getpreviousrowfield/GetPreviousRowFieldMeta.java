@@ -320,7 +320,7 @@ public class GetPreviousRowFieldMeta extends BaseStepMeta implements StepMetaInt
           if ( Utils.isEmpty( fieldInStream[idx] ) ) {
             cr =
               new CheckResult( CheckResult.TYPE_RESULT_ERROR, BaseMessages.getString(
-                PKG, "GetPreviousRowFieldMeta.CheckResult.InStreamFieldMissing", new Integer( idx + 1 )
+                PKG, "GetPreviousRowFieldMeta.CheckResult.InStreamFieldMissing", Integer.valueOf( idx + 1 )
                   .toString() ), stepMeta );
             remarks.add( cr );
 

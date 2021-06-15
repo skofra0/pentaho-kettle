@@ -311,7 +311,7 @@ public class MemoryGroupBy extends BaseStep implements StepInterface {
           double n = aggregate.counts[i];
           double x = subjMeta.getNumber( subj );
           // for standard deviation null is exact 0
-          double sum = value == null ? new Double( 0 ) : (Double) value;
+          double sum = value == null ? Double.valueOf( 0 ) : (Double) value;
           double mean = aggregate.mean[i];
 
           double delta = x - mean;

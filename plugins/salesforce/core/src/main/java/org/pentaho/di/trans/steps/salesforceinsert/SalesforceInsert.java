@@ -225,7 +225,7 @@ public class SalesforceInsert extends SalesforceStep {
             //
             com.sforce.soap.partner.Error err = data.saveResult[j].getErrors()[0];
             throw new KettleException( BaseMessages
-              .getString( PKG, "SalesforceInsert.Error.FlushBuffer", new Integer( j ), err.getStatusCode(), err
+              .getString( PKG, "SalesforceInsert.Error.FlushBuffer", Integer.valueOf( j ), err.getStatusCode(), err
                 .getMessage() ) );
           }
 
@@ -234,7 +234,7 @@ public class SalesforceInsert extends SalesforceStep {
             // get the next error
             com.sforce.soap.partner.Error err = data.saveResult[j].getErrors()[i];
             errorMessage +=
-              BaseMessages.getString( PKG, "SalesforceInsert.Error.FlushBuffer", new Integer( j ), err
+              BaseMessages.getString( PKG, "SalesforceInsert.Error.FlushBuffer", Integer.valueOf( j ), err
                 .getStatusCode(), err.getMessage() );
           }
 

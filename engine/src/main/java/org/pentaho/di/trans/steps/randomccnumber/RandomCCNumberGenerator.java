@@ -96,7 +96,7 @@ public class RandomCCNumberGenerator extends BaseStep implements StepInterface {
 
         if ( data.addCardLengthOutput ) {
           // add card len
-          row[index++] = new Long( data.cardLen[i] );
+          row[index++] = Long.valueOf( data.cardLen[i] );
         }
         if ( isRowLevel() ) {
           logRowlevel( BaseMessages.getString(

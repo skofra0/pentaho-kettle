@@ -170,14 +170,14 @@ public class ValueDataUtilTest {
   public void testDateDiff_A_GT_B() {
     Object daysDiff =
         calculate( "2010-05-12", "2010-01-01", ValueMetaInterface.TYPE_DATE, CalculatorMetaFunction.CALC_DATE_DIFF );
-    assertEquals( new Long( 131 ), daysDiff );
+    assertEquals( Long.valueOf( 131 ), daysDiff );
   }
 
   @Test
   public void testDateDiff_A_LT_B() {
     Object daysDiff =
         calculate( "2010-12-31", "2011-02-10", ValueMetaInterface.TYPE_DATE, CalculatorMetaFunction.CALC_DATE_DIFF );
-    assertEquals( new Long( -41 ), daysDiff );
+    assertEquals( Long.valueOf( -41 ), daysDiff );
   }
 
   @Test
@@ -185,7 +185,7 @@ public class ValueDataUtilTest {
     Object daysDiff =
         calculate( "2010-05-12", "2010-01-01", ValueMetaInterface.TYPE_DATE,
             CalculatorMetaFunction.CALC_DATE_WORKING_DIFF );
-    assertEquals( new Long( 94 ), daysDiff );
+    assertEquals( Long.valueOf( 94 ), daysDiff );
   }
 
   @Test
@@ -193,7 +193,7 @@ public class ValueDataUtilTest {
     Object daysDiff =
         calculate( "2010-12-31", "2011-02-10", ValueMetaInterface.TYPE_DATE,
             CalculatorMetaFunction.CALC_DATE_WORKING_DIFF );
-    assertEquals( new Long( -30 ), daysDiff );
+    assertEquals( Long.valueOf( -30 ), daysDiff );
   }
 
   @Test
@@ -1243,25 +1243,25 @@ public class ValueDataUtilTest {
     assertNull( calculate( null, null, ValueMetaInterface.TYPE_INTEGER, CalculatorMetaFunction.CALC_REMAINDER ) );
     assertNull( calculate( null, "3", ValueMetaInterface.TYPE_INTEGER, CalculatorMetaFunction.CALC_REMAINDER ) );
     assertNull( calculate( "10", null, ValueMetaInterface.TYPE_INTEGER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Long( "1" ),
+    assertEquals( Long.valueOf( "1" ),
       calculate( "10", "3", ValueMetaInterface.TYPE_INTEGER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Long( "-1" ),
+    assertEquals( Long.valueOf( "-1" ),
       calculate( "-10", "3", ValueMetaInterface.TYPE_INTEGER, CalculatorMetaFunction.CALC_REMAINDER ) );
 
-    Double comparisonDelta = new Double( "0.0000000000001" );
+    Double comparisonDelta = Double.valueOf( "0.0000000000001" );
     assertNull( calculate( null, null, ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
     assertNull( calculate( null, "4.1", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
     assertNull( calculate( "17.8", null, ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Double( "1.4" ).doubleValue(),
+    assertEquals( Double.valueOf( "1.4" ).doubleValue(),
       ( (Double) calculate( "17.8", "4.1", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER )
       ).doubleValue(),
       comparisonDelta.doubleValue() );
-    assertEquals( new Double( "1.4" ).doubleValue(),
+    assertEquals( Double.valueOf( "1.4" ).doubleValue(),
       ( (Double) calculate( "17.8", "-4.1", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER )
       ).doubleValue(),
       comparisonDelta.doubleValue() );
 
-    assertEquals( new Double( "-1.4" ).doubleValue(),
+    assertEquals( Double.valueOf( "-1.4" ).doubleValue(),
       ( (Double) calculate( "-17.8", "-4.1", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER )
       ).doubleValue(),
       comparisonDelta.doubleValue() );
@@ -1272,11 +1272,11 @@ public class ValueDataUtilTest {
 
     assertEquals( new BigDecimal( "-15.184" ),
       calculate( "-144.144", "16.12", ValueMetaInterface.TYPE_BIGNUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Double( "2.6000000000000005" ).doubleValue(),
+    assertEquals( Double.valueOf( "2.6000000000000005" ).doubleValue(),
       calculate( "12.5", "3.3", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Double( "4.0" ).doubleValue(),
+    assertEquals( Double.valueOf( "4.0" ).doubleValue(),
       calculate( "12.5", "4.25", ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
-    assertEquals( new Long( "1" ).longValue(),
+    assertEquals( Long.valueOf( "1" ).longValue(),
       calculate( "10", "3.3", null,
         ValueMetaInterface.TYPE_INTEGER, ValueMetaInterface.TYPE_NUMBER, ValueMetaInterface.TYPE_NUMBER, CalculatorMetaFunction.CALC_REMAINDER ) );
   }
@@ -1290,7 +1290,7 @@ public class ValueDataUtilTest {
 
     assertNull( ValueDataUtil.sum( metaA, null, metaB, null ) );
 
-    Long valueB = new Long( 2 );
+    Long valueB = Long.valueOf( 2 );
     ValueDataUtil.sum( metaA, null, metaB, valueB );
   }
 
@@ -1306,7 +1306,7 @@ public class ValueDataUtilTest {
     when( metaA.convertData( metaB, valueB ) ).thenAnswer( new Answer<Long>() {
       @Override
       public Long answer( InvocationOnMock invocation ) throws Throwable {
-        return new Long( 2 );
+        return Long.valueOf( 2 );
       }
     } );
 
@@ -1318,14 +1318,14 @@ public class ValueDataUtilTest {
 
   @Test
   public void testJaro() {
-    assertEquals( new Double( "0.0" ), calculate( "abcd", "defg", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
-    assertEquals( new Double( "0.44166666666666665" ), calculate( "elephant", "hippo", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
-    assertEquals( new Double( "0.8666666666666667" ), calculate( "hello", "hallo", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
+    assertEquals( Double.valueOf( "0.0" ), calculate( "abcd", "defg", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
+    assertEquals( Double.valueOf( "0.44166666666666665" ), calculate( "elephant", "hippo", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
+    assertEquals( Double.valueOf( "0.8666666666666667" ), calculate( "hello", "hallo", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO ) );
   }
 
   @Test
   public void testJaroWinkler() {
-    assertEquals( new Double( "0.0" ), calculate( "abcd", "defg", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO_WINKLER ) );
+    assertEquals( Double.valueOf( "0.0" ), calculate( "abcd", "defg", ValueMetaInterface.TYPE_STRING, CalculatorMetaFunction.CALC_JARO_WINKLER ) );
   }
 
   private Object calculate( String string_dataA, int valueMetaInterfaceType, int calculatorMetaFunction ) {

@@ -55,7 +55,7 @@ import org.pentaho.di.trans.step.RowDistributionPluginType;
 
 import com.google.common.util.concurrent.SettableFuture;
 
-import no.deem.plugin.RegistrerPluginService;
+import no.nexus.plugin.RegistrerPluginService;
 
 /**
  * The KettleEnvironment class contains settings and properties for all of Kettle. Initialization of the environment is

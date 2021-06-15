@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.ui.core.FileDialogOperation;
 
-import no.deem.core.utils.Strings;
+import no.nexus.core.utils.Strings;
 import plugin.nexus.swt.fileopensave.api.file.FileDetails;
 
 public class FileOpenSaveDialog implements FileDetails {

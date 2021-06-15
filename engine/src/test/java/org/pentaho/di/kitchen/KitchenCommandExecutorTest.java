@@ -103,7 +103,7 @@ public class KitchenCommandExecutorTest {
   @Test
   public void testReturnCodeWithErrors() {
     mockStatic( BaseMessages.class );
-    when( result.getNrErrors() ).thenReturn( new Long( 1 ) );
+    when( result.getNrErrors() ).thenReturn( Long.valueOf( 1 ) );
     when( mockedKitchenCommandExecutor.getResult() ).thenReturn( result );
     when( mockedKitchenCommandExecutor.getLog() ).thenReturn( logChannelInterface );
     when( BaseMessages.getString( any(), anyString() ) ).thenReturn( "NoMessage" );

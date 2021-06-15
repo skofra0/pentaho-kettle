@@ -194,11 +194,11 @@ public class GetSubFolders extends BaseStep implements StepInterface {
         extraData[outputIndex++] = data.file.getName().getRootURI();
 
         // childrens files
-        extraData[outputIndex++] = new Long( data.file.getChildren().length );
+        extraData[outputIndex++] = Long.valueOf( data.file.getChildren().length );
 
         // See if we need to add the row number to the row...
         if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-          extraData[outputIndex++] = new Long( data.rownr );
+          extraData[outputIndex++] = Long.valueOf( data.rownr );
         }
 
         data.rownr++;

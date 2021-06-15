@@ -315,7 +315,7 @@ public class BeanInjectorTest {
     mbl1.getSub().setAscending( Arrays.asList( new Boolean[] { true, false, false, true} ) );
     mbl1.getSub().setSeparator( "/" );
 
-    assertEquals(new Integer(4 ), bi.getMaxSize( bii.getProperties().values(), mbl1.getSub() ) );
+    assertEquals(Integer.valueOf(4 ), bi.getMaxSize( bii.getProperties().values(), mbl1.getSub() ) );
   }
 
   @Test
@@ -326,7 +326,7 @@ public class BeanInjectorTest {
     mbl1.setSub( new MetaBeanLevel2() );
     mbl1.getSub().setSeparator( "/" );
 
-    assertEquals(new Integer(1 ), bi.getMaxSize( bii.getProperties().values(), mbl1.getSub() ) );
+    assertEquals(Integer.valueOf(1 ), bi.getMaxSize( bii.getProperties().values(), mbl1.getSub() ) );
   }
 
   @Test

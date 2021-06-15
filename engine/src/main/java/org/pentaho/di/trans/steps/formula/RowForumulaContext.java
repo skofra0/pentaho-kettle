@@ -78,7 +78,7 @@ public class RowForumulaContext implements FormulaContext {
           throw new EvaluationException( errorValue );
         }
         valueMeta = rowMeta.getValueMeta( index );
-        idx = new Integer( index );
+        idx = Integer.valueOf( index );
         valueIndexMap.put( (String) name, idx );
       }
       Object valueData = rowData[idx];

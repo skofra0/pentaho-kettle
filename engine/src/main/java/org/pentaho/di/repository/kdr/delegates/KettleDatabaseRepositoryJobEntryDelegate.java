@@ -316,9 +316,9 @@ public class KettleDatabaseRepositoryJobEntryDelegate extends KettleDatabaseRepo
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_ID_JOBENTRY ), id_jobentry );
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_ID_JOB ), id_job );
     table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_ID_JOBENTRY_TYPE ), id_jobentry_type );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_NR ), new Long( nr ) );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_GUI_LOCATION_X ), new Long( gui_location_x ) );
-    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_GUI_LOCATION_Y ), new Long( gui_location_y ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_NR ), Long.valueOf( nr ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_GUI_LOCATION_X ), Long.valueOf( gui_location_x ) );
+    table.addValue( new ValueMetaInteger( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_GUI_LOCATION_Y ), Long.valueOf( gui_location_y ) );
     table.addValue( new ValueMetaBoolean( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_GUI_DRAW ), Boolean.valueOf( gui_draw ) );
     table.addValue( new ValueMetaBoolean( KettleDatabaseRepository.FIELD_JOBENTRY_COPY_PARALLEL ), Boolean.valueOf( parallel ) );
 

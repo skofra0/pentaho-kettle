@@ -3,7 +3,7 @@ package plugin.nexus.swt;
 import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.extension.ExtensionPointPluginType;
 
-import no.deem.plugin.RegistrerPluginAdapter;
+import no.nexus.plugin.RegistrerPluginAdapter;
 
 public class PluginAdapterExtensionPoint implements RegistrerPluginAdapter {
 

@@ -84,15 +84,15 @@ public class InjectorIT extends TestCase {
 
     Object[] r1 =
       new Object[] {
-        "KETTLE1", new Long( 123L ), new Double( 10.5D ), new Date(), Boolean.TRUE,
+        "KETTLE1", Long.valueOf( 123L ), Double.valueOf( 10.5D ), new Date(), Boolean.TRUE,
         BigDecimal.valueOf( 123.45 ), BigDecimal.valueOf( 123.60 ) };
     Object[] r2 =
       new Object[] {
-        "KETTLE2", new Long( 500L ), new Double( 20.0D ), new Date(), Boolean.FALSE,
+        "KETTLE2", Long.valueOf( 500L ), Double.valueOf( 20.0D ), new Date(), Boolean.FALSE,
         BigDecimal.valueOf( 123.45 ), BigDecimal.valueOf( 123.60 ) };
     Object[] r3 =
       new Object[] {
-        "KETTLE3", new Long( 501L ), new Double( 21.0D ), new Date(), Boolean.FALSE,
+        "KETTLE3", Long.valueOf( 501L ), Double.valueOf( 21.0D ), new Date(), Boolean.FALSE,
         BigDecimal.valueOf( 123.45 ), BigDecimal.valueOf( 123.70 ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );

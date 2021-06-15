@@ -371,7 +371,7 @@ public class MetaInjectTest {
   public void setEntryValue_integer() throws KettleValueException {
     StepInjectionMetaEntry entry = mock( StepInjectionMetaEntry.class );
     doReturn( ValueMetaInterface.TYPE_INTEGER ).when( entry ).getValueType();
-    RowMetaAndData row = createRowMetaAndData( new ValueMetaInteger( TEST_FIELD ), new Long( 1 ) );
+    RowMetaAndData row = createRowMetaAndData( new ValueMetaInteger( TEST_FIELD ), Long.valueOf( 1 ) );
     SourceStepField sourceField = new SourceStepField( TEST_SOURCE_STEP_NAME, TEST_FIELD );
 
     MetaInject.setEntryValue( entry, row, sourceField );
@@ -383,7 +383,7 @@ public class MetaInjectTest {
   public void setEntryValue_number() throws KettleValueException {
     StepInjectionMetaEntry entry = mock( StepInjectionMetaEntry.class );
     doReturn( ValueMetaInterface.TYPE_NUMBER ).when( entry ).getValueType();
-    RowMetaAndData row = createRowMetaAndData( new ValueMetaNumber( TEST_FIELD ), new Double( 1 ) );
+    RowMetaAndData row = createRowMetaAndData( new ValueMetaNumber( TEST_FIELD ), Double.valueOf( 1 ) );
     SourceStepField sourceField = new SourceStepField( TEST_SOURCE_STEP_NAME, TEST_FIELD );
 
     MetaInject.setEntryValue( entry, row, sourceField );

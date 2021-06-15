@@ -136,9 +136,9 @@ public class TextFileInputIT extends TestCase {
       new ValueMetaString( "e" ), new ValueMetaString( "filename" ), };
     RowMetaInterface rm = createResultRowMetaInterface( valuesMeta );
 
-    Object[] r1 = new Object[] { new Long( 1L ), "b1", "c1", "d1", "e1", "fileName" };
-    Object[] r2 = new Object[] { new Long( 2L ), "b2", "c2", "d2", "e2", "fileName" };
-    Object[] r3 = new Object[] { new Long( 3L ), "b3", "c3", "d3", "e3", "fileName" };
+    Object[] r1 = new Object[] { Long.valueOf( 1L ), "b1", "c1", "d1", "e1", "fileName" };
+    Object[] r2 = new Object[] { Long.valueOf( 2L ), "b2", "c2", "d2", "e2", "fileName" };
+    Object[] r3 = new Object[] { Long.valueOf( 3L ), "b3", "c3", "d3", "e3", "fileName" };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

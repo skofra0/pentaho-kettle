@@ -101,7 +101,7 @@ public class JaninoStepIT {
 
     Object[] r1 =
       new Object[] {
-        "string-value", new Long( 42L ), new Double( 23.0 ), new BigDecimal( 11.0 ), new Date(),
+        "string-value", Long.valueOf( 42L ), Double.valueOf( 23.0 ), new BigDecimal( 11.0 ), new Date(),
         new byte[] { 1, 2, 3, 4, 5 }, new Boolean( true ), new Timestamp( 1421893256000L ), InetAddress.getByAddress( new byte[]{ 127, 0, 0, 1} ), };
 
     Object[] n = { null, null, null, null, null, null, null, null, null };
@@ -121,7 +121,7 @@ public class JaninoStepIT {
 
     Object[] r1 =
       new Object[] {
-        "string-value", new Long( 42L ), new Double( 23.0 ), new BigDecimal( 11.0 ), new Date( 10000000 ),
+        "string-value", Long.valueOf( 42L ), Double.valueOf( 23.0 ), new BigDecimal( 11.0 ), new Date( 10000000 ),
         new byte[] { 1, 2, 3, 4, 5 }, new Boolean( true ), new Timestamp( 0L ), InetAddress.getByAddress( new byte[]{ 127, 0, 0, 1} ), };
 
     Object[] n = { null, null, null, null, null, null, null, null, null };
@@ -215,9 +215,9 @@ public class JaninoStepIT {
       new JaninoMetaFunction(
         "string", "(string==null)?null:\"string-value\"", ValueMetaInterface.TYPE_STRING, -1, -1, "string" ),
       new JaninoMetaFunction(
-        "integer", "(integer==null)?null:new Long(42L)", ValueMetaInterface.TYPE_INTEGER, -1, -1, "integer" ),
+        "integer", "(integer==null)?null:Long.valueOf(42L)", ValueMetaInterface.TYPE_INTEGER, -1, -1, "integer" ),
       new JaninoMetaFunction(
-        "number", "(number==null)?null:new Double(23.0)", ValueMetaInterface.TYPE_NUMBER, -1, -1, "number" ),
+        "number", "(number==null)?null:Double.valueOf(23.0)", ValueMetaInterface.TYPE_NUMBER, -1, -1, "number" ),
       new JaninoMetaFunction(
         "bigdecimal", "(bigdecimal==null)?null:new java.math.BigDecimal(11.0)", ValueMetaInterface.TYPE_BIGNUMBER,
         -1, -1, "bigdecimal" ),

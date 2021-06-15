@@ -175,7 +175,7 @@ public class SelectValuesTest {
 
     step2 = new SelectValuesHandler( helper.stepMeta, helper.stepDataInterface, 1, helper.transMeta, helper.trans );
     step2 = spy( step2 );
-    inputRow2 = new Object[] { new Long( "589" ) }; // Starting with a Long
+    inputRow2 = new Object[] { Long.valueOf( "589" ) }; // Starting with a Long
     doReturn( inputRow2 ).when( step2 ).getRow();
     doNothing().when( step2 )
         .putError( any( RowMetaInterface.class ), any( Object[].class ), anyLong(), anyString(), anyString(),
@@ -267,7 +267,7 @@ public class SelectValuesTest {
     step2 = new SelectValuesHandler( helper.stepMeta, helper.stepDataInterface, 1, helper.transMeta, helper.trans );
     step2.setVariable( Const.KETTLE_COMPATIBILITY_SELECT_VALUES_TYPE_CHANGE_USES_TYPE_DEFAULTS, "Y" );
     step2 = spy( step2 );
-    inputRow2 = new Object[] { new Long( "589" ) }; // Starting with a Long
+    inputRow2 = new Object[] { Long.valueOf( "589" ) }; // Starting with a Long
     doReturn( inputRow2 ).when( step2 ).getRow();
     doNothing().when( step2 )
         .putError( any( RowMetaInterface.class ), any( Object[].class ), anyLong(), anyString(), anyString(),

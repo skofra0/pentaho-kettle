@@ -74,7 +74,7 @@ public class ConditionTest {
     rowMeta1.addValueMeta( new ValueMetaInteger( "name1" ) );
 
     String left = "name1";
-    ValueMetaAndData right_exact = new ValueMetaAndData( new ValueMetaInteger( "name1" ), new Long( -10 ) );
+    ValueMetaAndData right_exact = new ValueMetaAndData( new ValueMetaInteger( "name1" ), Long.valueOf( -10 ) );
 
     Condition condition = new Condition( left, Condition.FUNC_SMALLER, null, right_exact );
     assertFalse( condition.evaluate( rowMeta1, new Object[] { null, "test" } ) );

@@ -81,7 +81,7 @@ public class BlockingBatchingRowSetTest {
 
     List<Object[]> rows = new ArrayList<Object[]>();
     for ( int i = 0; i < 5; i++ ) {
-      rows.add( new Object[] { new Long( i ), } );
+      rows.add( new Object[] { Long.valueOf( i ), } );
     }
 
     assertEquals( 0, set.size() );

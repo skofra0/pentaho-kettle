@@ -138,13 +138,13 @@ public class SortRowsIT {
       int rand = Math.abs( RN.nextInt() % 10000 );
 
       Timestamp tms = new Timestamp( time + rand );
-      Long igr = new Long( rand );
+      Long igr = Long.valueOf( rand );
       String caseSen = TestUtilities.generateString( RN, 10 );
 
       char ch = (char) ( 65 + counter );
       String gr2 = String.valueOf( ch );
 
-      Object[] row = new Object[] { key1, key2, tms, igr, caseSen, new Long( group ), gr2, "stable" };
+      Object[] row = new Object[] { key1, key2, tms, igr, caseSen, Long.valueOf( group ), gr2, "stable" };
       list.add( new RowMetaAndData( rm, row ) );
 
       if ( counter == 13 ) {

@@ -70,6 +70,6 @@ class FilePlayListReplayLineNumberFile extends FilePlayListReplayFile {
   }
 
   public boolean isProcessingNeeded( FileObject file, long lineNr, String filePart ) throws KettleException {
-    return lineNumbers.contains( new Long( lineNr ) );
+    return lineNumbers.contains( Long.valueOf( lineNr ) );
   }
 }

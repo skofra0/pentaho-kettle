@@ -205,7 +205,7 @@ public class JobEntryLogTable extends BaseLogTable implements Cloneable, LogTabl
             switch ( ID.valueOf( field.getId() ) ) {
 
               case ID_BATCH:
-                value = new Long( parentJob.getBatchId() );
+                value = Long.valueOf( parentJob.getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = jobEntry.getLogChannel().getLogChannelId();
@@ -220,36 +220,36 @@ public class JobEntryLogTable extends BaseLogTable implements Cloneable, LogTabl
                 value = jobEntry.getName();
                 break;
               case LINES_READ:
-                value = new Long( result != null ? result.getNrLinesRead() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesRead() : 0 );
                 break;
               case LINES_WRITTEN:
-                value = new Long( result != null ? result.getNrLinesWritten() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesWritten() : 0 );
                 break;
               case LINES_UPDATED:
-                value = new Long( result != null ? result.getNrLinesUpdated() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesUpdated() : 0 );
                 break;
               case LINES_INPUT:
-                value = new Long( result != null ? result.getNrLinesInput() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesInput() : 0 );
                 break;
               case LINES_OUTPUT:
-                value = new Long( result != null ? result.getNrLinesOutput() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesOutput() : 0 );
                 break;
               case LINES_REJECTED:
-                value = new Long( result != null ? result.getNrLinesRejected() : 0 );
+                value = Long.valueOf( result != null ? result.getNrLinesRejected() : 0 );
                 break;
               case ERRORS:
-                value = new Long( result != null ? result.getNrErrors() : 0 );
+                value = Long.valueOf( result != null ? result.getNrErrors() : 0 );
                 break;
               case RESULT:
                 value = new Boolean( result != null ? result.getResult() : false );
                 break;
               case NR_RESULT_FILES:
                 value =
-                  new Long( result != null && result.getResultFiles() != null
+                  Long.valueOf( result != null && result.getResultFiles() != null
                     ? result.getResultFiles().size() : 0 );
                 break;
               case NR_RESULT_ROWS:
-                value = new Long( result != null && result.getRows() != null ? result.getRows().size() : 0 );
+                value = Long.valueOf( result != null && result.getRows() != null ? result.getRows().size() : 0 );
                 break;
               case LOG_FIELD:
                 if ( result != null ) {
@@ -257,7 +257,7 @@ public class JobEntryLogTable extends BaseLogTable implements Cloneable, LogTabl
                 }
                 break;
               case COPY_NR:
-                value = new Long( jobEntryCopy.getNr() );
+                value = Long.valueOf( jobEntryCopy.getNr() );
                 break;
               default:
                 break;

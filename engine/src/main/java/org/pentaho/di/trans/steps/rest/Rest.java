@@ -258,13 +258,13 @@ public class Rest extends BaseStep implements StepInterface {
 
       // add status to output
       if ( !Utils.isEmpty( data.resultCodeFieldName ) ) {
-        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( status ) );
+        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( status ) );
         returnFieldsOffset++;
       }
 
       // add response time to output
       if ( !Utils.isEmpty( data.resultResponseFieldName ) ) {
-        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, new Long( responseTime ) );
+        newRow = RowDataUtil.addValueData( newRow, returnFieldsOffset, Long.valueOf( responseTime ) );
         returnFieldsOffset++;
       }
       // add response header to output

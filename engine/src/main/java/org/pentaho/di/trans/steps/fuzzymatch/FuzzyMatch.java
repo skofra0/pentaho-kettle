@@ -394,7 +394,7 @@ public class FuzzyMatch extends BaseStep implements StepInterface {
       // Key value is the first value
       String cacheValue = (String) cachedData[0];
 
-      double csimilarity = new Double( 0 );
+      double csimilarity = Double.valueOf( 0 );
 
       switch ( meta.getAlgorithmType() ) {
         case FuzzyMatchMeta.OPERATION_TYPE_JARO:
@@ -418,7 +418,7 @@ public class FuzzyMatch extends BaseStep implements StepInterface {
             rowData[index++] = cacheValue;
             // Add metric value?
             if ( data.addValueFieldName ) {
-              rowData[index++] = new Double( similarity );
+              rowData[index++] = Double.valueOf( similarity );
             }
 
             // Add additional return values?

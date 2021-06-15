@@ -100,7 +100,7 @@ public class JavaScriptUtils {
     } else {
       String classType = clazz.getName();
       if ( classType.equalsIgnoreCase( "java.lang.String" ) ) {
-        return ( new Long( (String) value ) );
+        return ( Long.valueOf( (String) value ) );
       } else if ( classType.equalsIgnoreCase( "org.mozilla.javascript.Undefined" ) ) {
         return null;
       } else if ( classType.equalsIgnoreCase( "org.mozilla.javascript.NativeNumber" ) ) {
@@ -213,7 +213,7 @@ public class JavaScriptUtils {
     } else if ( classType.equalsIgnoreCase( "java.lang.Double" ) ) {
       return new BigDecimal( ( (Double) value ).doubleValue() );
     } else if ( classType.equalsIgnoreCase( "java.lang.String" ) ) {
-      return new BigDecimal( ( new Long( (String) value ) ).longValue() );
+      return new BigDecimal( ( Long.valueOf( (String) value ) ).longValue() );
     } else {
       throw new RuntimeException( "JavaScript conversion to BigNumber not implemented for " + classType );
     }

@@ -257,9 +257,9 @@ public class NeoviewDatabaseMetaTest {
     // Now that the date stuff is done, validate the behaviors of other aspects of getValueFromResultSet
     Mockito.when( resultSet.wasNull() ).thenReturn( false );
     Mockito.when(  resultSet.getBoolean( 1 ) ).thenReturn( new Boolean( true ) );
-    Mockito.when(  resultSet.getDouble( 1 ) ).thenReturn( new Double( 15 ) );
+    Mockito.when(  resultSet.getDouble( 1 ) ).thenReturn( Double.valueOf( 15 ) );
     Mockito.when(  resultSet.getBigDecimal( 1 ) ).thenReturn( new BigDecimal( "15" ) );
-    Mockito.when(  resultSet.getLong( 1 ) ).thenReturn( new Long( "15" ) );
+    Mockito.when(  resultSet.getLong( 1 ) ).thenReturn( Long.valueOf( "15" ) );
     Mockito.when(  resultSet.getString( 1 ) ).thenReturn( "ASTRING" );
     Mockito.when(  resultSet.getBytes( 1 ) ).thenReturn( "ASTRING".getBytes() );
     Blob mockBlob = Mockito.mock( Blob.class );
@@ -267,7 +267,7 @@ public class NeoviewDatabaseMetaTest {
     ByteArrayInputStream bais = new ByteArrayInputStream( bytes );
 
     Mockito.when( mockBlob.getBinaryStream() ).thenReturn( bais );
-    Mockito.when( mockBlob.length() ).thenReturn( new Long( bytes.length ) );
+    Mockito.when( mockBlob.length() ).thenReturn( Long.valueOf( bytes.length ) );
     Mockito.when( mockBlob.getBytes( Mockito.anyLong(), Mockito.anyInt() ) ).thenReturn( bytes );
     Mockito.when(  resultSet.getBlob( 1 ) ).thenReturn( mockBlob );
 

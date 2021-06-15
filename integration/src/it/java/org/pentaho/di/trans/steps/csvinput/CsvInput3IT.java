@@ -102,9 +102,9 @@ public class CsvInput3IT extends CsvInputBase {
 
     RowMetaInterface rm = createResultRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 1L ), "b0", "c0", "fileName" };
-    Object[] r2 = new Object[] { new Long( 2L ), "b1", "c1", "fileName" };
-    Object[] r3 = new Object[] { new Long( 3L ), "b2", "c2", "fileName" };
+    Object[] r1 = new Object[] { Long.valueOf( 1L ), "b0", "c0", "fileName" };
+    Object[] r2 = new Object[] { Long.valueOf( 2L ), "b1", "c1", "fileName" };
+    Object[] r3 = new Object[] { Long.valueOf( 3L ), "b2", "c2", "fileName" };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

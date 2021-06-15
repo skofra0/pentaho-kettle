@@ -351,7 +351,7 @@ public class YamlInput extends BaseStep implements StepInterface {
       }
       // See if we need to add the row number to the row...
       if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-        outputRowData[rowIndex++] = new Long( data.rownr );
+        outputRowData[rowIndex++] = Long.valueOf( data.rownr );
       }
 
     } catch ( Exception e ) {

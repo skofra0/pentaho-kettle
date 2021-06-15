@@ -172,7 +172,7 @@ public class StepLogTable extends BaseLogTable implements Cloneable, LogTableInt
             switch ( ID.valueOf( field.getId() ) ) {
 
               case ID_BATCH:
-                value = new Long( combi.step.getTrans().getBatchId() );
+                value = Long.valueOf( combi.step.getTrans().getBatchId() );
                 break;
               case CHANNEL_ID:
                 value = combi.step.getLogChannel().getLogChannelId();
@@ -187,28 +187,28 @@ public class StepLogTable extends BaseLogTable implements Cloneable, LogTableInt
                 value = combi.stepname;
                 break;
               case STEP_COPY:
-                value = new Long( combi.copy );
+                value = Long.valueOf( combi.copy );
                 break;
               case LINES_READ:
-                value = new Long( combi.step.getLinesRead() );
+                value = Long.valueOf( combi.step.getLinesRead() );
                 break;
               case LINES_WRITTEN:
-                value = new Long( combi.step.getLinesWritten() );
+                value = Long.valueOf( combi.step.getLinesWritten() );
                 break;
               case LINES_UPDATED:
-                value = new Long( combi.step.getLinesUpdated() );
+                value = Long.valueOf( combi.step.getLinesUpdated() );
                 break;
               case LINES_INPUT:
-                value = new Long( combi.step.getLinesInput() );
+                value = Long.valueOf( combi.step.getLinesInput() );
                 break;
               case LINES_OUTPUT:
-                value = new Long( combi.step.getLinesOutput() );
+                value = Long.valueOf( combi.step.getLinesOutput() );
                 break;
               case LINES_REJECTED:
-                value = new Long( combi.step.getLinesRejected() );
+                value = Long.valueOf( combi.step.getLinesRejected() );
                 break;
               case ERRORS:
-                value = new Long( combi.step.getErrors() );
+                value = Long.valueOf( combi.step.getErrors() );
                 break;
               case LOG_FIELD:
                 value = getLogBuffer( combi.step, combi.step.getLogChannel().getLogChannelId(), status, null );

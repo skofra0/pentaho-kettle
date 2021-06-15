@@ -223,7 +223,7 @@ public class SalesforceUpdate extends SalesforceStep {
             // Only send the first error
             //
             com.sforce.soap.partner.Error err = data.saveResult[j].getErrors()[0];
-            throw new KettleException( BaseMessages.getString( PKG, "SalesforceUpdate.Error.FlushBuffer", new Integer(
+            throw new KettleException( BaseMessages.getString( PKG, "SalesforceUpdate.Error.FlushBuffer", Integer.valueOf(
                 j ), err.getStatusCode(), err.getMessage() ) );
           }
 
@@ -232,7 +232,7 @@ public class SalesforceUpdate extends SalesforceStep {
             // get the next error
             com.sforce.soap.partner.Error err = data.saveResult[j].getErrors()[i];
             errorMessage +=
-                BaseMessages.getString( PKG, "SalesforceUpdate.Error.FlushBuffer", new Integer( j ), err
+                BaseMessages.getString( PKG, "SalesforceUpdate.Error.FlushBuffer", Integer.valueOf( j ), err
                     .getStatusCode(), err.getMessage() );
           }
 

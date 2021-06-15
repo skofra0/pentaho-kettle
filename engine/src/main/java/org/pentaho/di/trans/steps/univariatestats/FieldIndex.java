@@ -152,25 +152,25 @@ public class FieldIndex {
 
     int index = 0;
     if ( usmf.getCalcN() ) {
-      result[index++] = new Double( m_count );
+      result[index++] = Double.valueOf( m_count );
     }
     if ( usmf.getCalcMean() ) {
-      result[index++] = new Double( m_mean );
+      result[index++] = Double.valueOf( m_mean );
     }
     if ( usmf.getCalcStdDev() ) {
-      result[index++] = new Double( m_stdDev );
+      result[index++] = Double.valueOf( m_stdDev );
     }
     if ( usmf.getCalcMin() ) {
-      result[index++] = new Double( m_min );
+      result[index++] = Double.valueOf( m_min );
     }
     if ( usmf.getCalcMax() ) {
-      result[index++] = new Double( m_max );
+      result[index++] = Double.valueOf( m_max );
     }
     if ( usmf.getCalcMedian() ) {
-      result[index++] = new Double( m_median );
+      result[index++] = Double.valueOf( m_median );
     }
     if ( usmf.getCalcPercentile() >= 0 ) {
-      result[index++] = new Double( m_arbitraryPercentile );
+      result[index++] = Double.valueOf( m_arbitraryPercentile );
     }
     return result;
   }

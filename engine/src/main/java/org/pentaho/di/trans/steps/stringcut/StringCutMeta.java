@@ -321,7 +321,7 @@ public class StringCutMeta extends BaseStepMeta implements StepMetaInterface {
             cr =
               new CheckResult(
                 CheckResult.TYPE_RESULT_ERROR,
-                BaseMessages.getString( PKG, "StringCutMeta.CheckResult.InStreamFieldMissing", new Integer(
+                BaseMessages.getString( PKG, "StringCutMeta.CheckResult.InStreamFieldMissing", Integer.valueOf(
                   idx + 1 ).toString() ), stepinfo );
             remarks.add( cr );
 

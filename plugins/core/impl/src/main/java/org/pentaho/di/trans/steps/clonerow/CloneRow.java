@@ -158,7 +158,7 @@ public class CloneRow extends BaseStep implements StepInterface {
         if ( meta.isAddCloneNum() ) {
           // Let's add to clone number
           // Clone starts at number 1 (0 is for the original row)
-          Long clonenum = new Long( i + 1 );
+          Long clonenum = Long.valueOf( i + 1 );
           outputRowData[ rowIndex ] = clonenum;
         }
       }

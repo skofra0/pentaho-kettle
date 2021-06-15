@@ -199,13 +199,13 @@ public class ValueDataUtilBackwardCompatibilityIT extends TestCase {
   public void testDateDiff_A_GT_B() {
     Object daysDiff =
       calculate( "2010-05-12", "2010-01-01", ValueMetaInterface.TYPE_DATE, CalculatorMetaFunction.CALC_DATE_DIFF );
-    assertEquals( new Long( 131 ), daysDiff );
+    assertEquals( Long.valueOf( 131 ), daysDiff );
   }
 
   public void testDateDiff_A_LT_B() {
     Object daysDiff =
       calculate( "2010-12-31", "2011-02-10", ValueMetaInterface.TYPE_DATE, CalculatorMetaFunction.CALC_DATE_DIFF );
-    assertEquals( new Long( -41 ), daysDiff );
+    assertEquals( Long.valueOf( -41 ), daysDiff );
   }
 
   public void testWorkingDaysDays_A_GT_B() {
@@ -213,7 +213,7 @@ public class ValueDataUtilBackwardCompatibilityIT extends TestCase {
       calculate(
         "2010-05-12", "2010-01-01", ValueMetaInterface.TYPE_DATE,
         CalculatorMetaFunction.CALC_DATE_WORKING_DIFF );
-    assertEquals( new Long( 93 ), daysDiff );
+    assertEquals( Long.valueOf( 93 ), daysDiff );
   }
 
   public void testWorkingDaysDays_A_LT_B() {
@@ -221,7 +221,7 @@ public class ValueDataUtilBackwardCompatibilityIT extends TestCase {
       calculate(
         "2010-12-31", "2011-02-10", ValueMetaInterface.TYPE_DATE,
         CalculatorMetaFunction.CALC_DATE_WORKING_DIFF );
-    assertEquals( new Long( -29 ), daysDiff );
+    assertEquals( Long.valueOf( -29 ), daysDiff );
   }
 
   @Test

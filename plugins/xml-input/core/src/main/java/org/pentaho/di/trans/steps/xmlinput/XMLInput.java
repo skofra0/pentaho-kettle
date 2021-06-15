@@ -226,7 +226,7 @@ public class XMLInput extends BaseStep implements StepInterface {
 
     // See if we need to add the row number to the row...
     if ( meta.includeRowNumber() && !Utils.isEmpty( meta.getRowNumberField() ) ) {
-      outputRowData[outputIndex++] = new Long( data.rownr );
+      outputRowData[outputIndex++] = Long.valueOf( data.rownr );
     }
 
     RowMetaInterface irow = getInputRowMeta();

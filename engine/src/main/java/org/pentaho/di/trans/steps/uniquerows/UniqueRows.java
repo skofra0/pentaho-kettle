@@ -147,7 +147,7 @@ public class UniqueRows extends BaseStep implements StepInterface {
 
   private Object[] addCounter( RowMetaInterface outputRowMeta, Object[] r, long count ) {
     if ( meta.isCountRows() ) {
-      Object[] outputRow = RowDataUtil.addValueData( r, outputRowMeta.size() - 1, new Long( count ) );
+      Object[] outputRow = RowDataUtil.addValueData( r, outputRowMeta.size() - 1, Long.valueOf( count ) );
 
       return outputRow;
     } else {

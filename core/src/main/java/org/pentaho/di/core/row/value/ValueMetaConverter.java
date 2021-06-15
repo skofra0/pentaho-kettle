@@ -202,7 +202,7 @@ public class ValueMetaConverter implements Serializable, IValueMetaConverter {
         case ValueMetaInterface.TYPE_STRING:
           return Double.toString( (Double) value );
         case ValueMetaInterface.TYPE_NUMBER:
-          Double doubleValue = new Double( (Double) value );
+          Double doubleValue = Double.valueOf( (Double) value );
           if ( getPrecision() > 0 ) {
             BigDecimal bigDecimal = new BigDecimal( doubleValue );
             bigDecimal = bigDecimal.setScale( getPrecision(), RoundingMode.HALF_UP );
@@ -269,7 +269,7 @@ public class ValueMetaConverter implements Serializable, IValueMetaConverter {
         case ValueMetaInterface.TYPE_STRING:
           return Long.toString( (Long) value );
         case ValueMetaInterface.TYPE_INTEGER:
-          return new Long( (Long) value );
+          return Long.valueOf( (Long) value );
         case ValueMetaInterface.TYPE_NUMBER:
           Double doubleValue = ( (Long) value ).doubleValue();
           if ( getPrecision() > 0 ) {

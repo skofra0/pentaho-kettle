@@ -54,7 +54,7 @@ public class PentahoJaroWinklerDistance {
   private double jw = 0D;
 
   public Double getJaroDistance() {
-    return new Double( j );
+    return Double.valueOf( j );
   }
 
   public Double getJaroWinklerDistance() {

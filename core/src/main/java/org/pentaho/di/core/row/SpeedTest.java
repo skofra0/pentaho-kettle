@@ -96,11 +96,11 @@ public class SpeedTest {
     ValueMetaInterface meta1 = new ValueMetaDate( "String" + ( i * 5 + 1 ) );
     metaMixed10.addValueMeta( meta1 );
 
-    rowMixed10[i * 5 + 2] = new Double( Math.random() * 1000000 );
+    rowMixed10[i * 5 + 2] = Double.valueOf( Math.random() * 1000000 );
     ValueMetaInterface meta2 = new ValueMetaNumber( "String" + ( i * 5 + 1 ), 12, 4 );
     metaMixed10.addValueMeta( meta2 );
 
-    rowMixed10[i * 5 + 3] = new Long( (long) ( Math.random() * 1000000 ) );
+    rowMixed10[i * 5 + 3] = Long.valueOf( (long) ( Math.random() * 1000000 ) );
     ValueMetaInterface meta3 = new ValueMetaInteger( "String" + ( i * 5 + 1 ), 8, 0 );
     metaMixed10.addValueMeta( meta3 );
 

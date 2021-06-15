@@ -74,16 +74,16 @@ public class AddSequenceIT extends TestCase {
 
     RowMetaInterface rm = createResultRowMetaInterface();
 
-    Object[] r1 = new Object[] { new Long( 10L ), new Long( 1L ), new Long( 1L ), new Long( 10L ) };
-    Object[] r2 = new Object[] { new Long( 11L ), new Long( 2L ), new Long( 4L ), new Long( 8L ) };
-    Object[] r3 = new Object[] { new Long( 12L ), new Long( 3L ), new Long( 7L ), new Long( 6L ) };
-    Object[] r4 = new Object[] { new Long( 13L ), new Long( 4L ), new Long( 10L ), new Long( 4L ) };
-    Object[] r5 = new Object[] { new Long( 14L ), new Long( 5L ), new Long( 13L ), new Long( 10L ) };
-    Object[] r6 = new Object[] { new Long( 15L ), new Long( 1L ), new Long( 16L ), new Long( 8L ) };
-    Object[] r7 = new Object[] { new Long( 16L ), new Long( 2L ), new Long( 1L ), new Long( 6L ) };
-    Object[] r8 = new Object[] { new Long( 17L ), new Long( 3L ), new Long( 4L ), new Long( 4L ) };
-    Object[] r9 = new Object[] { new Long( 18L ), new Long( 4L ), new Long( 7L ), new Long( 10L ) };
-    Object[] r10 = new Object[] { new Long( 19L ), new Long( 5L ), new Long( 10L ), new Long( 8L ) };
+    Object[] r1 = new Object[] { Long.valueOf( 10L ), Long.valueOf( 1L ), Long.valueOf( 1L ), Long.valueOf( 10L ) };
+    Object[] r2 = new Object[] { Long.valueOf( 11L ), Long.valueOf( 2L ), Long.valueOf( 4L ), Long.valueOf( 8L ) };
+    Object[] r3 = new Object[] { Long.valueOf( 12L ), Long.valueOf( 3L ), Long.valueOf( 7L ), Long.valueOf( 6L ) };
+    Object[] r4 = new Object[] { Long.valueOf( 13L ), Long.valueOf( 4L ), Long.valueOf( 10L ), Long.valueOf( 4L ) };
+    Object[] r5 = new Object[] { Long.valueOf( 14L ), Long.valueOf( 5L ), Long.valueOf( 13L ), Long.valueOf( 10L ) };
+    Object[] r6 = new Object[] { Long.valueOf( 15L ), Long.valueOf( 1L ), Long.valueOf( 16L ), Long.valueOf( 8L ) };
+    Object[] r7 = new Object[] { Long.valueOf( 16L ), Long.valueOf( 2L ), Long.valueOf( 1L ), Long.valueOf( 6L ) };
+    Object[] r8 = new Object[] { Long.valueOf( 17L ), Long.valueOf( 3L ), Long.valueOf( 4L ), Long.valueOf( 4L ) };
+    Object[] r9 = new Object[] { Long.valueOf( 18L ), Long.valueOf( 4L ), Long.valueOf( 7L ), Long.valueOf( 10L ) };
+    Object[] r10 = new Object[] { Long.valueOf( 19L ), Long.valueOf( 5L ), Long.valueOf( 10L ), Long.valueOf( 8L ) };
 
     list.add( new RowMetaAndData( rm, r1 ) );
     list.add( new RowMetaAndData( rm, r2 ) );

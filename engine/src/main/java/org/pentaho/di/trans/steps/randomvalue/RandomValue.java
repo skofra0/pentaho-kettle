@@ -75,7 +75,7 @@ public class RandomValue extends BaseStep implements StepInterface {
           row[index] = data.randomgen.nextDouble();
           break;
         case RandomValueMeta.TYPE_RANDOM_INTEGER:
-          row[index] = new Long( data.randomgen.nextInt() ); // nextInt() already returns all 2^32 numbers.
+          row[index] = Long.valueOf( data.randomgen.nextInt() ); // nextInt() already returns all 2^32 numbers.
           break;
         case RandomValueMeta.TYPE_RANDOM_STRING:
           row[index] = Long.toString( Math.abs( data.randomgen.nextLong() ), 32 );

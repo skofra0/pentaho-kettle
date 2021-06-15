@@ -118,7 +118,7 @@ public class DummyPluginMeta extends BaseStepMeta implements StepMetaInterface {
 
   @Override
   public void setDefault() {
-    value = new ValueMetaAndData( new ValueMetaNumber( "valuename" ), new Double( 123.456 ) );
+    value = new ValueMetaAndData( new ValueMetaNumber( "valuename" ), Double.valueOf( 123.456 ) );
     value.getValueMeta().setLength( 12 );
     value.getValueMeta().setPrecision( 4 );
   }

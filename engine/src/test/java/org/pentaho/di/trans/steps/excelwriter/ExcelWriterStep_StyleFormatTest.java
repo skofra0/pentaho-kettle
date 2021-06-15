@@ -289,11 +289,11 @@ public class ExcelWriterStep_StyleFormatTest {
    */
   private ArrayList<Object[]> createRowData() throws Exception {
     ArrayList<Object[]> rows = new ArrayList<Object[]>();
-    Object[] row = new Object[] { new Long( 123456 ), new Double( 2.34e-4 ),
-      new BigDecimal( "123456789.987654321" ), new Double( 504150 ) };
+    Object[] row = new Object[] { Long.valueOf( 123456 ), Double.valueOf( 2.34e-4 ),
+      new BigDecimal( "123456789.987654321" ), Double.valueOf( 504150 ) };
     rows.add( row );
-    row = new Object[] { new Long( 1001001 ), new Double( 4.6789e10 ),
-      new BigDecimal( 123123e-2 ), new Double( 12312300 ) };
+    row = new Object[] { Long.valueOf( 1001001 ), Double.valueOf( 4.6789e10 ),
+      new BigDecimal( 123123e-2 ), Double.valueOf( 12312300 ) };
     rows.add( row );
     return rows;
   }
