@@ -85,7 +85,7 @@
     	<commands.version>3.3.0-I20070605-0010</commands.version>
 
 		<!-- SKOFRA  -->
-        <nexus-etl.version>6.1.0.131</nexus-etl.version>
+        <nexus-etl.version>6.1.0.132-SNAPSHOT</nexus-etl.version>
         <nexus.version>8.0.6</nexus.version>
 	    <fasterxml-jackson.version>2.12.2</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.12.2</fasterxml-jackson-databind.version>

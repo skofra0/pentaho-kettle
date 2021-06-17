@@ -2,7 +2,7 @@
  *
  * Pentaho Data Integration
  *
- * Copyright (C) 2002-2019 by Hitachi Vantara : http://www.pentaho.com
+ * Copyright (C) 2002-2021 by Hitachi Vantara : http://www.pentaho.com
  *
  *******************************************************************************
  *
@@ -31,16 +31,15 @@ import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.injection.Injection;
+import org.pentaho.di.core.injection.InjectionDeep;
+import org.pentaho.di.core.injection.InjectionSupported;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleXMLException;
-import org.pentaho.di.core.injection.Injection;
-import org.pentaho.di.core.injection.InjectionDeep;
-import org.pentaho.di.core.injection.InjectionSupported;
-import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLHandler;
@@ -847,9 +846,6 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
   @Override
   public void getFields( RowMetaInterface r, String name, RowMetaInterface[] info, StepMeta nextStep,
     VariableSpace space, Repository repository, IMetaStore metaStore ) {
-    if ( r == null ) {
-      r = new RowMeta(); // give back values
-    }
 
     // No values are added to the row in this type of step
   }
@@ -861,7 +857,6 @@ public class ExcelWriterStepMeta extends BaseStepMeta implements StepMetaInterfa
     retval.append( "    " ).append( XMLHandler.addTagValue( "header", headerEnabled ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "footer", footerEnabled ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "makeSheetActive", makeSheetActive ) );
-    retval.append( "    " ).append( XMLHandler.addTagValue( "rowWritingMethod", rowWritingMethod ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "startingCell", startingCell ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "appendOmitHeader", appendOmitHeader ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "appendOffset", appendOffset ) );
