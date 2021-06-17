@@ -52,7 +52,7 @@
 
     <!-- misc third-party -->
     <dependency org="commons-logging" name="commons-logging" rev="1.2" transitive="false" />
-    <dependency org="commons-io" name="commons-io" rev="2.8.0" conf="default->default;test->default" />
+    <dependency org="commons-io" name="commons-io" rev="2.10.0" conf="default->default;test->default" />
 
   <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30" />  -->
    <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30" />  -->

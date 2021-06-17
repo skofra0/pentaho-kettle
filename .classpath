@@ -42,7 +42,7 @@
 	<classpathentry kind="lib" path="dist/lib/commons-digester-2.1.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-fileupload-1.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-io-2.8.0.jar"/>
+	<classpathentry kind="lib" path="dist/lib/commons-io-2.10.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-lang3-3.11.jar"/>
 	<classpathentry kind="lib" path="dist/lib/commons-logging-1.2.jar"/>
@@ -146,7 +146,7 @@
 	<classpathentry kind="lib" path="dist/lib/poi-4.1.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/poi-ooxml-4.1.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/poi-ooxml-schemas-4.1.2.jar"/>
-	<classpathentry kind="lib" path="dist/lib/postgresql-42.2.20.jar"/>
+	<classpathentry kind="lib" path="dist/lib/postgresql-42.2.21.jar"/>
 	<classpathentry kind="lib" path="dist/lib/rhino-1.7.13.jar"/>
 	<classpathentry kind="lib" path="dist/lib/rhino-engine-1.7.13.jar"/>
 	<classpathentry kind="lib" path="dist/lib/rome-1.0.jar"/>
@@ -180,13 +180,13 @@
 	<classpathentry kind="lib" path="dist/lib/jakarta.activation-api-1.2.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jakarta.xml.bind-api-2.3.3.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jaxb-impl-2.3.3.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-core"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-cloudapi-common"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-cloudapi-client-jsonrpc2"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-cloudapi-ionapi"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-cloudapi-mvxapi-m3-client"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nexus-cloudapi-xledger"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nexus-etl-plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nexus-etl-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-ionapi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-jsonrpc2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-mvxapi-m3-client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-xledger"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-core"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -72,6 +72,7 @@ import org.pentaho.di.core.gui.PrimitiveGCInterface;
 import org.pentaho.di.core.row.ValueDataUtil;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
 import org.w3c.dom.Node;
@@ -82,13 +83,27 @@ import org.w3c.dom.Node;
 public class ValueMetaBase implements ValueMetaInterface {
   protected static Class<?> PKG = Const.class; // for i18n purposes, needed by Translator2
   
-  public static final String DATE_FORMAT_MSSQL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-  public static final String DATE_FORMAT_MYSQL = "yyyy/MM/dd HH:mm:ss.SSS";
+  // region Default Numeric Types Parse Format
+  public static final String DEFAULT_INTEGER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_INTEGER_FORMAT), "####0");
+  public static final String DEFAULT_NUMBER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_NUMBER_FORMAT), "####0.0#########");
+  public static final String DEFAULT_BIGNUMBER_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_BIGNUMBER_FORMAT), "######0.0###################");
 
-  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL( EnvUtil.getSystemProperty( Const.KETTLE_DEFAULT_DATE_FORMAT ), DATE_FORMAT_MSSQL ); // SKOFRA "yyyy/MM/dd HH:mm:ss.SSS" 
+  
+  public static final String DATE_FORMAT_MSSQL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"; // SKOFRA
+  public static final String DATE_FORMAT_MYSQL = "yyyy/MM/dd HH:mm:ss.SSS"; // SKOFRA
 
-  public static final String DEFAULT_TIMESTAMP_FORMAT_MASK = Const.NVL( EnvUtil .getSystemProperty( Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT ), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS" );
+  public static final String DEFAULT_DATE_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_DATE_FORMAT), DATE_FORMAT_MYSQL);
+  public static final String DEFAULT_TIMESTAMP_PARSE_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_DATE_FORMAT), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS");
+  // endregion
 
+  // region Default Types Format
+  public static final String DEFAULT_INTEGER_FORMAT_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_INTEGER_FORMAT), "####0;-####0");
+  public static final String DEFAULT_NUMBER_FORMAT_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_NUMBER_FORMAT), "####0.0#########;-####0.0#########");
+  public static final String DEFAULT_BIG_NUMBER_FORMAT_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_BIGNUMBER_FORMAT), "######0.0###################;-######0.0###################");
+  public static final String DEFAULT_DATE_FORMAT_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_DATE_FORMAT), "yyyy/MM/dd HH:mm:ss.SSS");
+  public static final String DEFAULT_TIMESTAMP_FORMAT_MASK = Const.NVL(EnvUtil.getSystemProperty(Const.KETTLE_DEFAULT_TIMESTAMP_FORMAT), "yyyy/MM/dd HH:mm:ss.SSSSSSSSS");
+
+  
   public static final String XML_META_TAG = "value-meta";
   public static final String XML_DATA_TAG = "value-data";
 
@@ -355,6 +370,10 @@ public class ValueMetaBase implements ValueMetaInterface {
     this.length = length;
     this.precision = precision;
   }
+
+  boolean isLengthInvalidOrZero() {
+      return this.length < 1;
+    }
 
   /**
    * @return the name
@@ -877,107 +896,175 @@ public class ValueMetaBase implements ValueMetaInterface {
     // hungry.
     //
     if ( decimalFormat == null || decimalFormatChanged ) {
-      decimalFormat = (DecimalFormat) NumberFormat.getInstance(Const.ISO31_0_LOCALE);
+      decimalFormat = (DecimalFormat) NumberFormat.getInstance();
       decimalFormat.setParseBigDecimal( useBigDecimal );
       DecimalFormatSymbols decimalFormatSymbols = decimalFormat.getDecimalFormatSymbols();
 
-      if ( !Const.isEmpty( currencySymbol ) ) {
+      if ( !Utils.isEmpty( currencySymbol ) ) {
         decimalFormatSymbols.setCurrencySymbol( currencySymbol );
       }
-      if ( !Const.isEmpty( groupingSymbol ) ) {
+      if ( !Utils.isEmpty( groupingSymbol ) ) {
         decimalFormatSymbols.setGroupingSeparator( groupingSymbol.charAt( 0 ) );
       }
-      if ( !Const.isEmpty( decimalSymbol ) ) {
+      if ( !Utils.isEmpty( decimalSymbol ) ) {
         decimalFormatSymbols.setDecimalSeparator( decimalSymbol.charAt( 0 ) );
       }
       decimalFormat.setDecimalFormatSymbols( decimalFormatSymbols );
       decimalFormat.setNegativePrefix("-"); // SKOFRA
+      decimalFormat.setNegativeSuffix("-"); // SKOFRA
 
-      // Apply the conversion mask if we have one...
-      if ( !Const.isEmpty( conversionMask ) ) {
-        decimalFormat.applyPattern( conversionMask );
-      } else {
-        switch ( type ) {
-          case TYPE_INTEGER:
-            if ( length < 1 ) {
-              decimalFormat.applyPattern( " ###############0;-###############0" ); // Same
-              // as
-              // before
-              // version
-              // 3.0
-            } else {
-              StringBuilder integerPattern = new StringBuilder();
-
-              // First the format for positive integers...
-              //
-              integerPattern.append( " " );
-              for ( int i = 0; i < getLength(); i++ ) {
-                integerPattern.append( '0' ); // all zeroes.
-              }
-              integerPattern.append( ";" );
-
-              // Then the format for the negative numbers...
-              //
-              integerPattern.append( "-" );
-              for ( int i = 0; i < getLength(); i++ ) {
-                integerPattern.append( '0' ); // all zeroes.
-              }
-              decimalFormat.applyPattern( integerPattern.toString() );
-            }
-            break;
-          case TYPE_BIGNUMBER:
-          case TYPE_NUMBER:
-            if ( length < 1 ) {
-              decimalFormat.applyPattern( " ##########0.0########;-#########0.0########" );
-            } else {
-                StringBuilder numberPattern = new StringBuilder();
-
-              // First do the format for positive numbers...
-              //
-              numberPattern.append( ' ' ); // to compensate for minus sign.
-              if ( precision < 0 ) {
-                // Default: two decimals
-                for ( int i = 0; i < length; i++ ) {
-                  numberPattern.append( '0' );
-                }
-                numberPattern.append( ".00" ); // for the .00
-              } else {
-                // Floating point format 00001234,56 --> (12,2)
-                for ( int i = 0; i <= length; i++ ) {
-                  numberPattern.append( '0' ); // all zeroes.
-                }
-                int pos = length - precision + 1;
-                if ( pos >= 0 && pos < numberPattern.length() ) {
-                  numberPattern.setCharAt( length - precision + 1, '.' ); // one
-                  // 'comma'
-                }
-              }
-
-              // Now do the format for negative numbers...
-              //
-              StringBuffer negativePattern = new StringBuffer( numberPattern );
-              negativePattern.setCharAt( 0, '-' );
-
-              numberPattern.append( ";" );
-              numberPattern.append( negativePattern );
-
-              // Apply the pattern...
-              //
-              decimalFormat.applyPattern( numberPattern.toString() );
-            }
-            break;
-          default:
-              decimalFormat.applyPattern( "0.0##;-0.0##" ); // SKOFRA
-            break;
-        }
-
+      String decimalPattern = getMask( getType() );
+      if ( !Utils.isEmpty( decimalPattern ) ) {
+        decimalFormat.applyPattern( decimalPattern );
       }
 
       decimalFormatChanged = false;
     }
+
     return decimalFormat;
   }
 
+  String getMask( int type ) {
+      if ( !Utils.isEmpty( this.conversionMask ) ) {
+        return this.conversionMask;
+      }
+
+      boolean fromString = isString();
+      switch ( type ) {
+        case TYPE_INTEGER:
+          return fromString ? DEFAULT_INTEGER_PARSE_MASK : getIntegerFormatMask();
+        case TYPE_NUMBER:
+          return fromString ? DEFAULT_NUMBER_PARSE_MASK : getNumberFormatMask();
+        case TYPE_BIGNUMBER:
+          return fromString ? DEFAULT_BIGNUMBER_PARSE_MASK : getBigNumberFormatMask();
+
+        case TYPE_DATE:
+          return fromString ? DEFAULT_DATE_PARSE_MASK : getDateFormatMask();
+        case TYPE_TIMESTAMP:
+          return fromString ? DEFAULT_TIMESTAMP_PARSE_MASK : getTimestampFormatMask();
+      }
+
+      return null;
+    }
+
+  String getNumberFormatMask() {
+      String numberMask = this.conversionMask;
+
+      if ( Utils.isEmpty( numberMask ) ) {
+        if ( this.isLengthInvalidOrZero() ) {
+          numberMask = DEFAULT_NUMBER_FORMAT_MASK;
+        } else {
+          numberMask = this.buildNumberPattern();
+        }
+      }
+
+      return numberMask;
+    }
+
+    String getIntegerFormatMask() {
+      String integerMask = this.conversionMask;
+
+      if ( Utils.isEmpty( integerMask ) ) {
+        if ( this.isLengthInvalidOrZero() ) {
+          integerMask = DEFAULT_INTEGER_FORMAT_MASK;
+          // as
+          // before
+          // version
+          // 3.0
+        } else {
+          StringBuilder integerPattern = new StringBuilder();
+
+          // First the format for positive integers...
+          //
+          integerPattern.append( " " );
+          for ( int i = 0; i < getLength(); i++ ) {
+            integerPattern.append( '0' ); // all zeroes.
+          }
+          integerPattern.append( ";" );
+
+          // Then the format for the negative numbers...
+          //
+          integerPattern.append( "-" );
+          for ( int i = 0; i < getLength(); i++ ) {
+            integerPattern.append( '0' ); // all zeroes.
+          }
+
+          integerMask = integerPattern.toString();
+
+        }
+      }
+
+      return integerMask;
+    }
+
+    String getBigNumberFormatMask() {
+      String bigNumberMask = this.conversionMask;
+
+      if ( Utils.isEmpty( bigNumberMask ) ) {
+        if ( this.isLengthInvalidOrZero() ) {
+          bigNumberMask = DEFAULT_BIG_NUMBER_FORMAT_MASK;
+        } else {
+          bigNumberMask = this.buildNumberPattern();
+        }
+      }
+
+      return bigNumberMask;
+    }
+
+    String getDateFormatMask() {
+      String mask = this.conversionMask;
+      if ( Utils.isEmpty( mask ) ) {
+        mask = DEFAULT_DATE_FORMAT_MASK;
+      }
+
+      return mask;
+    }
+
+    String getTimestampFormatMask() {
+      String mask = conversionMask;
+      if ( Utils.isEmpty( mask ) ) {
+        mask = DEFAULT_TIMESTAMP_FORMAT_MASK;
+      }
+
+      return mask;
+    }
+
+    private String buildNumberPattern() {
+      StringBuilder numberPattern = new StringBuilder();
+
+      // First do the format for positive numbers...
+      //
+      numberPattern.append( ' ' ); // to compensate for minus sign.
+      if ( precision < 0 ) {
+        // Default: two decimals
+        for ( int i = 0; i < length; i++ ) {
+          numberPattern.append( '0' );
+        }
+        numberPattern.append( ".00" ); // for the .00
+      } else {
+        // Floating point format 00001234,56 --> (12,2)
+        for ( int i = 0; i <= length; i++ ) {
+          numberPattern.append( '0' ); // all zeroes.
+        }
+        int pos = length - precision + 1;
+        if ( pos >= 0 && pos < numberPattern.length() ) {
+          numberPattern.setCharAt( length - precision + 1, '.' ); // one
+          // 'comma'
+        }
+      }
+
+      // Now do the format for negative numbers...
+      //
+      StringBuilder negativePattern = new StringBuilder( numberPattern );
+      negativePattern.setCharAt( 0, '-' );
+
+      numberPattern.append( ";" );
+      numberPattern.append( negativePattern );
+
+      // Return the pattern...
+      //
+      return numberPattern.toString();
+    }
   protected synchronized String convertIntegerToString( Long integer ) throws KettleValueException {
     if ( integer == null ) {
       if ( !outputPaddingEnabled || length < 1 ) {
