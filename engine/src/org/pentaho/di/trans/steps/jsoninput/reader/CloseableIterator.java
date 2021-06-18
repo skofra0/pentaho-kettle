@@ -2,7 +2,7 @@
  *
  * Pentaho Data Integration
  *
- * Copyright (C) 2002-2015 by Pentaho : http://www.pentaho.com
+ * Copyright (C) 2021 by Hitachi Vantara : http://www.pentaho.com
  *
  *******************************************************************************
  *
@@ -20,46 +20,18 @@
  *
  ******************************************************************************/
 
-package org.pentaho.di.trans.steps.jsoninput;
+package org.pentaho.di.trans.steps.jsoninput.reader;
 
-import org.json.simple.JSONArray;
-import org.pentaho.di.core.exception.KettleException;
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.Iterator;
 
-@Deprecated
-public class NJSONArray {
-
-  private JSONArray a;
-  private boolean nullValue;
-
-  public NJSONArray() throws KettleException {
-    this.a = new JSONArray();
-    setNull( false );
+/**
+ * <p>An Iterator that may hold some resources and, as so, should be given the opportunity to release them when it's no
+ * longer needed.</p>
+ */
+public interface CloseableIterator<T> extends Iterator<T>, Closeable {
+  @Override
+  default void close() throws IOException {
   }
-
-  public NJSONArray( JSONArray ja ) throws KettleException {
-    this.a = ja;
-    setNull( ja == null );
-  }
-
-  public void setNull( boolean value ) {
-    this.nullValue = value;
-  }
-
-  public boolean isNull() {
-    return this.nullValue;
-  }
-
-  public JSONArray getJSONArray() {
-    return this.a;
-  }
-
-  @SuppressWarnings( "unchecked" )
-  public void add( Object value ) {
-    this.a.add( value );
-  }
-
-  public int size() {
-    return this.a.size();
-  }
-
 }

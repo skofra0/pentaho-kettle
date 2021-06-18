@@ -173,6 +173,6 @@
  <step id="InfobrightOutput"> <description>i18n:org.pentaho.di.trans.step:BaseStep.TypeLongDesc.InfobrightOutput</description> <classname>org.pentaho.di.trans.steps.infobrightoutput.InfobrightLoaderMeta</classname> <category>i18n:org.pentaho.di.trans.step:BaseStep.Category.Bulk</category> <tooltip>i18n:org.pentaho.di.trans.step:BaseStep.TypeTooltipDesc.InfobrightOutput</tooltip> <iconfile>ui/images/BLKIB.svg</iconfile> <documentation_url/> <cases_url/> <forum_url/> </step>
 -->
 
-<step id="JsonInput"> <description>i18n:org.pentaho.di.trans.step:BaseStep.TypeLongDesc.JsonInput</description> <classname>org.pentaho.di.trans.steps.jsoninput.JsonInputMeta</classname> <category>i18n:org.pentaho.di.trans.step:BaseStep.Category.Input</category> <tooltip>i18n:org.pentaho.di.trans.step:BaseStep.TypeTooltipDesc.TableInput</tooltip> <iconfile>JSI.svg</iconfile> <documentation_url>Products/JSON_Input</documentation_url> <cases_url> </cases_url> <forum_url> </forum_url> </step>
+<step id="JsonInput"> <description>i18n:org.pentaho.di.trans.step:BaseStep.TypeLongDesc.JsonInput</description> <classname>org.pentaho.di.trans.steps.jsoninput.JsonInputMeta</classname> <category>i18n:org.pentaho.di.trans.step:BaseStep.Category.Input</category> <tooltip>i18n:org.pentaho.di.trans.step:BaseStep.TypeTooltipDesc.TableInput</tooltip> <iconfile>JSI.svg</iconfile> <documentation_url>https://wiki.pentaho.com/display/EAI/JSON+Input</documentation_url> <cases_url> </cases_url> <forum_url> </forum_url> </step>
 
 </steps>

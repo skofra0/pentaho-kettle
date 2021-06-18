@@ -182,7 +182,7 @@
 
     <!-- Nexus 
     -->
-    <dependency org="no.bdo.etl"     name="nexus-etl-plugins"           rev="6.1.0.131"  transitive="true"/>
+    <dependency org="no.bdo.etl"     name="nexus-etl-plugins"           rev="6.1.0.133"  transitive="true"/>
     <dependency org="com.force.api"   name="force-wsc" rev="47.0.0" transitive="false"/>
     <dependency org="com.force.api"   name="force-partner-api" rev="47.0.0" transitive="false"/>
 
@@ -228,7 +228,7 @@
   -->
     
     <!-- Other third-party dependencies -->
-    <dependency org="org.ow2.asm"           name="asm"                   rev="7.3.1"          transitive="false"/>  
+    <dependency org="org.ow2.asm"           name="asm"                   rev="9.1"          transitive="false"/>  
     <dependency org="net.sf.saxon"          name="saxon-dom"             rev="9.1.0.8"      transitive="false"/>
     <dependency org="commons-configuration" name="commons-configuration" rev="1.9"          transitive="false"/>
     <dependency org="net.sf.flexjson"       name="flexjson"              rev="2.1"          transitive="false"/>
