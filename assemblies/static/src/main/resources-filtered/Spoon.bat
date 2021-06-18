@@ -1,21 +1,16 @@
 @echo off
-
 setlocal 
-
 cd /D %~dp0
-
 
 :: *****************************************************
 :: ** Override properties for current installation    **
 :: ** Remove REM to activate statements               **
 :: *****************************************************
 IF "%PENTAHO_DI_JAVA_OPTIONS%"=="" SET PENTAHO_DI_JAVA_OPTIONS="-Xmx1048m"
-SET USER_LOCALE="-Duser.country=no" "-Duser.language=NO" "-Duser.region=NO"
-REM SET USER_LOCALE="-Duser.country=en" "-Duser.language=US" "-Duser.region=US"
+SET USER_LOCALE="-Duser.country=en" "-Duser.language=US" "-Duser.region=US"
+REM SET USER_LOCALE="-Duser.country=no" "-Duser.language=NO" "-Duser.region=NO"
 REM SET KETTLE_HOME=d:/deem/di6
 REM SET PENTAHO_JAVA_HOME=C:/Program Files/Java/jdk1.8.0_121
-
-
 
 REM **************************************************
 REM ** Set console window properties                **
@@ -87,14 +82,6 @@ set SWTJAR=..\libswt\win64
 :CONTINUE
 popd
 
-REM **************************************************
-REM ** Setup Karaf endorsed libraries directory     **
-REM **************************************************
-
-set JAVA_ENDORSED_DIRS=
-if not "%_PENTAHO_JAVA_HOME%" == "" set JAVA_ENDORSED_DIRS=%_PENTAHO_JAVA_HOME%\jre\lib\endorsed;%_PENTAHO_JAVA_HOME%\lib\endorsed;
-set JAVA_ENDORSED_DIRS=%JAVA_ENDORSED_DIRS%%KETTLE_DIR%\system\karaf\lib\endorsed
-
 REM **********************
 REM   Collect arguments
 REM **********************
@@ -113,9 +100,9 @@ REM ** Change 2048m to higher values in case you run out of memory  **
 REM ** or set the PENTAHO_DI_JAVA_OPTIONS environment variable      **
 REM ******************************************************************
 
-if "%PENTAHO_DI_JAVA_OPTIONS%"=="" set PENTAHO_DI_JAVA_OPTIONS="-Xms1024m" "-Xmx2048m" "-XX:MaxPermSize=256m"
+if "%PENTAHO_DI_JAVA_OPTIONS%"=="" set PENTAHO_DI_JAVA_OPTIONS="-Xms1024m" "-Xmx2048m"
 
-set OPT=%OPT% %PENTAHO_DI_JAVA_OPTIONS% "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=%LIBSPATH%" "-Djava.endorsed.dirs=%JAVA_ENDORSED_DIRS%" "-DKETTLE_HOME=%KETTLE_HOME%" "-DKETTLE_REPOSITORY=%KETTLE_REPOSITORY%" "-DKETTLE_USER=%KETTLE_USER%" "-DKETTLE_PASSWORD=%KETTLE_PASSWORD%" "-DKETTLE_PLUGIN_PACKAGES=%KETTLE_PLUGIN_PACKAGES%" "-DKETTLE_LOG_SIZE_LIMIT=%KETTLE_LOG_SIZE_LIMIT%" "-DKETTLE_JNDI_ROOT=%KETTLE_JNDI_ROOT%"
+set OPT=%OPT% %PENTAHO_DI_JAVA_OPTIONS% "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=%LIBSPATH%" "-DKETTLE_HOME=%KETTLE_HOME%" "-DKETTLE_REPOSITORY=%KETTLE_REPOSITORY%" "-DKETTLE_USER=%KETTLE_USER%" "-DKETTLE_PASSWORD=%KETTLE_PASSWORD%" "-DKETTLE_PLUGIN_PACKAGES=%KETTLE_PLUGIN_PACKAGES%" "-DKETTLE_LOG_SIZE_LIMIT=%KETTLE_LOG_SIZE_LIMIT%" "-DKETTLE_JNDI_ROOT=%KETTLE_JNDI_ROOT%"
 
 REM ***************
 REM ** Run...    **

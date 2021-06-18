@@ -58,7 +58,7 @@
         <module>pentaho-googledrive-vfs</module>
         <module>pentaho-repository-vfs</module>
 <!--         <module>dummy</module> -->
-        <module>json</module>
+<!--         <module>json</module> -->
 <!--         <module>s3csvinput</module> -->
         <module>version-checker</module>
         <module>salesforce</module>
