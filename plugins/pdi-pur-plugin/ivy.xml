@@ -54,8 +54,8 @@
     <dependency org="commons-logging" name="commons-logging" rev="1.2" transitive="false" />
     <dependency org="commons-io" name="commons-io" rev="2.10.0" conf="default->default;test->default" />
 
-  <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.30" />  -->
-   <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.30" />  -->
+  <!--   <dependency org="org.slf4j" name="slf4j-api" rev="1.7.31" />  -->
+   <!--  <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.31" />  -->
 
     <dependency org="org.glassfish.metro" name="webservices-api" rev="2.1" transitive="false"/>
     <dependency org="org.glassfish.metro" name="webservices-rt" rev="2.1" transitive="false" />
@@ -98,7 +98,7 @@
     <dependency org="org.apache.jackrabbit" name="jackrabbit-data" rev="2.10.0" transitive="false" conf="test->default">
         <artifact name="jackrabbit-data" type="jar"/>
     </dependency>
- <!--    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.29" conf="test->default" />  -->
+ <!--    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.31" conf="test->default" />  -->
     <dependency org="org.javassist" name="javassist" rev="3.27.0-GA" conf="test->default" transitive="false" />
     <dependency org="org.scannotation" name="scannotation" rev="1.0.2" conf="test->default" transitive="false"/>
     <dependency org="javax.jcr" name="jcr" rev="2.0" conf="test->default"/>
@@ -112,9 +112,9 @@
     <dependency org="org.mortbay.jetty" name="jetty-util" rev="6.1.21" transitive="false" conf="test->default" />
 
     <!-- jersey -->
-    <dependency org="com.sun.jersey.contribs" name="jersey-multipart"     rev="1.19.1" transitive="false" conf="compile->default"/>
-    <dependency org="com.sun.jersey.contribs" name="jersey-apache-client" rev="1.19.1" transitive="false" conf="compile->default"/>
-    <dependency org="com.sun.jersey"          name="jersey-bundle"        rev="1.19.1" transitive="false" conf="compile->default"/>
+    <dependency org="com.sun.jersey.contribs" name="jersey-multipart"     rev="1.19.4" transitive="false" conf="compile->default"/>
+    <dependency org="com.sun.jersey.contribs" name="jersey-apache-client" rev="1.19.4" transitive="false" conf="compile->default"/>
+    <dependency org="com.sun.jersey"          name="jersey-bundle"        rev="1.19.4" transitive="false" conf="compile->default"/>
 
     <!-- To support Enunciate Annotations in Resource classes 1.21.1 -->
     <dependency org="org.codehaus.enunciate" name="enunciate-core-annotations" rev="1.28"/>

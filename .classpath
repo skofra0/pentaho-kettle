@@ -10,6 +10,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="dist/lib/SassyReader-0.5.jar"/>
+	<classpathentry kind="lib" path="dist/lib/accessors-smart-2.4.7.jar"/>
 	<classpathentry kind="lib" path="dist/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/batik-anim-1.14.jar"/>
 	<classpathentry kind="lib" path="dist/lib/batik-awt-util-1.14.jar"/>
@@ -91,10 +92,10 @@
 	<classpathentry kind="lib" path="dist/lib/jaxrpc-api-1.1.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jcifs-1.3.3.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jersey-apache-client-1.19.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jersey-bundle-1.19.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jersey-client-1.19.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jersey-core-1.19.1.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jersey-apache-client-1.19.4.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jersey-bundle-1.19.4.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jersey-client-1.19.4.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jersey-core-1.19.4.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jetty-continuation-8.1.15.v20140411.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jetty-http-8.1.15.v20140411.jar"/>
 	<classpathentry kind="lib" path="dist/lib/jetty-io-8.1.15.v20140411.jar"/>
@@ -152,8 +153,8 @@
 	<classpathentry kind="lib" path="dist/lib/saxon-dom-9.1.0.8.jar"/>
 	<classpathentry kind="lib" path="dist/lib/scannotation-1.0.2.jar"/>
 	<classpathentry kind="lib" path="dist/lib/secondstring-20060615.jar"/>
-	<classpathentry kind="lib" path="dist/lib/slf4j-api-1.7.30.jar"/>
-	<classpathentry kind="lib" path="dist/lib/slf4j-log4j12-1.7.30.jar"/>
+	<classpathentry kind="lib" path="dist/lib/slf4j-api-1.7.31.jar"/>
+	<classpathentry kind="lib" path="dist/lib/slf4j-log4j12-1.7.31.jar"/>
 	<classpathentry kind="lib" path="dist/lib/snakeyaml-1.7.jar"/>
 	<classpathentry kind="lib" path="dist/lib/snappy-java-1.1.0.jar"/>
 	<classpathentry kind="lib" path="dist/lib/snmp4j-1.9.3d.jar"/>
@@ -186,6 +187,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-mvxapi-m3-client"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-xledger"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-core"/>
-	<classpathentry kind="lib" path="dist/lib/accessors-smart-2.4.7.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nexus-commons-cloudapi-rambase"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
