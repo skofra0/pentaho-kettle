@@ -11,7 +11,7 @@
   <parent>
     <artifactId>pdi-assemblies</artifactId>
     <groupId>org.pentaho.di</groupId>
-    <version>9.0.3-002</version>
+    <version>9.0.3-003</version>
   </parent>
 
   <properties>
@@ -38,11 +38,11 @@
     <sqlite-jdbc.version>3.27.2.1</sqlite-jdbc.version>
     <webservices-api.version>2.3.1</webservices-api.version>
     <webservices-rt.version>2.3.1</webservices-rt.version>
-    <asm.version>9.1</asm.version>
+    <asm.version>9.2</asm.version>
     <blueprints-core.version>2.6.0</blueprints-core.version>
     <commons-configuration.version>1.9</commons-configuration.version>
     <flexjson.version>2.1</flexjson.version>
-    <jersey-multipart.version>1.19.1</jersey-multipart.version>
+    <jersey-multipart.version>1.19.4</jersey-multipart.version>
     <mimepull.version>1.9.3</mimepull.version>
     <jsr311-api.version>1.1.1</jsr311-api.version>
     <enunciate-jersey-rt.version>1.27</enunciate-jersey-rt.version>

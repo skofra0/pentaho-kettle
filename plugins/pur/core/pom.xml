@@ -5,14 +5,14 @@
 
   <artifactId>pdi-pur-plugin-core</artifactId>
   <packaging>jar</packaging>
-  <version>9.0.3-002</version>
+  <version>9.0.3-003</version>
 
   <name>PDI PUR Plugin Core</name>
 
   <parent>
     <groupId>org.pentaho.di.plugins</groupId>
     <artifactId>pur</artifactId>
-    <version>9.0.3-002</version>
+    <version>9.0.3-003</version>
   </parent>
 
   <properties>
@@ -29,7 +29,7 @@
     <servlet-api.version>2.5</servlet-api.version>
     <gwt-servlet.version>2.5.1</gwt-servlet.version>
     <encoder.version>1.2</encoder.version>
-    <jersey-multipart.version>1.19.1</jersey-multipart.version>
+    <jersey-multipart.version>1.19.4</jersey-multipart.version>
     <enunciate-core-annotations.version>1.28</enunciate-core-annotations.version>
     <wadl-core.version>1.1.6</wadl-core.version>
     <wadl-ant.version>1.1.6</wadl-ant.version>
