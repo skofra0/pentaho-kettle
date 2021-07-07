@@ -65,7 +65,7 @@
     <dependency org="commons-logging"                  name="commons-logging"      rev="1.2"             transitive="false"/>
     <dependency org="org.apache.commons"               name="commons-lang3"        rev="3.12.0"          transitive="false"/>
     <dependency org="org.apache.xmlbeans"              name="xmlbeans"             rev="3.1.0"           transitive="false"/>
-    <dependency org="org.postgresql"                   name="postgresql"           rev="42.2.21"          transitive="false"/>
+    <dependency org="org.postgresql"                   name="postgresql"           rev="42.2.23"          transitive="false"/>
     <dependency org="rome"                             name="rome"                 rev="1.0"             transitive="false"/>
     <dependency org="org.eobjects.sassyreader"         name="SassyReader"          rev="0.5"             transitive="false"/>
     <dependency org="net.sf.saxon"                     name="saxon"                rev="9.1.0.8"         transitive="false"/>
