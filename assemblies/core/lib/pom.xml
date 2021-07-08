@@ -139,7 +139,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+ 
+ <!--   <dependency>
             <groupId>org.glassfish.tyrus.bundles</groupId>
             <artifactId>tyrus-standalone-client</artifactId>
             <version>${tyrus-standalone-client.version}</version>
@@ -150,7 +151,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+ -->       
+      
         <!-- Pentaho dependencies -->
         <dependency>
             <groupId>org.pentaho</groupId>
@@ -365,10 +367,10 @@
         </dependency>
  -->
         <!-- Third-party JDBC dependencies -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>com.h2database</groupId> -->
+<!--             <artifactId>h2</artifactId> -->
+<!--         </dependency> -->
         <dependency>
             <groupId>jaxen</groupId>
             <artifactId>jaxen</artifactId>

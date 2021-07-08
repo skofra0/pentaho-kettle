@@ -34,8 +34,6 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.hibernate.cache.Cache;
-import org.hibernate.cache.CacheException;
 import org.pentaho.di.core.Const;
 
 import com.google.common.annotations.VisibleForTesting;

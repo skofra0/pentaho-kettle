@@ -90,6 +90,7 @@
 	    <fasterxml-jackson.version>2.12.4</fasterxml-jackson.version>
 	    <fasterxml-jackson-databind.version>2.12.4</fasterxml-jackson-databind.version>
 		<asm.version>9.2</asm.version>
+	    <commons-vfs2.version>2.8.0</commons-vfs2.version>
 		<commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-compress.version>1.20</commons-compress.version>
         <jcommon.version>1.0.23</jcommon.version>
@@ -217,6 +218,17 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+		    <dependency>
+		      <groupId>org.apache.commons</groupId>
+		      <artifactId>commons-vfs2</artifactId>
+				<version>${commons-vfs2.version}</version>
+		      <exclusions>
+		      	<exclusion>
+		      		<groupId>org.apache.hadoop</groupId>
+		      		<artifactId>hadoop-hdfs-client</artifactId>
+		      	</exclusion>
+		      </exclusions>
+		    </dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
