@@ -18,11 +18,23 @@
       <groupId>org.pentaho.di.plugins</groupId>
       <artifactId>pdi-core-plugins-impl</artifactId>
       <version>${project.version}</version>
+      <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.pentaho.di.plugins</groupId>
       <artifactId>pdi-core-plugins-ui</artifactId>
       <version>${project.version}</version>
+      <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 

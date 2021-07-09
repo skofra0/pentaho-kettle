@@ -68,8 +68,24 @@
 		<pentaho-capability-manager.version>9.0.0.3-542</pentaho-capability-manager.version>
         <pentaho-metaverse.version>9.0.0.3-542</pentaho-metaverse.version>
 
-		<!-- Third-party dependencies -->
+		<!-- Third-party dependencies SWT 3.106.3 
+		<org.eclipse.swt.groupid>org.eclipse.platform</org.eclipse.swt.groupid>
+		<org.eclipse.jface.groupid>org.eclipse.platform</org.eclipse.jface.groupid>
+		<org.eclipse.jface.artifactid>org.eclipse.jface</org.eclipse.jface.artifactid>
+		<org.eclipse.swt.version>3.106.3</org.eclipse.swt.version>
+     	<org.eclipse.jface.version>3.12.2</org.eclipse.jface.version> 
+-->
+		<!-- Third-party dependencies SWT 4.6 -->
+		<org.eclipse.swt.groupid>org.eclipse.swt</org.eclipse.swt.groupid>
+		<org.eclipse.jface.groupid>org.eclipse</org.eclipse.jface.groupid>
+		<org.eclipse.jface.artifactid>jface</org.eclipse.jface.artifactid>
 		<org.eclipse.swt.version>4.6</org.eclipse.swt.version>
+    	<org.eclipse.jface.version>3.3.0-I20070606-0010</org.eclipse.jface.version> 
+    	
+		<org.eclipse.swt.gtk.linux.x86_64.version>3.108.0</org.eclipse.swt.gtk.linux.x86_64.version>
+    	<org.eclipse.swt.win32.win32.x86_64.version>${org.eclipse.swt.version}</org.eclipse.swt.win32.win32.x86_64.version>
+    	<org.eclipse.swt.cocoa.macosx.x86_64.version>${org.eclipse.swt.version}</org.eclipse.swt.cocoa.macosx.x86_64.version>
+		
 		<js.version>1.7R3</js.version>
 		<rhino.version>1.7.13</rhino.version>
 		<commons-codec.version>1.15</commons-codec.version>
@@ -77,13 +93,6 @@
 		<encoder.version>1.2</encoder.version>
 		<wstx-asl.version>3.2.4</wstx-asl.version>
    		<xercesImpl.version>2.12.1</xercesImpl.version>
- 
-<!-- 		<common.version>3.13.0</common.version> -->
-<!--     	<jface.version>3.21.0</jface.version> -->
-<!--     	<commands.version>3.9.700</commands.version> -->
-    	<common.version>3.3.0-v20070426</common.version>
-    	<jface.version>3.3.0-I20070606-0010</jface.version>
-    	<commands.version>3.3.0-I20070605-0010</commands.version>
 
 		<!-- SKOFRA  -->
         <nexus-etl.version>6.1.0.134</nexus-etl.version>
@@ -141,6 +150,10 @@
 				<version>${commons-xul.version}</version>
 				<exclusions>
 					<exclusion>
+						<groupId>org.eclipse</groupId>
+						<artifactId>jface</artifactId>
+					</exclusion>
+					<exclusion>
 						<groupId>org.eclipse.swt</groupId>
 						<artifactId>*</artifactId>
 					</exclusion>
@@ -154,7 +167,7 @@
 
 			<!-- Third-party dependencies -->
 			<dependency>
-				<groupId>org.eclipse.swt</groupId>
+				<groupId>${org.eclipse.swt.groupid}</groupId>
       			<artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
  				<version>${org.eclipse.swt.version}</version>
 				<exclusions>
@@ -165,7 +178,7 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>org.eclipse.swt</groupId>
+				<groupId>${org.eclipse.swt.groupid}</groupId>
 				<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
 				<version>${org.eclipse.swt.version}</version>
 				<exclusions>
@@ -175,6 +188,22 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<dependency>
+				<groupId>${org.eclipse.jface.groupid}</groupId>
+				<artifactId>${org.eclipse.jface.artifactid}</artifactId>
+				<version>${org.eclipse.jface.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>${org.eclipse.swt.groupid}</groupId>
+						<artifactId>org.eclipse.swt</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.eclipse</groupId>
+						<artifactId>swt</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
 	        <dependency>
 	            <groupId>org.mozilla</groupId>
 	            <artifactId>rhino</artifactId>

@@ -31,8 +31,6 @@
   </licenses>
 
   <properties>
-    <org.eclipse.swt.version>4.6</org.eclipse.swt.version>
-    <jface.version>3.3.0-I20070606-0010</jface.version>
     <pdi.version>${project.version}</pdi.version>
     <mockito.version>3.6.28</mockito.version>
     <saxon.version>8.7</saxon.version>
@@ -67,7 +65,7 @@
       </dependency>
       <!-- SWT is required to compile for it to work with architecture -->
       <dependency>
-        <groupId>org.eclipse.swt</groupId>
+        <groupId>${org.eclipse.swt.groupid}</groupId>
         <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
         <version>${org.eclipse.swt.version}</version>
         <scope>provided</scope>
@@ -85,10 +83,20 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
-        <groupId>org.eclipse</groupId>
-        <artifactId>jface</artifactId>
-        <version>${jface.version}</version>
+        <groupId>${org.eclipse.jface.groupid}</groupId>
+        <artifactId>${org.eclipse.jface.artifactid}</artifactId>
+	    <version>${org.eclipse.jface.version}</version>
         <scope>provided</scope>
+	    <exclusions>
+		  <exclusion>
+			<groupId>${org.eclipse.swt.groupid}</groupId>
+			<artifactId>org.eclipse.swt</artifactId>
+		  </exclusion>
+		<exclusion>
+			<groupId>org.eclipse</groupId>
+			<artifactId>swt</artifactId>
+		</exclusion>
+	    </exclusions>
       </dependency>
       <dependency>
         <groupId>net.sf.saxon</groupId>

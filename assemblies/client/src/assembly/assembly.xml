@@ -20,7 +20,8 @@
     </fileSet>
   </fileSets>
   <dependencySets>
-    <!-- default driver kar set -->
+    <!-- default driver kar set-->
+    <!-- 
     <dependencySet>
       <includes>
         <include>*:pentaho-hadoop-shims-cdh61-kar:*</include>
@@ -30,12 +31,12 @@
       <outputDirectory>./ADDITIONAL-FILES/drivers</outputDirectory>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
-    </dependencySet>
+    </dependencySet> -->
     <!-- pdi components -->
     <dependencySet>
       <includes>
         <include>org.pentaho.di:pdi-static:zip</include>
-        <include>org.pentaho.di:pdi-samples:zip</include>
+<!--         <include>org.pentaho.di:pdi-samples:zip</include> -->
         <include>org.pentaho.di:pdi-libs:zip</include>
         <include>org.pentaho.di:pdi-plugins:zip</include>
       </includes>
@@ -45,6 +46,7 @@
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <!-- swt -->
+ <!--   
     <dependencySet>
       <includes>
         <include>org.eclipse.platform:*.linux.x86</include>
@@ -54,6 +56,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+   -->
     <dependencySet>
       <includes>
         <include>org.eclipse.platform:*.linux.x86_64</include>
@@ -63,6 +66,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+ <!--   
     <dependencySet>
       <includes>
         <include>org.eclipse.swt:*.win32.x86</include>
@@ -72,6 +76,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+   -->
     <dependencySet>
       <includes>
         <include>org.eclipse.swt:*.win32.x86_64</include>
@@ -105,7 +110,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- jdbc drivers -->
+    <!-- jdbc drivers 
     <dependencySet>
       <includes>
         <include>pentaho:pdi-dataservice-driver-bundle:zip</include>
@@ -114,7 +119,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
       <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
-    </dependencySet>
+    </dependencySet> -->
     <!-- application launcher -->
     <dependencySet>
       <includes>

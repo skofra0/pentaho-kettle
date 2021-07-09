@@ -84,7 +84,7 @@ public class ConnectionFileSystem extends AbstractFileSystem implements FileSyst
 
     String url = getUrl( abstractFileName, connectionDetails );
 
-    AbstractFileObject fileObject = null;
+    AbstractFileObject<?> fileObject = null;
     String domain = null;
 
     if ( url != null ) {

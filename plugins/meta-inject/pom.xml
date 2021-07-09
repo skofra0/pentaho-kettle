@@ -24,8 +24,6 @@
     <servlet-api.version>2.5</servlet-api.version>
     <mockito.version>3.6.28</mockito.version>
     <guava.version>17.0</guava.version>
-    <jface.version>3.3.0-I20070606-0010</jface.version>
-    <swt.version>4.6</swt.version>
     <json-simple.version>1.1</json-simple.version>
     <jsr305.version>2.0.3</jsr305.version>
     <commons-io.version>2.7</commons-io.version>
@@ -68,9 +66,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.swt</groupId>
+      <groupId>${org.eclipse.swt.groupid}</groupId>
       <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
-      <version>${swt.version}</version>
+      <version>${org.eclipse.swt.version}</version>
       <scope>compile</scope>
       <exclusions>
         <exclusion>
@@ -80,10 +78,20 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.eclipse</groupId>
-      <artifactId>jface</artifactId>
-      <version>${jface.version}</version>
-      <scope>compile</scope>
+      <groupId>${org.eclipse.jface.groupid}</groupId>
+      <artifactId>${org.eclipse.jface.artifactid}</artifactId>
+      <version>${org.eclipse.jface.version}</version>
+	  <exclusions>
+		<exclusion>
+			<groupId>${org.eclipse.swt.groupid}</groupId>
+			<artifactId>org.eclipse.swt</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>org.eclipse</groupId>
+			<artifactId>swt</artifactId>
+		</exclusion>
+	  </exclusions>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>pentaho-kettle</groupId>

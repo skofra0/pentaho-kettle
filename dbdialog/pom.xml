@@ -69,9 +69,31 @@
 
     <!-- Third-party (external) dependencies -->
     <dependency>
-      <groupId>org.eclipse.swt</groupId>
-      <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
+      <groupId>${org.eclipse.swt.groupid}</groupId>
+      <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
+ 	  <version>${org.eclipse.swt.version}</version>
+	  <exclusions>
+		<exclusion>
+			<groupId>*</groupId>
+			<artifactId>*</artifactId>
+		</exclusion>
+	  </exclusions>
     </dependency>
+	<dependency>
+      <groupId>${org.eclipse.jface.groupid}</groupId>
+      <artifactId>${org.eclipse.jface.artifactid}</artifactId>
+	  <version>${org.eclipse.jface.version}</version>
+	  <exclusions>
+		<exclusion>
+			<groupId>${org.eclipse.swt.groupid}</groupId>
+			<artifactId>org.eclipse.swt</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>org.eclipse</groupId>
+			<artifactId>swt</artifactId>
+		</exclusion>
+	  </exclusions>
+	</dependency>
 
     <dependency>
       <groupId>org.mockito</groupId>

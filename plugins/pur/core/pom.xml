@@ -145,7 +145,7 @@
 
     <!-- Third-party dependencies -->
     <dependency>
-      <groupId>org.eclipse.swt</groupId>
+      <groupId>${org.eclipse.swt.groupid}</groupId>
       <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
       <scope>provided</scope>
       <exclusions>

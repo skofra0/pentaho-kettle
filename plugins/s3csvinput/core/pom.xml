@@ -29,13 +29,23 @@
       <artifactId>kettle-ui-swt</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.swt</groupId>
+      <groupId>${org.eclipse.swt.groupid}</groupId>
       <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.eclipse</groupId>
-      <artifactId>jface</artifactId>
-      <version>3.3.0-I20070606-0010</version>
+   	  <groupId>${org.eclipse.jface.groupid}</groupId>
+	  <artifactId>${org.eclipse.jface.artifactid}</artifactId>
+	  <version>${org.eclipse.jface.version}</version>
+	  <exclusions>
+		<exclusion>
+			<groupId>${org.eclipse.swt.groupid}</groupId>
+			<artifactId>org.eclipse.swt</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>org.eclipse</groupId>
+			<artifactId>swt</artifactId>
+		</exclusion>
+	  </exclusions>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>

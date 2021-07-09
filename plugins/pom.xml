@@ -5,7 +5,6 @@
 
   <groupId>org.pentaho.di.plugins</groupId>
   <artifactId>pdi-plugins</artifactId>
-  <version>9.0.3-003</version>
   <packaging>pom</packaging>
 
   <name>PDI Plugins</name>

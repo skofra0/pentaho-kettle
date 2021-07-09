@@ -25,7 +25,7 @@
       <includes>
         <include>pentaho:pentaho-versionchecker</include>
         <include>commons-codec:commons-codec</include>
-        <include>commons-httpclient:commons-httpclient</include>
+<!--         <include>commons-httpclient:commons-httpclient</include> -->
         <include>commons-logging:commons-logging</include>
         <include>org.safehaus.jug:jug-lgpl</include>
       </includes>

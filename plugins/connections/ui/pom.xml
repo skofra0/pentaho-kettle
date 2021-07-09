@@ -55,7 +55,7 @@
       <artifactId>pentaho-i18n-webservice-bundle</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.swt</groupId>
+      <groupId>${org.eclipse.swt.groupid}</groupId>
       <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
     </dependency>
     <dependency>

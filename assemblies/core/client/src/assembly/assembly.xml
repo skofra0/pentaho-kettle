@@ -30,6 +30,7 @@
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <!-- swt -->
+<!--    
     <dependencySet>
       <includes>
         <include>org.eclipse.platform:*.linux.x86</include>
@@ -39,6 +40,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+-->    
     <dependencySet>
       <includes>
         <include>org.eclipse.platform:*.linux.x86_64</include>
@@ -48,6 +50,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+<!--    
     <dependencySet>
       <includes>
         <include>org.eclipse.swt:*.win32.x86</include>
@@ -57,6 +60,7 @@
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+-->    
     <dependencySet>
       <includes>
         <include>org.eclipse.swt:*.win32.x86_64</include>
