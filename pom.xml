@@ -62,27 +62,27 @@
 		<pentaho-registry.version>9.0.0.3-542</pentaho-registry.version>
 		<pentaho-connections.version>9.0.0.3-542</pentaho-connections.version>
 		<mondrian.version>9.0.0.3-542</mondrian.version>
-		<commons-xul.version>9.0.0.3-542</commons-xul.version>
+		<commons-xul.version>9.2.0.0-290</commons-xul.version>
 		<pentaho-metastore.version>9.0.0.3-542</pentaho-metastore.version>
 	    <pentaho-metaverse.version>9.0.0.3-542</pentaho-metaverse.version>
 		<pentaho-capability-manager.version>9.0.0.3-542</pentaho-capability-manager.version>
         <pentaho-metaverse.version>9.0.0.3-542</pentaho-metaverse.version>
 
-		<!-- Third-party dependencies SWT 3.106.3 
+		<!-- Third-party dependencies SWT 3.116.100 -->
 		<org.eclipse.swt.groupid>org.eclipse.platform</org.eclipse.swt.groupid>
 		<org.eclipse.jface.groupid>org.eclipse.platform</org.eclipse.jface.groupid>
 		<org.eclipse.jface.artifactid>org.eclipse.jface</org.eclipse.jface.artifactid>
-		<org.eclipse.swt.version>3.106.3</org.eclipse.swt.version>
-     	<org.eclipse.jface.version>3.12.2</org.eclipse.jface.version> 
--->
-		<!-- Third-party dependencies SWT 4.6 -->
+		<org.eclipse.swt.version>3.116.100</org.eclipse.swt.version>
+     	<org.eclipse.jface.version>3.22.0</org.eclipse.jface.version> 
+
+		<!-- Third-party dependencies SWT 4.6
 		<org.eclipse.swt.groupid>org.eclipse.swt</org.eclipse.swt.groupid>
 		<org.eclipse.jface.groupid>org.eclipse</org.eclipse.jface.groupid>
 		<org.eclipse.jface.artifactid>jface</org.eclipse.jface.artifactid>
 		<org.eclipse.swt.version>4.6</org.eclipse.swt.version>
     	<org.eclipse.jface.version>3.3.0-I20070606-0010</org.eclipse.jface.version> 
-    	
-		<org.eclipse.swt.gtk.linux.x86_64.version>3.108.0</org.eclipse.swt.gtk.linux.x86_64.version>
+    	-->
+		<org.eclipse.swt.gtk.linux.x86_64.version>${org.eclipse.swt.version}</org.eclipse.swt.gtk.linux.x86_64.version>
     	<org.eclipse.swt.win32.win32.x86_64.version>${org.eclipse.swt.version}</org.eclipse.swt.win32.win32.x86_64.version>
     	<org.eclipse.swt.cocoa.macosx.x86_64.version>${org.eclipse.swt.version}</org.eclipse.swt.cocoa.macosx.x86_64.version>
 		

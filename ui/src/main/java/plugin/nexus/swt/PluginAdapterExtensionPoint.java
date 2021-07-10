@@ -10,7 +10,7 @@ public class PluginAdapterExtensionPoint implements RegistrerPluginAdapter {
     @Override
     public void registerPlugin() {
         try {
-            ExtensionPointPluginType.getInstance().registerCustom(plugin.nexus.swt.fileopensave.extension.FileOpenSaveExtensionPoint.class, null, "FileOpenSaveNewExtensionPoint", "SpoonOpenSaveNew", "pen the new file browser", null);
+            ExtensionPointPluginType.getInstance().registerCustom(plugin.nexus.swt.fileopensave.extension.FileOpenSaveExtensionPoint.class, null, "FileOpenSaveNewExtensionPoint", "SpoonOpenSaveNew", "Open the new file browser", null);
             ExtensionPointPluginType.getInstance().registerCustom(plugin.nexus.swt.fileopensave.extension.RepositoryOpenSaveExtensionPoint.class, null, "RepositoryOpenSaveExtensionPoint", "SpoonOpenSaveRepository", "Open the repository browser", null);
             ExtensionPointPluginType.getInstance().registerCustom(plugin.nexus.swt.repo.extension.RepositorySpoonStartExtensionPoint.class, null, "RepositorySpoonStartExtensionPoint", "SpoonStart", "Do or display login for default repository", null);
         } catch (KettlePluginException e) {
